@@ -1,0 +1,124 @@
+\section{Hollow-Core Photonic Crystal Fibers}
+
+\subsection{From Conventional to Hollow-Core Optical Fibers}
+
+A conventional optical fiber guides light through Total Internal Reflection (TIR). In a step-index fiber, a solid dielectric core of refractive index $n_{\text{core}}$ is surrounded by a cladding of lower index $n_{\text{clad}}$, with $n_{\text{core}} > n_{\text{clad}}$. When light propagating inside the core meets the core--cladding interface at an angle steeper than the critical angle $\theta_c = \arcsin(n_{\text{clad}}/n_{\text{core}})$, it is fully reflected and remains trapped within the core over macroscopic distances. Standard telecommunications fibers, based on a silica core ($n \approx 1.45$) slightly doped to increase its index with respect to the cladding, are a well-known example of this guiding mechanism and form the basis of modern optical networks.
+
+A hollow, air- or gas-filled core, where $n_{\text{core}} \approx 1 < n_{\text{clad}} \approx 1.45$, therefore cannot guide by TIR, since the index hierarchy is reversed. However, it would allow light to propagate through a medium far less dispersive, less nonlinear, and less absorptive than silica, while simultaneously opening the core to atoms, gases, and particles for which a solid core is a physical barrier. The central challenge of hollow-core fiber (HCF) technology is therefore to find a confinement mechanism that does not rely on an index hierarchy between core and cladding.
+
+Hollow-core guidance was first attempted in the 1980s and 1990s using metal-coated waveguides and simple glass capillaries, but these suffered from high losses due to the lack of an efficient low-loss cladding. This limitation was overcome with the invention of the solid-core photonic crystal fiber (PCF) in 1996, whose concept was extended to hollow cores in 1999 with the first hollow-core photonic bandgap fibers (HC-PBGFs), where light confinement is achieved through the photonic bandgap of a periodically microstructured cladding~\cite{Komanec:20}.
+
+ Alternative designs were therefore developed, including Kagome-lattice hollow-core fibers, introduced in 2002. In these structures, light confinement does not rely on a bandgap but on suppressed coupling between core and cladding modes (see Section~\ref{subsec:mechanisms}). Further improvements were achieved around 2010 with the introduction of negative-curvature (hypocycloid) core boundaries, which significantly reduce confinement losses. This approach led to simplified antiresonant fiber (ARF) designs and, more recently, to nested antiresonant nodeless fibers (NANFs).
+
+The main milestones in this development are summarized in Fig.~\ref{fig:history_fibers}. The evolution of these structures can be understood through two main trends: the progressive simplification of the cladding geometry and the transition between different light-confinement mechanisms.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\textwidth]{Cap_1_figures/history_fibers.png}
+\caption{Timeline illustrating the structural evolution of hollow-core optical fibers. The progression highlights the transition from early photonic bandgap fibers (PBGF) to advanced antiresonant architectures (ARF), including Kagome, cojoined-tube, and nested nodeless designs. Attenuation values are given for the wavelength of 1550~nm. Credits~\cite{Komanec:20}.}
+\label{fig:history_fibers}
+\end{figure}
+
+\subsection{Photonic Bandgap and Inhibited Coupling Guiding Mechanisms}
+\label{subsec:mechanisms}
+
+The theoretical description of HCPCFs draws on concepts developed in condensed matter physics. In a crystalline solid, the periodic potential experienced by electrons gives rise to allowed energy bands separated by forbidden gaps in which no electronic states can exist. In the optical case, the periodic electronic potential is replaced with a periodic dielectric modulation: the cladding of an HCPCF is a two-dimensional photonic crystal, and the hollow core introduces a structural defect, much like a vacancy or impurity in a semiconductor. Solving the electromagnetic wave equation in the presence of this periodic structure yields eigenmodes organized in bands, with the possibility of forbidden spectral regions in which the cladding does not support propagating modes.
+
+Mathematically, this is cast as an eigenvalue problem for the mode amplitudes, which take the form $E \propto e^{i\beta z}$ along the fiber axis $z$, where $\beta$ is the longitudinal propagation constant. The set of allowed solutions defines the Density of Photonic States (DOPS), conventionally expressed in terms of the effective refractive index $n_{\text{eff}} = \beta/k_0$, where $k_0 = \omega/c$ is the vacuum wavenumber~\cite{Digonnet2005}. A diagram of the DOPS in the $(n_{\text{eff}}, \omega)$ plane plays, for photons, the same role that a band structure diagram plays for electrons: it identifies which modes can exist at a given frequency and effective index.
+
+Based on the structure of the DOPS, HCPCFs are divided into two distinct guiding regimes: Photonic Band Gap (PBG) and Inhibited Coupling (IC), schematically compared in Fig.~\ref{fig:guiding_mech} together with conventional TIR guidance.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{Cap_1_figures/guiding_mech.png}
+\caption{Schematic comparison of the internal reflection, PBG and IC guiding mechanisms. The effective index $n_{\text{eff}}$ is plotted on the vertical axis, with the relevant index levels marked by horizontal dashed lines. The graphs display the cladding photonic bands versus $n_{\text{eff}}$, highlighting the core guidance regimes through continua (orange rectangles) and bandgaps (white rectangles). For TIR and PBG fibers, core modes are guided within the gaps. In contrast, IC fibers exhibit no bandgaps, and guidance occurs alongside the cladding mode continuum. Credits \cite{Debord2019}.}
+\label{fig:guiding_mech}
+\end{figure}
+
+\paragraph{Photonic Band Gap (PBG) guidance.}
+In PBG fibers, the periodic cladding is engineered so that for certain ranges of $(\omega, n_{\text{eff}})$ the DOPS is zero: no propagating cladding modes exist, and these forbidden regions are the photonic bandgaps. Guidance is achieved by introducing a hollow-core defect whose localized optical mode falls within one of these gaps: the core mode cannot leak into the surrounding structure because there are no available cladding states to couple into at that effective index ~\cite{Cregan1999}. PBG fibers deliver extremely low confinement losses, but their transmission is restricted to the narrow spectral bandwidth of the bandgap itself. For applications requiring the simultaneous guidance of widely separated wavelengths, for instance, multiple atomic transitions co-propagating in the same fiber, this narrowness becomes a limitation.
+
+\paragraph{Inhibited Coupling (IC) guidance.}
+Unlike photonic bandgap fibers, IC fibers do not require a forbidden spectral region in the cladding; instead, the core mode coexists with a continuum of cladding modes of similar effective refractive index $n_{\text{eff}}$, and confinement is achieved by suppressing the coupling between them. By treating the silica microstructure as a local dielectric perturbation $\Delta n^2(x,y)$ introduced into a uniform vacuum background, the interaction between a core mode $|\varphi_{\text{core}}\rangle$ and a cladding mode $|\varphi_{\text{clad}}\rangle$ can be described by the overlap integral~\cite{Debord2019}
+\begin{equation}
+\langle \varphi_{\text{clad}} | \Delta n^2 | \varphi_{\text{core}} \rangle
+= \iint_{\text{cross-section}} \varphi_{\text{clad}}^*(x,y)\, \Delta n^2(x,y)\, \varphi_{\text{core}}(x,y)\, dx\, dy.
+\label{eq:inhibited_coupling}
+\end{equation}
+In this expression, the term $\Delta n^2$ restricts the interaction to the physical regions where the silica glass is present. Whenever the fiber geometry is engineered to suppress this integral, the core mode uncouples from the cladding and remains tightly confined.
+
+This behavior is closely related to a Bound State in the Continuum (BIC), a concept introduced by von Neumann and Wigner in 1929~\cite{vonNeumann1929} to describe a localized state that remains confined due to symmetry or destructive interference despite its energy lying within a continuous spectrum of radiative states.
+
+Two mechanisms can drive the integral in Eq.~\ref{eq:inhibited_coupling} toward zero. The first is a \emph{reduced spatial overlap}: if the core and cladding fields occupy largely disjoint regions of the transverse plane, the integrand is small everywhere and so is the integral. The second is a \emph{transverse phase mismatch}, which is best seen by decomposing each mode into azimuthal harmonics, $\varphi(r,\theta) = \sum_m A_m R_m(r) e^{im\theta}$. Substituting into Eq.~\ref{eq:inhibited_coupling} separates the integral into a radial part and an azimuthal part,
+\begin{equation}
+\langle \varphi_{\text{clad}} | \Delta n^2 | \varphi_{\text{core}} \rangle
+\propto \int_{r_1}^{r_2} R_{\text{clad}}(r)\, R_{\text{core}}^*(r)\, r\, dr \;\times\; \int_0^{2\pi} e^{i(m_{\text{clad}} - m_{\text{core}})\theta}\, d\theta,
+\label{eq:overlap_azimuthal}
+\end{equation}
+where $m_{\text{clad}}$ and $m_{\text{core}}$ are the azimuthal indices of the two modes. The azimuthal integral vanishes whenever $m_{\text{clad}} \neq m_{\text{core}}$: modes with different azimuthal order are orthogonal, and their coupling is suppressed by symmetry regardless of their spatial overlap~\cite{Debord2019}. 
+\footnote{In an idealized axisymmetric model, the azimuthal integral vanishes for modes with different azimuthal indices. In a real Kagome fiber, the discrete cladding geometry breaks perfect cylindrical symmetry, so the suppression of coupling is approximate and depends on the detailed modal overlap and phase matching.}
+By engineering the cladding geometry so that the cladding modes carry a high azimuthal index $m$ while the fundamental core mode has $m \approx 0$, the phase-mismatch term in Eq.~\ref{eq:overlap_azimuthal} strongly suppresses the coupling over a broad spectral range.
+
+Because IC guidance is based on local mode interactions rather than on a global photonic bandgap, IC fibers can provide broadband transmission compared with PBG fibers, whose bandwidth is limited by the spectral range of the bandgap~\cite{Debord2019}.
+
+\subsection{Kagome-Lattice Hollow-Core Fibers}
+\label{subsec:kagome}
+
+The Kagome-lattice fiber is a primary realization of the Inhibited Coupling guiding mechanism~\cite{Debord2019}. Its cladding is a trihexagonal tiling, formed by a network of thin silica capillaries that create a periodic pattern of large hexagonal and smaller triangular interstitial air holes (see Fig.~\ref{fig:kagome_overview}a).
+
+\begin{figure}[h!]
+\centering
+\begin{minipage}[b]{0.6\textwidth}
+\centering
+\includegraphics[width=\textwidth]{Cap_1_figures/kagome_structure.png}\\[2pt]
+\small (a)
+\end{minipage}
+
+\vspace{0.5cm}
+
+\begin{minipage}[b]{0.47\textwidth}
+\centering
+\includegraphics[width=\textwidth]{Cap_1_figures/index_kagome.png}\\[2pt]
+\small (b)
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.47\textwidth}
+\centering
+\includegraphics[width=\textwidth]{Cap_1_figures/mode_profiles_kagome.png}\\[2pt]
+\small (c)
+\end{minipage}
+\caption{Overview of guidance in a hypocycloid-core Kagome fiber. \textbf{(a)} Scanning electron microscopy micrographs and structural unit cell. \textbf{(b)} Real and imaginary parts of the effective index of the fundamental core mode as a function of the normalized frequency $k\Lambda$: $\text{Im}(n_{\text{eff}})$, proportional to the propagation loss, remains low except at a series of sharp resonance peaks. \textbf{(c)} Transverse intensity profile of the same mode at three representative frequencies: tight confinement at $k\Lambda=50$ and $k\Lambda=100$, and loss of confinement at the resonance $k\Lambda=68$. Credits~\cite{Debord2019}.}
+\label{fig:kagome_overview}
+\end{figure}
+
+Confinement in this regime is achieved through the two suppression strategies identified in Section~\ref{subsec:mechanisms}. The thin silica struts support cladding modes with a highly oscillatory transverse phase, characterized by a high azimuthal index number $m$, while the fundamental core mode features a slowly varying, nearly Gaussian profile with $m \approx 0$. The strong mismatch in $m$ makes the azimuthal integral in Eq.~\ref{eq:overlap_azimuthal} vanish, so that the core mode cannot couple into the surrounding glass network despite the spectral overlap with the cladding continuum.
+
+This coupling suppression is not, however, absolute across the entire spectrum. The silica struts behave as thin dielectric slabs, and at the wavelengths for which a slab becomes resonant its transverse phase matches that of the core mode leading to hybridization. These discrete resonances produce the sharp loss peaks visible in Fig.~\ref{fig:kagome_overview}b. Their location follows from the transverse resonance condition of a dielectric slab of thickness $t$ and index $n_g$ surrounded by air. Requiring the optical round-trip phase inside the slab to be an integer multiple of $2\pi$, and accounting for the phase accumulated at the air--glass interfaces at grazing incidence (the regime relevant to a hollow core), i.e.
+\begin{equation}
+2\left(\frac{2\pi}{\lambda}\sqrt{n_g^2-1}\right)t = 2\pi j,
+\end{equation}
+yields the resonance condition~\cite{Debord2019}
+\begin{equation}
+\lambda_j = \frac{2t\sqrt{n_g^2 - 1}}{j}, \qquad j = 1, 2, 3, \dots,
+\label{eq:antiresonance}
+\end{equation}
+where $j$ is the radial mode order of the strut. Equivalently, in terms of the normalized frequency $k\Lambda = (2\pi/\lambda)\Lambda$,
+\begin{equation}
+k\Lambda = \frac{j\,\pi\,\Lambda}{t\sqrt{n_g^2 - 1}}.
+\label{eq:antiresonance_kL}
+\end{equation}
+At these wavelengths the strut is resonant and transmits rather than reflects the transverse field, so the core mode leaks into the cladding and the confinement breaks down, as shown at $k\Lambda = 68$ in Fig.~\ref{fig:kagome_overview}c. Between consecutive resonances the slab is antiresonant and acts as a high reflector: the $m$-mismatch is restored and the light is tightly localized in the core (e.g.\ at $k\Lambda = 50$ or $100$). Because the resonance wavelengths scale linearly with $t$, fabricating fibers with nanoscale glass webs pushes the resonances toward shorter wavelengths, thereby opening ultra-broadband transmission windows in the spectral region of interest.
+
+To reduce confinement loss the core boundary can be engineered with a hypocycloidal (or negative-curvature) profile by incorporating a series of inward-pointing glass arcs (as depicted in Fig.~\ref{fig:history_fibers}). This geometry increases the phase mismatch and reduces the overlap between the core mode and the surrounding silica~\cite{Debord2019}.
+
+\paragraph{Higher order modes}
+Similar to standard hollow capillaries and conventional fibers, the core of a Kagome IC fiber supports multiple transverse modes,  denoted by the $LP_{m,n}$ notation where $m$ and $n$ represent the azimuthal and radial mode numbers.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{Cap_1_figures/higher_order.png}
+\caption{Calculated modal structure of an IC-HCPCF, mapping the fundamental $LP_{01}$ mode and higher-order modes against the continuous cladding modal spectrum.}
+\label{fig:higher_order}
+\end{figure}
+
+Fig.~\ref{fig:higher_order} illustrates this modal hierarchy. Higher-order modes (such as $LP_{11}$ or $LP_{02}$) exist but experience much higher leakage. Their electromagnetic fields extend radially closer to the silica boundaries, which increases the spatial overlap with the cladding modes, and their non-zero azimuthal index (like $m=1$ for the $LP_{11}$ mode) reduces the phase mismatch. Thus, while the fiber inherently supports a multimode continuum, if properly designed it can behave as a single-mode waveguide over macroscopic distances due to the attenuation of higher-order modes~\cite{Debord2019}.

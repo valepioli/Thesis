@@ -1,0 +1,25 @@
+% !TEX root = ../../thesis_main.tex
+\documentclass[../../thesis_main.tex]{subfiles}
+\ifSubfilesClassLoaded{\externaldocument{../../thesis_main}}{}
+\graphicspath{{\subfix{../../figures/}}}
+
+\begin{document}
+
+    \ifSubfilesClassLoaded{\tableofcontents}{}
+
+    \chapter{Results and Discussion}
+    Following the experimental and analysis procedures explained in Chapter \ref{cap2}, the ODT capture efficiency was characterized and optimized. This chapter presents the corresponding experimental results.
+    
+    The first stage of the optimization process consists of  minimizing the molasses temperature through the adjustment of the cooling laser detuning, the cooling laser intensity, and the compensation magnetic field.
+
+    Subsequently, the ODT loading is optimized by exploiting the compensation coils to displace the MOT after loading. This optimization aims to maximize the spatial overlap between the atomic cloud and the ODT beam, thereby enhancing the capture efficiency.
+
+    \import{./}{cap3_MOL_TEMP.tex}
+    \clearpage
+    \import{./}{cap3_ODT_LOAD.tex}
+    \clearpage
+    \import{./}{cap3_EIT.tex}
+
+
+    \ifSubfilesClassLoaded{\printbibliography}{}
+\end{document}

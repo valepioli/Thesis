@@ -1,0 +1,62 @@
+\begin{tikzpicture}[scale=0.75]
+
+    \coordinate (LASER) at (0, 1);
+    \coordinate (HWP1)  at (0, 2);
+    \coordinate (ISOL)  at (0, 4);
+    \coordinate (HWP2)  at (0, 6);
+    \coordinate (PBS1)  at (0, 8);
+    \coordinate (HWP3)  at (2, 8);
+    \coordinate (PBS2)  at (4, 8);
+    \coordinate (FIB2)  at (4, 9.25);
+    \coordinate (AOM)   at (6, 8);
+    \coordinate (BXP)   at (8, 8);
+    \coordinate (M1)    at (11, 8);
+    \coordinate (DCM)   at (11, 6);
+    \coordinate (F1)    at (13, 6);
+    \coordinate (FIB1)  at (14, 6);
+
+    % Labels for all components
+    \node[below, yshift=-28pt] at (LASER) {LASER\\1064~nm};
+    \node[right, xshift=14pt, yshift=3pt] at (HWP1) {HWP1};
+    \node[right, xshift=14pt] at (ISOL) {Optical\\Isolator};
+    \node[right, xshift=14pt, yshift=3pt] at (HWP2) {HWP2};
+    \node[left, yshift=0pt, xshift=-10pt] at (PBS1) {PBS1};
+    \node[above, yshift=14pt, xshift=3pt] at (HWP3) {HWP3};
+    \node[below, yshift=-12pt] at (PBS2) {PBS2};
+    \node[above, yshift=14pt, xshift=8pt] at (AOM) {AOM};
+    \node[above, yshift=14pt, xshift=15pt] at (BXP) {Beam \\Expander};
+    \node[above, yshift=14pt] at (M1) {M1};
+    \node[below, yshift=-16pt] at (DCM) {Dichroic\\Mirror};
+    \node[below, yshift=-14pt] at (F1) {f50};
+    \node[below, yshift=-14pt, xshift=25pt] at (FIB1) {Fiber 1\\(HCPCF)};
+    \node[right, xshift=20pt, yshift=24pt] at (FIB2) {Fiber 2};
+    \node[above] at (0, 9.8) {Beam\\Dump};
+    \node[left] at (9, 6) {Light\\780~nm};
+
+    \draw [very thick ,-{latex}, optikzred] (LASER) -- (HWP1) -- (ISOL) -- (HWP2) -- (PBS1) -- (HWP3) -- (PBS2) -- (AOM) -- (BXP) -- (M1) -- (DCM) -- (F1) -- (FIB1) ;
+    \draw[very thick, -{latex}, optikzred] (PBS2) -- (FIB2);
+    \draw[very thick, -{latex}, optikzred] (PBS1) -- (0, 9.25);
+  
+    \draw[thick, fill=black!70] (-0.36,9.25) rectangle (0.36,9.75);
+    
+    % Dashed line in trasmission in the DCM 
+    \draw [very thick, dashed, optikzred] (9, 6) -- (DCM);
+
+    \laser[color=optikzred, angle=-90] at (LASER);
+    \splitter[thickness=0.7, angle = 90, color=optikzyellow] at (HWP1);
+    \faradayrotator[angle = 90, width=1.2] at (ISOL);
+    \splitter[thickness=0.7, angle = 90, color=optikzyellow] at (HWP2);
+
+    \BScrystal at (PBS1);
+    \splitter[thickness=0.7, color=optikzyellow] at (HWP3);
+    \BScrystal at (PBS2);
+    \pic[scale=0.55, rotate=-90, xshift=-42pt] at (FIB2) {fiber loop};
+    \pic[scale=0.55, xshift=15pt] at (AOM) {aom};
+    \objective at (BXP);
+
+    \mirror[angle = 45] at (M1);
+    \mirror[angle = 225, color=blue] at (DCM);
+    \planconvexlens at (F1);
+    \pic[scale=0.55, xshift=42pt] at (FIB1) {fiber loop}; 
+
+\end{tikzpicture}

@@ -1,0 +1,3 @@
+# Force latexmk to use thesis_main.tex as the main target
+$pdflatex = 'pdflatex -interaction=nonstopmode -synctex=1 %O %S';
+@default_files = ('thesis_main.tex');

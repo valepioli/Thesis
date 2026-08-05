@@ -1,0 +1,104 @@
+\begin{tikzpicture}[>=Stealth, line width=0.8pt, font=\large, scale=0.9]
+
+% --- Parametri Geometrici ---
+\def\cladR{2.4}       % Raggio esterno Clad (semiasse y)
+\def\cladW{0.7}       % Semiasse x per l'ellisse del Clad
+\def\cladL{2.8}       % Lunghezza del cilindro Clad
+
+\def\coreR{0.8}       % Raggio del Core (semiasse y)
+\def\coreW{0.233}     % Semiasse x per l'ellisse del Core (proporzionato al Clad)
+\def\coreL{1.4}       % Lunghezza sporgenza del Core
+
+\def\xProfile{6.5}    % Posizione X dell'asse del profilo d'indice
+\def\nTwo{0.8}        % Larghezza gradino n2
+\def\nOne{1.8}        % Larghezza gradino n1
+
+\def\xVec{10.5}       % Posizione X del diagramma vettoriale
+
+% --- Frecce e Quote Sinistre (2b) ---
+% \draw[dashed, thin] (0, \cladR) -- ++(-1.4, 0);
+% \draw[dashed, thin] (0, -\cladR) -- ++(-1.4, 0);
+
+% --- Cilindro: CLAD ---
+% Fill the body of the Clad cylinder
+\fill[white]
+    (0, \cladR) arc [start angle=90, end angle=270, x radius=\cladW, y radius=\cladR]
+    -- (\cladL, -\cladR)
+    arc [start angle=-90, end angle=90, x radius=\cladW, y radius=\cladR]
+    -- cycle;
+
+% Left face (only the visible left arc)
+\draw (0, \cladR) arc [start angle=90, end angle=270, x radius=\cladW, y radius=\cladR];
+% Top and bottom borders
+\draw (0, \cladR) -- (\cladL, \cladR);
+\draw (0, -\cladR) -- (\cladL, -\cladR);
+% Right face (full ellipse)
+\draw[fill=white] (\cladL, 0) ellipse [x radius=\cladW, y radius=\cladR];
+
+% Testo Clad
+\node at (1.1, 1.7) {Clad};
+
+% --- Cilindro: CORE ---
+% Riempimento del corpo del Core per simulare il 3D
+\fill[gray!40]
+    % Inizia dal punto superiore dell'attacco
+    (\cladL, \coreR)
+    % Arco concavo verso sinistra (entra nel Clad, come richiesto)
+    arc [start angle=90, end angle=270, x radius=\coreW, y radius=\coreR]
+    -- (\cladL+\coreL, -\coreR)                           % Bordo dritto inferiore
+    arc [start angle=-90, end angle=90, x radius=\coreW, y radius=\coreR] % Curva destra (faccia frontale, visibile)
+    -- cycle;                                             % Bordo dritto superiore
+
+% Contorni del Core
+% Disegna l'arco concavo di attacco
+\draw (\cladL, \coreR) arc [start angle=90, end angle=270, x radius=\coreW, y radius=\coreR];
+\draw (\cladL, \coreR) -- (\cladL+\coreL, \coreR);           % Bordo top
+\draw (\cladL, -\coreR) -- (\cladL+\coreL, -\coreR);         % Bordo bot
+
+% Faccia destra del Core (ellisse completa)
+\fill[gray!40] (\cladL+\coreL, 0) ellipse [x radius=\coreW, y radius=\coreR];
+\draw (\cladL+\coreL, 0) ellipse [x radius=\coreW, y radius=\coreR];
+
+% Testo Core
+\node at (\cladL + \coreL/2 - 0.2, 0) {Core};
+
+% --- Frecce e Quote Destre (2a) e Linee di Proiezione ---
+\draw[dashed, thin] (\cladL+\coreL, \coreR) -- (\xProfile, \coreR);
+\draw[dashed, thin] (\cladL+\coreL, -\coreR) -- (\xProfile, -\coreR);
+\draw[<->] (\cladL+\coreL+0.9, -\coreR) -- (\cladL+\coreL+0.9, \coreR) node[midway, left] {$2a$};
+
+% Continuazione linee tratteggiate dal Clad
+\draw[dashed, thin] (\cladL, \cladR) -- (\xProfile, \cladR);
+\draw[dashed, thin] (\cladL, -\cladR) -- (\xProfile, -\cladR);
+
+% --- Asse Centrale n(r) ---
+\draw[->, thick] (\xProfile, 0) -- (\xProfile + \nOne + 1.3, 0) node[above, near end, xshift=3] {$n(r)$};
+
+% --- Profilo d'Indice (Centro) ---
+% Asse verticale base
+\draw[thick] (\xProfile, -\cladR-0.5) -- (\xProfile, \cladR+0.5);
+
+% Profilo a gradino
+\draw[thick]
+    (\xProfile, \cladR)
+    -- (\xProfile + \nTwo, \cladR)
+    -- (\xProfile + \nTwo, \coreR)
+    -- (\xProfile + \nOne, \coreR)
+    -- (\xProfile + \nOne, -\coreR)
+    -- (\xProfile + \nTwo, -\coreR)
+    -- (\xProfile + \nTwo, -\cladR)
+    -- (\xProfile, -\cladR);
+
+% Testo del profilo
+\node[right] at (\xProfile + \nTwo, \cladR - 0.5) {$n_2$};
+\node[right] at (\xProfile + \nOne, -0.6) {$n_1$};
+
+% --- Diagramma Vettoriale (Destra) ---
+\coordinate (V) at (\xVec, 0);
+\draw[->, thick] (V) -- ++(2.5, 0) node[midway, below] {$\beta$};
+\draw[->, thick] (V) ++(2.5, 0) -- ++(0, 1.5) node[midway, right] {$h$};
+\draw[->, thick] (V) -- ++(2.5, 1.5) node[midway, above left=-2pt] {$n_1 k_0$};
+
+\draw[<->] (0.3, -\cladR) -- (0.3, \cladR) node[midway, left] {$2b$};
+
+\end{tikzpicture}

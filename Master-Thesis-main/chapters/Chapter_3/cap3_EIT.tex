@@ -1,0 +1,69 @@
+\section{Simulation Results}
+
+\subsection{Validation on the Ideal Three-Level System}
+
+Before addressing the full atomic structure, the cooling dynamics were first verified on the idealized three-level $\Lambda$ system, for which the dark-state interference is exact by construction and the numerics are comparatively cheap to run with the exact master-equation solver.
+
+% INSERT FIGURE: Simple Fano resonance profile (no EIT / harmonic oscillator)
+% INSERT FIGURE: Three-panel animation of the 3-level cooling evolution (phonon distribution, EIT spectrum, cooling curve)
+
+The resulting animation shows the three expected features side by side: the vibrational population starting from a hot initial distribution ($n=15$) and progressively piling up on the motional ground state; the steady-state Fano spectrum, with its dark transparency window sitting exactly on the carrier frequency and its narrow absorption peak aligned with the red motional sideband; and the corresponding decay of the mean phonon number $\langle n\rangle$ over time as the atom is cooled. This confirmed that the solver and the underlying EIT cooling mechanism behave as expected before the added complexity of the real atomic structure was introduced.
+
+One caveat applies to this illustrative run: starting from $n=15$ with $\eta=0.35$ puts the system only marginally inside the Lamb--Dicke regime at $t=0$ ($\eta\sqrt{\langle n\rangle+1}\approx1.4$), so the linearized motional coupling used in the interaction Hamiltonian mildly underestimates higher-order sideband transitions during the very earliest stage of the evolution. Since the population is rapidly cooled toward $\langle n\rangle\approx0$, however, the system quickly settles deep into the Lamb--Dicke regime, so the computed steady-state cooling limit itself is unaffected by this initial-transient approximation.
+
+\subsection{Repumper Optimization}
+
+Within the full 24-level model, an accumulation of population in the uncoupled $F=1$ ground-state manifold was observed during the cooling dynamics — atoms that fall out of the $F=2$ cooling cycle and stop interacting with the probe and coupling lasers, introducing effective dead time that limits the achievable cooling rate. The repump Rabi frequency $\Omega_{\mathrm{repump}}$ was therefore scanned, using the steady-state Fano spectrum and ground-state leakage populations as diagnostics.
+
+% INSERT FIGURE: Fano profile, F=1 population trapping, and F'=3 leakage versus repumper Rabi frequency
+
+The scan revealed a direct trade-off: a stronger repump field is more effective at depleting the $F=1$ population, but it also dresses the atomic states more strongly, producing an AC Stark shift that displaces the entire Fano profile toward higher probe detuning. At low repump power ($\Omega_{\mathrm{repump}}=0.2\,\gamma$), population trapping in $F=1$ reached about $35\%$, substantially isolating a third of the ensemble from the active cooling transition; increasing $\Omega_{\mathrm{repump}}$ to $0.7\,\gamma$ and beyond was sufficient to deplete this residual population and restore the ensemble to the $F=2\leftrightarrow F'=2$ cycle. At the same time, the induced light shift grows with $\Omega_{\mathrm{repump}}$, and at $\Omega_{\mathrm{repump}}=0.7\,\gamma$ this shift was found to align the Fano absorption maximum precisely with the target red sideband; for higher values (e.g.\ $1.5\,\gamma$ or $2.0\,\gamma$) the shift overshoots this alignment and the absorption peak moves past the sideband, decoupling the atom from the cooling transition. Based on this trade-off, $\Omega_{\mathrm{repump}}=0.7\,\gamma$ was identified as the optimal repump strength for this parameter set, balancing dark-state depopulation against excess AC Stark shift.
+
+\subsection{Probe Optimization}
+
+The same diagnostic procedure was then applied to the probe Rabi frequency $\Omega_p$, scanned from $0.05\,\gamma$ to $0.35\,\gamma$.
+
+% INSERT FIGURE: Fano profile, ground-state pumping, and F'=3 leakage versus probe Rabi frequency
+
+Here the limiting factor is power broadening: EIT cooling relies on a steep asymmetry between near-zero absorption at the carrier and strong absorption at the red sideband, and at low probe power ($\Omega_p=0.05$–$0.10\,\gamma$) this contrast is well preserved. As $\Omega_p$ increases, the dark-resonance dip fills in and the absorption peak broadens, degrading the achievable contrast and, correspondingly, raising the expected carrier-scattering rate and the resulting steady-state temperature. A probe-induced AC Stark shift was also observed, distinct from the repumper-induced one: for $\Omega_p$ between $0.15\,\gamma$ and $0.35\,\gamma$ the absorption peak systematically drifts to higher detuning, eventually detaching from the target sideband at the highest powers tested. Increasing the probe power also degrades the steady-state ground-state preparation, by increasing the overall scattering rate and driving more population into $F=1$ and into spurious $F=2$ Zeeman sublevels, even though the fractional leakage into the off-resonant $F'=3$ state actually decreases with probe power (since it is a relative measure against a growing target-transition signal). On balance, the weak-probe regime was found to be preferable, and $\Omega_p=0.10\,\gamma$ was adopted as the operating point, preserving a sharp Fano feature aligned with the red sideband while keeping the excitation amplitude adequate.
+
+\subsection{Coupling Detuning Optimization}
+
+With the repumper and probe powers fixed, the coupling-laser detuning $\Delta_c$ was scanned from $+6.0\,\gamma$ to $+13.0\,\gamma$.
+
+% INSERT FIGURE: Fano profile versus coupling detuning
+% INSERT FIGURE: Ground-state pumping efficiency versus coupling detuning
+% INSERT FIGURE: F'=3 leakage versus coupling detuning
+
+Because the coupling field itself induces an AC Stark shift, the position of the Fano absorption maximum drifts with $\Delta_c$: at the lower end of the scanned range ($+6.0$–$+8.0\,\gamma$) the peak falls short of the target red sideband, while the absolute height of the peak decreases monotonically with $\Delta_c$ (from about $0.0008$ at $+6.0\,\gamma$ down to about $0.0004$ at $+13.0\,\gamma$), which on its own would favor smaller detunings for a larger excitation amplitude. The two effects were found to balance at $\Delta_c=+9.0\,\gamma$, where the absorption maximum aligns with the red sideband while retaining sufficient amplitude, and where the corresponding minimum in the off-resonant $F'=3$ leakage spectrum — marking the EIT transparency window — is properly positioned to suppress carrier scattering. This value was therefore adopted as the operating detuning for the subsequent time-dependent simulations.
+
+\subsection{Cooling Dynamics with the Optimized Parameters}
+
+Combining the optimized repumper, probe, and coupling-detuning values ($\Omega_{\mathrm{repump}}=0.7\,\gamma$, $\Omega_p=0.10\,\gamma$, $\Delta_c=+9.0\,\gamma$), the full time-dependent cooling dynamics were computed for the 24-level configuration in which both $\Lambda$-system ground states lie within $F=2$.
+
+% INSERT FIGURE: Optimized steady-state Fano spectrum
+% INSERT FIGURE: Monte Carlo cooling curve with optimized parameters
+
+With this parameter set the simulated system cools in fewer than $10^5$ simulation steps, corresponding to a cooling time of approximately $2\,\mathrm{ms}$ — a substantial improvement over the unoptimized configuration used during the initial parameter scans, whose cooling time was around $15\,\mathrm{ms}$. Obtaining this Monte Carlo trajectory for the full 24-level system required about $8$ hours of computation; for comparison, the exact master-equation solver applied to the same system only reached about $70{,}000$ simulated steps after three days of continuous running, confirming that the Monte Carlo wavefunction method is the only practical option for the complete atomic structure.
+
+\subsection{Cooling Dynamics with Ground States Split Across \texorpdfstring{$F=1$}{F=1} and \texorpdfstring{$F=2$}{F=2}}
+
+The same optimization methodology was then repeated for the alternative level assignment, in which the two $\Lambda$-system ground states are split between $F=2$ and $F=1$ rather than both lying in $F=2$, and the repumper instead recovers population left behind in $F=2$. This configuration is the one that more closely matches the level structure accessible in our experimental setup, and is therefore the one carried forward into the real-parameter simulation described below.
+
+% INSERT FIGURE: Steady-state Fano spectrum for the F=1/F=2 split configuration
+% INSERT FIGURE: Monte Carlo cooling curve for the F=1/F=2 split configuration
+
+Applying the same procedure — steady-state Fano spectrum evaluation followed by sequential optimization of the laser parameters and a Monte Carlo time evolution — yielded the optimized parameters $\Delta_c=+9\,\gamma$, $\Omega_p=0.17\,\gamma$, $\Omega_r=1.27\,\gamma$ for this configuration. As in the previous configuration, the repumper was found to be essential: without it, population is rapidly lost to uncoupled dark states and the cooling dynamics stall.
+
+% INSERT FIGURE: Cooling dynamics without the repumper (zero magnetic field)
+
+This behavior was checked explicitly by running the simulation without the repump field, at zero magnetic field, and was found to hold equally in the presence of a magnetic field — in fact, the Fano profile itself is further degraded once Zeeman shifts are included, making the repumper's role even more important in the presence of a realistic bias field.
+
+\subsection{Axial-Direction Simulation with Real System Parameters}
+
+As a final step, the $F=1$/$F=2$-split configuration was re-evaluated using the trap frequency $\nu$ and Lamb--Dicke parameter $\eta$ specific to the axial direction of our experimental trap geometry, in place of the generic illustrative values used in the parameter scans above. The same sequential optimization procedure was applied to this realistic configuration, converging again on parameters close to $\Delta_c=+9\,\gamma$, $\Omega_p=0.17\,\gamma$, $\Omega_r=1.27\,\gamma$, and the resulting parameter set was then used to run the full Monte Carlo time evolution for this specific geometry.
+
+% INSERT FIGURE: Steady-state Fano spectrum for the axial-direction configuration
+% INSERT FIGURE: Monte Carlo cooling curve for the axial-direction configuration
+
+The resulting cooling dynamics for the axial direction of our actual trap follow the same qualitative behavior established in the generic $F=1$/$F=2$-split configuration above, confirming that the optimized EIT cooling scheme identified through the generic parameter scans remains effective once the specific trap parameters of our setup are substituted in place of the illustrative values used during the optimization stage.

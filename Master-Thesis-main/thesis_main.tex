@@ -1,0 +1,73 @@
+\documentclass[12pt,a4paper,twoside,openright]{book}
+\input{preamble}
+
+\begin{document}
+
+%* #########################################################
+%* ### Title page
+\input{Title page/titlepage}
+\thispagestyle{empty}
+
+%* #########################################################
+%* ### Citation Page
+% Front matter (use roman number for page)
+
+% \thispagestyle{empty}
+%     \vspace*{6cm}
+%     \begin{flushright}
+%         \textit{Pokémon forti, Pokémon deboli.\\ Sono distinzioni dettate dall’egoismo. \\ Gli allenatori davvero in gamba dovrebbero vincere coi loro preferiti.}
+
+%         \vspace{\baselineskip}
+%         \textit{Strong Pokémon, weak Pokémon.\\ That is only the selfish perception of people.\\ Truly skilled trainers should try to win with their favorites.}
+
+%         \vspace{\baselineskip}
+%         \textit{Karen, Johto Elite Four}
+%     \end{flushright}
+
+%* #########################################################
+%* ### Abstract
+\subfile{chapters/Intro_Conc_Abs/abstract.tex}
+\thispagestyle{empty}
+\newpage
+\thispagestyle{empty}
+
+%* #########################################################
+%* ### Frontmatter
+\frontmatter 
+\tableofcontents
+\listoffigures
+
+
+\mainmatter
+\onehalfspacing
+%* #########################################################
+%* ### Introduction
+\subfile{chapters/Intro_Conc_Abs/introduction.tex}
+
+%* #########################################################
+%* ### Chapter 1
+\subfile{chapters/Chapter_1/chapter_1_main.tex}
+
+%* #########################################################
+%* ### Chapter 2
+\subfile{chapters/Chapter_2/chapter_2_main.tex}
+
+%* #########################################################
+%* ### Chapter 3
+\subfile{chapters/Chapter_3/chapter_3_main.tex}
+
+%* #########################################################
+%* ### Conclusions
+\subfile{chapters/Intro_Conc_Abs/conclusions.tex}
+
+%* #########################################################
+%* ### Bibliography
+\singlespacing
+\printbibliography
+\thispagestyle{plain}
+
+%* #########################################################
+%* ### Acknowledgment
+
+
+\end{document}

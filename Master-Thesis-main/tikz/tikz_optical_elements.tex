@@ -1,0 +1,44 @@
+\definecolor{customgray}{HTML}{98A9B8}
+
+\tikzset{
+    % Standard optical fiber loop symbol
+    pics/fiber loop/.style={
+        code={
+            % connection coordinate
+            \coordinate (-in) at (-1.5,0);
+            \coordinate (-out) at (1.5,0);
+
+            \draw[thick, line join=round] 
+                (-1.5,0) -- (-0.3,0) arc(-90:270:0.5) 
+                -- (0,0) arc(-90:270:0.5) 
+                -- (0.3,0) arc(-90:270:0.5) 
+                -- (1.5,0);
+        }
+    },
+    % Acousto-Optic Modulator (AOM) symbol
+    pics/aom/.style={
+        code={
+            % Connection coordinates
+            \coordinate (-in) at (-0.8,0);
+            \coordinate (-out) at (0.8,0);
+            \coordinate (-diff) at (0.8,0.3);
+            \coordinate (-rf) at (0,-0.6);
+    
+            \pgfdeclarehorizontalshading{axisShading}{100bp}{
+            color(0bp)=(customgray);
+            color(40bp)=(customgray);
+            color(80bp)=(white);
+            color(100bp)=(white)}
+
+            \shade[shading=axisShading, shading angle=45, fill opacity=1] (-0.8,-0.5) rectangle (0.8,0.5);
+            \draw[thick] (-0.8,-0.5) rectangle (0.8,0.5);
+
+            \draw[thick, fill=customgray!85] (-0.4,-0.5) rectangle (0.4,-0.7);
+            % Acoustic bulk waves (stylized inside the crystal)
+            \draw[gray, thick, line cap=round] (-0.3,-0.3) -- (0.3,-0.3);
+            \draw[gray, thick, line cap=round] (-0.3,-0.1) -- (0.3,-0.1);
+            \draw[gray, thick, line cap=round] (-0.3,0.1) -- (0.3,0.1);
+            \draw[gray, thick, line cap=round] (-0.3,0.3) -- (0.3,0.3);
+        }
+    }
+}

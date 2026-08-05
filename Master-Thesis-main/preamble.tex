@@ -1,0 +1,76 @@
+\usepackage{lmodern} % font
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{lipsum, kantlipsum}
+\usepackage{etoolbox}
+
+% For Title styling
+\usepackage{titlesec}
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+
+% Margins and layout
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing % Increase the line spacing
+\setlength{\headheight}{14.5pt}
+
+% Graphics and figures
+\usepackage{graphicx, adjustbox}
+\usepackage{float}
+\usepackage{subcaption}
+\graphicspath{{figures/}}
+
+\usepackage{wrapfig}
+
+% Mathematics
+\usepackage{amsmath,amssymb,amsthm}
+% Physics
+\usepackage{braket}
+
+% For organizing the work in subfiles
+\usepackage{subfiles}
+
+% Bibliography
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{\subfix{bibliography.bib}}
+\DefineBibliographyStrings{english}{%
+  andothers = {\mkbibemph{et~al.\adddot}},
+}
+
+% Hyperlinks
+\usepackage{xr-hyper}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+
+% Headers and footers
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage} % Left Even, Right Odd number page
+\fancyhead[RE]{\leftmark}   % Right Even, left mark (Chapter title)
+\fancyhead[LO]{\rightmark}  % Left Odd, right mark (Section name)
+
+
+% No indentation on new paragraphs
+\setlength{\parindent}{0pt}
+
+% For numbering also subsubsections
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% Tikz 
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning, arrows.meta}
+\usepackage{xcolor}
+\usepackage{optikz}
+
+% Image caption in itlalicum
+\usepackage[textfont=it]{caption}
+
+% Itemize stuff
+\usepackage{enumitem}
+% Better Tabels
+\usepackage{booktabs, multirow, array, makecell}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}

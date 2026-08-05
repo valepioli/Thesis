@@ -1,0 +1,14 @@
+\documentclass[a4paper, 12pt, twoside]{book}
+
+\usepackage{subfiles}
+\usepackage{import}
+
+\begin{document}
+
+\subfile{chapters/Intro_Conc_Abs/introduction.tex}
+
+\subfile{chapters/Chapter_1/chapter_1_main.tex}
+\subfile{chapters/Chapter_2/chapter_2_main.tex}
+\subfile{chapters/Chapter_3/chapter_3_main.tex}
+
+\end{document}

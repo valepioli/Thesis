@@ -1,0 +1,30 @@
+\begin{tikzpicture}[scale=0.66]
+    \coordinate (FIB)   at (2, 0);
+    \coordinate (OBJ)   at (4, 0);
+    \coordinate (F1)    at (6.5, 0);
+    \coordinate (CCD)   at (12, 0);
+    
+    \coordinate (LED)   at (0, -3);
+    \coordinate (F2)    at (1.5, -1.65);
+    
+    % Labels for second diagram elements
+    \node[above, yshift=22pt] at (FIB) {Test\\Fiber};
+    \node[below, xshift = 15pt, yshift = -10pt] at (OBJ) {Microscope\\Objective};
+    \node[above, xshift=2pt, yshift = 14pt] at (F1) {f500};
+    \node[below, xshift=16pt, yshift = -11pt] at (CCD) {Camera};
+    \node[left, yshift=-32pt] at (LED) {LED};
+    \node[below, yshift=-11pt] at (F2) {f50};
+    
+    
+    \draw[very thick, -{latex}, optikzred] (FIB) -- (OBJ) -- (F1) -- (CCD);
+    \draw[very thick, -{latex}, optikzred] (LED) -- (3.4, 0);
+    
+    \pic[scale=0.65] at (FIB) {fiber loop};
+    \objective[color=optikzyellow] at (OBJ);
+    \planconvexlens at (F1);
+    \camera at (CCD);
+    
+    \laser[angle = 220, color=optikzred] at (LED);
+    \planconvexlens[angle = 41] at (F2);
+        
+\end{tikzpicture}

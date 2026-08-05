@@ -1,0 +1,52 @@
+\section{Polarization Stability Results}
+
+\subsection{PBS Alignment and Extinction Ratio}
+
+% Report the PER values obtained at the two alignment stages:
+% (1) preliminary PBS-only check -> PER = 31 dB (reflection), 33 dB (transmission)
+% (2) after aligning to the fiber principal axis with the HWPs -> PER = 27 dB (reflection)
+% Comment briefly on whether the lower PER after axis alignment is expected
+% (e.g. limited by fiber birefringence / residual ellipticity rather than by the PBS itself).
+
+\subsection{Time-Domain Traces}
+
+% INSERT FIGURE: Raw transmission/reflection time traces (600 ms, 60 s, 600 s)
+
+% Describe qualitatively what the raw traces look like: any visible drift,
+% periodic features, or jumps, and over which timescales. Note whether the
+% behavior is consistent between the plain-sampling and HR acquisitions at 60 s.
+
+\subsection{Allan Deviation Analysis}
+
+% INSERT FIGURE: Allan deviation sigma_y(tau) of the normalized difference signal
+
+% Report sigma_y(tau) across the range of tau covered by the different trace
+% lengths (sub-ms to ~600 s). Identify the slope(s) observed on the log-log plot
+% and the corresponding noise type (e.g. white noise ~ tau^-1/2, flicker floor,
+% random-walk/drift ~ tau^+1/2) in each regime, and quote the timescale(s) at
+% which the behavior changes.
+% State the best (minimum) Allan deviation reached and at which tau.
+% If a long-term upturn is present (drift dominating at large tau), quantify it
+% and discuss a plausible cause (thermal drift, mechanical relaxation, etc.).
+
+\subsection{Power Spectral Density and Comparison to Shot Noise}
+
+% INSERT FIGURE: Measured photocurrent PSD vs Fourier frequency, with the
+% shot-noise level sigma_{I,SN}^2 overlaid
+
+% Report the frequency range covered by the measurement and any discrete peaks
+% observed (e.g. line frequency and harmonics, mechanical resonances), noting
+% their amplitude relative to the broadband floor.
+% Convert the excess PSD into light-power PSD via sigma_P^2 = (sigma_I^2 - sigma_{I,SN}^2)/eta^2
+% and compare the result to the shot-noise-limited level sigma_{P,SN}^2 = 2 P_bar hbar omega Delta f,
+% quoting by what factor (or over which frequency band) the measured noise
+% exceeds shot noise, and where (if anywhere) the two become comparable.
+
+\subsection{Summary}
+
+% Briefly state, in one or two sentences, the overall conclusion: is the black
+% fiber's polarization output stable enough for the intended application over
+% the relevant timescale(s)? Is the fluctuation technical-noise-limited or
+% shot-noise-limited, and in which regime? This sets up any follow-up
+% mitigation steps (e.g. improved thermal/mechanical isolation of the fiber)
+% to be discussed afterward if needed.

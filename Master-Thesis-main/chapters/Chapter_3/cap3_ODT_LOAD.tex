@@ -1,0 +1,70 @@
+\section{ODT Loading Optimization}
+
+With the molasses parameters established in the previous section, the next stage of the optimization targets the ODT loading itself, primarily by tuning the compensation magnetic field. The idea behind this step is that the MOT forms at the zero of the magneto-optical potential, whose location can be shifted by adjusting the compensation coil currents; displacing the trapped cloud in this way, immediately before the molasses phase, allows its position to be matched to that of the ODT beam. Moving the MOT away from the geometric center where the six cooling beams overlap best inevitably costs some atoms and raises the temperature slightly, but this trade-off is worthwhile if it improves the spatial overlap with the ODT and thereby increases the number of atoms actually transferred into the dipole trap. As long as the displacement stays small, the molasses parameters optimized earlier remain effective at cancelling the residual magnetic field and require no further adjustment.
+
+In practice, once the MOT has loaded, the compensation coil currents are ramped smoothly to their ODT-loading values over $200\,\mathrm{ms}$, discretized into 20 steps, so as to minimize atom loss and heating during the displacement. As with the molasses optimization, preliminary current values — obtained before the beam realignment and molasses optimization described above — were available as a starting point,
+
+\begin{equation}
+    I_x = -200\,\mathrm{mA}, \qquad I_y = -350\,\mathrm{mA}, \qquad I_z = 50\,\mathrm{mA}.
+\end{equation}
+
+Throughout these measurements, the ODT laser power before injection into the fiber was $1.4\,\mathrm{W}$. The transmission efficiency up to just before lens L3 (see the apparatus schematic in the previous chapter) was measured at low power to be about $42\%$, corresponding to roughly $0.59\,\mathrm{W}$; since several optics sit upstream of this measurement point, the actual power reaching the fiber facet is likely somewhat higher, so a conservative $10\%$ relative uncertainty was assigned, giving an estimated fiber-facet power of $P=0.59\pm0.06\,\mathrm{W}$.
+
+\subsection{Imaging System Optimization}
+
+The first attempts to characterize the ODT capture efficiency used the FLIR camera, with the molasses parameters already optimized above and the preliminary compensation currents quoted for the ODT stage. The analysis followed the procedure described in the previous chapter, but without the background rescaling step.
+
+% INSERT FIGURE: 2D intensity-difference image (FLIR, 20 ms ramp)
+% INSERT FIGURE: 1D integrated intensity-difference profile (FLIR, 20 ms ramp)
+
+With the $20\,\mathrm{ms}$ AOM ramp used for the molasses optimization, the resulting 2D difference image showed no distinct bright region attributable to the ODT, and the 1D integrated profile only hinted at a weak, localized increase spanning about $4$ pixels around the fiber position — later confirmed, from subsequent measurements, to indeed correspond to the trapped atoms, but too small to be reliably distinguished from noise. Since integrating along one dimension is specifically meant to boost the signal-to-noise ratio, this persistent weak signal pointed to a real underlying problem rather than a simple statistical limitation: the residual background pedestal left after subtraction was significantly larger than the ODT signal itself, suggesting oscillatory or shot-to-shot correlated noise that five-image averaging alone could not remove. In addition, the ODT signal spanned only a handful of pixels, which is both consistent with a lower-than-expected initial capture (even accounting for a non-optimal cloud-ODT overlap) and, independently, an obstacle to analysis: too few illuminated pixels to support a reliable 2D Gaussian fit, while direct pixel summation would introduce its own systematic errors.
+
+To address the background problem, the molasses parameters themselves were revisited, and the AOM ramp duration was found to be the key culprit: shortening it from $20\,\mathrm{ms}$ to $5\,\mathrm{ms}$ markedly improved the background subtraction and thus the signal-to-noise ratio. At the same time, the AOM amplitude was set to $480\,\mathrm{a.u.}$ ($6.6\,\mathrm{mW}$ of cooling power on the $z$-beam), a value chosen because it sits in the saturated part of the AOM diffraction-efficiency curve, where $dP/dA\approx0$; operating at this point intrinsically suppresses the sensitivity of the delivered optical power to amplitude noise in the AOM drive.
+
+% INSERT FIGURE: 2D intensity-difference image (FLIR, 5 ms ramp)
+% INSERT FIGURE: 1D integrated intensity-difference profile (FLIR, 5 ms ramp)
+
+With this shorter ramp, a distinct bright strip corresponding to the ODT-trapped atoms became visible in the 2D difference image, and comparing the 1D profiles obtained with the two ramp durations shows that the residual pedestal is suppressed to roughly half its previous amplitude and area with the $5\,\mathrm{ms}$ ramp — enough for the ODT signal to clearly emerge above the background.
+
+Even with this improved contrast, the FLIR camera's spatial resolution remained insufficient. The subsequent measurements therefore switched to the Manta camera, whose smaller pixel pitch was further complemented by mounting it closer to the chamber, at the minimum working distance of the MVL50M23 objective, to maximize magnification. Comparing the apparent width of the fiber as imaged by the two cameras indicated that this new configuration increased the object size in pixels by a factor of about $2.25$ — the combined effect of the higher magnification and the smaller pixel size — which finally provided a sufficiently well-resolved ODT signal for robust quantitative analysis.
+
+% INSERT FIGURE: 1D integrated intensity-difference profile (Manta camera, 5 ms ramp)
+
+\subsection{Capture Efficiency Optimization}
+
+With adequate imaging in place, the compensation coil currents were optimized systematically using the full analysis procedure from the previous chapter, this time with the Manta camera. The three axes were scanned sequentially in the order $x\rightarrow z\rightarrow y$, with the currents on the not-yet-optimized axes held at the preliminary values quoted above.
+
+% INSERT FIGURE: ODT area and capture efficiency versus Shim-X, Shim-Y, Shim-Z current
+
+Both the ODT signal area — directly proportional to the number of captured atoms, though only measurable in arbitrary units since the camera was not calibrated for absolute atom counting — and the capture efficiency extracted from these scans showed matching trends along all three axes, as expected since they are two ways of looking at the same underlying signal. This first pass yielded the optimal currents
+
+\begin{equation}
+    I_x = -220\,\mathrm{mA}, \qquad I_y = -290\,\mathrm{mA}, \qquad I_z = -90\,\mathrm{mA}.
+\end{equation}
+
+To confirm this result, the $z$-axis scan was repeated, and this second run revealed an unexpected feature.
+
+% INSERT FIGURE: Repeated Shim-Z scan: ODT area, background area, capture efficiency, cloud x-centroid
+
+Rather than the expected single-peaked, roughly parabolic dependence, both the ODT area and the capture efficiency showed an oscillatory behavior as a function of the $z$-axis current: starting from $-1000\,\mathrm{mA}$, the signal rose to a first local maximum near $-800\,\mathrm{mA}$, dipped around $-700\,\mathrm{mA}$, and rose again to further local maxima near $-600\,\mathrm{mA}$ and $-400\,\mathrm{mA}$. The same periodicity appeared in the background area — the molasses cloud size measured with the ODT off at the end of the time of flight — with peaks at essentially the same current values, and again in the $x$-centroid of the cloud on the camera, an oscillation not seen when scanning the other two compensation axes. While a larger initial MOT population naturally leads to a larger captured ODT fraction, the fact that this covariation is periodic in current is not obviously explained; a plausible contributing factor is the complex spatial intensity distribution of the cooling beams near the trap center combined with residual misalignment, but confirming this would require dedicated further measurements, which were beyond the scope of this work.
+
+Taking this behavior into account, the compensation currents and the corresponding generated field components were finally set to
+
+\begin{equation}
+    I_x = -220\,\mathrm{mA}, \quad I_y = -290\,\mathrm{mA}, \quad I_z = -600\,\mathrm{mA}, \qquad
+    B_x = -308\,\mathrm{mG}, \quad B_y = -377\,\mathrm{mG}, \quad B_z = -900\,\mathrm{mG}.
+\end{equation}
+
+% INSERT FIGURE: 2D intensity-difference image at the optimized configuration
+
+Converting these compensation fields into an equivalent displacement of the MOT position via $t_\alpha = B_\alpha/B'$ for $\alpha=x,y$ and $t_z=-B_z/2B'$, with $2B'=9.32\,\mathrm{G/cm}$ the axial gradient of the quadrupole field, gives
+
+\begin{equation}
+    t_x = -661\,\mu\mathrm{m}, \qquad t_y = -809\,\mu\mathrm{m}, \qquad t_z = 966\,\mu\mathrm{m}.
+\end{equation}
+
+This configuration maximized the ODT trap area — and hence the number of captured atoms — and corresponds to a capture efficiency of $\eta=(0.160\pm0.005)\%$.
+
+This measured efficiency can be compared with the shallow- and non-shallow-trap models introduced in the previous chapter, evaluated at the best molasses configuration found above: $w_0=19.0\,\mu\mathrm{m}$, $P=(0.59\pm0.06)\,\mathrm{W}$, $R_xR_y\approx(1.043\pm0.004)\,\mathrm{mm}^2$, and $T=(9.60\pm0.10)\,\mu\mathrm{K}$. These give $\eta=(0.45\pm0.05)\%$ for the shallow-trap model and $\eta=(0.41\pm0.04)\%$ for the non-shallow-trap model; given $\xi=0.39\pm0.04$, the close agreement between the two models is expected. Note that, unlike in the earlier discussion of these models, no factor of $1/2$ for the fraction of atoms with $v_z<0$ was applied here, since that factor was originally introduced to estimate only the atoms guided into the fiber core, whereas the present measurement targets the total number of captured atoms regardless of their velocity direction.
+
+The measured efficiency is of the same order of magnitude as the theoretical prediction, indicating that the apparatus is operating correctly and close to its optimal parameters, but the theoretical value remains about $2.5$ times larger than the measured one. Part of this discrepancy may be a genuine model limitation: the calculation assumes a purely Gaussian ODT beam, an excellent approximation for the fundamental $\mathrm{LP}_{01}$ mode, but the beam actually transmitted by the fiber also carries higher-order modes, as discussed in the previous chapter. Before attributing the full discrepancy to the model, however, a procedural effect should also be considered: the imaging sequence requires $600\,\mu\mathrm{s}$ with the ODT switched off at the end of the time of flight, and atom loss during this dead time could artificially lower the measured trapping efficiency.

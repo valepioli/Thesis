@@ -1,0 +1,39 @@
+\begin{tikzpicture}
+    \coordinate (CAM) at (0,0);
+    \coordinate (L4) at (4.5,0);
+    \coordinate (M3) at (6,0);
+    \coordinate (L3) at (6, -1);
+    \coordinate (M2) at (6, -3);
+    \coordinate (L2) at (4, -3);
+    \coordinate (M1) at (2, -3);
+    \coordinate (L1) at (2, -4.5);
+    \coordinate (START) at (2, -5);
+
+    % Labels for third diagram elements
+    \node[above, yshift=15pt, xshift = -22pt] at (CAM) {Camera};
+    \node[above, yshift=15pt, xshift=2pt] at (L4) {L4};
+    \node[above, yshift=15pt, xshift=2pt] at (M3) {M3};
+    \node[right, xshift=15pt] at (L3) {L3};
+    \node[right, xshift=15pt] at (M2) {M2};
+    \node[below, xshift=-2pt, yshift=-14pt] at (L2) {f300};
+    \node[left, xshift=-17pt] at (M1) {M1};
+    \node[left, xshift=-17pt, yshift=2pt] at (L1) {f150};
+    \node[below, yshift=-6pt] at (2,-5.1) {Chamber\\Window};
+
+    % Flat window: frame (red) with light-blue pane on top
+    \draw[thick, fill=red, draw=black] (1.48,-5.2) rectangle (2.52,-5);
+    \draw[thick, fill=cyan!25, draw=black] (1.6,-5.2) rectangle (2.4,-5);
+
+    \draw[very thick, -{latex}, optikzred] (M1) -- (L2) -- (M2) -- (L3) -- (M3) -- (L4) -- (CAM);
+    \draw[very thick, dashed, -{latex}, optikzred] (START) -- (L1) --(M1);
+
+    \camera[angle = 180 ] at (CAM);
+    \planconvexlens at (L4);
+    \mirror[angle=45] at (M3);
+    \planconvexlens[angle = -90] at (L3);
+    \mirror[angle = -45] at (M2);
+    \planconvexlens[angle = 180] at (L2);
+    \mirror[angle = 135] at (M1);
+    \planconvexlens[angle = 90] at (L1);
+
+\end{tikzpicture}

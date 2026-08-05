@@ -1,0 +1,26 @@
+% !TEX root = ../../thesis_main.tex
+\documentclass[../../thesis_main.tex]{subfiles}
+\ifSubfilesClassLoaded{\externaldocument{../../thesis_main}}{}
+\graphicspath{{\subfix{../../figures/}}}
+
+\begin{document}
+
+    \ifSubfilesClassLoaded{\tableofcontents}{}
+
+    \chapter{Materials and Methods}\label{cap2}
+    This chapter describes the experimental apparatus used in this work. First, a brief overview of the implementation of the Magneto-Optical Trap (MOT) for rubidium-87 atoms ($^{87}\mathrm{Rb}$) is presented (this setup was already available prior to the present work). The chapter then focuses on the work carried out during this thesis, namely the implementation of the Optical Dipole Trap setup employed to transfer and trap atoms from the MOT. A particular focus is put on the coupling between the ODT laser source and the Hollow-Core Photonic Crystal Fiber (HCPCF), that delivers the ODT light in the vacuum chamber.
+    
+    % Although beyond the scope of the current work, it is worth noting that the long-term objective of this experiment is to confine the atoms within the hollow core of the HCPCF, employing a dual beam ODT, to implement an optical conveyor belt.
+    %! Penso di metterlo nell'introduzione
+    \import{./}{cap2_MOT.tex}
+    \clearpage
+    \import{./}{cap2_PROCEDURE.tex}
+    \clearpage
+    \import{./}{cap2_BLACK_setup.tex}
+    \clearpage
+    \import{./}{cap2_upper.tex}
+    \clearpage
+    \import{./}{cap2_EIT.tex} 
+
+    \ifSubfilesClassLoaded{\printbibliography}{}
+\end{document}

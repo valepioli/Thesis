@@ -1,0 +1,110 @@
+ \begin{tikzpicture}[x=0.85cm, y=0.85cm, >=Stealth, every node/.style={font=\normalsize}, scale=0.76]
+        
+        % --- Styles Definition ---
+        \tikzstyle{level}=[very thick, draw=black]
+        \tikzstyle{crosslevel}=[very thick, draw=green!60!black]
+        \tikzstyle{transarrow}=[thick, ->]
+        \tikzstyle{splitarrow}=[thick, <->]
+
+        % --- Y-Coordinates (scaled identically to the previous diagram) ---
+        \def\yS{4.5}
+        \def\yP{12.0}
+
+        \def\yEighFiveGTwo{3.0}
+        \def\yEighFiveGThree{5.5}
+        \def\yEighFiveEOne{9.5}
+        \def\yEighFiveETwo{10.5}
+        \def\yEighFiveEThree{11.5}
+        \def\yEighFiveEFour{13.5}
+
+        \def\yEighSevenGOne{1.5}
+        \def\yEighSevenGTwo{7.5}
+        \def\yEighSevenEZero{9.5}
+        \def\yEighSevenEOne{10.5}
+        \def\yEighSevenETwo{12.5}
+        \def\yEighSevenEThree{15.5}
+
+        \def\yCrossOne{11.11}
+        \def\yCrossTwo{11.86}
+        \def\yCrossThree{12.53}
+
+        % --- X-Coordinates and Level Widths ---
+        \def\xFine{0}
+        \def\wFine{2}
+
+        \def\xEighFive{5.8}
+        \def\wEighFive{2.2}
+
+        \def\xCross{\xEighFive}
+        \def\wCross{2.2}
+
+        \def\xEighSeven{12}
+        \def\wEighSeven{2.2}
+
+        % ==========================================
+        % 1. Fine Structure (Left Column)
+        % ==========================================
+        \draw[level] (\xFine, \yS) -- ++(\wFine, 0) node[left, pos=0] {$\mathbf{5S_{1/2}}$};
+        \draw[level] (\xFine, \yP) -- ++(\wFine, 0) node[left, pos=0] {$\mathbf{5P_{3/2}}$};
+
+        % 780 nm transition arrow
+        \draw[splitarrow] (\xFine + \wFine/2, \yS) -- (\xFine + \wFine/2, \yP);
+        \node[rotate=90] at (\xFine + \wFine/2 + 0.45, 8.25) {\textbf{780 nm}};
+
+        % ==========================================
+        % 2. 85Rb Hyperfine Structure (Middle Column)
+        % ==========================================
+        \node at (\xEighFive + \wEighFive/2, 0) {\Large $\mathbf{^{85}Rb}$};
+
+        % Ground states
+        \draw[level] (\xEighFive, \yEighFiveGTwo) -- ++(\wEighFive, 0) node[left, pos=0] {$\mathbf{F=2}$};
+        \draw[level] (\xEighFive, \yEighFiveGThree) -- ++(\wEighFive, 0) node[left, pos=0] {$\mathbf{F=3}$};
+
+        % Excited states
+        \draw[level] (\xEighFive, \yEighFiveEOne) -- ++(\wEighFive, 0) node[left, pos=0] {$\mathbf{F'=1}$};
+        \draw[level] (\xEighFive, \yEighFiveETwo) -- ++(\wEighFive, 0) node[left, pos=0] {$\mathbf{F'=2}$};
+        \draw[level] (\xEighFive, \yEighFiveEThree) -- ++(\wEighFive, 0) node[left, pos=0] {$\mathbf{F'=3}$};
+        \draw[level] (\xEighFive, \yEighFiveEFour) -- ++(\wEighFive, 0) node[left, pos=0] {$\mathbf{F'=4}$};
+
+        % Master laser transition
+        \draw[transarrow, orange!90!black] (\xEighFive + \wEighFive/2, \yEighFiveGThree) -- (\xEighFive + \wEighFive/2, \yCrossThree);
+        \node[rotate=90, orange!90!black, xshift = -52 pt] at (\xEighFive + \wEighFive/2 + 0.4, 10.3) {\textbf{Master}};
+
+        % Saturation spectroscopy crossovers
+        \draw[crosslevel] (\xCross, \yCrossOne) -- ++(\wCross, 0);
+        \draw[crosslevel] (\xCross, \yCrossTwo) -- ++(\wCross, 0);
+        \draw[crosslevel] (\xCross, \yCrossThree) -- ++(\wCross, 0);
+        \node[rotate=90, green!60!black] at (\xCross + \wCross + 0.4, 11.8) {\textbf{Crossovers}};
+
+        % ==========================================
+        % 3. 87Rb Hyperfine Structure (Right Column)
+        % ==========================================
+        \node at (\xEighSeven + \wEighSeven/2, 0) {\Large $\mathbf{^{87}Rb}$};
+
+        % Ground states
+        \draw[level] (\xEighSeven, \yEighSevenGOne) -- ++(\wEighSeven, 0) node[left, pos=0] {$\mathbf{F=1}$};
+        \draw[level] (\xEighSeven, \yEighSevenGTwo) -- ++(\wEighSeven, 0) node[left, pos=0] {$\mathbf{F=2}$};
+
+        % Excited states
+        \draw[level] (\xEighSeven, \yEighSevenEZero) -- ++(\wEighSeven, 0) node[left, pos=0] {\normalsize$\mathbf{F'=0}$};
+        \draw[level] (\xEighSeven, \yEighSevenEOne) -- ++(\wEighSeven, 0) node[left, pos=0] {$\mathbf{F'=1}$};
+        \draw[level] (\xEighSeven, \yEighSevenETwo) -- ++(\wEighSeven, 0) node[left, pos=0] {$\mathbf{F'=2}$};
+        \draw[level] (\xEighSeven, \yEighSevenEThree) -- ++(\wEighSeven, 0) node[left, pos=0] {$\mathbf{F'=3}$};
+
+        % Cooler laser transition
+        \draw[transarrow, red!85!black] (\xEighSeven + 0.7, \yEighSevenGTwo) -- (\xEighSeven + 0.7, \yEighSevenEThree);
+        \node[rotate=90, red!85!black] at (\xEighSeven + 1.1, 14) {\textbf{Cooler}};
+
+        % Repumper laser transition
+        \draw[transarrow, blue!85!black] (\xEighSeven + 1.6, \yEighSevenGOne) -- (\xEighSeven + 1.6, \yEighSevenETwo);
+        \node[rotate=90, blue!85!black] at (\xEighSeven + 2.1, 4.5) {\textbf{Repumper}};
+
+        % Ground state splitting
+        \draw[splitarrow] (\xEighSeven, \yEighSevenGOne) -- (\xEighSeven, \yEighSevenGTwo);
+        \node[rotate=90] at (\xEighSeven - 0.4, 4.5) {\textbf{6.83 GHz}};
+
+        % Excited state splitting
+        \draw[splitarrow] (\xEighSeven + \wEighSeven, \yEighSevenETwo) -- (\xEighSeven + \wEighSeven, \yEighSevenEThree);
+        \node[rotate=90] at (\xEighSeven + \wEighSeven + 0.45, 14.0) {\textbf{267 MHz}};
+
+    \end{tikzpicture}

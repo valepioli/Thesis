@@ -1,0 +1,58 @@
+\section{Molasses Temperature Optimization}
+
+Before starting the optimization, the six MOT beams were realigned to remove any residual overlap mismatch at the trap position — a necessary precaution, since thermal drifts in the optical components tend to slowly spoil this alignment over time. The compensation coil currents were initially set to the values found in earlier characterizations of the apparatus,
+
+\begin{equation}
+    I_x = 80\,\mathrm{mA}, \qquad I_y = -200\,\mathrm{mA}, \qquad I_z = -400\,\mathrm{mA},
+\end{equation}
+
+which served as the starting point for the systematic optimization described below.
+
+\subsection{Detuning Frequency Optimization}
+
+The optimization began with the cooling-laser detuning, scanned from $-24.4\,\mathrm{MHz}$ ($4.0\,\Gamma/2\pi$) to $-184\,\mathrm{MHz}$ ($30.4\,\Gamma/2\pi$) in steps of $-11.4\,\mathrm{MHz}$, and the molasses temperature measured at each point.
+
+% INSERT FIGURE: Molasses temperature versus detuning
+
+At small detunings the measured temperature closely tracks the $1/|\delta|$ dependence expected for sub-Doppler (Sisyphus) cooling. This trend breaks down as the detuning grows further: the scattering rate falls off as $\Gamma_p\propto1/\delta^2$, and the detuning approaches the $F=2\rightarrow F'=2$ transition, only $267\,\mathrm{MHz}$ below the main cooling transition $F=2\rightarrow F'=3$. Both effects flatten the temperature curve in the range $|\delta|\approx15$–$20$ and eventually turn it upward again at larger detunings.
+
+The lowest temperature was found at a normalized detuning of $|\delta|=17.2$, i.e.\ $104.2\,\mathrm{MHz}$ in absolute terms. Fitting the ballistic expansion at this detuning gave $T_x = (14.1\pm0.5)\,\mu\mathrm{K}$ and $T_y = (13.5\pm0.7)\,\mu\mathrm{K}$ along the two axes, whose weighted average yields a final temperature of $T=(13.9\pm0.4)\,\mu\mathrm{K}$.
+
+% INSERT FIGURE: Fluorescence images of the cloud at different times of flight (17.2 Gamma/2pi)
+% INSERT FIGURE: Temperature fit for |delta| = 17.2 Gamma/2pi with residuals
+
+The fit at this detuning shows a systematic feature common to all such measurements: the data points at the longest times of flight fall consistently below the linear trend expected from the expansion law. The most likely explanation is that, at sufficiently long expansion times, the cloud radius is no longer small compared to the probe beam waist, so the assumption of uniform illumination breaks down and the outer, dimmer part of the cloud is under-weighted in the fit — an effect that systematically biases the extracted variance downward. Fortunately, this bias is expected to become less severe as the temperature (and hence the expansion rate) decreases further.
+
+\subsection{AOM Amplitude Optimization}
+
+The next optimization step examined the influence of the cooling-beam power itself, controlled via the RF drive amplitude of the switching AOM, together with the duration of the ramp used to transition this amplitude from its MOT value down to the molasses value at the start of the molasses phase. Three amplitude settings were tested — $385$, $475$, and $550\,\mathrm{a.u.}$, corresponding to $5.8$, $6.6$, and $6.3\,\mathrm{mW}$ of cooling power measured after the $z$-axis MOT collimator (the MOT itself is operated at $550\,\mathrm{a.u.}$) — combined with ramp durations of either $5\,\mathrm{ms}$ or $20\,\mathrm{ms}$, and the whole set was repeated across several values of the cooling detuning.
+
+% INSERT FIGURE: Molasses temperature versus detuning for different AOM amplitudes and ramp durations
+
+No statistically significant dependence of the molasses temperature on the AOM amplitude emerged from this scan — the small variations observed between the three settings remained within the experimental uncertainty, so no clear optimal amplitude could be identified in the tested range. The ramp duration, on the other hand, had a small but systematic effect: the $20\,\mathrm{ms}$ ramp consistently gave temperatures about $0.5\,\mu\mathrm{K}$ lower than the $5\,\mathrm{ms}$ ramp. Given that this improvement was already small and no further gain at the level of a few tenths of a microkelvin was required for the purposes of this work, no additional ramp durations were tested, and the $20\,\mathrm{ms}$ ramp was adopted for the subsequent measurements.
+
+It is worth noting, anticipating the ODT characterization described later in this chapter, that this particular choice was later found to introduce extra fluctuations once the ODT loading was being optimized. For that reason, the compensation-coil optimization described next was actually carried out with the AOM amplitude set to $385\,\mathrm{a.u.}$ — the setting that gave the lowest temperature at $|\delta|=17.2\,\Gamma/2\pi$ — together with the $20\,\mathrm{ms}$ ramp, even though both parameters were revisited again during the ODT optimization stage. As shown by the measurements in this section, however, their influence on the molasses temperature itself is at most a few tenths of a microkelvin, so this later readjustment does not affect the temperature results reported here.
+
+\subsection{Compensation Field Optimization}
+
+The last step of the molasses optimization concerned the compensation (shim) magnetic field, whose currents are switched from their MOT values to their molasses values $5\,\mathrm{ms}$ after the MOT quadrupole field itself is turned off. The three axes were optimized sequentially: first the $z$-axis current, with the $x$- and $y$-axis currents held at their preliminary values; then the $x$-axis current, using the newly found optimal $z$ value; and finally the $y$-axis current, with both $z$ and $x$ set to their respective optima. At each step, a parabolic fit to the measured temperature versus current was used to extract the optimal current and the corresponding minimum temperature.
+
+% INSERT FIGURE: Molasses temperature versus Shim-Z current
+% INSERT FIGURE: Molasses temperature versus Shim-X current
+% INSERT FIGURE: Molasses temperature versus Shim-Y current
+
+The $z$-axis scan gave a minimum temperature of $(11.46\pm0.03)\,\mu\mathrm{K}$ at $I_z=(-223.2\pm0.7)\,\mathrm{mA}$; the subsequent $x$-axis scan, performed at this $z$ current, gave $(9.2\pm0.1)\,\mu\mathrm{K}$ at $I_x=(-17\pm2)\,\mathrm{mA}$; and the final $y$-axis scan gave $(9.6\pm0.1)\,\mu\mathrm{K}$ at $I_y=(-184\pm3)\,\mathrm{mA}$. The currents actually adopted for the subsequent ODT loading stage were
+
+\begin{equation}
+    I_x = -15\,\mathrm{mA}, \qquad I_y = -185\,\mathrm{mA}, \qquad I_z = -230\,\mathrm{mA},
+\end{equation}
+
+corresponding, via the coil calibration given in Eq.~\eqref{eq:shim_calibration}, to compensation fields of
+
+\begin{equation}
+    B_x = -21\,\mathrm{mG}, \qquad B_y = -241\,\mathrm{mG}, \qquad B_z = -345\,\mathrm{mG}.
+\end{equation}
+
+With this compensation field, the molasses temperature reached its minimized value of $T=(9.6\pm0.1)\,\mu\mathrm{K}$. Comparing the three axes, the $z$-axis current required the largest correction from its preliminary value, the $x$-axis current a smaller but still appreciable one, while the $y$-axis current turned out to already be close to its optimal value beforehand.
+
+The operating current actually used for $z$, $-230\,\mathrm{mA}$, differs slightly from the true fitted optimum of $-223.2\,\mathrm{mA}$; since both values sit close to the vertex of the fitted parabola, where the temperature is only weakly sensitive to current, this small offset does not introduce any appreciable systematic error in the reported temperatures.
