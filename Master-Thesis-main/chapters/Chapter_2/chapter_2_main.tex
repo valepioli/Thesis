@@ -1,4 +1,3 @@
-% !TEX root = ../../thesis_main.tex
 \documentclass[../../thesis_main.tex]{subfiles}
 \ifSubfilesClassLoaded{\externaldocument{../../thesis_main}}{}
 \graphicspath{{\subfix{../../figures/}}}
@@ -8,8 +7,7 @@
     \ifSubfilesClassLoaded{\tableofcontents}{}
 
     \chapter{Materials and Methods}\label{cap2}
-    This chapter describes the experimental apparatus used in this work. First, a brief overview of the implementation of the Magneto-Optical Trap (MOT) for rubidium-87 atoms ($^{87}\mathrm{Rb}$) is presented (this setup was already available prior to the present work). The chapter then focuses on the work carried out during this thesis, namely the implementation of the Optical Dipole Trap setup employed to transfer and trap atoms from the MOT. A particular focus is put on the coupling between the ODT laser source and the Hollow-Core Photonic Crystal Fiber (HCPCF), that delivers the ODT light in the vacuum chamber.
-    
+    This chapter describes the experimental apparatus used in this work. First, a brief overview of the implementation of the Magneto-Optical Trap (MOT) for rubidium-87 atoms ($^{87}\mathrm{Rb}$) is presented (this setup was already available prior to the present work). The chapter then focuses on the experimental and numerical contributions carried out during this thesis. Section 2.2 describes the calibration of the imaging systems and the experimental procedures used to characterize the cold atomic cloud, including the loading dynamics into the Optical Dipole Trap (ODT). A central focus of this experimental work is the implementation of the optical conveyor belt, which requires the precise coupling and alignment of two counter-propagating laser fields. Section 2.4 details the injection of the 1064~nm trapping light into a polarization-maintaining single-mode fiber (referred to as the ``black fiber''), while Section 2.5 characterizes the power and polarization stability of this beam using Allan-deviation and frequency-domain shot-noise analyses. Section 2.6 discusses the optical layout on the upper breadboard, where the top-down black-fiber beam and the bottom-up beam emerging from the Hollow-Core Photonic Crystal Fiber (HCPCF) are spatially overlapped to form the moving optical lattice. Section 2.7 presents a full multi-level numerical model, developed using QuTiP, to simulate the Electromagnetically Induced Transparency (EIT) cooling dynamics that are required to achieve sub-Doppler temperatures once the atoms are transported inside the hollow core.
     % Although beyond the scope of the current work, it is worth noting that the long-term objective of this experiment is to confine the atoms within the hollow core of the HCPCF, employing a dual beam ODT, to implement an optical conveyor belt.
     %! Penso di metterlo nell'introduzione
     \import{./}{cap2_MOT.tex}

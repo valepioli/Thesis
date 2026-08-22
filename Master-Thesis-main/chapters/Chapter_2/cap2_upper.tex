@@ -6,34 +6,30 @@
 
 The implementation of the optical conveyor belt requires the spatial superposition of two counter-propagating optical fields: the bottom-up beam, delivered through the vacuum chamber by the Hollow-Core Photonic Crystal Fiber (HCPCF), and the top-down beam, delivered by the black fiber described in Section~\ref{sec:black_fiber_injection}. The combination and alignment of these two optical paths take place on the upper breadboard, located above the main experimental chamber. Achieving a deep and reproducible conveyor-belt potential requires precise mode matching between the two counter-propagating beams and systematic control of their relative alignment along the entire shared optical path.
 
-The experimental work on the upper breadboard was divided into three main phases: the outcoupling and conditioning of the beam emerging from the black fiber; the design and construction of dedicated imaging systems to monitor the spatial modes; and the systematic alignment of the counter-propagating beams to maximize their spatial overlap.
+The experimental work on the upper breadboard was divided into three main phases: the outcoupling and conditioning of the beam emerging from the black fiber; the design and construction of dedicated imaging systems to monitor the spatial modes and the alignment of the counter-propagating beams.
 
 \subsection{Black-fiber outcoupling and beam conditioning}
 \label{subsec:upper_outcoupling}
 
 The light injected into the black fiber on the lower bench (Section~\ref{subsec:black_fiber_setup}) is guided to the upper breadboard, where it is outcoupled, conditioned, and combined with the counter-propagating HCPCF beam. The upper-breadboard branch, shown in Figure~\ref{fig:upper_setup}, consists of:
 \begin{itemize}
-    \item the black-fiber outcoupling assembly, mounted on a custom-made support shortened by $3\,\mathrm{mm}$ compared to its original design to increase mechanical rigidity and pointing stability (\tocomplete{support model and mounting details});
-    \item an $f=19\,\mathrm{mm}$ collimating lens, positioned manually on a high-stability mount (\tocomplete{lens and mount model}), collimating the diverging beam emerging from the fiber;
-    \item a half-wave plate (HWP) on a rotation mount, used to adjust the polarization of the collimated beam, and a polarizing beam splitter (PBS);
-    \item a beam expander providing a magnification of approximately $3\times$ (\tocomplete{beam-expander model and constituent focal lengths}), matching the transverse size of the black-fiber beam to the expected size of the beam emerging from the HCPCF -- a fundamental prerequisite for achieving a high-contrast interference pattern in the conveyor-belt configuration;
-    \item two steering mirrors, directing the expanded beam toward the dichroic mirror (\tocomplete{mirror models});
-    \item another set of HWP and PBS, used to adjust the polarization of the top-down beam before it enters the vacuum chamber, ensuring that it matches the polarization of the bottom-up beam emerging from the HCPCF;
-    \item a dichroic mirror, reflecting the $1064\,\mathrm{nm}$ light downward, into the vacuum chamber (\tocomplete{dichroic mirror model and reflection/transmission specifications});
-    \item an $f=200\,\mathrm{mm}$ lens, mounted along the vertical axis downstream of the dichroic mirror, fulfilling a dual purpose: it focuses the top-down beam from the black fiber onto the upper tip of the HCPCF, while simultaneously collimating the counter-propagating bottom-up beam emerging from the same hollow-core fiber.
+    \item the black-fiber outcoupling assembly (Black fiber output), mounted on a custom-made support;
+    \item an $f=19\,\mathrm{mm}$ collimating lens (Lens f19), positioned manually on a high-stability mount (\tocomplete{lens and mount model}), collimating the diverging beam emerging from the fiber;
+    \item a half-wave plate (HWP 1), used to adjust the polarization of the collimated beam, and a polarizing beam splitter (PBS 1);
+    \item an adjustable beam expander (Beam expander) providing a magnification of approximately $3\times$ and fine adjustement of the beam divergence, matching the transverse size of the black-fiber beam to the expected size of the beam emerging from the HCPCF and changing the focal plane of the collimating lens;
+    \item two  mirrors (Mirror 1 and Mirror 2), directing the expanded beam toward the dichroic mirror;
+    \item another set of HWP (HWP 2) and PBS (PBS 2), used to adjust the polarization of the top-down beam before it enters the vacuum chamber (Opening above the vacuum chamber), ensuring that it matches the polarization of the bottom-up beam emerging from the HCPCF;
+    \item a dichroic mirror (Dichroic Mirror), reflecting the $1064\,\mathrm{nm}$ light downward, into the vacuum chamber (\tocomplete{dichroic mirror model and reflection/transmission specifications});
+    \item an $f=200\,\mathrm{mm}$ lens (Lens f200), mounted along the vertical axis (on a z-stage) downstream of the dichroic mirror, fulfilling a dual purpose: it focuses the top-down beam from the black fiber onto the upper tip of the HCPCF, while simultaneously collimating the counter-propagating bottom-up beam emerging from the same hollow-core fiber (Top of vacuum chamber).
 \end{itemize}
 
-Because the optical components on the upper breadboard affect the polarization state of the light, additional waveplates and polarizers are required in the definitive layout to ensure that both counter-propagating beams share the same polarization axis (\tocomplete{waveplate models and polarization-alignment procedure}).
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{Cap_2_figures/upper.pdf}
-    \caption{Optical scheme of the upper-breadboard branch, from the black-fiber outcoupling assembly to the shared $f=200\,\mathrm{mm}$ lens where the top-down and bottom-up beams are combined above the vacuum chamber. \tocomplete{verify AOM orientation in the schematic}}
+    \caption{Optical scheme of the upper-breadboard branch, where the top-down and bottom-up beams are combined above the vacuum chamber.}
     \label{fig:upper_setup}
 \end{figure}
-
-\subsection{Beam propagation and constraints of the optical elements}
-\label{subsec:upper_beam_propagation}
 
 The design of the shared optical path requires a careful evaluation of the beam size at each stage. The expected waist radius $w_{\mathrm{col}}$ of the bottom-up collimated beam can be estimated from the nominal mode radius within the hollow core, $w_{\mathrm{HCPCF}} \approx 19\,\mu\mathrm{m}$, using the relation
 
@@ -51,61 +47,97 @@ This collimated beam is steered by standard $1$-inch ($25.4\,\mathrm{mm}$) mirro
     \label{eq:mirror_footprint_upper}
 \end{equation}
 
-Although this footprint is mathematically smaller than the clear aperture of a $1$-inch mirror, the available clearance is relatively modest. If the effective mode radius in the HCPCF is smaller than the assumed $19\,\mu\mathrm{m}$ -- as could be expected given the $48\,\mu\mathrm{m}$ core diameter -- the collimated beam divergence and the resulting mirror footprint would be correspondingly larger. Careful alignment, verified with an infrared viewer, is therefore critical to prevent clipping and vignetting at the edges of the steering mirrors.
+Although this footprint is mathematically smaller than the clear aperture of a $1$-inch mirror, the available clearance is relatively modest. If the effective mode radius in the HCPCF is smaller than the assumed $19\,\mu\mathrm{m}$, as might be expected given the $48\,\mu\mathrm{m}$ core diameter, the collimated beam divergence and the resulting mirror footprint would be correspondingly larger. Careful alignment, verified with an infrared viewer, is therefore critical to prevent clipping and vignetting at the edges of the  mirrors.
 
 \subsection{Mode imaging and alignment strategy}
 \label{subsec:upper_imaging}
 
-Aligning this counter-propagating configuration and ensuring optimal mode matching requires simultaneous monitoring of the spatial mode of the HCPCF and optimization of the top-down injection. For this purpose, an imaging system (microscope) was assembled on the upper breadboard, exploiting the shared optical path. The imaging branch, shown in Figure~\ref{fig:upper_microscope}, consists of:
+Aligning this counter-propagating configuration and ensuring optimal mode matching requires firstly simultaneous monitoring of the spatial mode of the HCPCF and optimization of the bottom-up injection. For this purpose, an imaging system (microscope) was assembled on the upper breadboard, exploiting the shared optical path. The imaging branch, shown in Figure~\ref{fig:upper_microscope}, consists of:
 \begin{itemize}
-    \item a magnetic flippable mirror, inserted between the dichroic mirror and the first steering mirror of the black-fiber branch, picking off the bottom-up beam (\tocomplete{mirror model});
-    \item an $f=300\,\mathrm{mm}$ lens (\tocomplete{lens model});
-    \item a Zeiss microscope objective ($16.5\,\mathrm{mm}$, Plan Neofluar $10\times/0.30$);
-    \item a final $f=500\,\mathrm{mm}$ focusing lens, projecting the image onto a CMOS camera (\tocomplete{camera model and pixel size}).
+    \item a $f=200\,\mathrm{mm}$ lens (Lens f200) mounted on a vertical shifting z-stage (z-stage) above the vacuum chamber (Top of vacuum chamber), to collimate the $1064\,\mathrm{nm}$ light coming out of the top of the vacuum chamber;
+    \item a dichroic mirror (Dichroic Mirror), reflecting the $1064\,\mathrm{nm}$ light (\tocomplete{dichroic mirror model and reflection/transmission specifications});
+    \item a magnetic flippable mirror (Magnetic mirror), inserted between the dichroic mirror and the first  mirror of the black-fiber branch, picking off the bottom-up beam (\tocomplete{mirror model});
+    \item an $f=300\,\mathrm{mm}$ lens (Lens f300) (\tocomplete{lens model});
+    \item Mirror 3, directing the beam toward the focusing optics;
+    \item a Zeiss microscope objective (Objective f16.5) ($16.5\,\mathrm{mm}$, Plan Neofluar $10\times/0.30$);
+    \item Mirror 4 and Mirror 5, directing the beam toward the focusing optics and the camera;
+    \item a final $f=500\,\mathrm{mm}$ focusing lens (Lens f500), projecting the image onto a CMOS camera (Camera) (\tocomplete{camera model and pixel size}).
 \end{itemize}
-This multi-stage magnification setup provides the resolution needed to resolve the spatial distribution of the light exiting the microstructured fiber.
+This multi-stage magnification ($\sim 40$) setup provides the resolution needed to resolve the spatial distribution of the light exiting the microstructured fiber.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{Cap_2_figures/upper_microscope.pdf}
-    \caption{Optical scheme of the imaging (microscope) branch used to monitor the spatial mode of the HCPCF on the upper breadboard. \tocomplete{verify AOM orientation in the schematic}}
+    \caption{Optical scheme of the imaging (microscope) branch used to monitor the spatial mode of the HCPCF on the upper breadboard.}
     \label{fig:upper_microscope}
 \end{figure}
 
-\tocomplete{insert image of the spatial mode from the HCPCF (bottom-up) acquired with the upper camera; specify in the caption whether the ``Pastel'' pseudocolor map was used}
+The alignment method relies on the assumption that the mode in the HCPCF must be injected symmetrically and propagate accordingly. During the initial observations with the microscope, the fundamental mode was found not to propagate symmetrically within the core. By applying mechanical perturbations to the fiber, higher-order propagation modes were intentionally excited; this behavior was systematically exploited to map the spatial boundaries of the hollow core. Once the core region was identified, the fiber position was finely adjusted to ensure that the mode extended symmetrically across the entire available area.  Exploiting the small transmission of the dichroic mirror at $1064\,\mathrm{nm}$ makes it possible to simultaneously optimize the injection(by placing a power meter directly above it) and monitor the mode in real time.
+This optimization yielded a symmetric fundamental Gaussian mode with an overall bottom-up injection efficiency of approximately $30\%$.
 
-The alignment method relies on the assumption that the mode in the HCPCF must be injected symmetrically and propagate accordingly. During the initial observations with the newly constructed microscope, the fundamental mode was found not to propagate symmetrically within the core. By applying gentle mechanical perturbations to the fiber, higher-order propagation modes were intentionally excited; this behavior was systematically exploited to map the spatial boundaries of the hollow core. Once the core region was identified, the fiber position was finely adjusted to ensure that the mode extended symmetrically across the entire available area. This optimization yielded a symmetric fundamental Gaussian mode with an overall bottom-up injection efficiency of approximately $20\%$--$25\%$.
-
-With the HCPCF mode optimized, the spatial overlap between the top-down and bottom-up beams was verified. A reference mirror, placed after the dichroic mirror, was used to project the beam profiles onto a distant viewing card, checking the collimation of the HCPCF beam; the procedure was repeated for the black-fiber beam, sampling it after the beam expander and at a far-field plane. Both beams were then turned on simultaneously to verify that they were correctly centered on all lenses and mirrors and perfectly overlapped along the entire shared path. Substituting the magnetic mirror with a beam splitter (\tocomplete{beam-splitter model and transmission ratio}) made it possible to operate the microscope continuously, exploiting the small transmission of the dichroic mirror at $1064\,\mathrm{nm}$ to simultaneously optimize the injection and monitor the mode in real time.
-
+With the HCPCF mode optimized, the spatial overlap between the top-down and bottom-up beams was verified. An additional mirror, placed temporarily after the dichroic mirror, was used to project the beam profiles onto a distant surface and checked using a viewing card, to verify the collimation of the HCPCF beam; the procedure was repeated for the black-fiber beam, sampling it after the beam expander and at a far-field plane. Both beams were then turned on simultaneously to verify that they were correctly centered on all lenses and mirrors and perfectly overlapped along the entire shared path.
 \subsection{Figures of merit for the injection efficiency}
 \label{subsec:upper_figures_of_merit}
 
-To quantitatively evaluate the optical setup and the alignment procedure, four figures of merit were established and continuously monitored:
+To quantitatively evaluate the optical setup and the alignment procedure, five figures of merit were established and continuously monitored:
 \begin{enumerate}
     \item \textbf{Bottom-up HCPCF mode quality}: the symmetry and spatial distribution of the beam emerging from the vacuum chamber, evaluated through the upper-breadboard microscope (Section~\ref{subsec:upper_imaging});
-    \item \textbf{Bottom-up HCPCF injection efficiency}: the ratio of the power transmitted through the vacuum chamber to the incident power measured before the lower injection lens;
-    \item \textbf{Retro-injection into the black fiber}: the coupling efficiency of the bottom-up HCPCF beam into the black fiber. Since the two beams must be perfectly collinear to form the conveyor belt, optimizing this reverse-coupling signal inherently guarantees the spatial overlap of the two modes on the upper breadboard;
-    \item \textbf{Top-down injection into the HCPCF}: the coupling of the beam delivered by the black fiber into the hollow-core fiber, from above, measured by the power transmitted through the vacuum chamber and collected after the lower collimating lens;
-    \item  \textbf{Top-down mode quality}: the symmetry and spatial distribution of the beam entering the vacuum chamber from above.
+    \item \textbf{Bottom-up HCPCF injection efficiency}: the ratio of the power transmitted above the vacuum chamber to the incident power measured before the lower injection lens, as in Section~\ref{subsec:upper_imaging};
+    \item \textbf{Retro-injection into the black fiber}: the coupling efficiency of the bottom-up HCPCF beam into the black fiber. Since the two beams must be perfectly collinear to form the conveyor belt, optimizing this reverse-coupling signal guarantees the spatial overlap of the two modes on the upper breadboard;
+    \item \textbf{Top-down injection into the HCPCF}: the coupling of the beam delivered by the black fiber into the hollow-core fiber, from above, measured by the ratio of the power collected after the lower collimating lens and before the transmission through the vacuum chamber;
+    \item  \textbf{Top-down mode quality}: the symmetry and spatial distribution of the beam injected into the hollow-core fiber from above.
 \end{enumerate}
 
 To evaluate the last figure of merit, a secondary microscope was built on the lower optical bench, exploiting the small but non-zero transmission of the lower $1064\,\mathrm{nm}$ dichroic mirror. This diagnostic branch consists of:
 \begin{itemize}
-    \item a flippable mirror, picking off the light exiting the bottom tip of the HCPCF (\tocomplete{mirror model});
-    \item an additional steering mirror, directing the beam toward the focusing optics (\tocomplete{mirror model});
+    \item the $f=50\,\mathrm{mm}$ lens already present for the injection of the HC branch;
+    \item a flippable mirror (Mirror 2), picking off the light exiting the bottom tip of the HCPCF(mounted on a flip base to allow alternating operation with the 780~nm injection branch, not used in this work);
+    \item an additional  mirror, directing the beam toward the focusing optics;
     \item an $f=1000\,\mathrm{mm}$ focusing lens, projecting the beam onto a camera (\tocomplete{camera model}).
 \end{itemize}
-This diagnostic tool allows the simultaneous optimization of the top-down injection and the real-time monitoring of the spatial mode traversing the vacuum chamber from top to bottom.
 
-Ultimately, the setup utilized polarization control from both the upper and lower benches. The macroscopic alignment of the beams was successfully achieved by controlling their collimation and utilizing the beam expander, while fine spatial control relied on the upper steering mirrors, the fiber injection optics, and the shared $f=200\,\mathrm{mm}$ lens. Following this systematic optimization, we achieved a high bottom-up mode quality, as verified through the upper microscope, and a bottom-up injection efficiency of $32\%$. The retro-injection efficiency into the black fiber reached $60\%$ (compared to a baseline direct injection efficiency of $75\%$). Furthermore, evaluating the beam with the lower microscope, we achieved a high top-down mode quality and a final top-down injection efficiency of $35\%$.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Cap_2_figures/HC_micro.pdf}
+    \caption{Schematic of the secondary microscope diagnostic branch on the lower optical bench.}
+    \label{fig:hc_micro}
+\end{figure}
 
+This diagnostic tool allows the simultaneous optimization of the top-down injection and the real-time monitoring of the spatial mode traversing the vacuum chamber from top to bottom. 
 
+Ultimately, the polarization across the setup was optimized: for the upper breadboard and the black fiber, this was achieved using the black fiber test bench method which relies on the presence of the two half wave plates and polarizing beam splitters (described in Sec.~\ref{subsec:principal_axes}), while the waveplate on the lower bench was employed to maximize retro-injection. The macroscopic alignment of the beams was successfully achieved by controlling their collimation and utilizing the beam expander, while fine spatial control relied on the upper  mirrors, the fiber injection optics, and the shared $f=200\,\mathrm{mm}$ lens. 
+
+Following this systematic optimization, we achieved a high bottom-up mode quality, as verified through the upper microscope (Fig.~\ref{fig:mode_upper}), and a bottom-up injection efficiency of $32\%$. The retro-injection efficiency into the black fiber reached $60\%$ (compared to a baseline direct injection efficiency of $75\%$). Furthermore, evaluating the beam with the lower microscope (Fig.~\ref{fig:mode_lower}), we achieved a top-down mode (da mettere un aggetivo se è bello o spiegare perche è brutto, speriamo migliori) and a final top-down injection efficiency of $35\%$.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Cap_2_figures/mode_upper_microscope.png}
+        \caption{}
+        \label{fig:mode_upper}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.465\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Cap_2_figures/mode_lower_microscope.png}
+        \caption{}
+        \label{fig:mode_lower}
+    \end{subfigure}
+    \caption{Pseudocolored intensity images of the spatial modes. (a) Bottom-up beam mode detected by the upper microscope. (b) Top-down beam mode detected by the lower microscope.}
+    \label{fig:microscopes}
+\end{figure}
 \subsection{RF electronics characterization for intensity control}
 \label{subsec:upper_RF}
 
 The depth of the optical dipole trap and the dynamics of the conveyor belt require precise control over the optical power of both beams. The optical power in both the main ODT branch and the black-fiber branch is actively controlled using Acousto-Optic Modulators (AOMs), whose Radio-Frequency (RF) drive signals are generated by a Direct Digital Synthesizer (DDS) board, designated DDS3 (\tocomplete{DDS3 board manufacturer and model}).
 
-Prior to integrating the electronics with the optical setup, the DDS outputs were characterized using a spectrum analyzer (\tocomplete{spectrum analyzer model}). The upper channel of the DDS is dedicated to the primary ODT beam, while the lower channel drives the black-fiber branch (ODT black). For both channels, the emitted RF power was measured as a function of the programmed DDS amplitude parameter.
+To guarantee optimal performance, we verified the injection efficiency of the black-fiber AOM to ensure it operates at high efficiency. This procedure follows the characterization previously performed for the HC branch AOM, which operates at an optimal frequency of 110 MHz and an amplitude setting of 420. Establishing this high-efficiency is a crucial step for the subsequent automatic implementation of the conveyor belt. 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Cap_2_figures/DDS3_char.png}
+    \caption{Injection efficiency of the black-fiber branch AOM. The left panel shows the efficiency as a function of the DDS amplitude (at a fixed frequency of 110 MHz, peaking at an amplitude setting of 880). The right panel shows the efficiency as a function of the RF frequency (at a fixed amplitude of 880, peaking around 110.4 MHz).}
+    \label{fig:dds3_char}
+\end{figure}
 
-\tocomplete{insert plot of RF power (dBm or W) vs.\ DDS amplitude for both channels, with fitting curves if applicable}
+Although the characterization of the black-fiber AOM reveals a peak efficiency at $110.4\,\mathrm{MHz}$, the efficiency profile is sufficiently broad to allow operation at the standard frequency of $110\,\mathrm{MHz}$ used for the HCPCF branch.

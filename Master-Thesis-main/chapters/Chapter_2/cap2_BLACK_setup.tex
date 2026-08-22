@@ -7,11 +7,11 @@
 \section{Injection into the black fiber}
 \label{sec:black_fiber_injection}
  
-The second optical field required for the conveyor-belt configuration is delivered by a conventional polarization-maintaining single-mode fiber, referred to throughout this work as the "black fiber". It counterpropagates with respect to the $1064,mathrm{nm}$ field guided through the Hollow-Core Photonic Crystal Fiber (HCPCF). Their interference generates the moving optical lattice described in Sec.~\ref{sec:conveyor_belt}. Efficient coupling, a well-defined spatial mode, and stable polarization are therefore required to obtain a deep and reproducible conveyor-belt potential.
+The second optical field required for the conveyor-belt configuration is delivered by a conventional polarization-maintaining single-mode fiber, referred to throughout this work as the "black fiber". It is generated from the same $1064\,\mathrm{nm}$ laser but counterpropagates with respect to the field guided through the Hollow-Core Photonic Crystal Fiber (HCPCF). Their interference generates the moving optical lattice described in Sec.~\ref{sec:conveyor_belt}. Efficient coupling, a well-defined spatial mode, and stable polarization are therefore required to obtain a deep and reproducible conveyor-belt potential.
 
 The black-fiber branch was constructed as an extension of the Optical Dipole Trap (ODT) system described already existing. The injection strategy was first validated on a dedicated test bench and subsequently transferred to the definitive optical branch. 
 
-The black fiber is operated at $1064\,\mathrm{nm}$ and has a nominal mode-field radius of approximately $5.2\,\mu\mathrm{m}$. Its input tip includes a glass endcap approximately $300\,\mu\mathrm{m}$ long, which improves power handling but modifies the effective optical distance between the focusing element and the guided mode. Specifically, the fiber is a polarization-maintaining, single-mode cable manufactured by Sch\"{a}fter+Kirchhoff (model PMC-780-1-18-xxx / PMC-780-5.3-NA012-1-APC-xxx-P, housed in a $900\,\mu\mathrm{m}$ buffer). It features an effective numerical aperture ($\mathrm{NA}_{e^2}$) of $0.08 \pm 0.005$ at $780\,\mathrm{nm}$, low-stress FC/APC ($8^\circ$) connectors on both ends with the polarization slow axis aligned to the connector index key, and a specified operating wavelength range from the $770\,\mathrm{nm}$ cut-off up to a maximum of $1100\,\mathrm{nm}$.
+The black fiber is operated at $1064\,\mathrm{nm}$ and has a nominal mode-field radius of approximately $5.2\,\mu\mathrm{m}$. Its input tip includes a glass endcap approximately $300\,\mu\mathrm{m}$ long, which improves power handling. Specifically, the fiber is a polarization-maintaining, single-mode $3\,\mathrm{m}$ cable manufactured by Sch\"{a}fter+Kirchhoff (model PMC-780-1-18-xxx / PMC-780-5.3-NA012-1-APC-xxx-P, housed in a $900\,\mu\mathrm{m}$ buffer). It features low-stress FC/APC ($8^\circ$) connectors on both ends with the polarization slow axis aligned to the connector index key, and a specified operating wavelength range from the $770\,\mathrm{nm}$ cut-off up to a maximum of $1100\,\mathrm{nm}$.
 
 \subsection{Gaussian-beam characterization procedure}
 \label{subsec:gaussian_beam}
@@ -23,7 +23,7 @@ beam parameters, or output wavefront have to be determined.
 The beam under test is first aligned horizontally at a fixed height above
 the optical table. This allows its transverse intensity distribution to be
 sampled at a sequence of longitudinal positions without introducing
-additional steering optics between measurements. A camera mounted on a
+additional  optics between measurements. A camera mounted on a
 translation stage is then moved along the propagation direction, and an
 image of the beam cross-section is recorded at each position.
 
@@ -31,7 +31,7 @@ Each recorded image is cropped to isolate the beam spot from background
 light and stray reflections. The resulting intensity distribution is fitted
 with a two-dimensional Gaussian function, from which the beam radii along the
 two transverse axes are extracted. Repeating this analysis at several
-positions provided the beam radius as a function of the longitudinal
+positions provides the beam radius as a function of the longitudinal
 coordinate $z$.
 For each transverse direction, the measured beam radius is fitted to the
 standard Gaussian-beam propagation law
@@ -46,8 +46,12 @@ standard Gaussian-beam propagation law
     },
 \end{equation}
 where $w_0$ is the waist radius, $z_0$ is the waist position, and $z_R$ is
-the associated Rayleigh range. This fit provides the size and position of the
-beam waist and allowed the wavefront curvature at any relevant plane to be
+the associated Rayleigh range, defined as
+\begin{equation}
+    z_R = \frac{\pi w_0^2}{\lambda},
+\end{equation}
+with $\lambda$ being the wavelength of the beam. This fit provides the size and position of the
+beam waist and properties at any relevant plane to be
 determined. The reconstructed beam parameters could then be compared with
 the target fiber-mode parameters or used to select and position the
 injection optics.
@@ -56,19 +60,19 @@ injection optics.
 \label{subsec:black_fiber_setup}
 
 The injection setup for the black fiber comprises the pre-existing ODT injection setup, shared with the HCPCF branch, and a branch built specifically for the black fiber downstream of PBS2.
-The HCPCF branch was previously built, but a HWP was added before the focusing lens for the polarization control required to implement the conveyor belt.
+To the first setup a HWP was added for the polarization control required to implement the conveyor belt.
 
 The pre-existing setup, shown in Figure~\ref{fig:HC_pdf}, consists of:
 \begin{itemize}
-    \item HWP1 and the optical isolator, protecting the laser from back-reflections;
-    \item HWP2 and PBS1, regulating the optical power delivered to the rest of the setup;
-    \item HWP3 and PBS2, splitting the beam between the HCPCF branch and the black-fiber branch;
-    \item on the HCPCF branch, fed by the first output of PBS2: an AOM operating at $110\,\mathrm{MHz}$, used as a fast switch, with the first diffraction order used downstream and the zeroth order blocked by a beam dump
-    \item a $\sim3\times$ beam expander, collimating and enlarging the beam
-    \item a mirror (M1) and a dichroic mirror, both on tilt stages, used for the fiber-injection alignment, with the dichroic mirror also combining the $1064\,\mathrm{nm}$ beam with a $780\,\mathrm{nm}$ beam used for atom characterization inside the HCPCF core
-    \item a focusing lens with $f=50\,\mathrm{mm}$, on a horizontal micrometric translation stage
-    \item a HWP, for the polarization adjustment before the HCPCF, mounted on a rotation stage
-    \item the HCPCF on an $x$-$y$ translation stage terminated with an FC/APC connector
+    \item A half-wave plate (HWP 1) and an optical isolator protecting the laser from back-reflections;
+    \item HWP 2 and PBS 1, regulating the optical power delivered to the rest of the setup;
+    \item HWP 3 and PBS 2, splitting the beam between the HCPCF branch and the black-fiber branch;
+    \item on the HCPCF branch, fed by the first output of PBS2: an acousto-optic modulator (AOM) operating at $110\,\mathrm{MHz}$, used as a fast switch, with the first diffraction order used downstream and the zeroth order blocked by a beam dump;
+    \item a $\sim3\times$ beam expander, collimating and enlarging the beam;
+    \item a mirror (Mirror 1) and a Dichroic Mirror, both on tilt stages, used for the fiber-injection alignment, with the dichroic mirror also combining the $1064\,\mathrm{nm}$ beam with a $780\,\mathrm{nm}$ beam used for atom characterization inside the HCPCF core;
+    \item a focusing lens with $f=50\,\mathrm{mm}$ (Lens f50), on a horizontal micrometric translation stage;
+    \item HWP 4 for the polarization adjustment before the HCPCF, mounted on a rotation stage;
+    \item the HCPCF (Hollow core fiber) on an $x$-$y$ translation stage terminated with an FC/APC connector.
 \end{itemize}
 
 \begin{figure}[h!]
@@ -80,16 +84,14 @@ The pre-existing setup, shown in Figure~\ref{fig:HC_pdf}, consists of:
 
 Downstream of PBS2, the branch built for the black fiber, shown in Figure~\ref{fig:black_pdf}, consists of:
 \begin{itemize}
-    \item an acousto-optic modulator (AOM), providing fast control of the beam intensity and frequency (\tocomplete{manufacturer, model, diffraction order used, drive frequency});
-    \item a steering mirror, directing the beam into the telescope;
-    \item a telescope formed by an $f=-30\,\mathrm{mm}$ lens and an $f=150\,\mathrm{mm}$ lens (\tocomplete{lens separation}), re-collimating the beam to a radius of approximately $1.6\,\mathrm{mm}$, the target value derived in Section~\ref{subsec:mode_matching_endcap};
-    \item two steering mirrors, directing the beam toward the fiber-injection assembly;
-    \item a half-wave plate, setting the incident linear polarization along the slow axis of the fiber (\tocomplete{HWP model and alignment procedure}, Figure~\ref{fig:polarization_maintaining});
-    \item an $f=25\,\mathrm{mm}$ achromatic doublet (Thorlabs AC127-025-C), mounted on a micrometric translation stage along the propagation axis, focusing the beam into the fiber. The axial position of the lens is used to compensate for the displacement of the fiber-mode plane caused by the fiber endcap, discussed in Section~\ref{subsec:mode_matching_endcap};
-    \item the black fiber, mounted on the branch through its output connector.
+    \item an AOM, providing fast control of the beam intensity and frequency operating at $110\,\mathrm{MHz}$ (its frequency is shifted to allow for the transport of the atoms in the moving lattice, as described in Section~\ref{sec:conveyor_belt});
+    \item a  mirror (Mirror 2), directing the beam into the telescope;
+    \item a telescope formed by an $f=-30\,\mathrm{mm}$ lens (Lens f-30) and an $f=150\,\mathrm{mm}$ lens (Lens f150), re-collimating the beam to a radius of approximately $1.6\,\mathrm{mm}$, the target value derived in Section~\ref{subsec:mode_matching_endcap};
+    \item two  mirrors (Mirror 3 and Mirror 4), directing the beam toward the fiber-injection assembly;
+    \item a half-wave plate (HWP 4), setting the incident linear polarization along the slow axis of the fiber, as described in Section~\ref{sec:black_fiber_polarization});
+    \item an $f=25\,\mathrm{mm}$ achromatic doublet (Lens f25) (Thorlabs AC127-025-C), mounted on a micrometric translation stage (z-stage) along the propagation axis, focusing the beam into the fiber. The axial position of the lens is used to compensate for the displacement of the fiber-mode plane caused by the fiber endcap, discussed in Section~\ref{subsec:mode_matching_endcap};
+    \item the black fiber mounted on the branch through its output connector.
 \end{itemize}
-
-\tocomplete{manufacturer and model; standard telecom-fiber designation; total fiber length; nominal mode-field diameter and numerical aperture at $1064\,\mathrm{nm}$; orientation of the slow axis relative to the connector key; input and output connector types and angle; endcap geometry; spectral operating range; distance from the AOM to the telescope; lens mount; translation-stage model, resolution and travel; nominal lens-to-fiber distance; fiber connector and mount; diagnostic pick-offs or power-measurement points along the branch}
 
 \begin{figure}[h!]
     \centering
@@ -102,20 +104,11 @@ Figure~\ref{fig:black_setup_photo} shows a photograph of the complete injection 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{Cap_2_figures/black_setup_photo.jpeg}
-    \caption{Photograph of the complete injection branch. The black-fiber branch is on the left, while the pre-existing ODT injection setup is on the right.}
+    \caption{Photograph of the complete injection branch. The black-fiber branch is on the left, while the pre-existing ODT injection setup is on the right. Aggiornare: manca l'HWP}
     \label{fig:black_setup_photo}
 \end{figure}
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Cap_2_figures/polarization_maintaining.png}
-    \caption{Orientation of the input linear polarization relative to the slow and fast axes of the polarization-maintaining fiber.}
-    \label{fig:polarization_maintaining}
-\end{figure}
 
-
-\subsection{Beam-profile characterization method}
-\label{subsec:beam_char_black_fiber}
 
 The size and divergence of the beams involved in the black-fiber injection were characterized with the same beam-profiling approach used in Section~\ref{subsec:gaussian_beam}.
 
@@ -124,83 +117,72 @@ For each transverse direction, the measured radius was fitted to the Gaussian-be
 \subsection{Mode matching and the fiber endcap}
 \label{subsec:mode_matching_endcap}
 
-Coupling a Gaussian beam into a single-mode fiber requires matching the focused field to the fundamental fiber mode in waist size, waist position and transverse alignment. The standard approach uses a collimated input beam and a fixed collimating lens that focuses it directly onto the fiber facet, and this was the strategy first used for the black fiber, then substituted by a f25 shifting lens. The mode-matching parameters used in the definitive branch (Section~\ref{subsec:black_fiber_setup}) were derived and validated on a dedicated test bench (Fig. \ref{fig:test_black}), independent of the complete ODT apparatus and not including the AOM or the telescope. The test bench consisted of:
+Coupling a Gaussian beam into a single-mode fiber requires matching the focused field to the fundamental fiber mode in waist size, waist position and transverse alignment. The standard approach uses a collimated input beam and a fixed collimating lens that focuses it directly onto the fiber facet, and this was the strategy first used for the black fiber. The mode-matching parameters used in the definitive branch (Section~\ref{subsec:black_fiber_setup}) were derived and validated on a dedicated test bench (Fig. \ref{fig:test_black}, only the input section upstream of the fiber in the picture is relevant for the mode-matching and injection procedure. The optical layout at the fiber output is dedicated exclusively to the characterization of the polarization stability, which is discussed in detail in Sec.~\ref{sec:polarization_stability}). The test bench consisted of:
 \begin{itemize}
-    \item HWP1 and the optical isolator, as in Section~\ref{subsec:black_fiber_setup};
-    \item HWP2 and PBS1 (with a beam dump on the rejected port), regulating the optical power delivered to the rest of the setup;
-    \item HWP3 and PBS2, splitting the beam between the HCPCF and black-fiber branches;
-    \item Mirror 1, directing the beam reflected by PBS2 towards the beam expander;
+    \item HWP 1 and the optical isolator, as in Section~\ref{subsec:black_fiber_setup};
+    \item HWP 2 and PBS 1 (with a beam dump on the rejected port), regulating the optical power delivered to the rest of the setup;
+    \item HWP 3 and PBS 2, splitting the beam between the HCPCF and black-fiber branches;
+    \item Mirror 1, directing the beam reflected by PBS2 towards the beam expander (Beam expander);
     \item an adjustable beam expander (ZBE3C2X-8X Achromatic Zoom Beam Expander, AR Coated: 1050 nm-1650 nm), setting the diameter and residual divergence of the beam sent to the black fiber;
-    \item HWP4 and PBS3 (with a beam dump on the rejected port), for additional power control and polarization cleaning;
+    \item HWP 4 and PBS 3 (with a beam dump on the rejected port), for additional power control and polarization cleaning;
     \item Mirror 2 and Mirror 3, routing the beam towards the fiber injection stage;
-    \item HWP5, adjusting the polarization axis before injection into the polarization-maintaining fiber;
-    \item a focusing element coupling the beam into the black fiber: initially a fixed $f=18\,\mathrm{mm}$ fiber collimator (Sch\"{a}fter+Kirchhoff, 60FC-4-A18-03), later replaced by the $f=25\,\mathrm{mm}$ achromatic doublet (Thorlabs AC127-025-C) on a micrometric translation stage (z-stage) also used in the definitive branch;
+    \item HWP 5, adjusting the polarization axis before injection into the polarization-maintaining fiber;
+    \item a focusing element coupling the beam into the black fiber: initially a fixed $f=18\,\mathrm{mm}$ fiber collimator (Collimator f18) (Sch\"{a}fter+Kirchhoff, 60FC-4-A18-03), later replaced by the $f=25\,\mathrm{mm}$ achromatic doublet (Lens f25) (Thorlabs AC127-025-C) on a micrometric translation stage (z-stage) also used in the definitive branch;
 \end{itemize}
 
-Injecting a nominally collimated beam directly through the fixed $f=18\,\mathrm{mm}$ collimator gave an injection efficiency of approximately $20\%$. Introducing additional divergence upstream, equivalent to inserting a weak $f=-1000\,\mathrm{mm}$ CHI LHA DETTO lens before the collimator, raised the efficiency above $50\%$. This indicates that the plane of the fiber mode does not coincide with the nominal focal plane of the collimator.
-
+Injecting a nominally collimated beam directly through the fixed $f=18\,\mathrm{mm}$ collimator gave an injection efficiency of approximately $20\%$. Introducing additional divergence upstream, equivalent to inserting a weak $f=-1000\,\mathrm{mm}$ lens before the collimator, raised the efficiency above $50\%$. This indicates that the plane of the fiber mode does not coincide with the nominal focal plane of the collimator.
 The beam profile after the fiber was measured (Figure~\ref{fig:black_fiber_characterization}a) and its reconstructed waist compared with the mode-field diameter (MFD) specified by the manufacturer at $1064\,\mathrm{nm}$ (Figure~\ref{fig:black_fiber_characterization}b). The measured waist agreed with the specified MFD, confirming that the transmitted light corresponds to the fundamental fiber mode.
 
 \begin{figure}[htbp]
     \centering
     % Sottofigura (a)
-    \begin{subfigure}[b]{0.49\textwidth}
+    \begin{subfigure}[b]{0.44\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Cap_2_figures/beam_profile_after.png}
-        \caption{Beam-radius measurements after the black fiber and fit to the Gaussian-beam propagation law of Equation~\eqref{eq:gaussian_propagation_black_fiber}. \tocomplete{measurement axis, fit parameters and uncertainties, optical configuration}}
+        \caption{Beam-radius measurements after the black fiber and fit to the Gaussian-beam propagation law.}
         \label{fig:beam_profile_after}
     \end{subfigure}
     \hfill
     % Sottofigura (b)
-    \begin{subfigure}[b]{0.49\textwidth}
+    \begin{subfigure}[b]{0.54\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Cap_2_figures/manufacturer_MFD.png}
         \caption{Manufacturer-specified mode-field diameter of the black fiber at $1064\,\mathrm{nm}$, used as the target value in the mode-matching calculation below.}
         \label{fig:manufacturer_MFD}
     \end{subfigure}
     
-    \caption{Black fiber beam characterization and manufacturer specifications.}
+    \caption{Black fiber beam characterization.}
     \label{fig:black_fiber_characterization}
 \end{figure}
 
-The beam profile analysis shown in Fig.\ref{fig:black_fiber_characterization}a uses the standard Gaussian beam propagation model. The beam radius evolution $w(z)$ along the propagation axis $z$ for both the $x$ and $y$ transverse directions is described by:
+The beam profile analysis shown in Fig.\ref{fig:black_fiber_characterization}a uses the standard Gaussian beam propagation model. The beam radius evolution $w_i(z)$ along the propagation axis $z$ for both transverse directions ($i \in \{x, y\}$) is described by:
 
-\begin{align}
-    w_x(z) &= w_{0x}\sqrt{1 + \left(\frac{z - z_{0x}}{z_{Rx}}\right)^2} \, , \quad \text{with} \quad z_{Rx} = \frac{\pi w_{0x}^2}{M_x^2 \lambda} \label{eq:fit_wx} \\
-    w_y(z) &= w_{0y}\sqrt{1 + \left(\frac{z - z_{0y}}{z_{Ry}}\right)^2} \, , \quad \text{with} \quad z_{Ry} = \frac{\pi w_{0y}^2}{M_y^2 \lambda} \label{eq:fit_wy}
-\end{align}
+\begin{equation}
+    w_i(z) = w_{0i}\sqrt{1 + \left(\frac{z - z_{0i}}{z_{Ri}}\right)^2} \, , \quad \text{with} \quad z_{Ri} = \frac{\pi w_{0i}^2}{M_i^2 \lambda} \, .
+    \label{eq:fit_w}
+\end{equation}
 
-Based on the fit of the experimental data, the extracted parameters for the $x$-axis are:
+Based on the fit of the experimental data, and keeping the beam quality factors fixed to $M_x^2 = M_y^2 = 1.02$, the extracted parameters and the respective coefficients of determination ($R^2$) are:
+
 \begin{align*}
-    z_{0x} &= 3.97 \pm 0.43\,\mathrm{mm} \\
-    w_{0x} &= (5.67 \pm 0.10) \times 10^{-3}\,\mathrm{mm} \\
-    M_x^2 &= 1.02 \, (\text{fixed})
+    z_{0x} &= 3.97 \pm 0.43\,\mathrm{mm}, & z_{0y} &= 3.85 \pm 0.48\,\mathrm{mm}, \\
+    w_{0x} &= (5.67 \pm 0.10) \times 10^{-3}\,\mathrm{mm}, & w_{0y} &= (5.42 \pm 0.11) \times 10^{-3}\,\mathrm{mm}, \\
+    R_x^2 &= 0.9993, & R_y^2 &= 0.9991.
 \end{align*}
 
-For the $y$-axis, the extracted fit parameters are:
-\begin{align*}
-    z_{0y} &= 3.85 \pm 0.48\,\mathrm{mm} \\
-    w_{0y} &= (5.42 \pm 0.11) \times 10^{-3}\,\mathrm{mm} \\
-    M_y^2 &= 1.02 \, (\text{fixed})
-\end{align*}
-
-The goodness of the fit is confirmed by the high coefficient of determination for both axes:
-\begin{align*}
-    R_x^2 &= 0.9993 \\
-    R_y^2 &= 0.9991
-\end{align*}
+\begin{wrapfigure}{R}{0.45\textwidth}
+    \centering
+    \vspace{-10pt} % Opzionale: riduce un po' lo spazio vuoto sopra l'immagine
+    \includegraphics[width=0.4\textwidth]{Cap_2_figures/fiber_endcap.png}
+    \caption{Geometry of the endcap spliced onto the black-fiber input. Image courtesy of Thorlabs, Inc.}
+    \label{fig:fiber_endcap}
+    \vspace{-10pt} % Opzionale: riduce lo spazio vuoto sotto la caption
+\end{wrapfigure}
 
 The mismatch between the nominal collimator focal plane and the fiber-mode plane is attributed to the endcap spliced onto the fiber input, a glass segment approximately $300\,\mu\mathrm{m}$ long used to improve power handling (Figure~\ref{fig:fiber_endcap}). The endcap modifies the effective optical path between the external focusing lens and the fiber facet, displacing the focused waist relative to the position expected for a bare fiber tip. Standard fiber collimators are designed assuming the fiber mode lies at their nominal focal plane, so this displacement is not compensated automatically and must be corrected in the injection design. Reproducing the correction with a fixed, long-focal-length diverging lens would be impractical to position and would add aberrations to the injected beam.
 A focusing lens mounted on a micrometric translation stage, giving direct control of the axial position of the focused waist, was used instead.
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Cap_2_figures/fiber_endcap.png}
-    \caption{Geometry of the endcap spliced onto the black-fiber input. \tocomplete{connector orientation, propagation direction}}
-    \label{fig:fiber_endcap}
-\end{figure}
-
-For a collimated beam of radius $w_{\mathrm{in}}$ focused by a lens of focal length $f$, Equation~\eqref{eq:gaussian_waist_lens} gives the resulting waist radius $w_{\mathrm{f}}$. Solving for the input radius required to obtain a target $w_{\mathrm{f}}$,
+For a collimated beam of radius $w_{\mathrm{in}}$ focused by a lens of focal length $f$, Equation~\eqref{eq:required_input_radius} gives the resulting waist radius $w_{\mathrm{f}}$. Solving for the input radius required to obtain a target $w_{\mathrm{f}}$,
 \begin{equation}
     w_{\mathrm{in}} = \frac{\lambda f}{\pi w_{\mathrm{f}}}.
     \label{eq:required_input_radius}
@@ -221,11 +203,10 @@ Using $\lambda=1.064\,\mu\mathrm{m}$, $f=25\,\mathrm{mm}$, and $w_{\mathrm{f}}=5
 \end{equation}
 The beam expander was set to produce this radius at the injection lens, and the resulting beam was profiled before injection to verify both its size and its residual divergence.
 
-The axial position of the $f=25\,\mathrm{mm}$ lens was calibrated by propagating light in the reverse direction: with $7\,\mathrm{W}$ injected through the fixed $f=18\,\mathrm{mm}$ collimator and collected at the output by the $f=25\,\mathrm{mm}$ lens, the lens position was adjusted until the output beam was collimated. This confirmed that the lens had been placed at the axial position corresponding to the effective fiber-mode plane, and fixed the lens position later reproduced in the definitive branch.
-
+A temporary reverse-direction setup was implemented for alignment purposes(not shown in Figure~\ref{fig:test_black}). The axial position of the $f=25\,\mathrm{mm}$ lens was calibrated by propagating light in the reverse direction, using a MOT beam injected through a fixed $f=18\,\mathrm{mm}$ collimator. The light was collected by the $f=25\,\mathrm{mm}$ lens, and its position was adjusted until the resulting beam was collimated. This confirmed the effective fiber-mode plane and fixed the lens position for the definitive setup.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{Cap_2_figures/test_black.pdf}
+    \includegraphics[width=0.9\textwidth]{Cap_2_figures/test_black.pdf}
     \caption{Setup of the black-fiber injection test bench, used to validate the mode-matching procedure and calibrate the axial position of the $f=25\,\mathrm{mm}$ lens. At the fiber output the polarization stability was characterized with the setup of Section~\ref{sec:black_fiber_polarization}.}
     \label{fig:test_black}
 \end{figure}
@@ -234,94 +215,78 @@ On the test bench, with the $f=25\,\mathrm{mm}$ lens at the calibrated position 
 
 With the definitive branch of Section~\ref{subsec:black_fiber_setup}, after adding the AOM and the telescope, the measured injection efficiency reached approximately $75\%$,confirming that the mode-matching procedure transfers to the complete optical layout.
 
-\section{Polarization stability characterization}
+\section{Power and polarization stability characterization}
 \label{sec:black_fiber_polarization}
 
-After optimizing the injection efficiency, the polarization stability of the light transmitted through the black fiber was characterized. This quantity is relevant to the optical conveyor belt because polarization fluctuations are converted into optical-power fluctuations by the polarization-sensitive elements of the final setup, affecting the stability of the resulting optical potential. The two orthogonal linear-polarization components at the fiber output were measured simultaneously; their time-domain stability was analyzed with the Allan deviation, and their frequency content with the power spectral density, obtained from the Fourier transform of the recorded signals and compared with the expected shot-noise level.
+After optimizing the injection efficiency, both the overall optical power and the polarization stability of the light transmitted through the black fiber were characterized. These quantities are relevant to the optical conveyor belt because polarization fluctuations are converted into optical-power fluctuations by the polarization-sensitive elements of the final setup, ultimately affecting the stability of the resulting optical potential. The two orthogonal linear-polarization components at the fiber output were measured simultaneously. Their time-domain stability was analyzed by computing the overlapping Allan deviation of their fractional fluctuations, while their frequency content was evaluated through the Amplitude Spectral Density (ASD) and compared with the expected fundamental shot-noise limit.
 
-\subsection{Detection setup and polarization alignment}
+\subsection{Detection setup and PBS characterization}
 
-The polarization-analysis setup is shown in Figure~\ref{fig:test_black}. The beam emerging from the black fiber was collimated and sent through a half-wave plate (HWP) followed by a polarizing beam splitter (PBS), whose transmitted and reflected components were detected simultaneously by two photodiodes.
-
-During the initial alignment, the transmitted component was measured with a home-made photodiode connected to channel 1, and the reflected component with a Thorlabs PDA100A2 connected to channel 2, operated at $0\,\mathrm{dB}$ internal gain with $6\,\mathrm{dB}$ of additional electrical attenuation. The total optical power incident on the PBS was $4.2\,\mathrm{mW}$.
-
-The HWP was adjusted to obtain approximately equal power at the two PBS outputs, corresponding to an input polarization close to $45^\circ$ relative to the PBS axes. At this operating point, a small polarization rotation transfers power between the two outputs, producing anticorrelated variations in the two detector signals, which gives high sensitivity to polarization fluctuations.
-
-Before the stability measurements, the PBS orientation was optimized to ensure that its finite extinction ratio did not limit the measurement. Rotating the incident linear polarization and finely adjusting the PBS orientation gave polarization extinction ratios of $31\,\mathrm{dB}$ in reflection and $33\,\mathrm{dB}$ in transmission.
-
-
-\tocomplete{output-collimator focal length; HWP and PBS models; acquisition-device model; photodiode connections and termination impedances; acquisition bandwidth and voltage ranges}
-
-\subsection{Alignment to the fiber principal axes}
-
-The polarization analyzer was referenced to the principal axes of the polarization-maintaining fiber, using an input HWP before the fiber and, after the fiber, an output collimator, a steering mirror, a second HWP, the PBS, and a power meter.
-
-The two HWPs were adjusted to maximize the power transmitted through the PBS while minimizing the reflected power and its fluctuations. This condition corresponds to exciting one principal axis of the fiber and aligning the emerging linear polarization with one PBS axis; the optimal input-HWP angle was $131^\circ$.
-
-The output HWP was adjusted to obtain a maximum transmitted power of $2.68\,\mathrm{mW}$. With the power meter moved to the reflection port, the reflected signal was minimized by jointly tuning the PBS orientation and the two HWPs, giving a minimum reflected power of $4\,\mu\mathrm{W}$, including a background of $1.5\,\mu\mathrm{W}$, against a maximum reflected power of approximately $2\,\mathrm{mW}$. Without background subtraction, the corresponding polarization extinction ratio is
+Before being integrated into the analysis setup, the polarizing beam splitter (PBS) under test was carefully characterized. The test setup consisted of a half-wave plate (HWP) followed by an auxiliary PBS to prepare a purely linear polarization state, and the PBS under test. By measuring the transmitted and reflected power, the Polarization Extinction Ratio (PER) was evaluated, defined as:
 \begin{equation}
     \mathrm{PER}
     =
     10\log_{10}
     \left(
         \frac{P_{\mathrm{max}}}{P_{\mathrm{min}}}
-    \right)
-    =
-    10\log_{10}
-    \left(
-        \frac{2\,\mathrm{mW}}{4\,\mu\mathrm{W}}
-    \right)
-    \approx 27\,\mathrm{dB}.
+    \right).
 \end{equation}
+The component exhibited a PER of $31\,\mathrm{dB}$ in transmission and $30\,\mathrm{dB}$ in reflection, confirming its suitability for high-sensitivity polarization measurements. 
 
-As a further check, the fiber transmission efficiency was measured again, with input and output powers of $4.18\,\mathrm{mW}$ and $2.88\,\mathrm{mW}$, respectively:
-\begin{equation}
-    \eta_{\mathrm{fiber}}
-    =
-    \frac{2.88\,\mathrm{mW}}{4.18\,\mathrm{mW}}
-    \approx 69\%,
-\end{equation}
-consistent with the efficiency measured during injection optimization.
+Following this validation, the PBS was inserted into the final analysis setup (Figure~\ref{fig:test_black}). The beam emerging from the black fiber was collimated using a fixed $f=18\,\mathrm{mm}$ fiber collimator and sent through an HWP followed by the characterized PBS. The transmitted and reflected components were detected simultaneously by two photodiodes: the transmitted component was measured with a home-made photodiode (Channel 1), and the reflected component with a Thorlabs PDA100A2 (Channel 2).
 
-\subsection{Photodiode calibration}
+The HWP was adjusted to obtain approximately equal power at the two PBS outputs, corresponding to an input polarization close to $45^\circ$ relative to the PBS axes. At this operating point, a small polarization rotation transfers power between the two outputs, producing anticorrelated variations in the two detector signals and maximizing the sensitivity to polarization fluctuations.
 
-The two detector outputs were converted from voltage to equivalent optical power before comparing the polarization components.
+\subsection{Alignment to the fiber principal axes}
+\label{subsec:principal_axes}
 
-The home-made detector is based on a BPW34 photodiode followed by an OP27G transimpedance amplifier with a gain of $10\,\mathrm{k\Omega}$. Using a photodiode responsivity at $1064\,\mathrm{nm}$ of
+To ensure a stable measurement, the polarization analyzer was referenced to the principal axes of the polarization-maintaining (PM) fiber (Fig.~\ref{fig:polarization_maintaining}). This required an input HWP before the fiber injection. On the output side, the beam passed through the collimator, a steering mirror, the second HWP, the characterized PBS, and a power meter.
+
+The two HWPs were iteratively adjusted to maximize the power transmitted through the PBS while minimizing the reflected power and its temporal fluctuations. This condition ensures that only one principal axis of the PM fiber is excited and that the emerging linear polarization is perfectly aligned with one PBS axis. The optimal input-HWP angle was found to be $131^\circ$.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Cap_2_figures/polarization_maintaining.png}
+    \caption{Orientation of the input linear polarization relative to the slow and fast axes of the polarization-maintaining fiber. Adapted from \cite{newsuntech_pmfiber}.}
+    \label{fig:polarization_maintaining}
+\end{figure}
+
+\subsection{Photodiode calibration and data rescaling}
+
+Data were acquired using a [INSERT OSCILLOSCOPE MODEL]. Since oscilloscopes record voltage traces, the raw data from both channels had to be converted into equivalent optical power (required for the Allan deviation analysis) and actual photocurrent (required to compute the theoretical shot-noise limit). 
+
+To ensure both measurements were represented on the same physical scale, the photodiode responsivity $\mathcal{R}$ (in A/W) and the transimpedance gain $G_{\mathrm{TIA}}$ (in V/A, physically equivalent to $\Omega$) of each detector were used to perform the data conversion.
+
+The home-made detector comprises a BPW34 photodiode coupled to an OP27G operational amplifier acting as a transimpedance amplifier (TIA) with a fixed gain of $G_{\mathrm{TIA}} = 10\,\mathrm{k\Omega}$ (i.e., $10^4\,\mathrm{V/A}$). The effective photodiode responsivity at $1064\,\mathrm{nm}$ is estimated to be
 \begin{equation}
     \mathcal{R}_{\mathrm{HM}}
     \approx
-    0.7\,\mathrm{A/W}\times0.3
+    0.7\,\mathrm{A/W}\times 0.3
     =
-    0.21\,\mathrm{A/W},
+    0.21\,\mathrm{A/W}.
 \end{equation}
-the resulting voltage responsivity is
+Consequently, its overall voltage responsivity is
 \begin{equation}
     G_{\mathrm{HM}}
     =
     \mathcal{R}_{\mathrm{HM}}G_{\mathrm{TIA}}
     \approx
+    2.1\times 10^3\,\mathrm{V/W}
+    =
     2.1\,\mathrm{V/mW}.
 \end{equation}
-The detector output stage has a $1\,\mathrm{k\Omega}$ output impedance; the corresponding loading correction was included where required by the acquisition-input impedance.
 
-For the Thorlabs PDA100A2, a photodiode responsivity of $0.4\,\mathrm{A/W}$ at $1064\,\mathrm{nm}$ was used, together with the selected internal gain and any additional electrical attenuation, to convert the recorded voltage into optical power.
+For the Thorlabs PDA100A2 detector, assuming a standard photodiode responsivity of $\mathcal{R}_{\mathrm{TH}} = 0.4\,\mathrm{A/W}$ at $1064\,\mathrm{nm}$, the data were rescaled according to the specific hardware transimpedance gain applied during the respective measurement (e.g., $1.5\times 10^3\,\mathrm{V/A}$ at $0\,\mathrm{dB}$, or $4.75\times 10^3\,\mathrm{V/A}$ at $10\,\mathrm{dB}$). Any additional electrical attenuation was also accounted for to correctly map the recorded voltages back to the incident optical power.
 
-\tocomplete{measured offsets and dark signals; acquisition-input impedance; PDA100A2 transimpedance gain at $0\,\mathrm{dB}$ and $10\,\mathrm{dB}$; uncertainty of both voltage-to-power conversion factors}
+\subsection{Fractional stability and differential signal}
 
-\subsection{Data acquisition and normalized polarization signal}
+For each measurement, $10^5$ samples were acquired simultaneously from both channels. Traces of $600\,\mathrm{ms}$, $60\,\mathrm{s}$, and $600\,\mathrm{s}$ total duration were recorded to probe different timescales; the $60\,\mathrm{s}$ trace was acquired both in standard and High-Resolution sampling modes to improve the resolution of slower fluctuations. The sampling interval $\tau_0$ and the corresponding sampling frequency $f_s = 1/\tau_0$ were extracted directly from the recorded time vector.
 
-For the stability measurements, the home-made detector was placed on the reflected port and connected to channel 1, and the Thorlabs PDA100A2 on the transmitted port and connected to channel 2, operated at $10\,\mathrm{dB}$ internal gain without external attenuation.
-
-For each measurement, $10^5$ samples were acquired simultaneously from both channels. Traces of $600\,\mathrm{ms}$, $60\,\mathrm{s}$, and $600\,\mathrm{s}$ total duration were recorded to probe different timescales; the $60\,\mathrm{s}$ trace was acquired both in standard sampling mode, preserving faster fluctuations, and in High-Resolution mode, improving the resolution of slower fluctuations.
-
-After background subtraction and detector calibration, the measured voltages were converted into the transmitted and reflected powers $P_{\mathrm{T}}(t)$ and $P_{\mathrm{R}}(t)$. The total detected power is
+After calibration, the physical power traces were used to evaluate both common-mode and differential fluctuations. To evaluate the power stability on a single channel, the signal was normalized to compute the fractional power fluctuations:
 \begin{equation}
-    P_{\Sigma}(t)
-    =
-    P_{\mathrm{T}}(t)+P_{\mathrm{R}}(t),
+    y(t) = \frac{P(t) - \overline{P}}{\overline{P}},
 \end{equation}
-and the normalized differential signal is
+where $\overline{P}$ is the mean optical power. Similarly, to isolate polarization stability, the normalized differential signal between the transmitted ($P_{\mathrm{T}}$) and reflected ($P_{\mathrm{R}}$) powers was analyzed:
 \begin{equation}
     D(t)
     =
@@ -332,85 +297,67 @@ and the normalized differential signal is
     }.
     \label{eq:normalized_polarization_difference}
 \end{equation}
-\tocomplete{verify that Equation~\eqref{eq:normalized_polarization_difference} matches the normalization used in the analysis code, e.g. $D(t)=P_{\mathrm{T}}(t)/\overline{P_{\mathrm{T}}}-P_{\mathrm{R}}(t)/\overline{P_{\mathrm{R}}}$}
-A fluctuation of the total transmitted power appears mainly in $P_{\Sigma}(t)$, while a polarization fluctuation transfers power between the two PBS outputs and appears predominantly in $D(t)$; the normalization suppresses common-mode power fluctuations to first order.
-
-\tocomplete{sampling frequency for each trace; Nyquist frequency and frequency resolution; acquisition-device (oscilloscope or DAQ) model; anti-aliasing filter; exact definition of High-Resolution mode}
+Because the HWP was set to balance the two outputs, a fluctuation of the total optical power appears mainly in the denominator (sum), while a pure polarization fluctuation transfers power between the two PBS ports, appearing predominantly in the numerator of $D(t)$.
 
 \subsection{Allan-deviation analysis}
 
-The time-domain stability of the polarization signal was quantified with the overlapping Allan deviation. For a uniformly sampled sequence $D_k$ with sampling interval $\tau_0$, averages were computed over adjacent groups of $m$ samples,
+Standard statistical variance is often insufficient for characterizing the long-term stability of optical systems, as it diverges in the presence of non-stationary processes like $1/f$ noise and slow environmental drifts. Therefore, the time-domain stability of the fractional signals was quantified using the Allan deviation, a two-sample variance that reliably converges for all common noise types~\cite{Riley2008}.
+
+For a discrete fractional stability array $y_k$, $k=1,\dots,N$, acquired with a sampling interval $\tau_0$, the data is grouped into sliding windows of duration $\tau = m\tau_0$. The average fractional fluctuation over the window starting at sample $k$ is given by:
 \begin{equation}
-    \overline{D}_j(\tau)
+    \overline{y}_k(\tau)
     =
     \frac{1}{m}
-    \sum_{k=jm}^{(j+1)m-1}D_k,
+    \sum_{i=k}^{k+m-1}y_i,
     \qquad
-    \tau=m\tau_0,
+    k = 1, \dots, N-m+1.
 \end{equation}
-and the Allan variance from the difference between consecutive averages,
+Unlike the standard (non-overlapping) estimator, in which only disjoint blocks of $m$ samples are compared, the window start index $k$ here is advanced by a single sample at a time, so that consecutive windows $\overline{y}_k(\tau)$ overlap by $m-1$ samples. The Allan variance $\sigma_y^2(\tau)$ is defined as half the expected value of the squared difference between two such averages separated by one interval $\tau$, i.e. by $m$ samples. To maximize statistical confidence, particularly at longer integration times, the fully overlapping estimator was employed, which averages this squared difference over every available pair of $m$-sample windows in the record~\cite{Riley2008}:
 \begin{equation}
-    \sigma_D^2(\tau)
+    \sigma_y^2(\tau)
     =
-    \frac{1}{2}
-    \left\langle
-        \left[
-            \overline{D}_{j+1}(\tau)
-            -
-            \overline{D}_{j}(\tau)
-        \right]^2
-    \right\rangle,
+    \frac{1}{2\left(N-2m+1\right)}
+    \sum_{k=1}^{N-2m+1}
+    \left[
+        \overline{y}_{k+m}(\tau)
+        -
+        \overline{y}_{k}(\tau)
+    \right]^2,
     \qquad
-    \sigma_D(\tau) = \sqrt{\sigma_D^2(\tau)}.
+    \sigma_y(\tau) = \sqrt{\sigma_y^2(\tau)}.
 \end{equation}
+Because the window start index $k$ runs over every sample rather than every $m$-th sample, this estimator makes use of all $N-2m+1$ available overlapping pairs at each averaging time $\tau$, rather than the $\lfloor N/m\rfloor - 1$ pairs available to the non-overlapping estimator. This improves the confidence of the estimate at large $\tau$, where the number of independent non-overlapping blocks would otherwise become small, at the cost of the resulting $\sigma_y(\tau)$ values at different $\tau$ no longer being statistically independent of one another~\cite{Riley2008}.
 
-The Allan deviation gives the typical change in the average polarization signal between consecutive intervals of duration $\tau$, and identifies the timescales over which averaging improves the polarization stability and those over which slow drift dominates. A decreasing $\sigma_D(\tau)$ indicates that averaging suppresses the dominant fluctuations; a minimum identifies the optimum averaging time; an increase at longer $\tau$ indicates the onset of drift or other low-frequency instabilities. The slope of $\sigma_D(\tau)$ on a logarithmic scale distinguishes different classes of noise.
+Physically, the Allan deviation $\sigma_y(\tau)$ quantifies the typical fractional change in the optical signal between two observation windows of length $\tau$ separated by one interval $\tau$. The behavior of $\sigma_y(\tau)$ as a function of the integration time reveals the specific noise processes dominating the system. In the short-term regime, where white noise prevails, $\sigma_y(\tau)$ typically decreases proportionally to $1/\sqrt{\tau}$, demonstrating that time-averaging suppresses fast random fluctuations. A global minimum in the curve identifies the optimal integration time, marking the ultimate stability limit of the setup. An increase in $\sigma_y(\tau)$ at longer timescales indicates the onset of uncompensated low-frequency instabilities, such as thermal drifts, air currents, or slow mechanical relaxations of the optical mounts.
 
-The Allan deviation was evaluated for the individual polarization channels, for the total-power signal $P_{\Sigma}(t)$, and for the normalized differential signal $D(t)$, to determine whether the observed instability is dominated by common-mode optical-power noise or by a redistribution of power between the two polarization components.
+\subsection{Frequency-domain analysis and shot-noise limit}
 
-\tocomplete{overlapping or non-overlapping estimator used; removal of mean or linear drift; range of averaging times; confidence intervals or number of averages at each $\tau$; treatment of the trace end points}
+The frequency content of the power fluctuations was analyzed by computing the Amplitude Spectral Density (ASD) of the calibrated photocurrent. The mean value was subtracted from the trace, and a direct Fast Fourier Transform (FFT) was computed without applying an external window function. The ASD describes how the amplitude of the current fluctuations is distributed over frequency, in units of $\mathrm{A/\sqrt{Hz}}$.
 
-\subsection{Frequency-domain analysis and comparison with the shot-noise limit}
-
-The frequency content of the measured power fluctuations was analyzed with the power spectral density (PSD) of the calibrated photodiode signal, computed from its discrete Fourier transform after subtracting the mean value of each trace. The PSD describes how the variance of the measured optical power is distributed over frequency.
-
-\tocomplete{window function; direct FFT or Welch method; segment length and overlap; sampling frequency and frequency resolution; single- or double-sided PSD convention; whether a linear trend was removed; units used in the final plots ($\mathrm{W^2/Hz}$ or $\mathrm{W/\sqrt{Hz}}$)}
-
-The measured spectrum was compared with the shot-noise limit expected for a coherent optical field at the same average power. For a photodiode with responsivity $\mathcal{R}$ receiving an average optical power $\overline{P}$, the mean photocurrent is $\overline{I}=\mathcal{R}\,\overline{P}$, and the single-sided shot-noise PSD of the photocurrent is
+To correctly evaluate the technical noise of the laser setup, the light-power fluctuations must be extracted from the measured photocurrent fluctuations by accounting for the quantum efficiency of the detector and separating the fundamental shot noise from the excess technical noise. The conversion of a photon flux into an electron flux is a statistical process. In a given time interval $\Delta t$, the variance of the generated electron number, $\sigma_n^2$, is related to the variance of the incident photon number, $\sigma_N^2$, by the fundamental relation~\cite{Saleh2019}:
 \begin{equation}
-    S_{I,\mathrm{SN}}
-    =
-    2e\overline{I}
-    =
-    2e\mathcal{R}\,\overline{P},
+    \sigma_n^2 
+    = 
+    (\mathrm{QE})^2 \sigma_N^2 + \bar{n},
+    \label{eq:electron_variance}
 \end{equation}
-where $e$ is the elementary charge. The equivalent optical-power PSD follows by dividing by the squared responsivity,
-\begin{equation}
-    S_{P,\mathrm{SN}}
-    =
-    \frac{S_{I,\mathrm{SN}}}{\mathcal{R}^2}
-    =
-    \frac{2e\overline{P}}{\mathcal{R}}.
-    \label{eq:shot_noise_power_psd}
-\end{equation}
-Using $\mathcal{R}=\mathrm{QE}\,e/(\hbar\omega)$, this can be written as
-\begin{equation}
-    S_{P,\mathrm{SN}}
-    =
-    \frac{2\hbar\omega\,\overline{P}}{\mathrm{QE}},
-\end{equation}
-where $\mathrm{QE}$ is the photodiode quantum efficiency. For unit quantum efficiency, this reduces to the quantum limit
-\begin{equation}
-    S_{P,\mathrm{QL}}
-    =
-    2\hbar\omega\,\overline{P}.
-    \label{eq:quantum_shot_noise_limit}
-\end{equation}
+where $\mathrm{QE}$ is the quantum efficiency of the photodiode, and $\bar{n} = \mathrm{QE} \bar{N}$ is the average number of generated electrons in $\Delta t$ ($\bar{N}$ being the average number of incident photons). The linear term $\bar{n}$ represents the fundamental Poissonian shot noise introduced by the detection process itself.
 
-Equation~\eqref{eq:quantum_shot_noise_limit} was used as the reference shot-noise level for comparison with the measured optical-power PSD, both expressed with the same single-sided spectral convention and in units of $\mathrm{W^2/Hz}$. A measured spectrum above this limit indicates excess technical noise in addition to the fundamental photon shot noise. If the spectra are instead plotted as amplitude spectral densities, the corresponding quantum limit is
+These discrete variables can be converted into continuous macroscopic quantities: the photocurrent $I = n e / \Delta t$ (where $e$ is the elementary charge) and the optical power $P = \hbar\omega N / \Delta t$ (where $\hbar\omega$ is the energy of a single photon). By multiplying Equation~\ref{eq:electron_variance} by $(e/\Delta t)^2$, the relation can be expressed in terms of photocurrent variance $\sigma_I^2$:
 \begin{equation}
-    \sqrt{S_{P,\mathrm{QL}}}
-    =
-    \sqrt{2\hbar\omega\,\overline{P}},
+    \sigma_I^2 
+    = 
+    \left( \mathrm{QE} \frac{e}{\Delta t} \right)^2 \sigma_N^2 + \bar{I} \frac{e}{\Delta t}.
 \end{equation}
-with units of $\mathrm{W/\sqrt{Hz}}$.
+The second term on the right-hand side is the photocurrent shot-noise variance, $\sigma_{I, \mathrm{SN}}^2 = \bar{I} e / \Delta t$, which in the frequency domain (with bandwidth $\Delta f = 1/(2\Delta t)$) corresponds to a single-sided amplitude spectral density of $I_{\mathrm{SN}} = \sqrt{2e\bar{I}}$. 
+
+By isolating the photon-number variance and converting it to optical power variance $\sigma_P^2$, the relationship becomes:
+\begin{equation}
+    \sigma_I^2 - \sigma_{I, \mathrm{SN}}^2
+    = 
+    \left( \mathrm{QE} \frac{e}{\hbar\omega} \right)^2 \sigma_P^2.
+\end{equation}
+The term in parentheses represents the responsivity of the photodiode, defined as $\eta = \mathrm{QE} e / \hbar\omega$. For the Thorlabs PDA100A2 detector at $1064\,\mathrm{nm}$, the responsivity is $\eta = 0.4\,\mathrm{A/W}$.
+
+
+This theoretical white-noise floor was plotted alongside the experimental FFT magnitude (scaled by $\tau_0/\sqrt{N}$) to evaluate system performance. A measured spectrum lying above this baseline indicates the presence of excess technical noise in the setup, such as laser intensity noise or polarization-to-amplitude noise conversion, on top of the fundamental quantum shot noise.

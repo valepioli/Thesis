@@ -1,29 +1,29 @@
 \section{Numerical Model of EIT Cooling}
 \label{sec:numerical_eit}
 
-The EIT cooling dynamics were simulated using QuTiP by solving the open-system evolution of an atom coupled to a single quantized motional mode. Two models of increasing complexity were implemented. The first was an ideal three-level $\Lambda$ system, used to validate the EIT cooling mechanism and the numerical implementation against the analytical predictions introduced in Sec.~\ref{sec:EIT_cooling}. The second model retained the complete hyperfine and Zeeman structure of the $^{87}\mathrm{Rb}$ $D_2$ line and was used to assess the effects of off-resonant excitation, spontaneous-emission branching, optical pumping, and repumping under experimentally relevant conditions.
+Once the atoms enter the fiber, they must be efficiently cooled to control their motion (Sec.~\ref{sec:EIT_cooling}). Simulating this process is a necessary step before modeling the atoms' behavior in the full experimental system. The EIT cooling dynamics are simulated using QuTiP~\cite{Johansson2012}, solving the open-system evolution of an atom coupled to a quantized motional mode. Two models of increasing complexity are implemented. The first is an ideal three-level $\Lambda$ system, used to validate the EIT cooling mechanism and the numerical implementation against the analytical predictions of Sec.~\ref{sec:EIT_cooling}. The second includes the complete hyperfine and Zeeman structure of the $^{87}\mathrm{Rb}$ $D_2$ line, and is used to assess off-resonant excitation, spontaneous emission, optical pumping, and repumping.
 
-Both descriptions were formulated within the same Lindblad master-equation framework. They differed only in the dimension and structure of the internal atomic Hilbert space. The motion was treated in one spatial dimension throughout this work. The simulated direction was selected by assigning to each laser the projection of its wavevector along the corresponding trap axis.
+Both descriptions are formulated within the same Lindblad master-equation framework and differ only in the dimension and structure of the internal atomic Hilbert space. The motion is treated in one spatial dimension throughout; the simulated direction is set by projecting each laser's wavevector onto the corresponding trap axis.
 
 \subsection{Internal Atomic Basis}
 \label{subsec:atomic_basis}
 
-In the reduced model, the internal Hilbert space was spanned by two ground states, $|g_1\rangle$ and $|g_2\rangle$, and one excited state, $|e\rangle$. A weak probe field with Rabi frequency $\Omega_p$ coupled $|g_1\rangle$ to $|e\rangle$, while a stronger coupling field with Rabi frequency $\Omega_c$ coupled $|g_2\rangle$ to $|e\rangle$. At two-photon resonance, this model supports the dark state of Eq.~\eqref{eq:darkstate} and therefore reproduces the ideal carrier suppression discussed in Sec.~\ref{sec:EIT_cooling}. The three-level calculation was used to test the Hamiltonian construction, the motional coupling, the collapse operators, and the time-evolution routines before introducing the complete atomic structure.
+In the reduced model, the internal Hilbert space is spanned by two ground states, $|g_1\rangle$ and $|g_2\rangle$, and one excited state, $|e\rangle$. A weak probe field with Rabi frequency $\Omega_p$ couples $|g_1\rangle$ to $|e\rangle$, while a stronger coupling field with Rabi frequency $\Omega_c$ couples $|g_2\rangle$ to $|e\rangle$. At two-photon resonance this model supports the dark state of Eq.~\eqref{eq:darkstate} and reproduces the ideal carrier suppression discussed in Sec.~\ref{sec:EIT_cooling}. The three-level calculation is used to test the Hamiltonian construction, the motional coupling, the collapse operators, and the time-evolution routines before introducing the complete atomic structure.
 
-The multilevel model included all hyperfine and Zeeman sublevels of the $5S_{1/2}$ and $5P_{3/2}$ manifolds of $^{87}\mathrm{Rb}$. The internal basis was written as $|F,m_F\rangle$ and comprised the ground manifolds
+The multilevel model includes all hyperfine and Zeeman sublevels of the $5S_{1/2}$ and $5P_{3/2}$ manifolds of $^{87}\mathrm{Rb}$. The internal basis is written as $|F,m_F\rangle$ and comprises the ground manifolds
 \begin{equation}
     F=1,\qquad F=2,
 \end{equation}
-containing three and five Zeeman states, respectively, and the excited manifolds
+with three and five Zeeman states respectively, and the excited manifolds
 \begin{equation}
     F'=0,1,2,3,
 \end{equation}
-containing a total of sixteen states. The dimension of the internal Hilbert space was therefore
+containing sixteen states in total. The dimension of the internal Hilbert space is therefore
 \begin{equation}
     \dim\!\left(\mathcal H_{\mathrm{at}}\right)=3+5+16=24.
 \end{equation}
 
-All dipole-allowed couplings were constructed explicitly. For a transition between a ground state $|F_g,m_g\rangle$ and an excited state $|F_e,m_e\rangle$, driven by a spherical polarization component $q\in\{-1,0,+1\}$, the coupling strength was calculated from the corresponding hyperfine dipole matrix element. It was written in the form
+All dipole-allowed couplings are constructed explicitly. For a transition between a ground state $|F_g,m_g\rangle$ and an excited state $|F_e,m_e\rangle$, driven by a spherical polarization component $q\in\{-1,0,+1\}$, the coupling strength is calculated from the hyperfine dipole matrix element~\cite{SteckRb87},
 \begin{equation}
     d_{eg}^{(q)}
     =
@@ -37,18 +37,36 @@ All dipole-allowed couplings were constructed explicitly. For a transition betwe
     \end{pmatrix},
     \label{eq:dipole_matrix_multilevel}
 \end{equation}
-where the reduced hyperfine matrix element contains the appropriate Wigner-$6j$ coefficient and the reduced fine-structure matrix element. This construction accounts both for the Zeeman Clebsch--Gordan factors and for the relative strengths of transitions involving different hyperfine manifolds. Transitions that do not satisfy the electric-dipole selection rules were assigned zero coupling.
+where the reduced hyperfine matrix element $\langle F_e\Vert d\Vert F_g\rangle$ in general contains a Wigner-$6j$ coefficient and the reduced fine-structure matrix element, and encodes the relative strength of transitions connecting different hyperfine manifolds. Transitions that violate the electric-dipole selection rules are assigned zero coupling.
 
-To reduce optical pumping into states outside the EIT cycle, the target $\Lambda$ system was built around states near the edge of a Zeeman manifold rather than around $m_F=0$. In particular, configurations involving $m_F=-2$ were considered because the condition $\Delta m_F=0,\pm1$ restricts the number of ground states accessible by spontaneous decay. Two level configurations were implemented. In the first, both EIT ground states belonged to the $F=2$ manifold, while a repump laser returned population lost to $F=1$. In the second, the two EIT ground states belonged to different hyperfine manifolds, $F=1$ and $F=2$, and the repump field recovered population accumulated in unwanted states outside this pair. The latter configuration was subsequently used for the simulation with the axial trap parameters.
+In the numerical implementation, the reduced hyperfine matrix element $\langle F_e\Vert d\Vert F_g\rangle$ is evaluated directly from the Wigner-$6j$ coefficient,
+\begin{equation}
+    \langle F_e\Vert d\Vert F_g\rangle
+    =
+    \langle J_e\Vert d\Vert J_g\rangle
+    (-1)^{F_e+J_g+1+I}
+    \sqrt{(2F_e+1)(2J_g+1)}
+    \begin{Bmatrix}
+        J_g & J_e & 1\\
+        F_e & F_g & I
+    \end{Bmatrix},
+    \label{eq:reduced_hyperfine_element}
+\end{equation}
+with $J_g=1/2$, $J_e=3/2$, and $I=3/2$ for the $^{87}\mathrm{Rb}$ $D_2$ line. The fine-structure reduced matrix element $\langle J_e\Vert d\Vert J_g\rangle$ is a common constant for every hyperfine transition of the $D_2$ line and cancels out of every normalized quantity used in the simulation --- the laser coupling amplitudes of Eq.~\eqref{eq:general_laser_interaction} and the branching fractions of Eq.~\eqref{eq:branching_fraction} --- so only its relative weighting between different $(F_g,F_e)$ pairs matters, and it is set to $1$ in the code. This reproduces the correct relative branching strength between transitions landing on different $F'$ manifolds: summing $|d_{eg}^{(q)}|^2$ over all decay channels of a given excited sublevel, after normalization by Eq.~\eqref{eq:branching_fraction}, gives a total decay rate equal to $\gamma$ for every hyperfine sublevel, independent of $F'$, as required physically.
 
-% INSERT FIGURE: Level schemes of the two multilevel configurations.
-% The figure should identify probe, coupling, and repump transitions,
-% their polarizations, and the dominant spontaneous-emission channels.
+To reduce optical pumping into states outside the EIT cycle, the target $\Lambda$ system is built around states near the edge of a Zeeman manifold rather than around $m_F=0$: the condition $\Delta m_F=0,\pm1$ then limits the number of ground states reachable by spontaneous decay. In the configuration used for the multilevel and axial-parameter simulations (Fig.~\ref{fig:multilevel_EIT_scheme}), the two EIT ground states belong to different hyperfine manifolds. The $\sigma^-$-polarized probe field addresses $|g_1\rangle=|F=2,m_F=-1\rangle\rightarrow|F'=2,m_F=-2\rangle$ and is scanned across the two-photon resonance. The $\sigma^-$-polarized coupling field addresses $|g_2\rangle=|F=1,m_F=-1\rangle\rightarrow|F'=2,m_F=-2\rangle$; its Rabi frequency is set by the EIT cooling condition of Eq.~\eqref{eq:exact_condition_numerical}. A $\pi$-polarized repump field, resonant on $|F=2,m_F=-2\rangle\rightarrow|F'=2,m_F=-2\rangle$, recovers population that leaks out of the $\Lambda$ system into the adjacent Zeeman sublevel of $F=2$; its motional factor is set to the identity, Eq.~\eqref{eq:repump_no_motion}. This configuration is used for the simulation with the axial trap parameters (Sec.~\ref{subsec:axial_simulation}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Cap_2_figures/multilevel_EIT_scheme.png}
+    \caption{Level scheme of the $^{87}\mathrm{Rb}$ $D_2$ transition implemented in the multilevel numerical model. The EIT $\Lambda$ system is formed by the ground states $|g_1\rangle = |F=2, m_F=-1\rangle$ and $|g_2\rangle = |F=1, m_F=-1\rangle$, both coupled to the excited state $|e\rangle = |F'=2, m_F=-2\rangle$.}
+    \label{fig:multilevel_EIT_scheme}
+\end{figure}
 
 \subsection{Motional Hilbert Space}
 \label{subsec:motional_basis}
 
-The atomic motion along the selected trap axis was approximated by a harmonic oscillator of angular frequency $\nu$. The total Hilbert space was
+The atomic motion along the selected trap axis is approximated by a harmonic oscillator of angular frequency $\nu$. The total Hilbert space is
 \begin{equation}
     \mathcal H
     =
@@ -63,30 +81,19 @@ where
     =
     \mathrm{span}\{|0\rangle,\ldots,|N_{\mathrm{vib}}-1\rangle\}.
 \end{equation}
-The motional Hamiltonian was
+The motional Hamiltonian is
 \begin{equation}
     H_{\mathrm{mot}}
     =
     \hbar\nu\left(a^\dagger a+\frac{1}{2}\right),
     \label{eq:motional_hamiltonian_num}
 \end{equation}
-with $a$ and $a^\dagger$ the annihilation and creation operators. The constant zero-point contribution was omitted in the numerical implementation because it does not affect the dynamics.
-
-The truncation $N_{\mathrm{vib}}$ was chosen by balancing numerical cost against convergence of the motional distribution. For each time-dependent calculation, convergence was assessed by verifying that the population of the highest retained Fock states remained negligible and that increasing $N_{\mathrm{vib}}$ did not appreciably change the calculated mean occupation,
-\begin{equation}
-    \langle n(t)\rangle
-    =
-    \mathrm{Tr}\!\left[
-        \rho(t)
-        \left(\mathbb I_{\mathrm{at}}\otimes a^\dagger a\right)
-    \right].
-    \label{eq:n_expectation_numerical}
-\end{equation}
+with $a$ and $a^\dagger$ the annihilation and creation operators. The truncation $N_{\mathrm{vib}}$ is chosen by balancing numerical cost against convergence of the motional distribution.
 
 \subsection{Laser Coupling and Lamb--Dicke Expansion}
 \label{subsec:laser_coupling}
 
-For a laser field $l$ with wavevector $\mathbf{k}_l$, optical phase $\phi_l$, and polarization components $\epsilon_{l,q}$, the position-dependent rotating-wave interaction was written as
+For a laser field $l$ with wavevector $\mathbf{k}_l$, optical phase $\phi_l$, and polarization components $\epsilon_{l,q}$, the position-dependent rotating-wave interaction is written as
 \begin{equation}
     H_l
     =
@@ -100,7 +107,7 @@ For a laser field $l$ with wavevector $\mathbf{k}_l$, optical phase $\phi_l$, an
     \mathrm{h.c.},
     \label{eq:general_laser_interaction}
 \end{equation}
-where $\mathcal C_{eg}^{(q)}$ denotes the normalized transition amplitude obtained from Eq.~\eqref{eq:dipole_matrix_multilevel}, and
+where $\mathcal C_{eg}^{(q)}=d_{eg}^{(q)}/d_{\mathrm{target}}$ is the dipole matrix element of Eq.~\eqref{eq:dipole_matrix_multilevel}, normalized to the value $d_{\mathrm{target}}$ of the transition each beam is designed to drive, and
 \begin{equation}
     k_{l,\parallel}
     =
@@ -114,12 +121,12 @@ Using
     \qquad
     x_0=\sqrt{\frac{\hbar}{2m\nu}},
 \end{equation}
-the Lamb--Dicke parameter associated with field $l$ was
+the Lamb--Dicke parameter associated with field $l$ is
 \begin{equation}
     \eta_l=k_{l,\parallel}x_0.
     \label{eq:eta_individual_beam}
 \end{equation}
-In the Lamb--Dicke regime, the position-dependent phase was expanded to first order,
+In the Lamb--Dicke regime, the position-dependent phase is expanded to first order,
 \begin{equation}
     e^{ik_{l,\parallel}x}
     \simeq
@@ -128,13 +135,13 @@ In the Lamb--Dicke regime, the position-dependent phase was expanded to first or
 \end{equation}
 This expansion retains the carrier and first motional sidebands while neglecting higher-order processes.
 
-For a Raman process involving absorption from one field and stimulated emission into another, the relevant two-photon momentum transfer is determined by
+For a Raman process involving absorption from one field and stimulated emission into another, the two-photon momentum transfer is set by
 \begin{equation}
     \Delta\mathbf{k}
     =
     \mathbf{k}_p-\mathbf{k}_c,
 \end{equation}
-in agreement with the discussion in Sec.~\ref{sec:EIT_cooling}. The corresponding effective Lamb--Dicke parameter along the simulated direction is
+consistent with Sec.~\ref{sec:EIT_cooling}. The corresponding effective Lamb--Dicke parameter along the simulated direction is
 \begin{equation}
     \eta_{\mathrm{eff}}
     =
@@ -142,19 +149,12 @@ in agreement with the discussion in Sec.~\ref{sec:EIT_cooling}. The correspondin
     \hat{\mathbf e}_{\mathrm{mot}}\,x_0.
     \label{eq:eta_effective_numerical}
 \end{equation}
-In the three-level benchmark, the coupling beam was taken to propagate orthogonally to the motional axis, so that $\eta_c=0$, while the probe field carried the motional coupling. In the multilevel model, an independent value of $\eta_l$ could be assigned to each beam according to the experimental geometry.
-
-The first-order expansion is valid when the occupied motional states satisfy
-\begin{equation}
-    \eta_l\sqrt{2\langle n\rangle+1}\ll1.
-    \label{eq:LD_validity_numerical}
-\end{equation}
-Calculations initialized outside this regime were treated only as qualitative descriptions of the initial transient. In such cases, the linearized model cannot be regarded as quantitatively exact until the motional occupation has decreased sufficiently.
+In the three-level benchmark, the coupling beam propagates orthogonally to the motional axis, so $\eta_c=0$, while the probe field carries the motional coupling. In the multilevel model the framework allows an independent value of $\eta_l$ for each beam, according to the experimental geometry.
 
 \subsection{Hamiltonian in the Rotating Frame}
 \label{subsec:rotating_hamiltonian}
 
-After transformation to a rotating frame and application of the rotating-wave approximation, the Hamiltonian was expressed as
+After transformation to a rotating frame and application of the rotating-wave approximation, the Hamiltonian is
 \begin{equation}
     H
     =
@@ -167,7 +167,7 @@ After transformation to a rotating frame and application of the rotating-wave ap
     \sum_l H_l.
     \label{eq:total_hamiltonian_numerical}
 \end{equation}
-Here, $H_{\mathrm{at}}$ contains the hyperfine energies and laser detunings in the selected rotating frame, and
+Here $H_{\mathrm{at}}$ contains the hyperfine energies and laser detunings in the selected rotating frame, and
 \begin{equation}
     H_{\mathrm{Z}}
     =
@@ -177,9 +177,9 @@ Here, $H_{\mathrm{at}}$ contains the hyperfine energies and laser detunings in t
     \otimes\mathbb I_{\mathrm{mot}}
     \label{eq:zeeman_hamiltonian}
 \end{equation}
-describes the linear Zeeman shift produced by the quantization field $B$. The field was assumed sufficiently weak that the hyperfine quantum numbers $F$ and $m_F$ remained appropriate labels.
+describes the linear Zeeman shift produced by the quantization field $B$, assumed weak enough that $F$ and $m_F$ remain good labels.
 
-For the three-level system, the implemented Hamiltonian was
+For the three-level system, the implemented Hamiltonian is
 \begin{align}
     H_{\Lambda}
     ={}&
@@ -208,18 +208,18 @@ For the three-level system, the implemented Hamiltonian was
     \label{eq:three_level_numerical_hamiltonian}
 \end{align}
 
-In the multilevel model, Eq.~\eqref{eq:general_laser_interaction} was constructed separately for the probe, coupling, and repump fields. Each laser was assigned its own Rabi frequency, detuning, polarization, and projected wavevector. The repump field was introduced to return population from ground states outside the intended $\Lambda$ subsystem. Its motional factor was set to the identity in the simulations reported here,
+In the multilevel model, Eq.~\eqref{eq:general_laser_interaction} is constructed separately for the probe, coupling, and repump fields, each with its own Rabi frequency, detuning, polarization, and projected wavevector. The repump field returns population from ground states outside the intended $\Lambda$ subsystem. Its motional factor is set to the identity,
 \begin{equation}
     e^{ik_{\mathrm{rep},\parallel}x}\rightarrow
     \mathbb I_{\mathrm{mot}},
     \label{eq:repump_no_motion}
 \end{equation}
-so that repump-induced motional sidebands were neglected. This approximation reduces the numerical complexity and isolates the repumper's internal-state recycling function. It also neglects recoil heating associated with repump absorption and must therefore be regarded as an optimistic approximation when repump scattering is appreciable.
+so repump-induced motional sidebands are neglected. This reduces the numerical complexity and isolates the repumper's role in recycling internal population.
 
 \subsection{Spontaneous Emission and Master Equation}
 \label{subsec:master_equation_numerical}
 
-The density operator evolved according to
+The density operator evolves according to
 \begin{equation}
     \frac{d\rho}{dt}
     =
@@ -237,7 +237,7 @@ The density operator evolved according to
     \right).
     \label{eq:lindblad_numerical}
 \end{equation}
-For the three-level system, symmetric branching into the two ground states was assumed:
+For the three-level system, symmetric branching into the two ground states is assumed:
 \begin{equation}
     L_1
     =
@@ -253,7 +253,7 @@ For the three-level system, symmetric branching into the two ground states was a
     \label{eq:three_level_collapse}
 \end{equation}
 
-For the multilevel system, the collapse operator for a decay channel $e\rightarrow g$ was written as
+For the multilevel system, the collapse operator for a decay channel $e\rightarrow g$ is
 \begin{equation}
     L_{e\rightarrow g}
     =
@@ -262,7 +262,7 @@ For the multilevel system, the collapse operator for a decay channel $e\rightarr
     \otimes\mathbb I_{\mathrm{mot}},
     \label{eq:multilevel_collapse}
 \end{equation}
-where $\gamma_e$ is the total decay rate of the excited state and $b_{eg}$ is the normalized branching fraction,
+where $\gamma_e$ is the total decay rate of the excited state and $b_{eg}$ the normalized branching fraction,
 \begin{equation}
     b_{eg}
     =
@@ -271,10 +271,10 @@ where $\gamma_e$ is the total decay rate of the excited state and $b_{eg}$ is th
     {\displaystyle
         \sum_{g',q}\left|d_{eg'}^{(q)}\right|^2},
     \qquad
-    \sum_g b_{eg}=1.
+    \sum_g b_{eg}=1,
     \label{eq:branching_fraction}
 \end{equation}
-This normalization ensures that
+so that, in general,
 \begin{equation}
     \sum_g
     L_{e\rightarrow g}^\dagger
@@ -282,22 +282,23 @@ This normalization ensures that
     =
     \gamma_e|e\rangle\langle e|.
 \end{equation}
+With the full hyperfine-weighted dipole matrix elements of Eq.~\eqref{eq:dipole_matrix_multilevel}, $b_{eg}$ is normalized per excited sublevel by construction, Eq.~\eqref{eq:branching_fraction}, so the identity above holds exactly, with $\gamma_e=\gamma$ for every excited hyperfine sublevel. The total decay rate is therefore independent of $F'$, consistent with the physical picture of a single natural linewidth for the $D_2$ line.
 
-In the simulations described here, the spontaneous-emission operators acted trivially on the motional subspace. Consequently, the recoil associated with the emitted photon and the corresponding diffusion in phonon number were not explicitly included. The model therefore accounts for motional changes driven by laser absorption and stimulated coupling, but not for recoil heating during spontaneous emission. Within the Lamb--Dicke regime this correction enters at order $\eta^2$, but it can affect the final occupation and should be included when a quantitative comparison with the theoretical limit of Eq.~\eqref{eq:n_min} or with experimental temperatures is required. A recoil-resolved extension can be obtained by replacing the identity in Eq.~\eqref{eq:multilevel_collapse} with an angularly dependent operator $e^{-i\mathbf{k}_{\mathrm{em}}\cdot\mathbf{x}}$ and averaging over the dipole emission pattern.
+The model accounts for motional changes driven by laser absorption and stimulated coupling, but not for recoil heating during spontaneous emission. Within the Lamb--Dicke regime this correction enters at order $\eta^2$; it can still affect the final occupation and should be included for a quantitative comparison with the theoretical limit of Eq.~\eqref{eq:n_min} or with experimental temperatures.
 
 \subsection{Steady-State Spectroscopy}
 \label{subsec:steady_state_spectroscopy}
 
-The EIT spectrum was calculated by scanning the probe detuning while holding the remaining laser parameters fixed. At each detuning, the stationary density operator was obtained from
+The EIT spectrum is calculated by scanning the probe detuning while holding the remaining laser parameters fixed. At each detuning, the stationary density operator is obtained from
 \begin{equation}
     \mathcal L_{\mathrm{tot}}(\rho_{\mathrm{ss}})=0,
     \qquad
     \mathrm{Tr}(\rho_{\mathrm{ss}})=1,
     \label{eq:steady_state_condition}
 \end{equation}
-where $\mathcal L_{\mathrm{tot}}$ denotes the full Liouvillian superoperator.
+where $\mathcal L_{\mathrm{tot}}$ is the full Liouvillian superoperator.
 
-The principal spectral observable was the total excited-state population,
+The main spectral observable is the total excited-state population,
 \begin{equation}
     P_e(\Delta_p)
     =
@@ -309,9 +310,9 @@ The principal spectral observable was the total excited-state population,
     \right].
     \label{eq:excited_population_spectrum}
 \end{equation}
-In the weak-probe regime, this quantity is proportional to the total photon-scattering rate and was therefore used as an absorption proxy. It should not, however, be identified with the imaginary part of the probe susceptibility when the probe is strong or when several driven transitions contribute simultaneously.
+In the weak-probe regime this is proportional to the total photon-scattering rate and is used as an absorption proxy.
 
-For the multilevel calculation, additional projectors were evaluated to distinguish excitation and population leakage:
+For the multilevel calculation, additional projectors distinguish excitation from population leakage:
 \begin{align}
     P_{F'=2}
     &=
@@ -329,14 +330,19 @@ For the multilevel calculation, additional projectors were evaluated to distingu
     |g\rangle\langle g|,
     \label{eq:diagnostic_projectors}
 \end{align}
-where $\mathcal G_{\Lambda}$ is the pair of ground states defining the target $\Lambda$ system. These observables were used to identify the dark resonance, quantify off-resonant excitation, and determine whether population accumulated in ground states not directly addressed by the EIT beams.
-
-The carrier and first motional sidebands were located relative to the two-photon resonance using the detuning convention of the numerical Hamiltonian. Their assignment was checked directly from the matrix elements connecting $|g,n\rangle$ to $|e,n\rangle$ and $|e,n\pm1\rangle$, rather than inferred only from the sign of the plotted detuning. This step was necessary because the labels ``red'' and ``blue'' sideband reverse under a change in detuning convention.
+where $\mathcal G_{\Lambda}$ is the pair of ground states defining the target $\Lambda$ system. These observables identify the dark resonance, quantify off-resonant excitation, and track population accumulated in ground states not directly addressed by the EIT beams.
 
 \subsection{Time-Dependent Cooling Dynamics}
 \label{subsec:time_dynamics_numerical}
 
-Cooling was quantified by propagating an initial atom--motion state and evaluating Eq.~\eqref{eq:n_expectation_numerical}. The initial internal state was selected within the active ground-state manifold. The motional state was specified either as a Fock state or as a thermal mixture,
+Cooling is quantified by propagating an initial atom--motion state and evaluating the phonon number expectation value,
+\begin{equation}
+    \langle n(t) \rangle
+    =
+    \mathrm{Tr}\left[\rho(t) a^\dagger a\right].
+    \label{eq:n_expectation_numerical}
+\end{equation}
+The initial internal state is chosen within the active ground-state manifold. The motional state is specified either as a Fock state or as a thermal mixture,
 \begin{equation}
     \rho_{\mathrm{th}}
     =
@@ -350,7 +356,7 @@ Cooling was quantified by propagating an initial atom--motion state and evaluati
 \end{equation}
 with the probabilities renormalized after truncation when necessary.
 
-The three-level model was propagated using QuTiP's deterministic master-equation solver \texttt{mesolve}. This method evolves the density operator and gives noise-free ensemble expectation values. For the full multilevel model, the Monte Carlo wavefunction solver \texttt{mcsolve} was used. It propagates stochastic pure-state trajectories interrupted by quantum jumps and estimates an observable as
+The three-level model is propagated with QuTiP's deterministic master-equation solver \texttt{mesolve}, which evolves the density operator directly and gives noise-free ensemble expectation values. For the full multilevel model, the Monte Carlo wavefunction solver \texttt{mcsolve} is used instead~\cite{Johansson2012}: it propagates stochastic pure-state trajectories interrupted by quantum jumps, estimating an observable as
 \begin{equation}
     \langle O(t)\rangle
     \simeq
@@ -359,30 +365,28 @@ The three-level model was propagated using QuTiP's deterministic master-equation
     \langle\psi_j(t)|O|\psi_j(t)\rangle.
     \label{eq:mc_average}
 \end{equation}
-The statistical uncertainty decreases approximately as $N_{\mathrm{traj}}^{-1/2}$ for independent trajectories.
+The statistical uncertainty decreases approximately as $N_{\mathrm{traj}}^{-1/2}$.
 
-For an internal dimension $N_{\mathrm{at}}$ and a motional cutoff $N_{\mathrm{vib}}$, the state-vector dimension is
+For internal dimension $N_{\mathrm{at}}$ and motional cutoff $N_{\mathrm{vib}}$, the state-vector dimension is
 \begin{equation}
     N=N_{\mathrm{at}}N_{\mathrm{vib}}.
 \end{equation}
-A density matrix contains $N^2$ complex entries, whereas a Monte Carlo trajectory stores a state vector with $N$ entries. The trajectory method therefore substantially reduced memory use for the 24-level calculation. The computational time of either solver also depends on the sparsity of the Hamiltonian, the number of collapse channels, the stiffness of the differential equations, and the number of trajectories; it is therefore not described by memory scaling alone.
-
-For Monte Carlo calculations, full state storage was disabled and only the required expectation values were retained. Independent trajectories were distributed across the available processor cores. Numerical convergence was assessed by increasing the trajectory number and comparing the resulting cooling curves within their statistical fluctuations. The output time grid was chosen independently of the adaptive internal integration steps used by the solver.
+A density matrix has $N^2$ complex entries, a Monte Carlo trajectory a state vector with $N$ entries; the trajectory method substantially reduces memory use for the 24-level calculation.
 
 \subsection{Units and Conversion to Physical Time}
 \label{subsec:numerical_units}
 
-The numerical calculations were performed in units of the natural angular linewidth,
+The numerical calculations use the natural angular linewidth as the unit of frequency,
 \begin{equation}
     \gamma=1,
 \end{equation}
-and $\hbar=1$. All detunings, Rabi frequencies, hyperfine splittings, Zeeman shifts, and trap frequencies supplied to the Hamiltonian were therefore divided by $\gamma$. Time was expressed in units of $\gamma^{-1}$.
+with $\hbar=1$. All detunings, Rabi frequencies, hyperfine splittings, Zeeman shifts, and trap frequencies are divided by $\gamma$, and time is expressed in units of $\gamma^{-1}$.
 
-For the $^{87}\mathrm{Rb}$ $D_2$ transition, the linewidth was taken as
+For the $^{87}\mathrm{Rb}$ $D_2$ transition, the linewidth is
 \begin{equation}
     \frac{\gamma}{2\pi}=6.067~\mathrm{MHz},
 \end{equation}
-so that one simulation time unit corresponds to
+so one simulation time unit corresponds to
 \begin{equation}
     \gamma^{-1}
     =
@@ -391,26 +395,21 @@ so that one simulation time unit corresponds to
     26.2~\mathrm{ns}.
     \label{eq:time_conversion}
 \end{equation}
-Accordingly, a dimensionless interval $t_{\mathrm{sim}}$ was converted to physical time through
+A dimensionless interval $t_{\mathrm{sim}}$ converts to physical time through
 \begin{equation}
     t_{\mathrm{phys}}
     =
     \frac{t_{\mathrm{sim}}}{\gamma}.
     \label{eq:physical_time_conversion}
 \end{equation}
-The same angular-frequency convention was used for $\nu$, $\Omega_l$, $\Delta_l$, and Zeeman shifts to avoid factors of $2\pi$ within the Hamiltonian.
+The same angular-frequency convention is used for $\nu$, $\Omega_l$, $\Delta_l$, and the Zeeman shifts, avoiding factors of $2\pi$ inside the Hamiltonian.
 
 \subsection{Validation of the Three-Level Model}
 \label{subsec:three_level_validation}
 
-The reduced model was validated in two stages. First, the motional degree of freedom was omitted and the probe detuning was scanned to verify the formation of the EIT transparency minimum at two-photon resonance and the narrow dressed-state resonance displaced by the coupling-induced AC Stark shift of Eq.~\eqref{eq:acstarkshift}. The numerically obtained peak position was compared with
-\begin{equation}
-    \delta
-    =
-    \frac{\sqrt{\Delta_c^2+\Omega_c^2}-|\Delta_c|}{2}.
-\end{equation}
+The reduced model is validated in two stages. First, the motional degree of freedom is omitted and the probe detuning is scanned to verify the EIT transparency minimum at two-photon resonance and the narrow dressed-state resonance displaced by the coupling-induced AC Stark shift of Eq.~\eqref{eq:acstarkshift}.
 
-Second, the motional basis was restored and the coupling intensity was selected to satisfy the EIT cooling condition. For the sign convention and blue-detuned configuration considered in Sec.~\ref{sec:EIT_cooling}, the exact relation is given by Eq.~\eqref{eq:exact_cooling_condition},
+Second, the motional basis is restored and the coupling intensity is set by the EIT cooling condition. For the sign convention and blue-detuned configuration of Sec.~\ref{sec:EIT_cooling}, the exact relation is Eq.~\eqref{eq:exact_cooling_condition},
 \begin{equation}
     \Omega_c^2=4\nu(\nu+\Delta_c),
     \label{eq:exact_condition_numerical}
@@ -420,90 +419,67 @@ which reduces to
     \Omega_c^2\simeq4\Delta_c\nu
     \label{eq:approx_condition_numerical}
 \end{equation}
-when $\nu\ll\Delta_c$. Under this condition, the narrow absorption resonance is aligned with the phonon-removing sideband, while carrier excitation is suppressed by the dark resonance.
-
-The simulated late-time occupation and cooling rate were compared with the analytical rate-equation results of Eqs.~\eqref{eq:mean_phonon_evolution}--\eqref{eq:n_min}. Agreement was expected only in the weak-probe, unsaturated, Lamb--Dicke, and sufficiently large motional-basis limits. The omission of spontaneous-emission recoil from the numerical collapse operators was also taken into account when interpreting deviations from the analytical steady-state limit.
+when $\nu\ll\Delta_c$. It is the exact relation, Eq.~\eqref{eq:exact_condition_numerical}, that sets $\Omega_c$ in both the three-level and multilevel codes; the approximation of Eq.~\eqref{eq:approx_condition_numerical} is recovered numerically since $\nu/\Delta_c\sim10^{-3}$--$10^{-2}$ in every parameter set considered, but is not the relation actually evaluated. Under this condition, the narrow absorption resonance aligns with the red sideband while carrier excitation is suppressed by the dark resonance.
 
 \subsection{Optimization of the Multilevel Configuration}
 \label{subsec:multilevel_optimization}
 
-The multilevel laser parameters were optimized using steady-state spectra before performing the more expensive time-dependent simulations. For each parameter set, the probe detuning was scanned and the following quantities were recorded: the total excited-state population, the populations of the target and off-resonant excited manifolds, the population outside the active $\Lambda$ subsystem, the detuning of the transparency minimum, and the detuning of the nearest absorption maximum.
+The multilevel laser parameters are optimized on steady-state spectra before running the more expensive time-dependent simulations. For each parameter set, the probe detuning is scanned and the following are recorded: the total excited-state population, the populations of the target and off-resonant excited manifolds, and the population outside the active $\Lambda$ subsystem.
 
-The scans were performed sequentially:
-
+The scans proceed sequentially:
 \begin{enumerate}
-    \item The repump Rabi frequency was varied to determine the minimum intensity required to prevent long-lived population accumulation outside the EIT cycle. Excessive repump power was avoided because off-resonant coupling can shift and broaden the EIT spectrum.
+    \item The repump Rabi frequency is varied to find the minimum intensity that prevents long-lived population accumulation outside the EIT cycle. Excessive repump power is avoided, since off-resonant coupling can shift and broaden the EIT spectrum.
 
-    \item The probe Rabi frequency was varied within the weak-probe regime. Increasing $\Omega_p$ increases the scattering signal and may increase the cooling rate, but it also saturates and power-broadens the dark resonance, increasing carrier scattering.
+    \item The probe Rabi frequency is varied within the weak-probe regime. Increasing $\Omega_p$ increases the scattering signal and may increase the cooling rate, but it also saturates and power-broadens the dark resonance, increasing carrier scattering.
 
-    \item The coupling detuning and coupling Rabi frequency were adjusted to align the narrow absorption maximum with the phonon-removing sideband after accounting for the light shifts introduced by the complete multilevel structure and by the repump field.
+    \item The coupling detuning and Rabi frequency are adjusted to align the narrow absorption maximum with the red sideband.
 \end{enumerate}
 
-The optimization criterion was not the height of the absorption peak alone. Parameter sets were selected to provide low carrier excitation, enhanced scattering at the cooling sideband, reduced scattering at the heating sideband, and limited population leakage. The selected parameters were then tested through a time-dependent \texttt{mcsolve} calculation of $\langle n(t)\rangle$. Because the scans were sequential rather than multidimensional, the resulting set should be interpreted as an operational optimum within the explored ranges, rather than as a unique global optimum.
+The optimization criterion is not the height of the absorption peak alone: parameter sets are chosen for low carrier excitation, enhanced scattering at the cooling sideband, reduced scattering at the heating sideband, and limited population leakage. The selected parameters are then tested through a time-dependent \texttt{mcsolve} calculation of $\langle n(t)\rangle$.
 
 \subsection{Simulation with Axial Experimental Parameters}
 \label{subsec:axial_simulation}
 
-The configuration in which the two EIT ground states belong to different hyperfine manifolds was subsequently evaluated using the axial trap parameters of the experimental system. The axial trap frequency was inserted directly into the motional Hamiltonian, while the Lamb--Dicke parameters of the probe and coupling beams were calculated from their wavevector projections according to Eq.~\eqref{eq:eta_individual_beam}. The magnetic field, laser polarizations, hyperfine splittings, detunings, and Rabi frequencies were retained explicitly in the 24-level Hamiltonian.
+The configuration in which the two EIT ground states belong to different hyperfine manifolds is evaluated using the axial trap parameters of the experimental system. As derived in Section~\ref{sec:conveyor_belt}, the local trapping frequencies depend on the geometric scaling of the trap parameters between the MOT loading position and the fiber tip.
 
-The steady-state probe scan was repeated for the axial parameters because changing $\nu$ changes the position of the target motional sideband and therefore the required dressed-state shift. The probe, coupling, and repump parameters were adjusted until the absorption maximum was aligned with the axial phonon-removing sideband while the carrier remained close to the transparency minimum. The resulting parameter set was then used in the Monte Carlo time evolution.
-
-For this calculation, convergence was checked with respect to the motional cutoff, the number of trajectories, and the output time interval. The cooling time was extracted by fitting the ensemble-averaged occupation to
+At the MOT position, the trapping beams have a waist of $w_{\mathrm{MOT}} = 126\,\mu\mathrm{m}$, giving an initial interference potential depth of $U_{\mathrm{MOT}} \approx 25\,\mu\mathrm{K}$. From Eq.~\eqref{eq:oscillation_frequencies}, the axial frequency depends on the potential depth and the trapping wavelength $\lambda = 1064\,\mathrm{nm}$:
 \begin{equation}
-    \langle n(t)\rangle
-    =
-    n_{\infty}
-    +
-    \left(n_0-n_{\infty}\right)e^{-Wt},
-    \label{eq:cooling_fit}
+    \nu_{z,\mathrm{MOT}} = \frac{1}{\lambda}\sqrt{\frac{2U_{\mathrm{MOT}}}{m}}.
 \end{equation}
-over the interval in which a single-exponential description was adequate. Here, $W$ is the fitted cooling rate and $n_{\infty}$ is the asymptotic mean occupation. When the curve exhibited multiple timescales due to optical pumping among internal states, Eq.~\eqref{eq:cooling_fit} was used only as an effective characterization and the fitted interval was reported together with the result.
+This gives $\nu_{z,\mathrm{MOT}} \approx 65\,\mathrm{kHz}$.
 
-\subsection{Adaptation to In-Fiber Cooling}
-\label{subsec:in_fiber_numerical_extension}
-
-To extend the model to cooling inside the hollow-core photonic crystal fiber, the spatially dependent differential AC Stark shift derived in Sec.~\ref{sec:EIT_cooling} must be included in the internal Hamiltonian. For a transverse atomic position $\mathbf r$, the trap-induced shift of each internal state is
+During transport, the atoms are guided toward the fiber tip, where the beam waist is focused down to $w_0 = 19\,\mu\mathrm{m}$. The optical potential depth scales as $U \propto 1/w^2(z)$, so the compression amplifies it by
 \begin{equation}
-    H_{\mathrm{trap,AC}}(\mathbf r)
-    =
-    \sum_i
-    U_i(\mathbf r)|i\rangle\langle i|,
-    \label{eq:trap_ac_hamiltonian}
+    \frac{U_{\mathrm{tip}}}{U_{\mathrm{MOT}}} = \left(\frac{w_{\mathrm{MOT}}}{w_0}\right)^2 = \left(\frac{126\,\mu\mathrm{m}}{19\,\mu\mathrm{m}}\right)^2 \approx 44,
 \end{equation}
-with $U_i(\mathbf r)$ determined by the dynamic polarizability at the trapping wavelength. The local optical detuning then becomes
+bringing the trap depth at the fiber tip to $U_{\mathrm{tip}} \approx 1.1\,\mathrm{mK}$.
+
+Since the axial frequency scales as $\nu_z \propto \sqrt{U}$, its value at the fiber tip increases by $\sqrt{44}$:
 \begin{equation}
-    \Delta_l(\mathbf r)
-    =
-    \Delta_l^{(0)}
-    -
-    \frac{U_e(\mathbf r)-U_g(\mathbf r)}{\hbar}.
-    \label{eq:position_dependent_detuning}
+    \nu_{z,\mathrm{tip}} = \nu_{z,\mathrm{MOT}}\sqrt{44} \approx 430\,\mathrm{kHz}.
 \end{equation}
+The radial frequency $\nu_r$ depends on both the potential depth and the local waist, scales more steeply, and reaches approximately $5\,\mathrm{kHz}$.
 
-A direct three-dimensional treatment would require simultaneous quantization of the axial and two transverse motional modes and would substantially increase the Hilbert-space dimension. In the present one-dimensional framework, the leading effect of the transverse motion can instead be incorporated by averaging the local steady-state or sideband rates over the transverse spatial distribution:
+If transport along the optical conveyor belt is adiabatic, the axial action of the trapped atoms is conserved. From an initial temperature $T_{\mathrm{MOT}} = 8.5\,\mu\mathrm{K}$ at the loading position, the initial mean axial phonon number follows Bose--Einstein statistics:
 \begin{equation}
-    \overline{A}_{\pm}
-    =
-    \int d^2r\,
-    p_T(\mathbf r)\,
-    A_{\pm}\!\left[\Delta_l(\mathbf r),\Omega_l(\mathbf r),\nu(\mathbf r)\right],
-    \label{eq:spatially_averaged_rates}
+    \langle n_{z} \rangle = \frac{1}{\exp\left(\frac{h\nu_{z,\mathrm{MOT}}}{k_B T_{\mathrm{MOT}}}\right) - 1} \approx 2.3.
 \end{equation}
-where $p_T(\mathbf r)$ is the thermal transverse probability density. In the harmonic approximation,
+During adiabatic compression, temperature scales with trapping frequency ($T \propto \nu_z$), so the axial temperature at the fiber tip increases by the same factor:
 \begin{equation}
-    p_T(r)
-    =
-    \frac{m\nu_r^2}{2\pi k_BT}
-    \exp\!\left(
-        -\frac{m\nu_r^2r^2}{2k_BT}
-    \right).
-    \label{eq:transverse_thermal_distribution}
+    T_{\mathrm{tip}} = T_{\mathrm{MOT}}\sqrt{44} \approx 56\,\mu\mathrm{K}.
 \end{equation}
-This procedure incorporates the inhomogeneous broadening estimated in Eq.~\eqref{eq:inhom_broad} without explicitly adding two further harmonic-oscillator Hilbert spaces.
+Despite this rise in temperature, adiabaticity keeps the mean phonon number fixed at $\langle n_{z} \rangle \approx 2.3$. Reaching the motional ground state ($\langle n_z \rangle \ll 1$) near the fiber surface therefore still requires active cooling, such as EIT sideband cooling.
 
-For each sampled position, the local probe and coupling detunings, Rabi frequencies, and trap frequencies must be recalculated from the fiber-mode intensity. The on-axis laser parameters can then be chosen to satisfy the modified resonance condition discussed in Sec.~\ref{sec:EIT_cooling}, while Eq.~\eqref{eq:spatially_averaged_rates} quantifies the degradation caused by atoms sampling different local light shifts. This extension provides the connection between the free-space multilevel simulation and the in-fiber cooling geometry.
+The axial trap frequency $\nu_{z,\mathrm{tip}}$ is inserted directly into the motional Hamiltonian, with $\nu$ set to $450$~kHz. The Lamb--Dicke parameters of the probe and coupling beams follow from their wavevector projections, Eq.~\eqref{eq:eta_individual_beam}. For EIT sideband cooling at the $780\,\mathrm{nm}$ absorption wavelength, the optical wavenumber is $k = 2\pi/\lambda_{\mathrm{EIT}} \approx 8.055 \times 10^6\,\mathrm{m}^{-1}$, and the spatial extent of the axial ground-state wavepacket is
+\begin{equation}
+    x_{0,ax} = \sqrt{\frac{\hbar}{2m(2\pi\nu_{z,\mathrm{tip}})}} \approx 11\,\mathrm{nm}.
+\end{equation}
+The corresponding axial Lamb--Dicke parameter is
+\begin{equation}
+    \eta_{ax} = k x_{0,ax} \approx 0.09.
+\end{equation}
+Since $\eta_{ax} \ll 1$, the axial motion is within the Lamb--Dicke regime assumed in Section~\ref{subsec:laser_coupling}. The magnetic field, laser polarizations, hyperfine splittings, detunings, and Rabi frequencies are retained explicitly in the 24-level Hamiltonian.
 
-\subsection{Scope and Approximations}
-\label{subsec:numerical_approximations}
+The steady-state probe scan is carried out for the axial parameters, using the probe/coupling/repump assignment of Fig.~\ref{fig:multilevel_EIT_scheme}. The probe, coupling, and repump parameters are adjusted until the absorption maximum aligns with the axial red sideband while the carrier stays close to the transparency minimum. The resulting parameter set is used in the Monte Carlo time evolution.
 
-The numerical model includes the full internal hyperfine and Zeeman structure, coherent coupling by the applied laser fields, first-order motional sidebands for the EIT beams, and all dipole-allowed spontaneous-emission branches. The main approximations are the restriction to one motional dimension, harmonic confinement, the first-order Lamb--Dicke expansion, omission of spontaneous-emission recoil, neglect of repump motional coupling, and sequential rather than global parameter optimization. The idealized three-level results are therefore used primarily as a validation of the EIT mechanism, while the 24-level calculations quantify the internal-state effects relevant to the experimental implementation. Quantitative predictions for the final in-fiber temperature require the spatial averaging of Eq.~\eqref{eq:spatially_averaged_rates}, together with recoil-resolved collapse operators and experimentally calibrated position-dependent light shifts.
+The specific atomic level scheme simulated here will also need to be revisited for the experimental implementation. Atoms near the fiber surface experience spatially varying tensor light shifts, local magnetic field gradients, and polarization constraints that alter the internal energy structure. Future simulations must account for a modified level scheme and for the realistic trapping potentials and polarization geometries of the physical setup.

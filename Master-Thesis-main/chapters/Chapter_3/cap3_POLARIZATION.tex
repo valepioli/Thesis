@@ -1,52 +1,158 @@
-\section{Polarization Stability Results}
+%*###############################################################
+\section{Power and polarization stability results}
+\label{sec:power_polarization_results}
+%*###############################################################
 
-\subsection{PBS Alignment and Extinction Ratio}
+The black-fiber injection system described in Chapter~2 provides the
+counterpropagating optical field required to generate the conveyor-belt
+potential. For this application, stable optical power and polarization are
+essential. Power fluctuations directly affect the lattice depth, whereas
+polarization fluctuations may reduce the interference contrast and,
+consequently, the reproducibility of the optical potential.
 
-% Report the PER values obtained at the two alignment stages:
-% (1) preliminary PBS-only check -> PER = 31 dB (reflection), 33 dB (transmission)
-% (2) after aligning to the fiber principal axis with the HWPs -> PER = 27 dB (reflection)
-% Comment briefly on whether the lower PER after axis alignment is expected
-% (e.g. limited by fiber birefringence / residual ellipticity rather than by the PBS itself).
+This section presents the experimental characterization of the power and
+polarization stability of the optical field transmitted through the black
+fiber. The system is analyzed both in the time domain, using the fully
+overlapping Allan deviation, and in the frequency domain, using the
+Amplitude Spectral Density (ASD). These complementary analyses make it
+possible to identify the relevant noise processes, determine the timescales
+over which the system is most stable, and compare the measured noise with
+the theoretical shot-noise limit.
 
-\subsection{Time-Domain Traces}
+%*###############################################################
+\subsection{Time-domain stability}
+%*###############################################################
 
-% INSERT FIGURE: Raw transmission/reflection time traces (600 ms, 60 s, 600 s)
+The time-domain stability of the transmitted optical power and polarization
+was evaluated from a continuous acquisition lasting $600~\mathrm{s}$. 
+Figure~\ref{fig:time_series_raw} displays the raw voltage signals for the power channels and the corresponding fluctuation of the polarization angle recorded during this time window. 
+The fully overlapping Allan deviation was then calculated for the recorded signals
+in order to distinguish short-term fluctuations from slow environmental
+drifts.
 
-% Describe qualitatively what the raw traces look like: any visible drift,
-% periodic features, or jumps, and over which timescales. Note whether the
-% behavior is consistent between the plain-sampling and HR acquisitions at 60 s.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Cap_3_figures/data_SAMPLE_600s_AfterBlackFiber_time_series.png}
+    \caption{Time series of the raw signals measured after the black fiber during a $600~\mathrm{s}$ acquisition. Top: voltage amplitude of the two transmission channels (CH1 and CH2). Bottom: corresponding fluctuation of the polarization angle $\Delta\theta$. Slow drifts become apparent in the second half of the acquisition window.}
+    \label{fig:time_series_raw}
+\end{figure}
 
-\subsection{Allan Deviation Analysis}
+The top panel of Figure~\ref{fig:allan_deviation_results} shows the
+fractional Allan deviation $\sigma_y(\tau)$ of the optical power. The total
+power, obtained as the sum of the transmitted and reflected channels,
+reaches a minimum fractional Allan deviation of approximately
+$8\times10^{-4}$ at an averaging time of $\tau \approx 0.1~\mathrm{s}$.
+For shorter averaging times, $\sigma_y(\tau)$ decreases with increasing
+$\tau$, consistently with the averaging of white noise. For
+$\tau > 0.1~\mathrm{s}$, the Allan deviation increases progressively,
+exceeding $10^{-2}$ at $\tau = 200~\mathrm{s}$. This behavior indicates
+that the long-term power stability is limited by low-frequency processes,
+most likely associated with thermal drifts and slow mechanical relaxation
+of the optical components.
 
-% INSERT FIGURE: Allan deviation sigma_y(tau) of the normalized difference signal
+The bottom panel of Figure~\ref{fig:allan_deviation_results} shows the
+angular Allan deviation $\sigma_\theta(\tau)$ of the polarization angle.
+The minimum value, approximately $7\times10^{-5}~\mathrm{rad}$, is obtained
+at an averaging time of $\tau \approx 3~\mathrm{s}$. At shorter averaging
+times, the Allan deviation follows the characteristic
+$1/\sqrt{\tau}$ dependence associated with white noise. For
+$\tau > 3~\mathrm{s}$, slow environmental drifts become dominant and
+$\sigma_\theta(\tau)$ increases, reaching approximately
+$8\times10^{-4}~\mathrm{rad}$ at $\tau = 200~\mathrm{s}$.
 
-% Report sigma_y(tau) across the range of tau covered by the different trace
-% lengths (sub-ms to ~600 s). Identify the slope(s) observed on the log-log plot
-% and the corresponding noise type (e.g. white noise ~ tau^-1/2, flicker floor,
-% random-walk/drift ~ tau^+1/2) in each regime, and quote the timescale(s) at
-% which the behavior changes.
-% State the best (minimum) Allan deviation reached and at which tau.
-% If a long-term upturn is present (drift dominating at large tau), quantify it
-% and discuss a plausible cause (thermal drift, mechanical relaxation, etc.).
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]
+    {Cap_3_figures/data_SAMPLE_600s_AfterBlackFiber_allan_dev.png}
+    \caption{Fully overlapping Allan deviation of the power and polarization
+    signals measured after the black fiber over a $600~\mathrm{s}$
+    acquisition. Top: fractional Allan deviation $\sigma_y(\tau)$ of the
+    individual power channels and their sum. The total power reaches a
+    minimum fractional Allan deviation of approximately $8\times10^{-4}$ at
+    $\tau \approx 0.1~\mathrm{s}$. Bottom: angular Allan deviation
+    $\sigma_\theta(\tau)$ of the polarization angle, with a minimum of
+    approximately $7\times10^{-5}~\mathrm{rad}$ at
+    $\tau \approx 3~\mathrm{s}$. At longer averaging times, both quantities
+    are increasingly affected by slow environmental drifts.}
+    \label{fig:allan_deviation_results}
+\end{figure}
 
-\subsection{Power Spectral Density and Comparison to Shot Noise}
+%*###############################################################
+\subsection{Frequency-domain analysis}
+%*###############################################################
 
-% INSERT FIGURE: Measured photocurrent PSD vs Fourier frequency, with the
-% shot-noise level sigma_{I,SN}^2 overlaid
+The Allan-deviation analysis identifies the timescales over which the
+transmitted field is most stable, but it does not directly reveal the
+spectral distribution of the underlying fluctuations. The acquired signals
+were therefore also analyzed in the frequency domain by calculating the
+Amplitude Spectral Density (ASD) of the photocurrent. The measured spectra
+were compared with the theoretical shot-noise levels calculated using the
+photocurrents recorded in the corresponding detection channels.
 
-% Report the frequency range covered by the measurement and any discrete peaks
-% observed (e.g. line frequency and harmonics, mechanical resonances), noting
-% their amplitude relative to the broadband floor.
-% Convert the excess PSD into light-power PSD via sigma_P^2 = (sigma_I^2 - sigma_{I,SN}^2)/eta^2
-% and compare the result to the shot-noise-limited level sigma_{P,SN}^2 = 2 P_bar hbar omega Delta f,
-% quoting by what factor (or over which frequency band) the measured noise
-% exceeds shot noise, and where (if anywhere) the two become comparable.
+Figure~\ref{fig:fft_low_freq} shows the low-frequency spectra obtained from
+the $600~\mathrm{s}$ acquisition over the range from $10^{-3}$ to
+$10^2~\mathrm{Hz}$. Below approximately $1~\mathrm{Hz}$, the spectra are
+dominated by excess technical noise and exhibit a clear low-frequency
+increase consistent with the long-term drifts observed in the Allan
+deviation. As the frequency increases, the measured noise decreases and
+progressively approaches the calculated white-noise floors, represented by
+the dashed lines.
 
-\subsection{Summary}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]
+    {Cap_3_figures/data_SAMPLE_600s_AfterBlackFiber_fft_CH1.png}
+    \caption{Amplitude Spectral Density of the photocurrent fluctuations
+    measured after the black fiber over the frequency range from
+    $10^{-3}$ to $10^2~\mathrm{Hz}$. The dashed lines represent the
+    calculated white-noise floors for the corresponding detection channels.
+    Excess technical noise dominates the spectra below approximately
+    $1~\mathrm{Hz}$.}
+    \label{fig:fft_low_freq}
+\end{figure}
 
-% Briefly state, in one or two sentences, the overall conclusion: is the black
-% fiber's polarization output stable enough for the intended application over
-% the relevant timescale(s)? Is the fluctuation technical-noise-limited or
-% shot-noise-limited, and in which regime? This sets up any follow-up
-% mitigation steps (e.g. improved thermal/mechanical isolation of the fiber)
-% to be discussed afterward if needed.
+An additional measurement with a larger acquisition bandwidth was performed
+to characterize the system at frequencies up to $10^5~\mathrm{Hz}$. The
+resulting transmitted-photocurrent spectrum is shown in
+Figure~\ref{fig:fft_high_freq}. Residual technical noise is visible below
+approximately $10^3~\mathrm{Hz}$. Above this frequency, the spectrum becomes
+approximately frequency independent and approaches the calculated
+shot-noise level of $10^{-11}~\mathrm{A/\sqrt{Hz}}$. This result shows that
+the high-frequency noise of the transmitted optical field is compatible
+with the fundamental detection-noise limit, while the dominant excess noise
+is confined to the lower-frequency region.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]
+    {Cap_3_figures/data_SAMPLE_600ms_AfterBlackFiber_fft_CH1.png}
+    \caption{Amplitude Spectral Density of the transmitted photocurrent up
+    to $10^5~\mathrm{Hz}$. The red dashed line represents the calculated
+    photocurrent shot-noise level of
+    $10^{-11}~\mathrm{A/\sqrt{Hz}}$. Above approximately
+    $10^3~\mathrm{Hz}$, the measured spectrum approaches the shot-noise
+    floor.}
+    \label{fig:fft_high_freq}
+\end{figure}
+
+The time- and frequency-domain measurements provide a consistent
+characterization of the stability of the optical field delivered through
+the black fiber. The Allan-deviation analysis shows that the minimum
+fractional power fluctuation is approximately $8\times10^{-4}$, while the
+minimum polarization-angle fluctuation is approximately
+$7\times10^{-5}~\mathrm{rad}$. At longer averaging times, the stability is
+limited primarily by slow environmental drifts.
+
+The frequency-domain analysis confirms that the excess noise is concentrated
+at low frequencies. Above approximately $10^3~\mathrm{Hz}$, the measured
+photocurrent noise approaches the calculated shot-noise floor, indicating
+that the black-fiber branch does not introduce a significant additional
+broadband-noise contribution in this frequency range.
+
+Overall, the measured power and polarization stability are adequate for the
+intended conveyor-belt application. In particular, the black fiber delivers
+an optical field with sufficiently stable power and polarization to produce
+a reproducible interference potential with the counterpropagating field
+guided through the HCPCF. The residual long-term fluctuations are mainly
+associated with slow environmental perturbations and do not constitute an
+intrinsic limitation of the fiber system.
