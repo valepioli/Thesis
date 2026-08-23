@@ -74,3 +74,16 @@
 % Better Tabels
 \usepackage{booktabs, multirow, array, makecell}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% review by MICHELANGELO
+% --- review apparatus (delete before submission) ---
+\geometry{paperwidth=27cm, asymmetric, left=2.5cm, right=8.5cm, marginparwidth=7cm, marginparsep=5mm}
+\usepackage[colorinlistoftodos, textsize=footnotesize]{todonotes}
+
+% Michelangelo's notes
+\providecommand{\MDn}[1]{\todo[color=orange!30]{\textbf{MD note:} #1}}
+\providecommand{\MDs}[1]{\todo[noline, color=red!25]{\textbf{MD suggestion:} #1}}
+\providecommand{\MDq}[1]{\todo[inline, color=blue!15]{\textbf{MD question:} #1}}
+
+% Underlining text
+\usepackage{ulem}

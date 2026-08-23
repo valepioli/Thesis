@@ -1,0 +1,5 @@
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ RAW TEST1}{5}{section*.3}%
+\contentsline {todo}{\fcolorbox {black}{orange!30}{\textcolor {orange!30}{o}}\ \textbf {MD note:} Note 1 (test note)}{5}{section*.4}%
+\contentsline {todo}{\fcolorbox {black}{red!25}{\textcolor {red!25}{o}}\ \textbf {MD suggestion:} Suggestion 1 (some \sout {text to be striked out} could be rewritten)}{5}{section*.5}%
+\contentsline {todo}{\fcolorbox {black}{blue!15}{\textcolor {blue!15}{o}}\ \textbf {MD question:} Is this a question? (test question)}{6}{section*.6}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ RAW TEST2}{6}{section*.7}%
