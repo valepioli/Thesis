@@ -1,7 +1,7 @@
 \section{Optical Conveyor Belt}
 \label{sec:conveyor_belt}
 
-The optical dipole trap discussed in the previous section provides a static conservative potential in which atoms are confined near the focus of a single laser beam. Transporting the trapped cloud over macroscopic distances requires a different architecture, in which the position of the potential minima can be controlled dynamically. The optical conveyor belt fulfills this requirement by replacing the single beam with two counter-propagating, phase-coherent beams: their interference generates a standing wave whose nodes and antinodes can be set into motion by imposing a controlled frequency difference between the two arms. This section derives the geometry of the standing-wave potential, the kinematics of the moving lattice, and the acceleration limits that bound adiabatic transport.
+The optical dipole trap discussed in the previous section provides a static conservative potential in which atoms are confined near the focus of a single laser beam. Transporting the trapped cloud over macroscopic distances requires a different architecture, in which the position of the potential minima can be controlled dynamically. The "optical conveyor belt" fulfills this requirement by replacing the single beam with two counter-propagating, phase-coherent beams: their interference generates a standing wave whose nodes and antinodes can be set into motion by imposing a controlled frequency difference between the two arms. This section derives the geometry of the standing-wave potential, the kinematics of the moving lattice, and the acceleration limits that bound adiabatic transport.
 
 \subsection{Interference of Counter-Propagating Gaussian Beams and the Stationary Lattice}
 
@@ -43,11 +43,11 @@ where $U_0$ defines the maximum depth of the individual potential wells, with $U
 
 The harmonic spatial modulation introduced by the $\cos^2(kz)$ term imposes a longitudinal periodicity, organizing the optical potential into a one-dimensional lattice of trapping sites with a lattice constant of $\lambda/2$.
 
-Within a potential well, atomic motion is restricted to a small region around the trap minimum at $z=0$ and $\rho=0$, allowing the harmonic approximation. Applying a second-order Taylor expansion to Eq.~\eqref{eq:stationary_potential} using $\cos^2(kz) \approx 1 - (kz)^2$ and $\exp(-2\rho^2/w_0^2) \approx 1 - 2\rho^2/w_0^2$, the potential takes the quadratic form
+Within a potential well, at low temperature, the atomic motion is restricted to a small region around the trap minimum at $z=0$ and $\rho=0$, allowing the harmonic approximation. Applying a second-order Taylor expansion to Eq.~\eqref{eq:stationary_potential} using $\cos^2(kz) \approx 1 - (kz)^2$ and $\exp(-2\rho^2/w_0^2) \approx 1 - 2\rho^2/w_0^2$, the potential takes the quadratic form
 \begin{equation}
 U(\rho,z) \approx U_0 \left(1 - \frac{2\rho^2}{w_0^2}\right)(1 - k^2 z^2) \approx U_0 - U_0 k^2 z^2 - U_0 \frac{2\rho^2}{w_0^2}.
 \end{equation}
-Equating these leading-order restoring terms to the classical energies of a harmonic oscillator, $\tfrac{1}{2}\kappa z^2$ and $\tfrac{1}{2}\kappa \rho^2$, yields the effective spring constants $\kappa_z = 2|U_0|k^2$ and $\kappa_{rad} = 4|U_0|/w_0^2$. The characteristic axial and radial oscillation frequencies therefore read:
+Equating these leading-order restoring terms to the classical energies of a harmonic oscillator, $\tfrac{1}{2}\kappa_z z^2$ and $\tfrac{1}{2}\kappa_{rad} \rho^2$, yields the effective spring constants $\kappa_z = 2|U_0|k^2$ and $\kappa_{rad} = 4|U_0|/w_0^2$. The characteristic axial and radial oscillation frequencies therefore read:
 \begin{equation}
 \Omega_z = \sqrt{\frac{2 |U_0| k^2}{m}}, \qquad \Omega_{rad} = \sqrt{\frac{4 |U_0|}{m w_0^2}}.
 \label{eq:oscillation_frequencies}

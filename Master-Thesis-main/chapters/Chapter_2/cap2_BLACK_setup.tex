@@ -297,8 +297,12 @@ where $\overline{P}$ is the mean optical power. Similarly, to isolate polarizati
     }.
     \label{eq:normalized_polarization_difference}
 \end{equation}
-Because the HWP was set to balance the two outputs, a fluctuation of the total optical power appears mainly in the denominator (sum), while a pure polarization fluctuation transfers power between the two PBS ports, appearing predominantly in the numerator of $D(t)$.
-
+Because the HWP was set to balance the two outputs, a fluctuation of the total optical power appears mainly in the denominator (sum), while a pure polarization fluctuation transfers power between the two PBS ports, appearing predominantly in the numerator of $D(t)$. Assuming the polarization state remains linear, the instantaneous polarization angle $\theta(t)$ can be retrieved by inverting Malus's law:
+\begin{equation}
+    \theta(t) = \frac{1}{2} \arccos(D(t)).
+    \label{eq:polarization_angle}
+\end{equation}
+The time series of the zero-centered angular fluctuation, $\Delta\theta(t) = \theta(t) - \overline{\theta}$, is then analyzed using the overlapping Allan deviation, denoted as $\sigma_\theta(\tau)$, to quantify the long-term polarization stability.
 \subsection{Allan-deviation analysis}
 
 Standard statistical variance is often insufficient for characterizing the long-term stability of optical systems, as it diverges in the presence of non-stationary processes like $1/f$ noise and slow environmental drifts. Therefore, the time-domain stability of the fractional signals was quantified using the Allan deviation, a two-sample variance that reliably converges for all common noise types~\cite{Riley2008}.
