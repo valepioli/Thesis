@@ -32,7 +32,35 @@ In this section, all frequencies and detunings are expressed as angular frequenc
 
 The theoretical framework of EIT cooling is based on a three-level atomic system in a $\Lambda$ configuration (Fig. \ref{fig:3level}). This consists of two stable or metastable ground states, $|g_1\rangle$ and $|g_2\rangle$, both optically coupled to a common, short-lived excited state $|e\rangle$ with spontaneous decay rate $\gamma$ \cite{Morigi:00, Morigi:03}.
 
-The transition $|g_1\rangle \leftrightarrow |e\rangle$ is driven by a weak probe  laser with Rabi frequency $\Omega_p$, satisfying $\Omega_p \ll \Omega_c$, while the transition $|g_2\rangle \leftrightarrow |e\rangle$ is driven by a strong coupling laser with Rabi frequency $\Omega_c$. Under the rotating wave approximation, and assuming the two lasers are tuned to a two-photon resonance with a common detuning $\Delta$, the internal Hamiltonian $H_0$ and the interaction potential $V_0$ in the rotating frame are \cite{Morigi:03}:
+The transition $|g_1\rangle \leftrightarrow |e\rangle$ is driven by a weak probe laser with Rabi frequency $\Omega_p$, satisfying $\Omega_p \ll \Omega_c$, while the transition $|g_2\rangle \leftrightarrow |e\rangle$ is driven by a strong coupling laser with Rabi frequency $\Omega_c$. Denoting the bare transition frequencies by $\omega_{eg_j}=(E_e-E_{g_j})/\hbar$, the single-photon detunings are defined as
+\begin{equation}
+    \Delta_p = \omega_p-\omega_{eg_1}, \qquad
+    \Delta_c = \omega_c-\omega_{eg_2},
+    \label{eq:single_photon_detunings}
+\end{equation}
+and the two-photon detuning is $\delta_{2\mathrm{ph}}=\Delta_p-\Delta_c$. After applying the rotating wave approximation, the laboratory-frame Hamiltonian is
+\begin{equation}
+    H_{\mathrm{lab}} = \sum_{j=1,2}E_{g_j}|g_j\rangle\langle g_j|+E_e|e\rangle\langle e|
+    +\frac{\hbar}{2}\left(\Omega_p e^{-i\omega_p t}|e\rangle\langle g_1|+\Omega_c e^{-i\omega_c t}|e\rangle\langle g_2|+\mathrm{h.c.}\right).
+    \label{eq:H_lab}
+\end{equation}
+The explicit transformation to the rotating frame is performed with
+\begin{equation}
+    U(t)=\exp\!\left[-i\left(\omega_p|e\rangle\langle e|+(\omega_p-\omega_c)|g_2\rangle\langle g_2|\right)t\right],
+    \label{eq:rotating_transformation}
+\end{equation}
+while $|g_1\rangle$ is left unchanged. With the convention $|\psi_{\mathrm{rot}}\rangle=U^\dagger(t)|\psi_{\mathrm{lab}}\rangle$, the transformed Hamiltonian is
+\begin{equation}
+    H_{\mathrm{rot}}=U^\dagger H_{\mathrm{lab}}U-i\hbar U^\dagger\dot U.
+    \label{eq:H_rot_transformation}
+\end{equation}
+Subtracting the irrelevant constant energy $E_e-\hbar\omega_p$ from all three levels gives
+\begin{equation}
+    H_{\mathrm{rot}}=-\hbar\Delta_p|g_1\rangle\langle g_1|-\hbar\Delta_c|g_2\rangle\langle g_2|
+    +\frac{\hbar}{2}\left(\Omega_p|e\rangle\langle g_1|+\Omega_c|e\rangle\langle g_2|+\mathrm{h.c.}\right).
+    \label{eq:H_rot_general}
+\end{equation}
+For the derivation of the dark state and the dressed-state cooling condition, exact two-photon resonance is assumed and both lasers therefore have the same single-photon detuning, $\Delta_p=\Delta_c\equiv\Delta$. Under this assumption, Eq.~\eqref{eq:H_rot_general} is written as $H_{\mathrm{rot}}=H_0+V_0$, with \cite{Morigi:03}
 \begin{equation}
     H_0 = -\hbar\Delta \left(|g_1\rangle\langle g_1| + |g_2\rangle\langle g_2|\right)
     \label{eq:H0}
@@ -60,7 +88,8 @@ The decoupling of $|\Psi_D\rangle$ from $|e\rangle$ is verified by direct evalua
 \begin{equation}
     \langle e|V_0|\Psi_D\rangle = \frac{\hbar}{2\Omega}\Big(\Omega_p\Omega_c - \Omega_c\Omega_p\Big) = 0.
 \end{equation}
-The excitation amplitude contributed by the $|g_1\rangle \to |e\rangle$ pathway, proportional to $\Omega_p$ times the $\Omega_c/\Omega$ weight of $|g_1\rangle$ in $|\Psi_D\rangle$, is cancelled by the amplitude contributed by the $|g_2\rangle \to |e\rangle$ pathway, proportional to $\Omega_c$ times the $-\Omega_p/\Omega$ weight of $|g_2\rangle$. 
+The excitation amplitude contributed by the $|g_1\rangle \to |e\rangle$ pathway, proportional to $\Omega_p$ times the $\Omega_c/\Omega$ weight of $|g_1\rangle$ in $|\Psi_D\rangle$, is cancelled by the amplitude contributed by the $|g_2\rangle \to |e\rangle$ pathway, proportional to $\Omega_c$ times the $-\Omega_p/\Omega$ weight of $|g_2\rangle$.
+
 \subsection{Dressed States and the Fano Absorption Spectrum}
 
 The cooling mechanism is analyzed in the dressed-state picture \cite{Morigi:03}. When the coupling laser interacts with the atom, the unperturbed atomic states are replaced by hybridized energy levels, the eigenstates of the coupled atom--laser Hamiltonian.
@@ -86,9 +115,17 @@ with the corresponding orthogonal eigenvectors
 \end{equation}
 where the mixing angle $\theta$ satisfies $\tan\theta = (\sqrt{\Delta^2 + \Omega^2} - \Delta)/\Omega$ \cite{Morigi:03}.
 
+The preceding dressed-state construction refers to exact two-photon resonance, $\Delta_p=\Delta_c=\Delta$. To calculate or measure the absorption profile, instead, the coupling-laser frequency is held fixed, so that $\Delta_c\equiv\Delta$ remains constant, while the probe frequency is scanned. Therefore
+\begin{equation}
+    \Delta_p=\Delta+\delta_{2\mathrm{ph}}, \qquad \Delta_c=\Delta,
+    \label{eq:probe_scan_detuning}
+\end{equation}
+where $\delta_{2\mathrm{ph}}$ is the scan variable and $
+\delta_{2\mathrm{ph}}=0$ recovers the Hamiltonian used above. Thus, the dressed resonances are set primarily by the fixed coupling field, whereas the probe absorption is evaluated as a function of $\delta_{2\mathrm{ph}}$.
+
 The dressed-state structure is probed via a pump--probe scheme: the coupling laser dresses the atomic states, while the weak cooling laser probes the resulting spectrum. In EIT cooling, the coupling laser operates far from single-photon resonance, $|\Delta| \gg \Omega$. In this limit the mixing angle $\theta$ is small, and the dressed states separate into a predominantly excited-like state and a predominantly ground-like state. Since spontaneous emission occurs from the $|e\rangle$ component, the linewidth of each branch is determined by its excited-state admixture. The state $|\psi_+\rangle$ is excited-state-like and retains approximately the bare atomic linewidth ($\gamma_+ \approx \gamma$). The state $|\psi_-\rangle$ is ground-state-like, with a suppressed linewidth $\gamma_- \approx \gamma\, \Omega^2/(4\Delta^2) \ll \gamma$.
 
-As the probe laser scans across the system, the excitation amplitudes to the broad background ($|\psi_+\rangle$) and to the narrow resonance ($|\psi_-\rangle$) interfere. This interference generates an asymmetric Fano-like absorption profile. For a blue-detuned coupling laser ($\Delta > 0$), the spectrum exhibits three features: a zero-absorption point at the two-photon resonance, corresponding to the dark state $|\Psi_D\rangle$; a broad absorption resonance centered near zero probe detuning, and a narrow absorption resonance.
+As $\delta_{2\mathrm{ph}}$ is varied by scanning the probe laser while keeping $\Delta_c=\Delta$ fixed, the excitation amplitudes to the broad background ($|\psi_+\rangle$) and to the narrow resonance ($|\psi_-\rangle$) interfere. This interference generates an asymmetric Fano-like absorption profile. For a blue-detuned coupling laser ($\Delta > 0$), the spectrum exhibits three features: a zero-absorption point at $\delta_{2\mathrm{ph}}=0$, corresponding to the two-photon resonance and the dark state $|\Psi_D\rangle$; a broad absorption resonance centered near the bare probe transition, and a narrow absorption resonance.
 
 The coupling laser induces an AC Stark shift $\delta$ that displaces the narrow resonance from the dark-state zero. The exact expression is
 \begin{equation}
@@ -100,7 +137,7 @@ which in the limit $\Delta \gg \Omega_c$ reduces to $\delta \approx \Omega_c^2/(
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{Cap_1_figures/abs_EIT.png}
-    \caption{Absorption spectrum of the weak probe laser as a function of its detuning, in the presence of the strong coupling laser. The spectrum exhibits the characteristic asymmetric Fano lineshape of EIT: a zero-absorption point at the two-photon (dark-state) resonance, a broad resonance of width $\gamma_+ \approx \gamma$ associated with $|\psi_+\rangle$, and a narrow, AC-Stark-shifted resonance of width $\gamma_- \ll \gamma$ associated with $|\psi_-\rangle$. Credits:~\cite{Morigi:00}}
+    \caption{Absorption spectrum of the weak probe laser as a function of the two-photon detuning $\delta_{2\mathrm{ph}}=\Delta_p-\Delta_c$, obtained by scanning $\Delta_p$ while keeping the coupling detuning $\Delta_c=\Delta$ fixed. The spectrum exhibits the characteristic asymmetric Fano lineshape of EIT: a zero-absorption point at $\delta_{2\mathrm{ph}}=0$, a broad resonance of width $\gamma_+ \approx \gamma$ associated with $|\psi_+\rangle$, and a narrow, AC-Stark-shifted resonance of width $\gamma_- \ll \gamma$ associated with $|\psi_-\rangle$. Credits:~\cite{Morigi:00}}
     \label{fig:abs_EIT}
 \end{figure}
 
@@ -179,67 +216,3 @@ The absolute minimum is achieved when the AC Stark shift matches the trap freque
     \label{eq:n_min}
 \end{equation}
 By choosing a sufficiently large coupling-laser detuning $\Delta \gg \gamma$, $\langle n_S \rangle$ can in principle be made arbitrarily small. However maintaining the resonance condition $\delta \simeq \nu$ at larger $\Delta$ requires $\Omega_c^2 \propto \Delta\nu$ to grow accordingly, so faster cooling and lower final occupations demand correspondingly higher coupling-laser intensities.
-
-\subsection{Theoretical Considerations for in-fiber EIT Cooling}
-
-The implementation of EIT cooling inside a tightly focused optical dipole trap, such as the one used to load atoms into a hollow-core photonic crystal fiber (HCPCF), requires revisiting the assumptions of the free-space case in the presence of an intense, spatially varying trapping field. The dominant perturbation is the differential AC Stark shift between the ground and excited states of the cooling cycle, induced by the trapping laser itself.
-
-\paragraph{Differential AC Stark shift.}
-For a far-red-detuned trapping field of angular frequency $\omega_t$ and local intensity $I(\mathbf{r})$, the scalar light shift of an atomic level $|i\rangle$ of static polarizability $\alpha_i(\omega_t)$ is
-\begin{equation}
-    U_i(\mathbf{r}) = -\frac{\alpha_i(\omega_t)}{2\varepsilon_0 c}\,I(\mathbf{r}),
-    \label{eq:stark_trap}
-\end{equation}
-so that the single-photon resonance of the $|g_1\rangle\leftrightarrow|e\rangle$ transition is displaced by the differential shift
-\begin{equation}
-    \Delta_{\mathrm{AC}}(\mathbf{r}) = \frac{U_g(\mathbf{r}) - U_e(\mathbf{r})}{\hbar}
-    = -\frac{\alpha_g(\omega_t) - \alpha_e(\omega_t)}{2\varepsilon_0 c\,\hbar}\,I(\mathbf{r}).
-    \label{eq:diff_stark}
-\end{equation}
-At the trapping wavelength used for in-fiber loading \footnote{For the particular excited state and trapping wavelength considered here and explained in the next chapter, the polarizability has the opposite sign to that of the ground manifold.}, the excited state of the cooling cycle has polarizability of opposite sign to the ground manifold, so $\alpha_g - \alpha_e$ is large and $|\Delta_{\mathrm{AC}}(0)|$ typically exceeds the bare linewidth. The cooling and probe lasers must therefore be retuned by $\Delta_{\mathrm{AC}}(0)$ to maintain the cooling condition.
-
-\paragraph{Common-mode protection of the dark state.}
-The two hyperfine ground states $|g_1\rangle, |g_2\rangle$ entering the $\Lambda$ system share essentially the same scalar polarizability, so their light shifts are equal and the relative ground-state splitting is preserved. The dark state $|\Psi_D\rangle$ of Eq.~\eqref{eq:darkstate} is built only from $|g_1\rangle, |g_2\rangle$; its absolute energy is shifted by the common-mode $U_g$, but its composition and the two-photon resonance condition are unchanged. The Fano transparency zero is thus structurally protected against the trapping field.
-
-The red-sideband transition $|g_1,n\rangle \to |e,n-1\rangle$ is a single-photon transition, sensitive to the absolute shift of $|e\rangle$. Its resonance frequency acquires the displacement $\Delta_{\mathrm{AC}}(0)$, so the optimal cooling condition of Eq.~\eqref{eq:cooling_condition} generalizes to
-\begin{equation}
-    \delta \;\simeq\; \nu - \Delta_{\mathrm{AC}}(0),
-    \label{eq:cooling_condition_fiber}
-\end{equation}
-i.e., the coupling-laser intensity must be tuned so that the AC Stark shift $\delta \simeq \Omega_c^2/(4\Delta)$ of the narrow dressed-state resonance compensates both the trap frequency $\nu$ \emph{and} the trapping-induced shift $\Delta_{\mathrm{AC}}(0)$. 
-
-\paragraph{Inhomogeneous broadening.}
-The previous treatment gives the correct tuning for an atom strictly on the trap axis. Real atoms, however, oscillate transversely in the dipole potential and sample a range of local intensities. Since the differential AC Stark shift $\Delta_{\mathrm{AC}}$ is proportional to the local trapping intensity, this thermal motion translates into a spread of the single-photon resonance frequencies sampled by the atomic ensemble.
-
-To quantify this effect, we consider the transverse intensity profile of the fundamental Gaussian mode, which is given by $I(r) = I_0 e^{-2r^2/w_0^2}$, where $w_0$ is the beam waist. The confining optical dipole potential is directly proportional to this intensity, and can be written as $U(r) = -U_0 e^{-2r^2/w_0^2}$, with $U_0$ being the maximum trap depth at the axis ($r=0$).
-For cold atoms confined near the trap axis ($r \ll w_0$), we can expand the exponential to first order, $e^{-2r^2/w_0^2} \approx 1 - 2r^2/w_0^2$, yielding the harmonic approximation of the potential:
-\begin{equation}
-    U(r) \approx -U_0 \left(1 - \frac{2r^2}{w_0^2}\right) = -U_0 + \frac{2U_0 r^2}{w_0^2}.
-\end{equation}
-The potential energy relative to the trap minimum is thus $\Delta U(r) = 2U_0 r^2 / w_0^2$. The radial extent of the atomic motion is bounded by the available thermal energy. By equating the local harmonic potential energy to the characteristic one-dimensional thermal energy $k_B T$, i.e.,
-\begin{equation}
-    \frac{2U_0 r_{\mathrm{th}}^2}{w_0^2} = k_B T,
-\end{equation}
-we can solve for $r_{\mathrm{th}}$ to find the effective thermal radius of the atomic cloud:
-\begin{equation}
-    r_{\mathrm{th}} = \frac{w_0}{\sqrt{2}} \sqrt{\frac{k_B T}{U_0}}.
-    \label{eq:thermal_radius}
-\end{equation}
-Beyond this radius, the kinetic energy is generally insufficient to climb the potential barrier. As expected, hotter atoms or shallower traps (larger $k_B T/U_0$) push $r_{\mathrm{th}}$ outward into the wings of the Gaussian profile, while colder atoms in deep traps stay confined near the axis where the intensity is nearly uniform.
-
-Because the differential light shift follows the same Gaussian profile as the potential, $\Delta_{\mathrm{AC}}(r) = \Delta_{\mathrm{AC}}(0) e^{-2r^2/w_0^2}$, its spatial variation near the axis can similarly be expanded as:
-\begin{equation}
-    \Delta_{\mathrm{AC}}(r) \approx \Delta_{\mathrm{AC}}(0) \left(1 - \frac{2r^2}{w_0^2}\right).
-\end{equation}
-The effective spread of the single-photon resonance sampled by the thermal cloud, which we denote as $\delta_{\mathrm{in}}$, is given by the difference between the shift on-axis and the shift evaluated at the thermal radius:
-\begin{equation}
-    \delta_{\mathrm{in}} \approx |\Delta_{\mathrm{AC}}(0)| - |\Delta_{\mathrm{AC}}(r_{\mathrm{th}})| = |\Delta_{\mathrm{AC}}(0)| \frac{2r_{\mathrm{th}}^2}{w_0^2}.
-\end{equation}
-Substituting the expression for $r_{\mathrm{th}}^2$ derived above into this relation, we obtain:
-\begin{equation}
-    \delta_{\mathrm{in}} \approx |\Delta_{\mathrm{AC}}(0)| \frac{2}{w_0^2} \left( \frac{w_0^2 k_B T}{2 U_0} \right) = |\Delta_{\mathrm{AC}}(0)| \frac{k_B T}{U_0}.
-    \label{eq:inhom_broad}
-\end{equation}
-
-When $\delta_{\mathrm{in}}$ becomes comparable to the trap frequency $\nu$, the narrow red-sideband absorption line is smeared out over a spectral range that overlaps with the carrier transition. 
-This inhomogeneous broadening increases the steady-state occupation with respect to the ideal free-space limit. A quantitative estimate requires averaging the cooling and heating rates over the thermal spatial distribution, which is beyond the scope of this analysis.

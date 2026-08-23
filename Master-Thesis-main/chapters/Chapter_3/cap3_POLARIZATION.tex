@@ -6,7 +6,7 @@
 The black-fiber injection system described in Chapter~2 provides the
 counterpropagating optical field required to generate the conveyor-belt
 potential. For this application, stable optical power and polarization are
-essential. Power fluctuations directly affect the lattice depth, whereas
+essential. Power fluctuations directly affect the lattice depth and may lead to parametric heating, whereas
 polarization fluctuations may reduce the interference contrast and,
 consequently, the reproducibility of the optical potential.
 
@@ -33,7 +33,7 @@ drifts.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\textwidth]{Cap_3_figures/data_SAMPLE_600s_AfterBlackFiber_time_series.png}
-    \caption{Time series of the raw signals measured after the black fiber during a $600~\mathrm{s}$ acquisition. Top: voltage amplitude of the two transmission channels (CH1 and CH2). Bottom: corresponding fluctuation of the polarization angle $\Delta\theta$. Slow drifts become apparent in the second half of the acquisition window.}
+    \caption{Time series of the raw signals measured after the black fiber during a $600~\mathrm{s}$ acquisition. Top: voltage amplitude of the two transmission channels (CH1 and CH2). Bottom: corresponding fluctuation of the polarization angle $\Delta\theta$.}
     \label{fig:time_series_raw}
 \end{figure}
 
@@ -42,8 +42,7 @@ fractional Allan deviation $\sigma_y(\tau)$ of the optical power. The total
 power, obtained as the sum of the transmitted and reflected channels,
 reaches a minimum fractional Allan deviation of approximately
 $8\times10^{-4}$ at an averaging time of $\tau \approx 0.1~\mathrm{s}$.
-For shorter averaging times, $\sigma_y(\tau)$ decreases with increasing
-$\tau$, consistently with the averaging of white noise. For
+For shorter averaging times, $\sigma_y(\tau)$ follows the characteristic $1/\sqrt{\tau}$ dependence associated with white noise. For
 $\tau > 0.1~\mathrm{s}$, the Allan deviation increases progressively,
 exceeding $10^{-2}$ at $\tau = 200~\mathrm{s}$. This behavior indicates
 that the long-term power stability is limited by low-frequency processes,
@@ -94,9 +93,7 @@ the $600~\mathrm{s}$ acquisition over the range from $10^{-3}$ to
 $10^2~\mathrm{Hz}$. Below approximately $1~\mathrm{Hz}$, the spectra are
 dominated by excess technical noise and exhibit a clear low-frequency
 increase consistent with the long-term drifts observed in the Allan
-deviation. As the frequency increases, the measured noise decreases and
-progressively approaches the calculated white-noise floors, represented by
-the dashed lines.
+deviation. As the frequency increases, the measured noise decreases, although it remains significantly above the calculated white-noise floors, represented by the dashed lines, clearly showing the presence of technical noise.
 
 \begin{figure}[htbp]
     \centering
@@ -111,16 +108,10 @@ the dashed lines.
     \label{fig:fft_low_freq}
 \end{figure}
 
-An additional measurement with a larger acquisition bandwidth was performed
-to characterize the system at frequencies up to $10^5~\mathrm{Hz}$. The
+An additional measurement based on a shorter $600~\mathrm{ms}$ acquisition with a larger bandwidth was performed to characterize the system at frequencies up to $10^5~\mathrm{Hz}$. The
 resulting transmitted-photocurrent spectrum is shown in
 Figure~\ref{fig:fft_high_freq}. Residual technical noise is visible below
-approximately $10^3~\mathrm{Hz}$. Above this frequency, the spectrum becomes
-approximately frequency independent and approaches the calculated
-shot-noise level of $10^{-11}~\mathrm{A/\sqrt{Hz}}$. This result shows that
-the high-frequency noise of the transmitted optical field is compatible
-with the fundamental detection-noise limit, while the dominant excess noise
-is confined to the lower-frequency region.
+approximately $10^3~\mathrm{Hz}$. Above this frequency, the spectrum flattens but remains well above the calculated shot-noise level of $10^{-11}~\mathrm{A/\sqrt{Hz}}$. This result shows that a residual broadband technical noise is still present at higher frequencies, and the system is not yet limited by the fundamental detection noise, even though the most prominent excess noise is confined to the lower-frequency region.
 
 \begin{figure}[htbp]
     \centering
@@ -130,29 +121,11 @@ is confined to the lower-frequency region.
     to $10^5~\mathrm{Hz}$. The red dashed line represents the calculated
     photocurrent shot-noise level of
     $10^{-11}~\mathrm{A/\sqrt{Hz}}$. Above approximately
-    $10^3~\mathrm{Hz}$, the measured spectrum approaches the shot-noise
+    $10^3~\mathrm{Hz}$, the measured spectrum flattens but remains above the shot-noise
     floor.}
     \label{fig:fft_high_freq}
 \end{figure}
 
 The time- and frequency-domain measurements provide a consistent
 characterization of the stability of the optical field delivered through
-the black fiber. The Allan-deviation analysis shows that the minimum
-fractional power fluctuation is approximately $8\times10^{-4}$, while the
-minimum polarization-angle fluctuation is approximately
-$7\times10^{-5}~\mathrm{rad}$. At longer averaging times, the stability is
-limited primarily by slow environmental drifts.
-
-The frequency-domain analysis confirms that the excess noise is concentrated
-at low frequencies. Above approximately $10^3~\mathrm{Hz}$, the measured
-photocurrent noise approaches the calculated shot-noise floor, indicating
-that the black-fiber branch does not introduce a significant additional
-broadband-noise contribution in this frequency range.
-
-Overall, the measured power and polarization stability are adequate for the
-intended conveyor-belt application. In particular, the black fiber delivers
-an optical field with sufficiently stable power and polarization to produce
-a reproducible interference potential with the counterpropagating field
-guided through the HCPCF. The residual long-term fluctuations are mainly
-associated with slow environmental perturbations and do not constitute an
-intrinsic limitation of the fiber system.
+the black fiber. FARE CONCLUSiONI PIU QUANTITATIVE CON CONFRONTO

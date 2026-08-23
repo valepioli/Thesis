@@ -37,9 +37,7 @@ All dipole-allowed couplings are constructed explicitly. For a transition betwee
     \end{pmatrix},
     \label{eq:dipole_matrix_multilevel}
 \end{equation}
-where the reduced hyperfine matrix element $\langle F_e\Vert d\Vert F_g\rangle$ in general contains a Wigner-$6j$ coefficient and the reduced fine-structure matrix element, and encodes the relative strength of transitions connecting different hyperfine manifolds. Transitions that violate the electric-dipole selection rules are assigned zero coupling.
-
-In the numerical implementation, the reduced hyperfine matrix element $\langle F_e\Vert d\Vert F_g\rangle$ is evaluated directly from the Wigner-$6j$ coefficient,
+where the $3j$ symbol carries the electric-dipole selection rules, and the reduced hyperfine matrix element $\langle F_e\Vert d\Vert F_g\rangle$ sets the relative strength between transitions connecting different hyperfine manifolds, through
 \begin{equation}
     \langle F_e\Vert d\Vert F_g\rangle
     =
@@ -52,7 +50,9 @@ In the numerical implementation, the reduced hyperfine matrix element $\langle F
     \end{Bmatrix},
     \label{eq:reduced_hyperfine_element}
 \end{equation}
-with $J_g=1/2$, $J_e=3/2$, and $I=3/2$ for the $^{87}\mathrm{Rb}$ $D_2$ line. The fine-structure reduced matrix element $\langle J_e\Vert d\Vert J_g\rangle$ is a common constant for every hyperfine transition of the $D_2$ line and cancels out of every normalized quantity used in the simulation --- the laser coupling amplitudes of Eq.~\eqref{eq:general_laser_interaction} and the branching fractions of Eq.~\eqref{eq:branching_fraction} --- so only its relative weighting between different $(F_g,F_e)$ pairs matters, and it is set to $1$ in the code. This reproduces the correct relative branching strength between transitions landing on different $F'$ manifolds: summing $|d_{eg}^{(q)}|^2$ over all decay channels of a given excited sublevel, after normalization by Eq.~\eqref{eq:branching_fraction}, gives a total decay rate equal to $\gamma$ for every hyperfine sublevel, independent of $F'$, as required physically.
+with $J_g=1/2$, $J_e=3/2$, and $I=3/2$ for the $^{87}\mathrm{Rb}$ $D_2$ line. Transitions that violate the electric-dipole selection rules are assigned zero coupling.
+
+The fine-structure reduced matrix element $\langle J_e\Vert d\Vert J_g\rangle$ is common to every hyperfine transition of the $D_2$ line, and cancels in every normalized quantity used in the simulation, the laser coupling amplitudes of Eq.~\eqref{eq:general_laser_interaction} and the branching fractions of Eq.~\eqref{eq:branching_fraction}, so only the relative weighting between $(F_g,F_e)$ pairs, given by the Wigner-$6j$ coefficient, matters; it is set to $1$ in the code. Summing the resulting $|d_{eg}^{(q)}|^2$ over all decay channels of a given excited sublevel then gives a total decay rate equal to the natural linewidth $\gamma$, independent of the $F'$ manifold, as required physically.
 
 To reduce optical pumping into states outside the EIT cycle, the target $\Lambda$ system is built around states near the edge of a Zeeman manifold rather than around $m_F=0$: the condition $\Delta m_F=0,\pm1$ then limits the number of ground states reachable by spontaneous decay. In the configuration used for the multilevel and axial-parameter simulations (Fig.~\ref{fig:multilevel_EIT_scheme}), the two EIT ground states belong to different hyperfine manifolds. The $\sigma^-$-polarized probe field addresses $|g_1\rangle=|F=2,m_F=-1\rangle\rightarrow|F'=2,m_F=-2\rangle$ and is scanned across the two-photon resonance. The $\sigma^-$-polarized coupling field addresses $|g_2\rangle=|F=1,m_F=-1\rangle\rightarrow|F'=2,m_F=-2\rangle$; its Rabi frequency is set by the EIT cooling condition of Eq.~\eqref{eq:exact_condition_numerical}. A $\pi$-polarized repump field, resonant on $|F=2,m_F=-2\rangle\rightarrow|F'=2,m_F=-2\rangle$, recovers population that leaks out of the $\Lambda$ system into the adjacent Zeeman sublevel of $F=2$; its motional factor is set to the identity, Eq.~\eqref{eq:repump_no_motion}. This configuration is used for the simulation with the axial trap parameters (Sec.~\ref{subsec:axial_simulation}).
 
@@ -419,7 +419,7 @@ which reduces to
     \Omega_c^2\simeq4\Delta_c\nu
     \label{eq:approx_condition_numerical}
 \end{equation}
-when $\nu\ll\Delta_c$. It is the exact relation, Eq.~\eqref{eq:exact_condition_numerical}, that sets $\Omega_c$ in both the three-level and multilevel codes; the approximation of Eq.~\eqref{eq:approx_condition_numerical} is recovered numerically since $\nu/\Delta_c\sim10^{-3}$--$10^{-2}$ in every parameter set considered, but is not the relation actually evaluated. Under this condition, the narrow absorption resonance aligns with the red sideband while carrier excitation is suppressed by the dark resonance.
+when $\nu\ll\Delta_c$. Eq.~\eqref{eq:exact_condition_numerical} sets $\Omega_c$ in both the three-level and multilevel codes. Under this condition, the narrow absorption resonance aligns with the red sideband while carrier excitation is suppressed by the dark resonance.
 
 \subsection{Optimization of the Multilevel Configuration}
 \label{subsec:multilevel_optimization}
@@ -482,4 +482,4 @@ Since $\eta_{ax} \ll 1$, the axial motion is within the Lamb--Dicke regime assum
 
 The steady-state probe scan is carried out for the axial parameters, using the probe/coupling/repump assignment of Fig.~\ref{fig:multilevel_EIT_scheme}. The probe, coupling, and repump parameters are adjusted until the absorption maximum aligns with the axial red sideband while the carrier stays close to the transparency minimum. The resulting parameter set is used in the Monte Carlo time evolution.
 
-The specific atomic level scheme simulated here will also need to be revisited for the experimental implementation. Atoms near the fiber surface experience spatially varying tensor light shifts, local magnetic field gradients, and polarization constraints that alter the internal energy structure. Future simulations must account for a modified level scheme and for the realistic trapping potentials and polarization geometries of the physical setup.
+Atoms near the fiber surface experience spatially varying tensor light shifts, local magnetic field gradients, and polarization constraints that alter the internal energy structure. Future simulations must account for a modified level scheme and for the realistic trapping potentials and polarization geometries of the physical setup.

@@ -1,9 +1,15 @@
-% !TEX root = ../../thesis_main.tex
 \documentclass[../../thesis_main.tex]{subfiles}
 \graphicspath{{\subfix{../../figures/}}}
 
 \begin{document}
 
     \chapter*{Abstract}
-  
+    This thesis details the development and characterization of an experimental setup for the controlled transport of cold $^{87}$Rb atoms into a Hollow-Core Photonic Crystal Fiber (HCPCF) via an optical conveyor belt. 
+
+    The initial stage of the work focuses on the preparation of the atomic sample. The optical molasses temperature was reduced to $T = (8.42 \pm 0.17)~\mu\text{K}$ by tuning the cooling laser detuning and compensation magnetic fields. The loading sequence into the Optical Dipole Trap (ODT) was then investigated, reaching a capture efficiency of $(0.161 \pm 0.005)\%$ (corresponding to approximately $10^5$ atoms) by optimizing the MOT position prior to the loading phase.
+
+    To implement the moving optical lattice, the injection of a 1064~nm beam into a polarization-maintaining single-mode fiber was designed and realized. The spatial overlap with the counter-propagating field emerging from the HCPCF was aligned on the upper breadboard. The stability of the transmitted light was evaluated using Allan-deviation analysis, showing a fractional power instability of $8 \times 10^{-4}$ at 0.1~s and an angular polarization instability of $7 \times 10^{-5}$~rad at 3~s.
+
+    Finally, since the transport sequence induces heating, a multi-level numerical model based on QuTiP was developed to simulate Electromagnetically Induced Transparency (EIT) cooling. The 24-level simulation indicates that a continuous repump field is necessary to mitigate optical pumping effects and sustain the cooling process toward the motional ground state.
+
 \end{document}

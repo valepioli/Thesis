@@ -1,4 +1,3 @@
-% !TEX root = ../../thesis_main.tex
 \documentclass[../../thesis_main.tex]{subfiles}
 \graphicspath{{\subfix{../../figures/}}}
 
@@ -8,36 +7,14 @@
     \addcontentsline{toc}{chapter}{Introduction}
     \markboth{Introduction}{}
 
-    The study of cold neutral atoms has continuously driven advancements in quantum simulation, precision metrology, and quantum information processing.
-    
-    The work presented in this thesis was conducted in the cold atoms laboratory of Professors Francesco Minardi and Marco Prevedelli at the Department of Physics and Astronomy "A. Righi" of the University of Bologna. The primary objective of the experiment is to study a quantum system consisting of a cold rubidium-87 ($^{87}$Rb) gas loaded into the core of a Hollow-Core Photonic Crystal Fiber (HCPCF).
-    By confining atoms directly within their hollow core, HCPCFs enable tight spatial confinement and strong atom-light interactions over macroscopic distances, establishing a highly versatile platform for advanced quantum technologies.
-    Potential applications for the fiber-atoms system include the realization of highly sensitive, miniaturized quantum sensors (such as atomic magnetometers and interferometers), as well as the realization of quantum memories, which constitute the fundamental building blocks for future quantum networks.
-    
-    Loading cold atoms into an HCPCF requires an efficient intermediate trapping and transfer mechanism. As a starting point, the source of these cold atoms is provided by a pre-existing setup utilizing a Magneto-Optical Trap (MOT) followed by an optical molasses phase, preparing a cold, sub-Doppler atomic sample. To efficiently load the atoms into the HCPCF, an optical conveyor belt is required. This system is realized by using two counter-propagating Optical Dipole Trap (ODT) beams that interfere to create a standing wave. Tuning the relative frequency of the two branches allows the standing wave to become dynamic, enabling the controlled transport of the cold atoms. Furthermore, the standing wave provides the necessary axial confinement inside the optical fiber's core. This thesis details the implementation and optimization of the first 1064~nm ODT beam, which represents the starting point for the implementation of the complete transfer mechanism.
+    The study of cold neutral atoms continues to drive advancements in quantum simulation, precision metrology, and quantum information processing. The experiment described in this thesis, conducted at the cold atoms laboratory of the Department of Physics and Astronomy "A. Righi" (University of Bologna), aims to study a quantum system of cold rubidium-87 ($^{87}$Rb) gas confined inside a Hollow-Core Photonic Crystal Fiber (HCPCF).
 
-    The thesis is structured as follows:
+    The integration of laser-cooled neutral atoms with hollow-core optical fibers allows for extended light--matter interactions compared with conventional free-space optical dipole traps. In free space, the interaction length is constrained by diffraction and the Rayleigh range. Hollow-core fibers bypass this limitation by confining atoms within a guided optical mode \cite{Wang2025}, maintaining a constant transverse profile over macroscopic distances. This geometry is relevant for improving the interrogation times of atomic magnetometers and matter-wave interferometers \cite{Xin:18}, as well as for exploring collective emission phenomena \cite{Fasser:24} and implementing quantum memories \cite{Wang2025}.
 
-    Chapter 1 establishes the theoretical framework underpinning the experiment. It begins with the physics of optical waveguides, deriving the Linearly Polarized (LP) modes for standard step-index fibers in the weakly guiding approximation. It then introduces HCPCFs, contrasting the Photonic Band Gap (PBG) and Inhibited Coupling (IC) guiding mechanisms. Finally, it reviews the semiclassical theory of the optical dipole force, deriving the conservative trapping potential and scattering rates for multi-level alkali atoms.
+    Loading cold atoms into the HCPCF requires an intermediate transport mechanism. The experimental sequence starts with a Magneto-Optical Trap (MOT) and an optical molasses phase to prepare a sub-Doppler atomic sample. The atoms are then loaded into an optical conveyor belt, which is formed by two counter-propagating Optical Dipole Trap (ODT) beams creating a dynamic standing wave.
 
-    Chapter 2 details the experimental apparatus and the analytical methodologies. Following an overview of the vacuum chamber, the MOT, and the laser frequency stabilization systems, it describes the implementation of the 1064~nm ODT setup. This includes the spatial characterization of the ODT laser beam, the design of the optical injection line, and the development of a custom horizontal microscope to monitor the near-field mode to optimize the coupling into the HCPCF. It also describes two theoretical models to calculate a reference ODT capture efficiency in shallow and non-shallow trap regimes. Finally, this chapter outlines the experimental and analytical procedure employed for obtaining the results summarized in the last chapter.
+    This thesis describes the optimization of the atomic cloud preparation, the implementation of the second optical branch needed to complete the conveyor belt, and the numerical modeling of the Electromagnetically Induced Transparency (EIT) cooling required to reduce the atomic temperature once inside the fiber.
 
-    Chapter 3 presents the experimental results and their discussion. It first reports the systematic minimization of the optical molasses temperature. Subsequently, it details the tuning of the compensation magnetic fields required to maximize the spatial overlap between the atomic cloud and the ODT beam, ultimately optimizing the capture efficiency and comparing the experimental results with the theoretical predictions.
-
-       \subsection{Hollow-Core Fibers and Cold Atoms}
-        \label{subsec:atoms}
-
-        The integration of laser-cooled neutral atoms with hollow-core optical fibers enables enhanced light--matter interactions compared with conventional free-space geometries. The advantages of this approach arise from the limitations imposed by diffraction in tightly focused optical fields.
-
-        In a free-space optical dipole trap, atoms are confined near the focus of a laser beam. The atom--light interaction is determined by two competing length scales. A small beam waist $w_0$ provides strong transverse confinement and increases the local intensity, enhancing the coupling per atom. However, diffraction limits the distance over which such confinement is maintained. This characteristic length is given by the Rayleigh range:
-        \begin{equation}
-        z_R = \frac{\pi w_0^2}{\lambda}.
-        \end{equation}
-        Therefore, reducing $w_0$ to increase the transverse confinement also decreases $z_R$ proportionally to $w_0^2$, limiting the achievable interaction length. This diffraction-induced trade-off prevents the simultaneous optimization of transverse confinement and longitudinal interaction length in free-space atom optics.
-
-        Hollow-core fibers overcome this limitation by confining atoms within a guided optical mode \cite{Wang2025}. Unlike a freely propagating beam, the guided mode is an eigenmode of the waveguide and its transverse profile is maintained by the cladding microstructure. As a result, strong transverse confinement can be preserved over macroscopic propagation distances, from centimeters to meters, without being limited by the Rayleigh range. The interaction length is therefore decoupled from diffraction, while the confined core mode maintains a high atom--light coupling per unit length.
-
-        \paragraph{Applications.}
-        The combination of strong confinement, long interaction lengths, and efficient coupling between atoms and guided modes enables applications in both quantum technologies and fundamental studies. In metrology, these properties improve the performance of compact quantum sensors, including atomic magnetometers and matter-wave interferometers, by increasing interrogation times and enhancing light--matter coupling \cite{Xin:18}. In quantum optics, the quasi-one-dimensional geometry provided by hollow-core fibers enables the investigation of collective emission phenomena, such as subradiance and superradiance \cite{Fasser:24}, and provides a platform for efficient quantum memories and strongly correlated many-body systems \cite{Wang2025}.
+    The manuscript is structured as follows. Chapter 1 provides the theoretical background on HCPCFs, optical trapping, conveyor belt kinematics, and EIT cooling. Chapter 2 describes the experimental apparatus, the imaging calibration, the design of the "black fiber" injection setup, and the formulation of the multi-level numerical model. Chapter 3 presents the data analysis and the experimental results, including the optimization of the molasses temperature and ODT capture efficiency, the power and polarization stability of the optical lattice, and the numerical simulations of the EIT cooling dynamics.
 
 \end{document}
