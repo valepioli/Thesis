@@ -3,18 +3,18 @@
 
 \begin{document}
 
-    \chapter*{Introduction}
-    \addcontentsline{toc}{chapter}{Introduction}
-    \markboth{Introduction}{}
+    \chapter*{Conclusions}
+    \addcontentsline{toc}{chapter}{Conclusions}
+    \markboth{Conclusions}{}
+    
+    This thesis presented the experimental realization and numerical analysis of the subsystems required to trap, transport, and cool a sample of $^{87}$Rb atoms inside a Hollow-Core Photonic Crystal Fiber.
 
-    The study of cold neutral atoms continues to drive advancements in quantum simulation, precision metrology, and quantum information processing. The experiment described in this thesis, conducted at the cold atoms laboratory of the Department of Physics and Astronomy "A. Righi" (University of Bologna), aims to study a quantum system of cold rubidium-87 ($^{87}$Rb) gas confined inside a Hollow-Core Photonic Crystal Fiber (HCPCF).
+    The preliminary cooling stages were characterized by optimizing the optical molasses, reaching a minimum temperature of $T = (8.42 \pm 0.17)~\mu\text{K}$. The transfer of the atomic cloud into the Optical Dipole Trap was then investigated. By translating the MOT position via the compensation coils to improve the overlap with the dipole beam, a capture efficiency of $(0.161 \pm 0.005)\%$ was measured, resulting in about $10^5$ trapped atoms.
 
-    The integration of laser-cooled neutral atoms with hollow-core optical fibers allows for extended light--matter interactions compared with conventional free-space optical dipole traps. In free space, the interaction length is constrained by diffraction and the Rayleigh range. Hollow-core fibers bypass this limitation by confining atoms within a guided optical mode \cite{Wang2025}, maintaining a constant transverse profile over macroscopic distances. This geometry is relevant for improving the interrogation times of atomic magnetometers and matter-wave interferometers \cite{Xin:18}, as well as for exploring collective emission phenomena \cite{Fasser:24} and implementing quantum memories \cite{Wang2025}.
+    The generation of the optical conveyor belt requires a second, counter-propagating 1064~nm optical field. The injection line for a polarization-maintaining single-mode fiber was built and aligned. The optical fields were overlapped on the upper breadboard to form the standing wave. To evaluate the reliability of the lattice potential, the stability of the transmitted field was measured, yielding a minimum fractional power deviation of $8 \times 10^{-4}$ at 0.1~s and an angular polarization deviation of $7 \times 10^{-5}$~rad at 3~s. While long-term stability is limited by low-frequency drifts, the measured parameters are compatible with the transport requirements.
 
-    Loading cold atoms into the HCPCF requires an intermediate transport mechanism. The experimental sequence starts with a Magneto-Optical Trap (MOT) and an optical molasses phase to prepare a sub-Doppler atomic sample. The atoms are then loaded into an optical conveyor belt, which is formed by two counter-propagating Optical Dipole Trap (ODT) beams creating a dynamic standing wave.
+    To address the heating introduced by the transport process, the Electromagnetically Induced Transparency (EIT) cooling scheme was investigated numerically. A 24-level quantum master equation model was implemented to simulate the dynamics of the $^{87}$Rb $D_2$ line. The results show that optical pumping into uncoupled states halts the cooling cycle, making the addition of an active repump field a requirement to maintain the population in the active $\Lambda$ system and approach the motional ground state.
 
-    This thesis describes the optimization of the atomic cloud preparation, the implementation of the second optical branch needed to complete the conveyor belt, and the numerical modeling of the Electromagnetically Induced Transparency (EIT) cooling required to reduce the atomic temperature once inside the fiber.
-
-    The manuscript is structured as follows. Chapter 1 provides the theoretical background on HCPCFs, optical trapping, conveyor belt kinematics, and EIT cooling. Chapter 2 describes the experimental apparatus, the imaging calibration, the design of the "black fiber" injection setup, and the formulation of the multi-level numerical model. Chapter 3 presents the data analysis and the experimental results, including the optimization of the molasses temperature and ODT capture efficiency, the power and polarization stability of the optical lattice, and the numerical simulations of the EIT cooling dynamics.
+    The integration of these subsystems provides the optical infrastructure to perform the dynamic transport of atoms into the HCPCF. The numerical analysis of EIT cooling also establishes the operating parameters for the future implementation of sub-Doppler cooling inside the hollow core.
 
 \end{document}
