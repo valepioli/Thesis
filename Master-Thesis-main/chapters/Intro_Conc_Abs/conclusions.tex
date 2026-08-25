@@ -3,18 +3,18 @@
 
 \begin{document}
 
-    \chapter*{Conclusions}
-    \addcontentsline{toc}{chapter}{Conclusions}
-    \markboth{Conclusions}{}
-    
-    This thesis presented the experimental realization and numerical analysis of the subsystems required to trap, transport, and cool a sample of $^{87}$Rb atoms inside a Hollow-Core Photonic Crystal Fiber.
+\chapter*{Conclusions}
+\addcontentsline{toc}{chapter}{Conclusions}
+\markboth{Conclusions}{}
 
-    The preliminary cooling stages were characterized by optimizing the optical molasses, reaching a minimum temperature of $T = (8.42 \pm 0.17)~\mu\text{K}$. The transfer of the atomic cloud into the Optical Dipole Trap was then investigated. By translating the MOT position via the compensation coils to improve the overlap with the dipole beam, a capture efficiency of $(0.161 \pm 0.005)\%$ was measured, resulting in about $10^5$ trapped atoms.
+This thesis investigated the experimental and numerical components required for the preparation, optical trapping, transport, and cooling of cold $^{87}$Rb atoms in the context of a Hollow-Core Photonic Crystal Fiber experiment.
 
-    The generation of the optical conveyor belt requires a second, counter-propagating 1064~nm optical field. The injection line for a polarization-maintaining single-mode fiber was built and aligned. The optical fields were overlapped on the upper breadboard to form the standing wave. To evaluate the reliability of the lattice potential, the stability of the transmitted field was measured, yielding a minimum fractional power deviation of $8 \times 10^{-4}$ at 0.1~s and an angular polarization deviation of $7 \times 10^{-5}$~rad at 3~s. While long-term stability is limited by low-frequency drifts, the measured parameters are compatible with the transport requirements.
+The preparation of the atomic sample was optimized by adjusting the optical-molasses parameters and compensation magnetic fields, yielding a minimum temperature of $T = (8.4 \pm 0.2)\,\mu\text{K}$ measured via ballistic expansion. The loading of the Optical Dipole Trap was then optimized by translating the MOT to improve its spatial overlap with the ODT beam. This resulted in a measured loading efficiency of $\eta = (0.161 \pm 0.005)\,\%$ and a conservatively estimated trapped population of $N_{\mathrm{ODT}} = (1.0 \pm 0.1)\times 10^{5}\ \text{atoms}$.
 
-    To address the heating introduced by the transport process, the Electromagnetically Induced Transparency (EIT) cooling scheme was investigated numerically. A 24-level quantum master equation model was implemented to simulate the dynamics of the $^{87}$Rb $D_2$ line. The results show that optical pumping into uncoupled states halts the cooling cycle, making the addition of an active repump field a requirement to maintain the population in the active $\Lambda$ system and approach the motional ground state.
+To establish the optical geometry for a future conveyor-belt implementation, an injection line for a 1064~nm polarization-maintaining single-mode fiber was designed, characterized, and spatially aligned with the counter-propagating field delivered through the HCPCF. The stability of the field transmitted through this fiber was characterized, with the fractional power and angular Allan deviations reaching minima of $8\times10^{-4}$ at $0.1$~s and $7\times10^{-5}$~rad at $3$~s, respectively. At longer averaging times, both measurements were increasingly affected by low-frequency technical noise and environmental drifts. While these measurements demonstrate the stability of the injected branch, characterizing the complete conveyor-belt potential will require an independent analysis of the HCPCF branch and an extension of the noise spectrum to the frequencies relevant to the atomic motional modes.
 
-    The integration of these subsystems provides the optical infrastructure to perform the dynamic transport of atoms into the HCPCF. The numerical analysis of EIT cooling also establishes the operating parameters for the future implementation of sub-Doppler cooling inside the hollow core.
+The effect of optical pumping on EIT cooling was investigated numerically, moving from an ideal three-level $\Lambda$ model to a 24-level system including the hyperfine and Zeeman structure of the $^{87}$Rb $D_{2}$ transition. The multilevel simulations reveal that spontaneous emission into uncoupled ground states progressively interrupts the cooling cycle. However, including an active repump field sustains population recycling, allowing the simulated mean phonon number to approach the motional ground state. These results identify repumping and internal-state management as essential requirements, while noting that cooling dynamics are substantially slower in the multilevel system than in the ideal model. Future simulations will still need to incorporate specific perturbations expected in the fiber environment, such as position-dependent light shifts and local magnetic-field gradients.
+
+Overall, this work establishes the main experimental infrastructure and numerical framework needed for controlled atom transport into the HCPCF. The next steps are the experimental realization of the conveyor-belt motion, the measurement of transport-induced heating, and the implementation of EIT cooling under the actual optical and magnetic conditions inside the hollow core.
 
 \end{document}

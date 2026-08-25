@@ -4,10 +4,10 @@
 \subsection{Introduction to EIT Cooling}
 
 The preparation of trapped atoms in their motional ground state is a fundamental prerequisite for high-fidelity quantum information processing and the realization of strongly coupled atom-photon systems.
-Resolved-sideband cooling is effective for this task, but it imposes the restriction of the strong-confinement condition: the natural linewidth of the atomic transition $\gamma$ must be much smaller than the harmonic trap frequency $\nu$ ($\gamma \ll \nu$) \cite{Morigi:00}. This requirement is difficult to fulfill in shallow or low-frequency traps, where the sidebands are not spectrally resolved.
+Resolved-sideband cooling is effective for this task, but it imposes the restriction of the strong-confinement condition: the natural linewidth of the atomic transition $\gamma$ must be much smaller than the harmonic trap frequency $\nu$ ($\gamma \ll \nu$)~\cite{Morigi:00}. This requirement is difficult to fulfill in shallow or low-frequency traps, where the sidebands are not spectrally resolved.
 Electromagnetically Induced Transparency (EIT) cooling overcomes this
 limitation by exploiting quantum interference in a multi-level atomic
-structure \cite{Morigi:00, Morigi:03}. It achieves ground-state cooling
+structure~\cite{Morigi:00, Morigi:03}. It achieves ground-state cooling
 without requiring strong confinement; the relevance of this feature becomes
 clear when the cooling stage is integrated into a sequence that
 involves transport and tight spatial confinement.
@@ -30,7 +30,7 @@ In this section, all frequencies and detunings are expressed as angular frequenc
     \label{fig:3level}
 \end{wrapfigure}
 
-The theoretical framework of EIT cooling is based on a three-level atomic system in a $\Lambda$ configuration (Fig. \ref{fig:3level}). This consists of two stable or metastable ground states, $|g_1\rangle$ and $|g_2\rangle$, both optically coupled to a common, short-lived excited state $|e\rangle$ with spontaneous decay rate $\gamma$ \cite{Morigi:00, Morigi:03}.
+The theoretical framework of EIT cooling is based on a three-level atomic system in a $\Lambda$ configuration (Fig.~\ref{fig:3level}). This consists of two stable or metastable ground states, $|g_1\rangle$ and $|g_2\rangle$, both optically coupled to a common, short-lived excited state $|e\rangle$ with spontaneous decay rate $\gamma$~\cite{Morigi:00, Morigi:03}.
 
 The transition $|g_1\rangle \leftrightarrow |e\rangle$ is driven by a weak probe laser with Rabi frequency $\Omega_p$, satisfying $\Omega_p \ll \Omega_c$, while the transition $|g_2\rangle \leftrightarrow |e\rangle$ is driven by a strong coupling laser with Rabi frequency $\Omega_c$. Denoting the bare transition frequencies by $\omega_{eg_j}=(E_e-E_{g_j})/\hbar$, the single-photon detunings are defined as
 \begin{equation}
@@ -60,7 +60,7 @@ Subtracting the irrelevant constant energy $E_e-\hbar\omega_p$ from all three le
     +\frac{\hbar}{2}\left(\Omega_p|e\rangle\langle g_1|+\Omega_c|e\rangle\langle g_2|+\mathrm{h.c.}\right).
     \label{eq:H_rot_general}
 \end{equation}
-For the derivation of the dark state and the dressed-state cooling condition, exact two-photon resonance is assumed and both lasers therefore have the same single-photon detuning, $\Delta_p=\Delta_c\equiv\Delta$. Under this assumption, Eq.~\eqref{eq:H_rot_general} is written as $H_{\mathrm{rot}}=H_0+V_0$, with \cite{Morigi:03}
+For the derivation of the dark state and the dressed-state cooling condition, exact two-photon resonance is assumed and both lasers therefore have the same single-photon detuning, $\Delta_p=\Delta_c\equiv\Delta$. Under this assumption, Eq.~\eqref{eq:H_rot_general} is written as $H_{\mathrm{rot}}=H_0+V_0$, with~\cite{Morigi:03}
 \begin{equation}
     H_0 = -\hbar\Delta \left(|g_1\rangle\langle g_1| + |g_2\rangle\langle g_2|\right)
     \label{eq:H0}
@@ -70,19 +70,19 @@ For the derivation of the dark state and the dressed-state cooling condition, ex
     \label{eq:V0}
 \end{equation}
 
-The incoherent spontaneous emission from the excited state is described by the Liouvillian operator $\mathcal{K}$ \cite{Morigi:03}:
+The incoherent spontaneous emission from the excited state is described by the Liouvillian operator $\mathcal{K}$~\cite{Morigi:03}:
 \begin{equation}
     \mathcal{K}\rho = -\frac{\gamma}{2}\left(|e\rangle\langle e|\rho + \rho|e\rangle\langle e|\right) + \sum_{j=1,2} \gamma_j |g_j\rangle\langle e|\rho|e\rangle\langle g_j|
     \label{eq:liouvillian}
 \end{equation}
-where $\gamma_1$ and $\gamma_2$ are the partial decay rates into $|g_1\rangle$ and $|g_2\rangle$, with $\gamma_1 + \gamma_2 = \gamma$ \cite{Morigi:03}. Physically, $\mathcal{K}$ encodes the fact that population in $|e\rangle$ decays at total rate $\gamma$, redistributed between $|g_1\rangle$ and $|g_2\rangle$ according to the branching ratios $\gamma_1/\gamma$ and $\gamma_2/\gamma$.
+where $\gamma_1$ and $\gamma_2$ are the partial decay rates into $|g_1\rangle$ and $|g_2\rangle$, with $\gamma_1 + \gamma_2 = \gamma$~\cite{Morigi:03}. Physically, $\mathcal{K}$ encodes the fact that population in $|e\rangle$ decays at total rate $\gamma$, redistributed between $|g_1\rangle$ and $|g_2\rangle$ according to the branching ratios $\gamma_1/\gamma$ and $\gamma_2/\gamma$.
 
-The essential physical mechanism underlying EIT is the emergence of a dark state: a coherent superposition of the two ground states that is decoupled from the excited state by destructive quantum interference between the two optical excitation pathways. At two-photon resonance, this dark state takes the form \cite{Morigi:03}:
+The essential physical mechanism underlying EIT is the emergence of a dark state: a coherent superposition of the two ground states that is decoupled from the excited state by destructive quantum interference between the two optical excitation pathways. At two-photon resonance, this dark state takes the form~\cite{Morigi:03}:
 \begin{equation}
     |\Psi_D\rangle = \frac{1}{\Omega}\left(\Omega_c |g_1\rangle - \Omega_p |g_2\rangle\right)
     \label{eq:darkstate}
 \end{equation}
-where $\Omega = \sqrt{\Omega_p^2 + \Omega_c^2}$ is the total effective Rabi frequency \cite{Morigi:03}. An atom optically pumped into $|\Psi_D\rangle$ ceases to absorb light, a phenomenon known as Coherent Population Trapping (CPT) \cite{Lounis:92}.
+where $\Omega = \sqrt{\Omega_p^2 + \Omega_c^2}$ is the total effective Rabi frequency~\cite{Morigi:03}. An atom optically pumped into $|\Psi_D\rangle$ ceases to absorb light, a phenomenon known as Coherent Population Trapping (CPT)~\cite{Lounis:92}.
 
 The decoupling of $|\Psi_D\rangle$ from $|e\rangle$ is verified by direct evaluation of the coupling matrix element $\langle e|V_0|\Psi_D\rangle$. Using Eq.~\eqref{eq:V0} and the coefficients of $|\Psi_D\rangle$ in Eq.~\eqref{eq:darkstate}, only the $\Omega_p|e\rangle\langle g_1|$ and $\Omega_c|e\rangle\langle g_2|$ terms of $V_0$ contribute, giving
 \begin{equation}
@@ -92,7 +92,7 @@ The excitation amplitude contributed by the $|g_1\rangle \to |e\rangle$ pathway,
 
 \subsection{Dressed States and the Fano Absorption Spectrum}
 
-The cooling mechanism is analyzed in the dressed-state picture \cite{Morigi:03}. When the coupling laser interacts with the atom, the unperturbed atomic states are replaced by hybridized energy levels, the eigenstates of the coupled atom--laser Hamiltonian.
+The cooling mechanism is analyzed in the dressed-state picture~\cite{Morigi:03}. When the coupling laser interacts with the atom, the unperturbed atomic states are replaced by hybridized energy levels, the eigenstates of the coupled atom--laser Hamiltonian.
 
 In the driven $\Lambda$ system, the dark state $|\Psi_D\rangle$ is an eigenstate of the full internal Hamiltonian $H_0 + V_0$. The three-level system thus reduces to an effective two-level system spanned by $|e\rangle$ and the orthogonal bright ground state
 \begin{equation}
@@ -113,7 +113,7 @@ with the corresponding orthogonal eigenvectors
     |\psi_+\rangle = \cos\theta\, |e\rangle + \sin\theta\, |\psi_C\rangle, \qquad |\psi_-\rangle = \sin\theta\, |e\rangle - \cos\theta\, |\psi_C\rangle,
     \label{eq:dressed_states}
 \end{equation}
-where the mixing angle $\theta$ satisfies $\tan\theta = (\sqrt{\Delta^2 + \Omega^2} - \Delta)/\Omega$ \cite{Morigi:03}.
+where the mixing angle $\theta$ satisfies $\tan\theta = (\sqrt{\Delta^2 + \Omega^2} - \Delta)/\Omega$~\cite{Morigi:03}.
 
 The preceding dressed-state construction refers to exact two-photon resonance, $\Delta_p=\Delta_c=\Delta$. To calculate or measure the absorption profile, instead, the coupling-laser frequency is held fixed, so that $\Delta_c\equiv\Delta$ remains constant, while the probe frequency is scanned. Therefore
 \begin{equation}
@@ -143,9 +143,9 @@ which in the limit $\Delta \gg \Omega_c$ reduces to $\delta \approx \Omega_c^2/(
 
 \subsection{Coupling to the Motional Degrees of Freedom}
 
-For an atom confined in a harmonic trapping potential of frequency $\nu$, the external center-of-mass motion is quantized into vibrational Fock states $|n\rangle$, with mechanical Hamiltonian $H_{\text{mec}} = \hbar\nu(a^\dagger a + 1/2)$. EIT cooling maps the engineered asymmetric Fano spectrum onto these motional sidebands \cite{Morigi:00}.
+For an atom confined in a harmonic trapping potential of frequency $\nu$, the external center-of-mass motion is quantized into vibrational Fock states $|n\rangle$, with mechanical Hamiltonian $H_{\text{mec}} = \hbar\nu(a^\dagger a + 1/2)$. EIT cooling maps the engineered asymmetric Fano spectrum onto these motional sidebands~\cite{Morigi:00}.
 
-The dynamics are evaluated in the Lamb--Dicke regime, where the spatial extent of the atomic wavepacket is much smaller than the optical wavelength (characterized by $\eta \ll 1$, see \ref{eq:lambdicke}).  In this two-photon process, the relevant Lamb-Dicke parameter is defined by the effective wavevector $\Delta\vec{k} = \vec{k}_p - \vec{k}_c$, such that $\eta = \vert{}\Delta\vec{k}\vert{}x_0$. A crucial geometrical requirement for EIT cooling is therefore $\Delta\vec{k} \neq 0$: if the lasers are copropagating, there is no net momentum transfer on the atom. For this reason, the beams must be aligned at an angle to guarantee a non-zero projection of $\Delta\vec{k}$ along the cooling axis. In this limit, the ideal cooling conditions are achieved by tuning the AC Stark shift to match the trap frequency \cite{Morigi:00}:
+The dynamics are evaluated in the Lamb--Dicke regime, where the spatial extent of the atomic wavepacket is much smaller than the optical wavelength (characterized by $\eta \ll 1$, see~\ref{eq:lambdicke}).  In this two-photon process, the relevant Lamb-Dicke parameter is defined by the effective wavevector $\Delta\vec{k} = \vec{k}_p - \vec{k}_c$, such that $\eta = \vert{}\Delta\vec{k}\vert{}x_0$. A crucial geometrical requirement for EIT cooling is therefore $\Delta\vec{k} \neq 0$: if the lasers are copropagating, there is no net momentum transfer on the atom. For this reason, the beams must be aligned at an angle to guarantee a non-zero projection of $\Delta\vec{k}$ along the cooling axis. In this limit, the ideal cooling conditions are achieved by tuning the AC Stark shift to match the trap frequency~\cite{Morigi:00}:
 \begin{equation}
     \delta \simeq \nu.
     \label{eq:cooling_condition}
@@ -162,10 +162,10 @@ Substituting the approximate expression $\delta \approx \Omega_c^2/(4\Delta)$ yi
     \Omega_c^2 = 4\nu(\nu + \Delta),
     \label{eq:exact_cooling_condition}
 \end{equation}
-which reduces to the approximate form in the limit $\nu \ll \Delta$ typical of EIT cooling. Satisfying this resonance condition produces two simultaneous effects (also shown in Fig. \ref{fig:redsideband}):
+which reduces to the approximate form in the limit $\nu \ll \Delta$ typical of EIT cooling. Satisfying this resonance condition produces two simultaneous effects (also shown in Fig.~\ref{fig:redsideband}):
 \begin{itemize}
-    \item \textbf{Suppression of heating (carrier cancellation).} The zero of the Fano profile is aligned with the carrier transition ($|g_1, n\rangle \to |e, n\rangle$) \cite{Morigi:00}. An atom in the dark state therefore cannot scatter photons unless it changes its motional state. This suppresses the dominant source of heating that affects standard cooling schemes.
-    \item \textbf{Enhancement of cooling (red-sideband excitation).} The narrow dressed-state resonance $|\psi_-\rangle$ is shifted onto the red-sideband transition ($|g_1, n\rangle \to |e, n-1\rangle$) \cite{Morigi:00}, enhancing the absorption cross-section for the removal of a vibrational quantum. Conversely, the blue sideband ($|g_1, n\rangle \to |e, n+1\rangle$), which would add a phonon, falls in a spectral region of minimal excitation probability.
+    \item \textbf{Suppression of heating (carrier cancellation).} The zero of the Fano profile is aligned with the carrier transition ($|g_1, n\rangle \to |e, n\rangle$)~\cite{Morigi:00}. An atom in the dark state therefore cannot scatter photons unless it changes its motional state. This suppresses the dominant source of heating that affects standard cooling schemes.
+    \item \textbf{Enhancement of cooling (red-sideband excitation).} The narrow dressed-state resonance $|\psi_-\rangle$ is shifted onto the red-sideband transition ($|g_1, n\rangle \to |e, n-1\rangle$)~\cite{Morigi:00}, enhancing the absorption cross-section for the removal of a vibrational quantum. Conversely, the blue sideband ($|g_1, n\rangle \to |e, n+1\rangle$), which would add a phonon, falls in a spectral region of minimal excitation probability.
 \end{itemize}
 
 
@@ -175,14 +175,14 @@ The full scheme of EIT cooling, combining the level structure with the correspon
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{Cap_1_figures/EIT_scheme_full.png}
-    \caption{Full picture of the EIT cooling scheme, combining the level structure with the corresponding absorption spectrum. The carrier transition (green, $|g_1,n\rangle \to |e,n\rangle$) and the red-sideband transition (blue, $|g_1,n\rangle \to |e,n-1\rangle$) absorption profiles feature a dark-state zero and a narrow, AC-Stark-shifted Fano resonance. The efficiency of the scheme relies on the tuning $\delta \simeq \nu$ (Eq.~\eqref{eq:cooling_condition}) so that the Fano resonance peak of the red sideband (blue) overlaps with the zero-absorption point of the carrier (green). Consequently, cooling is resonantly enhanced exactly where carrier heating is completely suppressed.}
+    \caption{Full picture of the EIT cooling scheme, combining the level structure with the corresponding absorption spectrum. From~\cite{Morigi:00}}
     \label{fig:EIT_scheme}
 \end{figure}
 
 
 \subsection{Cooling Dynamics and the Theoretical Limit}
 
-Provided that the cooling laser is weak ($\Omega_p \ll \Omega_c$) and the narrow resonance is not saturated, the motional dynamics can be described by coarse-graining the evolution over the internal-state relaxation time. The populations $P(n)$ of the vibrational states evolve according to a classical rate equation \cite{Morigi:00, Morigi:03}:
+Provided that the cooling laser is weak ($\Omega_p \ll \Omega_c$) and the narrow resonance is not saturated, the motional dynamics can be described by coarse-graining the evolution over the internal-state relaxation time. The populations $P(n)$ of the vibrational states evolve according to a classical rate equation~\cite{Morigi:00, Morigi:03}:
 \begin{equation}
     \frac{d}{dt}P(n) = \eta^2 \left[ A_- \left((n+1)P(n+1) - nP(n)\right) + A_+ \left(nP(n-1) - (n+1)P(n)\right) \right]
     \label{eq:rate_equation}
@@ -193,7 +193,7 @@ where $A_-$ and $A_+$ are the effective excitation rates of the red and blue sid
     \label{eq:explicit_rates}
 \end{equation}
 
-The evolution of the mean phonon number $\langle n \rangle = \sum_n n P(n)$ follows \cite{Morigi:00, Morigi:03}:
+The evolution of the mean phonon number $\langle n \rangle = \sum_n n P(n)$ follows~\cite{Morigi:00, Morigi:03}:
 \begin{equation}
     \frac{d\langle n\rangle}{dt} = -\eta^2 (A_- - A_+) \langle n\rangle + \eta^2 A_+ = -W\langle n\rangle + \eta^2 A_+,
     \label{eq:mean_phonon_evolution}
@@ -203,14 +203,14 @@ where $W = \eta^2 (A_- - A_+)$ is the net cooling rate. Under the optimal condit
     W_{\text{max}} \sim \eta^2 \frac{\Omega_p^2 \Omega_c^2}{\Omega^2 \gamma},
     \label{eq:W_max}
 \end{equation}
-which confirms that fast cooling is achieved for large Rabi frequencies \cite{Morigi:03}.
+which confirms that fast cooling is achieved for large Rabi frequencies~\cite{Morigi:03}.
 
 The steady-state mean vibrational quantum number $\langle n_S \rangle$ is given by the ratio of the heating rate to the net cooling rate:
 \begin{equation}
     \langle n_S \rangle = \frac{A_+}{A_- - A_+} = \frac{\gamma^2\nu^2 + 4[\Omega_c^2/4 - \nu(\nu + \Delta)]^2}{4\Delta\nu|\Omega_c^2 - 4\nu^2|}.
     \label{eq:steady_state_n}
 \end{equation}
-The absolute minimum is achieved when the AC Stark shift matches the trap frequency, i.e.\ when Eq.~\eqref{eq:exact_cooling_condition} is satisfied, yielding the fundamental theoretical cooling limit \cite{Morigi:00, Morigi:03}:
+The absolute minimum is achieved when the AC Stark shift matches the trap frequency, i.e.\ when Eq.~\eqref{eq:exact_cooling_condition} is satisfied, yielding the fundamental theoretical cooling limit~\cite{Morigi:00, Morigi:03}:
 \begin{equation}
     \langle n_S \rangle_{\text{min}} = \left(\frac{\gamma}{4\Delta}\right)^2.
     \label{eq:n_min}

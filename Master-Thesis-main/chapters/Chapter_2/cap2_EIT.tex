@@ -52,8 +52,6 @@ where the $3j$ symbol carries the electric-dipole selection rules, and the reduc
 \end{equation}
 with $J_g=1/2$, $J_e=3/2$, and $I=3/2$ for the $^{87}\mathrm{Rb}$ $D_2$ line. Transitions that violate the electric-dipole selection rules are assigned zero coupling.
 
-The fine-structure reduced matrix element $\langle J_e\Vert d\Vert J_g\rangle$ is common to every hyperfine transition of the $D_2$ line, and cancels in every normalized quantity used in the simulation, the laser coupling amplitudes of Eq.~\eqref{eq:general_laser_interaction} and the branching fractions of Eq.~\eqref{eq:branching_fraction}, so only the relative weighting between $(F_g,F_e)$ pairs, given by the Wigner-$6j$ coefficient, matters; it is set to $1$ in the code. Summing the resulting $|d_{eg}^{(q)}|^2$ over all decay channels of a given excited sublevel then gives a total decay rate equal to the natural linewidth $\gamma$, independent of the $F'$ manifold, as required physically.
-
 To reduce optical pumping into states outside the EIT cycle, the target $\Lambda$ system is built around states near the edge of a Zeeman manifold rather than around $m_F=0$: the condition $\Delta m_F=0,\pm1$ then limits the number of ground states reachable by spontaneous decay. In the configuration used for the multilevel and axial-parameter simulations (Fig.~\ref{fig:multilevel_EIT_scheme}), the two EIT ground states belong to different hyperfine manifolds. The $\sigma^-$-polarized probe field addresses $|g_1\rangle=|F=2,m_F=-1\rangle\rightarrow|F'=2,m_F=-2\rangle$ and is scanned across the two-photon resonance. The $\sigma^-$-polarized coupling field addresses $|g_2\rangle=|F=1,m_F=-1\rangle\rightarrow|F'=2,m_F=-2\rangle$; its Rabi frequency is set by the EIT cooling condition of Eq.~\eqref{eq:exact_condition_numerical}. A $\pi$-polarized repump field, resonant on $|F=2,m_F=-2\rangle\rightarrow|F'=2,m_F=-2\rangle$, recovers population that leaks out of the $\Lambda$ system into the adjacent Zeeman sublevel of $F=2$; its motional factor is set to the identity, Eq.~\eqref{eq:repump_no_motion}. This configuration is used for the simulation with the axial trap parameters (Sec.~\ref{subsec:axial_simulation}).
 
 \begin{figure}[htbp]
@@ -468,9 +466,9 @@ During adiabatic compression, temperature scales with trapping frequency ($T \pr
 \begin{equation}
     T_{\mathrm{tip}} = T_{\mathrm{MOT}}\sqrt{44} \approx 56\,\mu\mathrm{K}.
 \end{equation}
-Despite this rise in temperature, adiabaticity keeps the mean phonon number fixed at $\langle n_{z} \rangle \approx 2.3$. Reaching the motional ground state ($\langle n_z \rangle \ll 1$) near the fiber surface therefore still requires active cooling, such as EIT sideband cooling.
+Despite this rise in temperature, adiabaticity keeps the mean phonon number fixed at $\langle n_{z} \rangle \approx 2.3$.
 
-The axial trap frequency $\nu_{z,\mathrm{tip}}$ is inserted directly into the motional Hamiltonian, with $\nu$ set to $450$~kHz. The Lamb--Dicke parameters of the probe and coupling beams follow from their wavevector projections, Eq.~\eqref{eq:eta_individual_beam}. For EIT sideband cooling at the $780\,\mathrm{nm}$ absorption wavelength, the optical wavenumber is $k = 2\pi/\lambda_{\mathrm{EIT}} \approx 8.055 \times 10^6\,\mathrm{m}^{-1}$, and the spatial extent of the axial ground-state wavepacket is
+The axial trap frequency $\nu_{z,\mathrm{tip}}$ is inserted directly into the motional Hamiltonian, with $\nu$ set to $430$~kHz. The Lamb--Dicke parameters of the probe and coupling beams follow from their wavevector projections, Eq.~\eqref{eq:eta_individual_beam}. For EIT cooling at the $780\,\mathrm{nm}$ absorption wavelength, the optical wavenumber is $k = 2\pi/\lambda_{\mathrm{EIT}} \approx 8.055 \times 10^6\,\mathrm{m}^{-1}$, and the spatial extent of the axial ground-state wavepacket is
 \begin{equation}
     x_{0,ax} = \sqrt{\frac{\hbar}{2m(2\pi\nu_{z,\mathrm{tip}})}} \approx 11\,\mathrm{nm}.
 \end{equation}

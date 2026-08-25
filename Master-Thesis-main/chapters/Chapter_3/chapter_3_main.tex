@@ -1,4 +1,3 @@
-% !TEX root = ../../thesis_main.tex
 \documentclass[../../thesis_main.tex]{subfiles}
 \ifSubfilesClassLoaded{\externaldocument{../../thesis_main}}{}
 \graphicspath{{\subfix{../../figures/}}}
@@ -7,12 +6,37 @@
 
     \ifSubfilesClassLoaded{\tableofcontents}{}
 
-    \chapter{Results and Discussion}
-    Following the experimental and analysis procedures explained in Chapter \ref{cap2}, the temperature of the atom cloud and the ODT capture efficiency were characterized and optimized.
-    
-    The first stage of the optimization process consists of  minimizing the molasses temperature through the adjustment of the cooling laser detuning, the cooling laser intensity, and the compensation magnetic field.
+\chapter{Results and Discussion}
 
-    Subsequently, the ODT loading is optimized by exploiting the compensation coils to displace the MOT after loading. This optimization aims to maximize the spatial overlap between the atomic cloud and the ODT beam, enhancing the capture efficiency.
+Following the experimental and analysis procedures explained in
+Chapter~\ref{cap2}, the temperature of the atomic cloud and the ODT
+capture efficiency were characterized and optimized, and the stability
+of the optical field delivered through the black fiber was assessed.
+This chapter is organized in four parts.
+
+The first part addresses the optimization of the molasses temperature,
+carried out by adjusting the cooling-laser detuning, the cooling-laser
+intensity, and the compensation magnetic field (Sec.~\ref{sec:molasses_temperature_optimization}).
+
+The second part describes the optimization of the ODT loading. The
+compensation coils are used to displace the MOT after loading, in
+order to maximize the spatial overlap between the atomic cloud and the
+ODT beam and thereby enhance the capture efficiency; the measured
+loading efficiency is then compared with the capture model of
+Chapter~\ref{cap2} (Sec.~\ref{sec:odt_loading_optimization}).
+
+The third part presents the characterization of the power and
+polarization stability of the field transmitted through the black
+fiber, analyzed in the time domain with the Allan deviation and in the
+frequency domain with the amplitude spectral density, and discusses the
+implications of the measured noise for the optical conveyor belt
+(Sec.~\ref{sec:power_polarization_results}).
+
+The fourth part reports the numerical simulation of EIT cooling,
+starting from the ideal three-level system and extending to the full
+24-level structure of the $^{87}\mathrm{Rb}$ $D_2$ line, including the
+effect of optical pumping and repumping on the cooling dynamics
+(Sec.~\ref{sec:eit_cooling_results}).
 
     \import{./}{cap3_MOL_TEMP.tex}
     \clearpage

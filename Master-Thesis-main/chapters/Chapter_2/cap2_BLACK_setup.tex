@@ -60,7 +60,7 @@ injection optics.
 \label{subsec:black_fiber_setup}
 
 The injection setup for the black fiber comprises the pre-existing ODT injection setup, shared with the HCPCF branch, and a branch built specifically for the black fiber downstream of PBS2.
-To the first setup a HWP was added for the polarization control required to implement the conveyor belt.
+To the first setup a half-wave plate was added for the polarization control required to implement the conveyor belt.
 
 The pre-existing setup, shown in Figure~\ref{fig:HC_pdf}, consists of:
 \begin{itemize}
@@ -117,7 +117,7 @@ For each transverse direction, the measured radius was fitted to the Gaussian-be
 \subsection{Mode matching and the fiber endcap}
 \label{subsec:mode_matching_endcap}
 
-Coupling a Gaussian beam into a single-mode fiber requires matching the focused field to the fundamental fiber mode in waist size, waist position and transverse alignment. The standard approach uses a collimated input beam and a fixed collimating lens that focuses it directly onto the fiber facet, and this was the strategy first used for the black fiber. The mode-matching parameters used in the definitive branch (Section~\ref{subsec:black_fiber_setup}) were derived and validated on a dedicated test bench (Fig. \ref{fig:test_black}, only the input section upstream of the fiber in the picture is relevant for the mode-matching and injection procedure. The optical layout at the fiber output is dedicated exclusively to the characterization of the polarization stability, which is discussed in detail in Sec.~\ref{sec:polarization_stability}). The test bench consisted of:
+Coupling a Gaussian beam into a single-mode fiber requires matching the focused field to the fundamental fiber mode in waist size, waist position and transverse alignment. The standard approach uses a collimated input beam and a fixed collimating lens that focuses it directly onto the fiber facet, and this was the strategy first used for the black fiber. The mode-matching parameters used in the definitive branch (Section~\ref{subsec:black_fiber_setup}) were derived and validated on a dedicated test bench (Fig. \ref{fig:test_black}, only the input section upstream of the fiber in the picture is relevant for the mode-matching and injection procedure. The optical layout at the fiber output is dedicated exclusively to the characterization of the polarization stability, which is discussed in detail in Sec.~\ref{sec:black_fiber_polarization}). The test bench consisted of:
 \begin{itemize}
     \item HWP 1 and the optical isolator, as in Section~\ref{subsec:black_fiber_setup};
     \item HWP 2 and PBS 1 (with a beam dump on the rejected port), regulating the optical power delivered to the rest of the setup;
@@ -130,8 +130,15 @@ Coupling a Gaussian beam into a single-mode fiber requires matching the focused 
     \item a focusing element coupling the beam into the black fiber: initially a fixed $f=18\,\mathrm{mm}$ fiber collimator (Collimator f18) (Sch\"{a}fter+Kirchhoff, 60FC-4-A18-03), later replaced by the $f=25\,\mathrm{mm}$ achromatic doublet (Lens f25) (Thorlabs AC127-025-C) on a micrometric translation stage (z-stage) also used in the definitive branch;
 \end{itemize}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Cap_2_figures/test_black.pdf}
+    \caption{Setup of the black-fiber injection test bench, used to validate the mode-matching procedure and calibrate the axial position of the $f=25\,\mathrm{mm}$ lens. At the fiber output the polarization stability was characterized with the setup of Section~\ref{sec:black_fiber_polarization}.}
+    \label{fig:test_black}
+\end{figure}
+
 Injecting a nominally collimated beam directly through the fixed $f=18\,\mathrm{mm}$ collimator gave an injection efficiency of approximately $20\%$. Introducing additional divergence upstream, equivalent to inserting a weak $f=-1000\,\mathrm{mm}$ lens before the collimator, raised the efficiency above $50\%$. This indicates that the plane of the fiber mode does not coincide with the nominal focal plane of the collimator.
-The beam profile after the fiber was measured (Figure~\ref{fig:black_fiber_characterization}a) and its reconstructed waist compared with the mode-field diameter (MFD) specified by the manufacturer at $1064\,\mathrm{nm}$ (Figure~\ref{fig:black_fiber_characterization}b). The measured waist agreed with the specified MFD, confirming that the transmitted light corresponds to the fundamental fiber mode.
+The beam profile after the fiber was measured (Figure~\ref{fig:black_fiber_characterization}a) and its reconstructed waist compared with the mode-field diameter (MFD) specified by the manufacturer at $1064\,\mathrm{nm}$ (Figure~\ref{fig:black_fiber_characterization}b). 
 
 \begin{figure}[htbp]
     \centering
@@ -170,6 +177,8 @@ Based on the fit of the experimental data, and keeping the beam quality factors 
     R_x^2 &= 0.9993, & R_y^2 &= 0.9991.
 \end{align*}
 
+The measured waist agrees with the specified MFD, confirming that the transmitted light corresponds to the fundamental fiber mode.
+
 \begin{wrapfigure}{R}{0.45\textwidth}
     \centering
     \vspace{-10pt} % Opzionale: riduce un po' lo spazio vuoto sopra l'immagine
@@ -204,12 +213,7 @@ Using $\lambda=1.064\,\mu\mathrm{m}$, $f=25\,\mathrm{mm}$, and $w_{\mathrm{f}}=5
 The beam expander was set to produce this radius at the injection lens, and the resulting beam was profiled before injection to verify both its size and its residual divergence.
 
 A temporary reverse-direction setup was implemented for alignment purposes(not shown in Figure~\ref{fig:test_black}). The axial position of the $f=25\,\mathrm{mm}$ lens was calibrated by propagating light in the reverse direction, using a MOT beam injected through a fixed $f=18\,\mathrm{mm}$ collimator. The light was collected by the $f=25\,\mathrm{mm}$ lens, and its position was adjusted until the resulting beam was collimated. This confirmed the effective fiber-mode plane and fixed the lens position for the definitive setup.
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.9\textwidth]{Cap_2_figures/test_black.pdf}
-    \caption{Setup of the black-fiber injection test bench, used to validate the mode-matching procedure and calibrate the axial position of the $f=25\,\mathrm{mm}$ lens. At the fiber output the polarization stability was characterized with the setup of Section~\ref{sec:black_fiber_polarization}.}
-    \label{fig:test_black}
-\end{figure}
+
 
 On the test bench, with the $f=25\,\mathrm{mm}$ lens at the calibrated position and forward propagation, the power measured after the black fiber and the $f=18\,\mathrm{mm}$ output collimator reached approximately $70\%$ of the power measured before the fiber, directly after the $f=25\,\mathrm{mm}$ lens. 
 
@@ -233,7 +237,7 @@ Before being integrated into the analysis setup, the polarizing beam splitter (P
 \end{equation}
 The component exhibited a PER of $31\,\mathrm{dB}$ in transmission and $30\,\mathrm{dB}$ in reflection, confirming its suitability for high-sensitivity polarization measurements. 
 
-Following this validation, the PBS was inserted into the final analysis setup (Figure~\ref{fig:test_black}). The beam emerging from the black fiber was collimated using a fixed $f=18\,\mathrm{mm}$ fiber collimator and sent through an HWP followed by the characterized PBS. The transmitted and reflected components were detected simultaneously by two photodiodes: the transmitted component was measured with a home-made photodiode (Channel 1), and the reflected component with a Thorlabs PDA100A2 (Channel 2).
+Following this validation, the PBS (PBS 4) was inserted into the final analysis setup (Figure~\ref{fig:test_black}). The beam emerging from the black fiber was collimated using a fixed $f=18\,\mathrm{mm}$ fiber collimator and sent through an HWP (HWP 6) followed by the PBS (PBS 4). The transmitted and reflected components were detected simultaneously by two photodiodes: the transmitted component was measured with a home-made photodiode (Channel 1), and the reflected component with a Thorlabs PDA100A2 (Channel 2).
 
 The HWP was adjusted to obtain approximately equal power at the two PBS outputs, corresponding to an input polarization close to $45^\circ$ relative to the PBS axes. At this operating point, a small polarization rotation transfers power between the two outputs, producing anticorrelated variations in the two detector signals and maximizing the sensitivity to polarization fluctuations.
 
@@ -336,7 +340,7 @@ Physically, the Allan deviation $\sigma_y(\tau)$ quantifies the typical fraction
 
 \subsection{Frequency-domain analysis and shot-noise limit}
 
-The frequency content of the power fluctuations was analyzed by computing the Amplitude Spectral Density (ASD) of the calibrated photocurrent. The mean value was subtracted from the trace, and a direct Fast Fourier Transform (FFT) was computed without applying an external window function. The ASD describes how the amplitude of the current fluctuations is distributed over frequency, in units of $\mathrm{A/\sqrt{Hz}}$.
+The frequency content of the power fluctuations was analyzed by computing the Amplitude Spectral Density (ASD) of the calibrated photocurrent. The mean value was subtracted from the trace, and a direct Fast Fourier Transform (FFT) was computed. The ASD describes how the amplitude of the current fluctuations is distributed over frequency, in units of $\mathrm{A/\sqrt{Hz}}$.
 
 To correctly evaluate the technical noise of the laser setup, the light-power fluctuations must be extracted from the measured photocurrent fluctuations by accounting for the quantum efficiency of the detector and separating the fundamental shot noise from the excess technical noise. The conversion of a photon flux into an electron flux is a statistical process. In a given time interval $\Delta t$, the variance of the generated electron number, $\sigma_n^2$, is related to the variance of the incident photon number, $\sigma_N^2$, by the fundamental relation~\cite{Saleh2019}:
 \begin{equation}

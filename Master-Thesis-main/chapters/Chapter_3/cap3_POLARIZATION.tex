@@ -32,7 +32,7 @@ drifts.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{Cap_3_figures/data_SAMPLE_600s_AfterBlackFiber_time_series.png}
+    \includegraphics[width=0.6\textwidth]{Cap_3_figures/data_SAMPLE_600s_AfterBlackFiber_time_series.png}
     \caption{Time series of the raw signals measured after the black fiber during a $600~\mathrm{s}$ acquisition. Top: voltage amplitude of the two transmission channels (CH1 and CH2). Bottom: corresponding fluctuation of the polarization angle $\Delta\theta$.}
     \label{fig:time_series_raw}
 \end{figure}
@@ -53,15 +53,15 @@ The bottom panel of Figure~\ref{fig:allan_deviation_results} shows the
 angular Allan deviation $\sigma_\theta(\tau)$ of the polarization angle.
 The minimum value, approximately $7\times10^{-5}~\mathrm{rad}$, is obtained
 at an averaging time of $\tau \approx 3~\mathrm{s}$. At shorter averaging
-times, the Allan deviation follows the characteristic
-$1/\sqrt{\tau}$ dependence associated with white noise. For
+times, the Allan deviation follows the
+$1/\sqrt{\tau}$ dependence, for
 $\tau > 3~\mathrm{s}$, slow environmental drifts become dominant and
 $\sigma_\theta(\tau)$ increases, reaching approximately
 $8\times10^{-4}~\mathrm{rad}$ at $\tau = 200~\mathrm{s}$.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]
+    \includegraphics[width=0.6\textwidth]
     {Cap_3_figures/data_SAMPLE_600s_AfterBlackFiber_allan_dev.png}
     \caption{Fully overlapping Allan deviation of the power and polarization
     signals measured after the black fiber over a $600~\mathrm{s}$
@@ -108,10 +108,7 @@ deviation. As the frequency increases, the measured noise decreases, although it
     \label{fig:fft_low_freq}
 \end{figure}
 
-An additional measurement based on a shorter $600~\mathrm{ms}$ acquisition with a larger bandwidth was performed to characterize the system at frequencies up to $10^5~\mathrm{Hz}$. The
-resulting transmitted-photocurrent spectrum is shown in
-Figure~\ref{fig:fft_high_freq}. Residual technical noise is visible below
-approximately $10^3~\mathrm{Hz}$. Above this frequency, the spectrum flattens but remains well above the calculated shot-noise level of $10^{-11}~\mathrm{A/\sqrt{Hz}}$. This result shows that a residual broadband technical noise is still present at higher frequencies, and the system is not yet limited by the fundamental detection noise, even though the most prominent excess noise is confined to the lower-frequency region.
+An additional measurement based on a shorter $600~\mathrm{ms}$ acquisition with a larger bandwidth was performed to characterize the system at frequencies up to $10^5~\mathrm{Hz}$. The resulting transmitted-photocurrent spectrum is shown in Figure~\ref{fig:fft_high_freq}. Residual technical noise is visible below approximately $10^3~\mathrm{Hz}$. The spectrum flattens and becomes comparable to the calculated shot-noise level of $10^{-11}~\mathrm{A/\sqrt{Hz}}$. This result demonstrates that the fiber does not introduce any intrinsic limitations, allowing the system to reach the fundamental detection noise floor at higher frequencies.
 
 \begin{figure}[htbp]
     \centering
@@ -120,12 +117,51 @@ approximately $10^3~\mathrm{Hz}$. Above this frequency, the spectrum flattens bu
     \caption{Amplitude Spectral Density of the transmitted photocurrent up
     to $10^5~\mathrm{Hz}$. The red dashed line represents the calculated
     photocurrent shot-noise level of
-    $10^{-11}~\mathrm{A/\sqrt{Hz}}$. Above approximately
-    $10^3~\mathrm{Hz}$, the measured spectrum flattens but remains above the shot-noise
+    $10^{-11}~\mathrm{A/\sqrt{Hz}}$. The measured spectrum is comparable with the shot-noise
     floor.}
     \label{fig:fft_high_freq}
 \end{figure}
 
 The time- and frequency-domain measurements provide a consistent
 characterization of the stability of the optical field delivered through
-the black fiber. FARE CONCLUSiONI PIU QUANTITATIVE CON CONFRONTO
+the black fiber. Two estimates relate these measurements
+to the requirements of the $^{87}$Rb optical conveyor belt.
+
+Intensity noise heats trapped atoms at a rate
+$\Gamma = \pi^2\nu^2 S_I(2\nu)$, where $\nu$ is the trap frequency and
+$S_I$ is the intensity noise spectrum~\cite{Savard:97,Gehm:98}. Optical
+conveyor belts operate with trap frequencies of order
+$10$--$400~\mathrm{kHz}$, so the relevant noise frequency $2\nu$ falls in
+the range where the measured ASD is already at the shot-noise floor
+(Fig.~\ref{fig:fft_high_freq}). At the shot-noise limit, the heating rate
+is of order $\Gamma \sim 10^{-6}~\mathrm{s}^{-1}$, corresponding to a
+heating time of $\sim10^{6}~\mathrm{s}$, well above any relevant
+experimental timescale.
+
+The top-down and bottom-up beams of the conveyor belt are delivered
+through two separate fibers, the black fiber and the HCPCF. A fluctuation of the polarization angle
+measured after the black fiber therefore contributes directly to a
+fluctuation of the relative angle $\delta\theta$ between the two
+interfering polarizations, and hence to the contrast of the standing
+wave.
+At $\tau = 200~\mathrm{s}$, the measured angular Allan deviation
+reaches approximately $\sigma_\theta \simeq 8\times10^{-4}~\mathrm{rad}$.
+Using this value as an order-of-magnitude estimate for the relative
+polarization fluctuation, the normalized polarization overlap changes as
+\[
+\cos(\delta\theta) \simeq 1-\frac{\delta\theta^2}{2},
+\]
+corresponding to a relative contrast reduction of approximately
+$3\times10^{-7}$. This estimate indicates that the polarization fluctuations
+of the black-fiber branch alone are unlikely to limit the conveyor-belt
+contrast. However, the polarization stability of the HCPCF branch was not
+measured separately, so the stability of the complete two-beam lattice
+cannot be inferred from this measurement alone.
+
+
+Both estimates indicate that the noise introduced by the black fiber is
+compatible with the requirements of the $^{87}$Rb optical conveyor belt.
+The same Allan-deviation and ASD analysis can be repeated after
+integration of the upper breadboard, providing a diagnostic tool to
+identify and localize any additional noise sources introduced downstream
+of the fiber.

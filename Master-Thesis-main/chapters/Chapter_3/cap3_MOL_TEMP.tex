@@ -1,5 +1,6 @@
 % !TeX root = chapter_3_main.tex
-\section{Molasses temperature optimization}\label{sec:molasses_temperature_optimization}
+\section{Molasses temperature optimization}
+\label{sec:molasses_temperature_optimization}
 
 Prior to the optimization procedure, the six cooling beams were realigned in order to minimize their spatial mismatch at the MOT position, as thermal drifts may gradually alter the alignment of the optical components.
 
@@ -14,11 +15,11 @@ Before realignment, preliminary values of the compensation coil currents had bee
 \end{equation}
 These values served as the initial settings for the optimization described below.
 %! Ricorda di aggiungere alla sezione dei metodi la considerazione sul t_flash
-Starting from an initial value of approximately $20~\mu\mathrm{K}$, the optimization procedure described in this section successfully minimized the optical molasses temperature. Under the final optimized conditions, a minimum average temperature of $T=(8.42\pm0.17)~\mu\mathrm{K}$ was achieved.
+Starting from an initial value of approximately $20~\mu\mathrm{K}$, the optimization procedure minimized the optical molasses temperature. Under the final conditions, a minimum average temperature of $T=(8.42\pm0.17)~\mu\mathrm{K}$ was achieved.
 
 The molasses temperature was determined from the ballistic expansion of the atomic cloud. Figure~\ref{fig:exp_dem} presents fluorescence images of the freely falling atomic cloud recorded at different TOFs under the optimized conditions. The cloud widths extracted from Gaussian fits were then fitted according to equation~\eqref{eq:ballistic_expansion}, as shown in Figure~\ref{fig:temp_fit}.
 
-The temperatures extracted along the two Cartesian directions are $T_x=(7.92\pm0.20)~\mu\mathrm{K}$ and $T_y=(8.91\pm0.28)~\mu\mathrm{K}$. Their weighted mean gives the final temperature $T=(8.42\pm0.17)~\mu\mathrm{K}$.
+The temperatures extracted along the two Cartesian directions are $T_x=(7.92\pm0.20)~\mu\mathrm{K}$ and $T_y=(8.91\pm0.28)~\mu\mathrm{K}$. Their mean gives the final temperature $T=(8.42\pm0.17)~\mu\mathrm{K}$.
 
 \begin{figure}[h]
     \centering
@@ -48,7 +49,7 @@ Figure~\ref{fig:detuning_molasses_temperature} shows the measured average temper
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.9\linewidth]{Cap_3_figures/detuning_opt.png}
-    \caption{Optical molasses temperature as a function of the cooling laser detuning. The horizontal axis shows the absolute red detuning $|\delta|$, normalized to the natural linewidth $\Gamma/2\pi$. The most effective sub-Doppler cooling is observed in the interval $|\delta|\approx15-20$, where a minimum temperature of $14.9 \pm 0.4~\mu\mathrm{K}$ is reached. Up to approximately $|\delta|=15$, the temperature follows the $1/|\delta|$ scaling predicted for ideal Sisyphus cooling. For larger detunings, the curve progressively flattens before rising again.}
+    \caption{Optical molasses temperature as a function of the cooling laser detuning. The horizontal axis shows the detuning $|\delta|$, normalized to the natural linewidth $\Gamma/2\pi$. The most effective sub-Doppler cooling is observed in the interval $|\delta|\approx15-20$, where a minimum temperature of $14.9 \pm 0.4~\mu\mathrm{K}$ is reached. Up to approximately $|\delta|=15$, the temperature follows the $1/|\delta|$ scaling predicted for ideal Sisyphus cooling. For larger detunings, the curve progressively flattens before rising again.}
     \label{fig:detuning_molasses_temperature}
 \end{figure}
 
@@ -80,7 +81,7 @@ During the subsequent characterization of the ODT loading, however, this configu
 %*###############################################################
 The final stage of the molasses optimization consisted of adjusting the magnetic compensation field. The currents supplied to the compensation coils were switched to their molasses values 5~ms after the MOT magnetic field was turned off.
 
-The three current components were optimized sequentially. The $z$-axis current was adjusted first, while the $x$- and $y$-axis currents were held at the preliminary values given in equation~\eqref{eq:shim_preliminary_values}. The $x$-axis current was then optimized using the newly determined value of the $z$ component. Finally, the $y$-axis current was optimized while keeping both the $x$- and $z$-axis currents at their optimized settings. The experimental data were fitted with quadratic functions to determine the optimal currents and the associated minimum temperatures. The results for the $z$-, $x$-, and $y$-axis coils are presented in Figure~\ref{fig:shim_opt}(a), (b), and (c), respectively.
+The three current components were optimized sequentially: the $z$-axis current was adjusted first, while the $x$- and $y$-axis currents were held at the preliminary values given in equation~\eqref{eq:shim_preliminary_values}. The $x$-axis current was then optimized using the newly determined value of the $z$ component. Finally, the $y$-axis current was adjusted while keeping both the $x$- and $z$-axis currents at their optimized settings. The experimental data were fitted with quadratic functions to determine the optimal currents and the associated minimum temperatures. The results for the $z$-, $x$-, and $y$-axis coils are presented in Figure~\ref{fig:shim_opt}(a), (b), and (c), respectively.
 
 The optimized current settings subsequently used during ODT loading were:
 \begin{equation}
