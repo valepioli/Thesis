@@ -46,7 +46,7 @@ and the two-photon detuning is $\delta_{2\mathrm{ph}}=\Delta_p-\Delta_c$. After 
 \end{equation}
 The explicit transformation to the rotating frame is performed with
 \begin{equation}
-    U(t)=\exp\!\left[-i\left(\omega_p|e\rangle\langle e|+(\omega_p-\omega_c)|g_2\rangle\langle g_2|\right)t\right],
+    U(t)=|g_1\rangle\langle g_1| + e^{-i(\omega_p-\omega_c)t}|g_2\rangle\langle g_2| + e^{-i\omega_p t}|e\rangle\langle e|,
     \label{eq:rotating_transformation}
 \end{equation}
 while $|g_1\rangle$ is left unchanged. With the convention $|\psi_{\mathrm{rot}}\rangle=U^\dagger(t)|\psi_{\mathrm{lab}}\rangle$, the transformed Hamiltonian is
@@ -54,6 +54,7 @@ while $|g_1\rangle$ is left unchanged. With the convention $|\psi_{\mathrm{rot}}
     H_{\mathrm{rot}}=U^\dagger H_{\mathrm{lab}}U-i\hbar U^\dagger\dot U.
     \label{eq:H_rot_transformation}
 \end{equation}
+
 Subtracting the irrelevant constant energy $E_e-\hbar\omega_p$ from all three levels gives
 \begin{equation}
     H_{\mathrm{rot}} = -\hbar\Delta_p|e\rangle\langle e|

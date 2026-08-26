@@ -72,7 +72,17 @@ This multi-stage magnification ($\sim 40$) setup provides the resolution needed 
     \label{fig:upper_microscope}
 \end{figure}
 
-The alignment method relies on the assumption that the mode in the HCPCF must be injected symmetrically and propagate accordingly. During the initial observations with the microscope, the fundamental mode was found not to propagate symmetrically within the core. By applying mechanical perturbations to the fiber, higher-order propagation modes were intentionally excited; this behavior was systematically exploited to map the spatial boundaries of the hollow core. Once the core region was identified, the fiber position was finely adjusted to ensure that the mode extended symmetrically across the entire available area.  Exploiting the small transmission of the dichroic mirror at $1064\,\mathrm{nm}$ makes it possible to simultaneously optimize the injection(by placing a power meter directly above it) and monitor the mode in real time.
+A picture of the full upper breadboard setup is shown in Figure~\ref{fig:upper_breadboard_photo}.
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Cap_2_figures/upper_breadboard_photo.jpeg}
+    \caption{Photograph of the complete upper breadboard setup.}
+    \label{fig:upper_breadboard_photo}
+\end{figure}
+
+The alignment method relies on the assumption that the mode in the HCPCF must be injected symmetrically and propagate accordingly. During the initial observations with the microscope, the fundamental mode was found not to propagate symmetrically within the core. By applying mechanical perturbations to the fiber, higher-order propagation modes were intentionally excited; this behavior was systematically exploited to map the spatial boundaries of the hollow core. Once the core region was identified, the fiber position was finely adjusted to ensure that the mode extended symmetrically across the entire available area.  Exploiting the small transmission of the dichroic mirror at $1064\,\mathrm{nm}$ makes it possible to simultaneously optimize the injection (by placing a power meter directly above it) and monitor the mode in real time.
 This optimization yielded a symmetric fundamental Gaussian mode with an overall bottom-up injection efficiency of approximately $30\%$.
 
 With the HCPCF mode optimized, the spatial overlap between the top-down and bottom-up beams was verified. An additional mirror, placed temporarily after the dichroic mirror, was used to project the beam profiles onto a distant surface and checked using a viewing card, to verify the collimation of the HCPCF beam; the procedure was repeated for the black-fiber beam, sampling it after the beam expander and at a far-field plane. Both beams were then turned on simultaneously to verify that they were correctly centered on all lenses and mirrors and perfectly overlapped along the entire shared path.
@@ -105,9 +115,9 @@ To evaluate the last figure of merit, a secondary microscope was built on the lo
 
 This diagnostic tool allows the simultaneous optimization of the top-down injection and the real-time monitoring of the spatial mode traversing the vacuum chamber from top to bottom. 
 
-Ultimately, the polarization across the setup was optimized: for the upper breadboard and the black fiber, this was achieved using the black fiber test bench method which relies on the presence of the two half wave plates and polarizing beam splitters (described in Sec.~\ref{subsec:principal_axes}), while the waveplate on the lower bench was employed to maximize retro-injection. The macroscopic alignment of the beams was successfully achieved by controlling their collimation and utilizing the beam expander, while fine spatial control relied on the upper  mirrors, the fiber injection optics, and the shared $f=200\,\mathrm{mm}$ lens. 
+Ultimately, the polarization across the setup was optimized: for the upper breadboard and the black fiber, this was achieved using the black fiber test bench method which relies on the presence of the two half wave plates and polarizing beam splitters (described in Sec.~\ref{subsec:principal_axes}), while the waveplate on the lower bench was employed to minimimize the reflected component of PBS2 on the upper breadboard and maximize retro-injection. The macroscopic alignment of the beams was successfully achieved by controlling their collimation and utilizing the beam expander, while fine spatial control relied on the upper  mirrors, the fiber injection optics, and the shared $f=200\,\mathrm{mm}$ lens. 
 
-Following this systematic optimization,a high bottom-up mode quality was achieved, as verified through the upper microscope (Fig.~\ref{fig:mode_upper}), and a bottom-up injection efficiency of $32\%$. The retro-injection efficiency into the black fiber reached $60\%$ (compared to a baseline direct injection efficiency of $75\%$). Furthermore, evaluating the beam with the lower microscope (Fig.~\ref{fig:mode_lower}), achieved a top-down mode (da mettere un aggetivo se è bello o spiegare perche è brutto, speriamo migliori) and a final top-down injection efficiency of $35\%$.
+Following this systematic optimization,a high bottom-up mode quality was achieved, as verified through the upper microscope (Fig.~\ref{fig:mode_upper}), and a bottom-up injection efficiency of $32\%$. The retro-injection efficiency into the black fiber reached $60\%$ (compared to a baseline direct injection efficiency of $75\%$). Furthermore, a final top-down injection efficiency of $35\%$ was measured. Evaluating the corresponding spatial profile with the lower microscope (Fig.~\ref{fig:mode_lower}) revealed that the top-down mode is not perfectly single-mode. This deviation from an ideal fundamental mode can be attributed both to the potential for further improvements in the optical alignment and diagnostic procedures, and to a possible deterioration of the fiber tip located inside the vacuum chamber.
 
 \begin{figure}[htbp]
     \centering
@@ -132,12 +142,12 @@ Following this systematic optimization,a high bottom-up mode quality was achieve
 
 The depth of the optical dipole trap and the dynamics of the conveyor belt require precise control over the optical power of both beams. The optical power in both the main ODT branch and the black-fiber branch is actively controlled using Acousto-Optic Modulators (AOMs), whose Radio-Frequency (RF) drive signals are generated by a Direct Digital Synthesizer (DDS) board, designated DDS3 (\tocomplete{DDS3 board manufacturer and model}).
 
-To guarantee optimal performance, the injection efficiency of the black-fiber AOM was verified to ensure it operates at high efficiency. This procedure follows the characterization previously performed for the HC branch AOM, which operates at an optimal frequency of 110 MHz and an amplitude setting of 420. Establishing this high-efficiency is a crucial step for the subsequent automatic implementation of the conveyor belt. 
+To guarantee optimal performance, the first-order transmission profile of the black-fiber AOM was verified to ensure it operates at high efficiency. This procedure follows the characterization previously performed for the HC branch AOM, which operates at an optimal frequency of 110 MHz and an amplitude setting of 420. Establishing this high-efficiency is a crucial step for the subsequent automatic implementation of the conveyor belt. 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{Cap_2_figures/DDS3_char.png}
-    \caption{Injection efficiency of the black-fiber branch AOM. The left panel shows the efficiency as a function of the DDS amplitude (at a fixed frequency of 110 MHz, peaking at an amplitude setting of 880). The right panel shows the efficiency as a function of the RF frequency (at a fixed amplitude of 880, peaking around 110.4 MHz).}
+    \caption{First-order transmission profile of the black-fiber branch AOM. The left panel shows the transmission as a function of the DDS amplitude (at a fixed frequency of 110 MHz, peaking at an amplitude setting of 880). The right panel shows the transmission as a function of the RF frequency (at a fixed amplitude of 880, peaking around 110.4 MHz).}
     \label{fig:dds3_char}
 \end{figure}
 
-Although the characterization of the black-fiber AOM reveals a peak efficiency at $110.4\,\mathrm{MHz}$, the efficiency profile is sufficiently broad to allow operation at the standard frequency of $110\,\mathrm{MHz}$ used for the HCPCF branch.
+Although the characterization of the black-fiber AOM reveals a peak transmission at $110.4\,\mathrm{MHz}$, the first order transmission profile is sufficiently broad to allow operation at the standard frequency of $110\,\mathrm{MHz}$ used for the HCPCF branch.

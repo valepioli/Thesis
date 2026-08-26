@@ -37,26 +37,34 @@ The temperatures extracted along the two Cartesian directions are $T_x=(7.92\pm0
 
 As shown in Figure~\ref{fig:temp_fit}, the measurements at long TOF deviate from the linear trend and lie below the fitted values. The same behavior was observed systematically throughout the measurement series. A plausible explanation is that, after sufficiently long expansion times, the cloud radius is no longer negligible compared with the probe beam radius, so that the assumption of uniform illumination is no longer valid. Atoms in the outer region of the cloud are therefore exposed to a weaker probe intensity, leading the Gaussian fit to underestimate the actual spatial variance. This effect should become less relevant as the atomic temperature decreases.
 
-
 %*###############################################################
 \subsection{Detuning frequency optimization}
 %*###############################################################
 
 Starting from an initial molasses temperature of approximately $20~\mu\mathrm{K}$, the cooling laser detuning was optimized in order to reach the final temperature reported above. The detuning was scanned from $-24.4$~MHz ($4.0~\Gamma/2\pi$) to $-184$~MHz ($30.4~\Gamma/2\pi$) in steps of $-11.4$~MHz.
 
-Figure~\ref{fig:detuning_molasses_temperature} shows the measured average temperature as a function of the absolute detuning, expressed in units of $\Gamma/2\pi$. For relatively small detunings, the measurements exhibit the $1/|\delta|$ scaling expected in the sub-Doppler cooling regime. At larger detunings, two additional effects become important: the optical scattering rate decreases rapidly as $\Gamma_p \propto 1/\delta^2$, while the cooling frequency approaches the $F=2 \rightarrow F'=2$ transition, which lies $267$~MHz below the $F=2 \rightarrow F'=3$ cooling transition (see Figure~\ref{fig:lines}). The combined effect causes the temperature curve to level off around $|\delta|\approx15-20$ and to increase again at still larger detunings.
+Figure~\ref{fig:detuning_molasses_temperature} shows the measured average temperature as a function of the absolute detuning, expressed in units of $\Gamma/2\pi$. For relatively small detunings, the measurements exhibit the $1/\vert{}\delta\vert{}$ scaling expected in the sub-Doppler cooling regime. At larger detunings, two additional effects become important: the optical scattering rate decreases rapidly as $\Gamma_p \propto 1/\delta^2$, while the cooling frequency approaches the $F=2 \rightarrow F'=2$ transition, which lies $267$~MHz below the $F=2 \rightarrow F'=3$ cooling transition (see Figure~\ref{fig:lines}). The combined effect causes the temperature curve to level off around $\vert{}\delta\vert{}\approx15-20$ and to increase again at still larger detunings.
 
 \begin{figure}[t]
-    \centering
-    \includegraphics[width=0.9\linewidth]{Cap_3_figures/detuning_opt.png}
-    \caption{Optical molasses temperature as a function of the cooling laser detuning. The horizontal axis shows the detuning $|\delta|$, normalized to the natural linewidth $\Gamma/2\pi$. The most effective sub-Doppler cooling is observed in the interval $|\delta|\approx15-20$, where a minimum temperature of $14.9 \pm 0.4~\mu\mathrm{K}$ is reached. Up to approximately $|\delta|=15$, the temperature follows the $1/|\delta|$ scaling predicted for ideal Sisyphus cooling. For larger detunings, the curve progressively flattens before rising again.}
-    \label{fig:detuning_molasses_temperature}
+\centering
+\includegraphics[width=0.9\linewidth]{Cap_3_figures/detuning_opt_fit.png}
+\caption{Optical molasses temperature as a function of the cooling laser detuning. The horizontal axis shows the detuning $\vert{}\delta\vert{}$, normalized to the natural linewidth $\Gamma/2\pi$. The most effective sub-Doppler cooling is observed in the interval $\vert{}\delta\vert{}\approx15-20$, where a minimum temperature of $14.9 \pm 0.4~\mu\mathrm{K}$ is reached. Up to approximately $\vert{}\delta\vert{}=20$, the temperature follows the $1/\vert{}\delta\vert{}$ scaling predicted for ideal Sisyphus cooling. The blue solid line represents the weighted linear fit applied in the large-detuning limit.}
+\label{fig:detuning_molasses_temperature}
 \end{figure}
 
-The minimum average temperature was measured at a normalized detuning of $|\delta|=17.2$, corresponding to an absolute frequency detuning of $|\delta|=104.2$~MHz. The detuning optimization therefore reduced the molasses temperature from its initial value of approximately $20~\mu\mathrm{K}$ to the final value of $T=(14.9\pm0.4)~\mu\mathrm{K}$.
+The minimum average temperature was measured at a normalized detuning of $\vert{}\delta\vert{}=17.2$, corresponding to an absolute frequency detuning of $\vert{}\delta\vert{}=104.2$~MHz. The detuning optimization therefore reduced the molasses temperature from its initial value of approximately $20~\mu\mathrm{K}$ to the final value of $T=(14.9\pm0.4)~\mu\mathrm{K}$.
 
-%*###############################################################
-\clearpage
+To quantitatively compare the sub-Doppler cooling performance with existing literature, a weighted linear fit was performed in the large-detuning regime (up to $\vert{}\delta\vert{} = 27$). The model fitted to the data is $T = a \frac{\Gamma}{\vert{}\delta\vert{}} + T_0$.
+
+Following the framework by Gerz et al.~\cite{Gerz:93}, the temperature of a 3D optical molasses scales linearly with the AC Stark shift as $\frac{k_B T}{\hbar \Gamma} = c_{\perp} \frac{\Omega^2}{\vert{}\delta\vert{} \Gamma} + \text{const}$. The fit parameter $a$ is thus related to the dimensionless constant $c_{\perp}$ by $c_{\perp} = \frac{a \cdot k_B}{\hbar \Gamma} (\frac{\Gamma^2}{\Omega^2})$.
+
+The squared Rabi frequency ratio $\Omega^2/\Gamma^2$ is obtained by dividing the single-beam peak intensity by $3.2~\mathrm{mW/cm}^2$. Given a cooling beam power of $P = 6.6~\mathrm{mW}$ and a waist of $W = 12.5~\mathrm{mm}$, the peak intensity is evaluated as $I_0 \approx 5.70~\mathrm{mW/cm}^2$.
+
+The fit yields $a = 13.6 \pm 0.8$ and a temperature offset $T_0 = 9.0 \pm 0.3~\mu\mathrm{K}$ (Figure~\ref{fig:detuning_molasses_temperature}). Converting the $a$ parameter results in $c_{\perp} = 0.50 \pm 0.02$.
+
+This result can be compared with existing values for $^{87}$Rb in a 3D $\text{lin} \perp \text{lin}$ optical molasses. Literature reports experimental $c_{\perp}$ values ranging from $0.37$ to $0.41$~\cite{Gerz:93}, and a theoretical value of $c_{\perp} = 0.31$ when accounting for atomic localization effects. The measured value of $c_{\perp} = 0.50 \pm 0.02$ is slightly higher than previously reported experimental ranges, but remains on the same order of magnitude, confirming the expected Sisyphus cooling dynamics.
+
+
 \subsection{AOM amplitude optimization}
 %*###############################################################
 The second stage of the optimization focused on the effect of the cooling beam power. This was investigated by varying both the AOM drive amplitude and the duration of the amplitude ramp applied at the beginning of the molasses phase. The AOM amplitude, given in arbitrary units (a.u.), determines the RF amplitude used to drive the modulator. Three settings were examined: 385, 475, and 550~a.u., corresponding respectively to cooling laser powers of 5.8~mW, 6.6~mW, and 6.3~mW measured after the collimator of the MOT $z$-beam. The MOT itself is operated at an AOM amplitude of 550~a.u.
