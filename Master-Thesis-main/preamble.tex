@@ -74,3 +74,65 @@
 % Better Tabels
 \usepackage{booktabs, multirow, array, makecell}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% review by MICHELANGELO
+%\geometry{paperwidth=27cm, asymmetric, left=2.5cm, right=8.5cm, marginparwidth=7cm, marginparsep=5mm}
+%\usepackage[colorinlistoftodos, textsize=footnotesize]{todonotes}
+
+% scientific notes
+%\providecommand{\MDn}[1]{\todo[color=brown!20]{\textbf{MD notes:} #1}}
+
+% questions
+%\providecommand{\MDq}[1]{\todo[inline, color=blue!15]{\textbf{MD question:} #1}}
+
+% suggestions
+%\providecommand{\MDs}[1]{\todo[noline, color=red!25]{\textbf{MD suggestion:} #1}}
+
+% typographical issue
+%\providecommand{\MDt}[1]{\todo[color=orange!30]{\textbf{MD typography:} #1}}
+
+% Underlining text
+%\usepackage{ulem}
+
+% Geometry setup for wide margins
+\geometry{paperwidth=30cm, asymmetric, left=1.5cm, right=11.5cm, marginparwidth=10cm, marginparsep=5mm}
+
+% Required packages
+\usepackage{soul} % for multiline highlighting (\hl)
+\usepackage[normalem]{ulem} % [normalem] prevents ulem from changing \emph to underline
+\usepackage[colorinlistoftodos, textsize=footnotesize]{todonotes}
+
+% --- Custom Color Setup for soul Highlights ---
+\newcommand{\hlcolor}[2]{{\sethlcolor{#1}\hl{#2}}}
+
+% --- 2-Argument Review Commands: \Command{Text to highlight}{Comment} ---
+
+% 1. Scientific notes (brown highlight + margin note with connecting line)
+\newcommand{\MDn}[2]{%
+  \hlcolor{brown!25}{#1}%
+  \todo[color=brown!20]{\textbf{MD note:} #2}%
+}
+
+% 2. Questions (blue highlight + margin note)
+\newcommand{\MDq}[2]{%
+  \hlcolor{blue!15}{#1}%
+  \todo[color=blue!15]{\textbf{MD question:} #2}%
+}
+
+% 3. Phrasing / Suggestions (red/pink highlight + margin note)
+\newcommand{\MDs}[2]{%
+  \hlcolor{red!20}{#1}%
+  \todo[color=red!25]{\textbf{MD suggestion:} #2}%
+}
+
+% 4. Typographical / Grammar (wavy underline from ulem + margin note)
+\newcommand{\MDt}[2]{%
+  \uwave{#1}%
+  \todo[color=orange!30]{\textbf{MD typo:} #2}%
+}
+
+% 5. Direct Deletion (strikethrough from ulem + margin note)
+\newcommand{\MDdel}[2]{%
+  \sout{#1}%
+  \todo[color=gray!20]{\textbf{MD delete:} #2}%
+}
