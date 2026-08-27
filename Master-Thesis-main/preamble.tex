@@ -191,7 +191,11 @@
 \newcommand{\CCerr}[2]{\dashuline{#1}\CCbox{red!18}{CC errore:}{#2}}
 \newcommand{\CCn}[2]{\dashuline{#1}\CCbox{teal!15}{CC nota:}{#2}}
 \newcommand{\CCref}[2]{\dashuline{#1}\CCbox{orange!18}{CC riferimenti:}{#2}}
-\newcommand{\CCmd}[1]{\CCbox{gray!15}{CC sulla nota MD:}{#1}}
+% #1 = testo evidenziato dalla nota MD a cui questo verdetto si riferisce.
+% Serve perche' le due colonne condividono un solo flusso di marginpar: quando
+% i riquadri hanno altezze diverse la coppia si disallinea, e l'ancora e' il
+% modo per ritrovarla senza contare le righe.
+\newcommand{\CCmd}[2]{\CCbox{gray!15}{CC sulla nota MD ``#1'':}{#2}}
 
 % 5. Direct Deletion (strikethrough from ulem + margin note)
 \newcommand{\MDdel}[2]{%
