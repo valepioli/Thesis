@@ -9,6 +9,16 @@
 \titleformat*{\section}{\LARGE\bfseries}
 \titleformat*{\subsection}{\Large\bfseries}
 \titleformat*{\subsubsection}{\large\bfseries}
+% MD: i titoli lunghi sforano il margine destro nel layout finale A4
+% ("Electromagnetic Trapping of Neutral Atoms" di 39 pt, "From Conventional to
+% Hollow-Core Optical Fibers" di 20 pt, "Coupling to the Motional ..." di 14 pt).
+% Causa: titlesec giustifica le intestazioni. Per azzerarli tutti, sostituire le
+% tre righe qui sopra con queste. Verificato: zero overfull sui titoli.
+% NB: l'opzione di pacchetto \usepackage[raggedright]{titlesec} NON basta,
+% perche' \titleformat* la sovrascrive.
+%\titleformat*{\section}{\LARGE\bfseries\raggedright}
+%\titleformat*{\subsection}{\Large\bfseries\raggedright}
+%\titleformat*{\subsubsection}{\large\bfseries\raggedright}
 
 % Margins and layout
 \usepackage[margin=2.5cm]{geometry}
@@ -130,6 +140,15 @@
   \uwave{#1}%
   \todo[color=orange!30]{\textbf{MD typo:} #2}%
 }
+
+% ATTENZIONE: non usare \MDn / \MDq / \MDs / \MDt / \MDdel dentro l'argomento di
+% \chapter, \section, \subsection ... . Sono argomenti mobili: la nota finisce
+% verbatim nell'indice, hyperref segnala "Token not allowed in a PDF string" e
+% il \todo viene eseguito due volte (una dall'indice, una dal titolo).
+% Mettere la nota subito DOPO il titolo, nella forma \MDt{}{...}.
+% Per lo stesso motivo, non usare \ref / \cite dentro \MDn ... \MDdel: sono
+% comandi fragili, e sia \hl (soul) sia \todo (che scrive nel file .tdo)
+% li rompono. Citare l'etichetta come testo, es. \texttt{eq:dipole\_force}.
 
 % 5. Direct Deletion (strikethrough from ulem + margin note)
 \newcommand{\MDdel}[2]{%
