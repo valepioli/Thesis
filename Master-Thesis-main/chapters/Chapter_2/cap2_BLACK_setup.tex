@@ -36,6 +36,7 @@ coordinate $z$.
 For each transverse direction, the measured beam radius is fitted to the
 standard Gaussian-beam propagation law
 \begin{equation}
+    \label{eq:gaussian_beam}
     w(z) =
     w_0
     \sqrt{
@@ -78,7 +79,7 @@ The pre-existing setup, shown in Figure~\ref{fig:HC_pdf}, consists of:
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{Cap_2_figures/HC.pdf}
-    \caption{Optical scheme of the pre-existing ODT injection setup, from HWP1 to the HCPCF, with the second output of PBS2 leading to the black-fiber branch described below. \tocomplete{verify AOM orientation in the schematic}}
+    \caption{Optical scheme of the pre-existing ODT injection setup, from HWP1 to the HCPCF, with the second output of PBS2 leading to the black-fiber branch described below.}
     \label{fig:HC_pdf}
 \end{figure}
 
@@ -104,7 +105,7 @@ Figure~\ref{fig:black_setup_photo} shows a photograph of the complete injection 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{Cap_2_figures/black_setup_photo.jpeg}
-    \caption{Photograph of the complete injection branch. The black-fiber branch is on the left, while the pre-existing ODT injection setup is on the right. Aggiornare: manca l'HWP}
+    \caption{Photograph of the complete injection branch. The black-fiber branch is on the left, while the pre-existing ODT injection setup is on the right.}
     \label{fig:black_setup_photo}
 \end{figure}
 
@@ -112,7 +113,7 @@ Figure~\ref{fig:black_setup_photo} shows a photograph of the complete injection 
 
 The size and divergence of the beams involved in the black-fiber injection were characterized with the same beam-profiling approach used in Section~\ref{subsec:gaussian_beam}.
 
-For each transverse direction, the measured radius was fitted to the Gaussian-beam propagation law, this fit gave the size and position of the beam waist, which could then be compared with the target fiber-mode parameters or used to select and position the injection optics. The procedure was repeated both upstream and downstream of the fiber, after each modification or addition of the injection optics, to obtain the beam parameters used in the mode-matching calculations of Section~\ref{subsec:mode_matching_endcap}.
+For each transverse direction, the measured radius was fitted to Eq.~\ref{eq:gaussian_beam}, this fit gave the size and position of the beam waist, which could then be compared with the target fiber-mode parameters or used to select and position the injection optics. The procedure was repeated both upstream and downstream of the fiber, after each modification or addition of the injection optics, to obtain the beam parameters used in the mode-matching calculations of Section~\ref{subsec:mode_matching_endcap}.
 
 \subsection{Mode matching and the fiber endcap}
 \label{subsec:mode_matching_endcap}
@@ -226,7 +227,7 @@ After optimizing the injection efficiency, both the overall optical power and th
 
 \subsection{Detection setup and PBS characterization}
 
-Before being integrated into the analysis setup, the polarizing beam splitter (PBS) under test was carefully characterized. The test setup consisted of a half-wave plate (HWP) followed by an auxiliary PBS to prepare a purely linear polarization state, and the PBS under test. By measuring the transmitted and reflected power, the Polarization Extinction Ratio (PER) was evaluated, defined as:
+Before being integrated into the analysis setup, the polarizing beam splitter (PBS) under test was carefully characterized. The test setup consisted of a half-wave plate (HWP) followed by an auxiliary PBS, of the same type as the one under test, to prepare a purely linear polarization state. By measuring the transmitted and reflected power, the Polarization Extinction Ratio (PER) was evaluated, defined as:
 \begin{equation}
     \mathrm{PER}
     =
@@ -235,7 +236,7 @@ Before being integrated into the analysis setup, the polarizing beam splitter (P
         \frac{P_{\mathrm{max}}}{P_{\mathrm{min}}}
     \right).
 \end{equation}
-The component exhibited a PER of $31\,\mathrm{dB}$ in transmission and $30\,\mathrm{dB}$ in reflection, confirming its suitability for high-sensitivity polarization measurements. 
+The component exhibited a measured PER of $31\,\mathrm{dB}$ in transmission and $30\,\mathrm{dB}$ in reflection. Because the auxiliary PBS used to prepare the input state has a finite extinction ratio itself, the incident polarization is not perfectly linear. Consequently, these measured values represent a lower limit for the actual performance of the component, confirming its suitability for high-sensitivity polarization measurements.
 
 Following this validation, the PBS (PBS 4) was inserted into the final analysis setup (Figure~\ref{fig:test_black}). The beam emerging from the black fiber was collimated using a fixed $f=18\,\mathrm{mm}$ fiber collimator and sent through an HWP (HWP 6) followed by the PBS (PBS 4). The transmitted and reflected components were detected simultaneously by two photodiodes: the transmitted component was measured with a home-made photodiode (Channel 1), and the reflected component with a Thorlabs PDA100A2 (Channel 2).
 
@@ -257,7 +258,7 @@ The two HWPs were iteratively adjusted to maximize the power transmitted through
 
 \subsection{Photodiode calibration and data rescaling}
 
-Data were acquired using a [INSERT OSCILLOSCOPE MODEL]. Since oscilloscopes record voltage traces, the raw data from both channels had to be converted into equivalent optical power (required for the Allan deviation analysis) and actual photocurrent (required to compute the theoretical shot-noise limit). 
+Data were acquired using a Rohde \& Schwarz RTM3K-24 oscilloscope. Since oscilloscopes record voltage traces, the raw data from both channels had to be converted into equivalent optical power (required for the Allan deviation analysis) and actual photocurrent (required to compute the theoretical shot-noise limit). 
 
 To ensure both measurements were represented on the same physical scale, the photodiode responsivity $\mathcal{R}$ (in A/W) and the transimpedance gain $G_{\mathrm{TIA}}$ (in V/A, physically equivalent to $\Omega$) of each detector were used to perform the data conversion.
 
@@ -368,4 +369,4 @@ By isolating the photon-number variance and converting it to optical power varia
 The term in parentheses represents the responsivity of the photodiode, defined as $\eta = \mathrm{QE} e / \hbar\omega$. For the Thorlabs PDA100A2 detector at $1064\,\mathrm{nm}$, the responsivity is $\eta = 0.4\,\mathrm{A/W}$.
 
 
-This theoretical white-noise floor was plotted alongside the experimental FFT magnitude (scaled by $\tau_0/\sqrt{N}$) to evaluate system performance. A measured spectrum lying above this baseline indicates the presence of excess technical noise in the setup, such as laser intensity noise or polarization-to-amplitude noise conversion, on top of the fundamental quantum shot noise.
+This theoretical white-noise floor is plotted alongside the experimental FFT magnitude (scaled by $\tau_0/\sqrt{N}$) to evaluate system performance (Sec.~\ref{subsec:frequency_domain_analysis}). A measured spectrum lying above this baseline indicates the presence of excess technical noise in the setup, such as laser intensity noise or polarization-to-amplitude noise conversion, on top of the fundamental quantum shot noise.
