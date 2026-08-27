@@ -6,19 +6,15 @@
 
 % For Title styling
 \usepackage{titlesec}
-\titleformat*{\section}{\LARGE\bfseries}
-\titleformat*{\subsection}{\Large\bfseries}
-\titleformat*{\subsubsection}{\large\bfseries}
-% MD: i titoli lunghi sforano il margine destro nel layout finale A4
-% ("Electromagnetic Trapping of Neutral Atoms" di 39 pt, "From Conventional to
-% Hollow-Core Optical Fibers" di 20 pt, "Coupling to the Motional ..." di 14 pt).
-% Causa: titlesec giustifica le intestazioni. Per azzerarli tutti, sostituire le
-% tre righe qui sopra con queste. Verificato: zero overfull sui titoli.
+% MD: \raggedright sui titoli. Senza, titlesec li giustifica e quelli lunghi
+% sforano il margine destro nel layout finale A4: "Electromagnetic Trapping of
+% Neutral Atoms" di 39 pt, "From Conventional to Hollow-Core Optical Fibers"
+% di 20 pt, "Coupling to the Motional ..." di 14 pt. Cosi' vanno tutti a zero.
 % NB: l'opzione di pacchetto \usepackage[raggedright]{titlesec} NON basta,
-% perche' \titleformat* la sovrascrive.
-%\titleformat*{\section}{\LARGE\bfseries\raggedright}
-%\titleformat*{\subsection}{\Large\bfseries\raggedright}
-%\titleformat*{\subsubsection}{\large\bfseries\raggedright}
+% perche' \titleformat* la sovrascrive: deve stare dentro l'argomento.
+\titleformat*{\section}{\LARGE\bfseries\raggedright}
+\titleformat*{\subsection}{\Large\bfseries\raggedright}
+\titleformat*{\subsubsection}{\large\bfseries\raggedright}
 
 % Margins and layout
 \usepackage[margin=2.5cm]{geometry}
@@ -65,6 +61,10 @@
 
 % No indentation on new paragraphs
 \setlength{\parindent}{0pt}
+% MD: con \parindent a zero e nessun \parskip i capoversi erano
+% tipograficamente indistinguibili, si leggevano come un blocco unico.
+% Servendo l'uno o l'altro, qui si aggiunge lo spazio verticale.
+\setlength{\parskip}{0.5\baselineskip plus 2pt minus 1pt}
 
 % For numbering also subsubsections
 \setcounter{secnumdepth}{3}
@@ -113,7 +113,9 @@
 \usepackage[colorinlistoftodos, textsize=footnotesize]{todonotes}
 
 % --- Custom Color Setup for soul Highlights ---
-\newcommand{\hlcolor}[2]{{\sethlcolor{#1}\hl{#2}}}
+% \leavevmode: senza, \hl fallisce con "Reconstruction failed" quando una nota
+% apre il capoverso subito dopo un \end{equation} (soul parte in modo verticale).
+\newcommand{\hlcolor}[2]{\leavevmode{\sethlcolor{#1}\hl{#2}}}
 
 % --- 2-Argument Review Commands: \Command{Text to highlight}{Comment} ---
 
@@ -149,6 +151,15 @@
 % Per lo stesso motivo, non usare \ref / \cite dentro \MDn ... \MDdel: sono
 % comandi fragili, e sia \hl (soul) sia \todo (che scrive nel file .tdo)
 % li rompono. Citare l'etichetta come testo, es. \texttt{eq:dipole\_force}.
+
+% 1b. Variante di \MDn senza soul. \hl fallisce con "Reconstruction failed" in
+% certe posizioni (paragrafi accorciati da wrapfig, o a cavallo di
+% un'interruzione di pagina): stessa semantica di \MDn, ma il testo viene
+% sottolineato invece che evidenziato. Usare solo dove \MDn non compila.
+\newcommand{\MDnx}[2]{%
+  \uline{#1}%
+  \todo[color=brown!20]{\textbf{MD note:} #2}%
+}
 
 % 5. Direct Deletion (strikethrough from ulem + margin note)
 \newcommand{\MDdel}[2]{%
