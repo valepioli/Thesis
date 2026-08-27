@@ -293,7 +293,7 @@ The spatial density of the initial cloud is denoted by $n_{\mathrm{MOT}}(\vec{r}
     \mu^2 = \frac{k_B T}{m}.
 \end{equation}
 
-The number of captured atoms is obtained by integrating over phase space, restricting the result to atoms moving toward the trap region, namely those with $v_z < 0$. Under this assumption,
+The number of captured atoms is obtained by integrating over phase space, \CCn{restricting the result to atoms moving toward the trap region}{Il fattore $1/2$ mescola due criteri diversi: la CATTURA (energia cinetica trasversa sotto la profondita' locale) e la DIREZIONE del moto assiale. Un atomo catturato radialmente con $v_z>0$ e' comunque intrappolato, semplicemente va dall'altra parte; escluderlo significa che la quantita' calcolata non e' ``the number of atoms loaded into the ODT'', come dice la frase d'apertura, ma il numero di atomi caricati E diretti verso la fibra. Il capitolo 3 se ne accorge e toglie il fattore $1/2$ proprio per questo, spiegandolo in una nota. Meglio definire qui una volta sola le due quantita', con due nomi diversi, invece di correggere il fattore a valle.}, namely those with $v_z < 0$. Under this assumption,
 \begin{equation}
     N_{\mathrm{ODT}} =
     \int d^3r\, n_{\mathrm{MOT}}(\vec{r})\,
