@@ -48,13 +48,13 @@ Figure~\ref{fig:detuning_molasses_temperature} shows the measured average temper
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.9\linewidth]{Cap_3_figures/detuning_opt_fit.png}
-\caption{Optical molasses temperature as a function of the cooling laser detuning. The horizontal axis shows the detuning $\vert{}\delta\vert{}$, normalized to the natural linewidth $\Gamma/2\pi$. The most effective sub-Doppler cooling is observed in the interval $\vert{}\delta\vert{}\approx15-20$, where a minimum temperature of $14.9 \pm 0.4~\mu\mathrm{K}$ is reached. Up to approximately $\vert{}\delta\vert{}=20$, the temperature follows the $1/\vert{}\delta\vert{}$ scaling predicted for ideal Sisyphus cooling. The blue solid line represents the weighted linear fit applied in the large-detuning limit.}
+\caption{Optical molasses temperature as a function of the cooling laser detuning. The horizontal axis shows the detuning $\vert{}\delta\vert{}$, normalized to the natural linewidth $\Gamma/2\pi$. The most effective sub-Doppler cooling is observed in the interval $\vert{}\delta\vert{}\approx15-20$, where a minimum temperature of $14.9 \pm 0.4~\mu\mathrm{K}$ is reached. Up to approximately $\vert{}\delta\vert{}=18$, the temperature follows the $1/\vert{}\delta\vert{}$ scaling predicted for ideal Sisyphus cooling. The blue solid line represents the weighted linear fit applied in the large-detuning limit.}
 \label{fig:detuning_molasses_temperature}
 \end{figure}
 
 The minimum average temperature was measured at a normalized detuning of $\vert{}\delta\vert{}=17.2$, corresponding to an absolute frequency detuning of $\vert{}\delta\vert{}=104.2$~MHz. The detuning optimization therefore reduced the molasses temperature from its initial value of approximately $20~\mu\mathrm{K}$ to the final value of $T=(14.9\pm0.4)~\mu\mathrm{K}$.
 
-To quantitatively compare the sub-Doppler cooling performance with existing literature, a weighted linear fit was performed in the large-detuning regime (up to $\vert{}\delta\vert{} = 27$). The model fitted to the data is $T = a \frac{\Gamma}{\vert{}\delta\vert{}} + T_0$.
+To quantitatively compare the sub-Doppler cooling performance with existing literature, a fit was performed up to $\vert{}\delta\vert{} = 18$. The model fitted to the data is $T = a \frac{\Gamma}{\vert{}\delta\vert{}} + T_0$.
 
 Following the framework by Gerz et al.~\cite{Gerz:93}, the temperature of a 3D optical molasses scales linearly with the AC Stark shift as $\frac{k_B T}{\hbar \Gamma} = c_{\perp} \frac{\Omega^2}{\vert{}\delta\vert{} \Gamma} + \text{const}$. The fit parameter $a$ is thus related to the dimensionless constant $c_{\perp}$ by $c_{\perp} = \frac{a \cdot k_B}{\hbar \Gamma} (\frac{\Gamma^2}{\Omega^2})$.
 
@@ -62,7 +62,7 @@ The squared Rabi frequency ratio $\Omega^2/\Gamma^2$ is obtained by dividing the
 
 The fit yields $a = 13.6 \pm 0.8$ and a temperature offset $T_0 = 9.0 \pm 0.3~\mu\mathrm{K}$ (Figure~\ref{fig:detuning_molasses_temperature}). Converting the $a$ parameter results in $c_{\perp} = 0.50 \pm 0.02$.
 
-This result can be compared with existing values for $^{87}$Rb in a 3D $\text{lin} \perp \text{lin}$ optical molasses. Literature reports experimental $c_{\perp}$ values ranging from $0.37$ to $0.41$~\cite{Gerz:93}, and a theoretical value of $c_{\perp} = 0.31$ when accounting for atomic localization effects. The measured value of $c_{\perp} = 0.50 \pm 0.02$ is slightly higher than previously reported experimental ranges, but remains on the same order of magnitude, confirming the expected Sisyphus cooling dynamics.
+This result can be compared with existing values for $^{87}$Rb in a 3D $\text{lin} \perp \text{lin}$ optical molasses. Literature reports experimental $c_{\perp}$ values ranging from $0.37$ to $0.41$~\cite{Gerz:93}, and a theoretical value of $c_{\perp} = 0.31$ when accounting for atomic localization effects. The measured value of $c_{\perp} = 0.63 \pm 0.02$ is higher than previously reported experimental ranges, but remains on the same order of magnitude, confirming the expected Sisyphus cooling dynamics.
 
 
 \subsection{AOM amplitude optimization}
