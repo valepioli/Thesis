@@ -104,8 +104,13 @@
 % Underlining text
 %\usepackage{ulem}
 
-% Geometry setup for wide margins
-\geometry{paperwidth=30cm, asymmetric, left=1.5cm, right=11.5cm, marginparwidth=10cm, marginparsep=5mm}
+% Geometry setup for wide margins.
+% MD: la pagina era 30 cm, con una sola colonna di note larga 10 cm.
+% CC: portata a 42 cm per ospitare DUE colonne di note affiancate, da 10 cm
+% ciascuna: la prima (il marginpar vero e proprio) tiene le note di MD, la
+% seconda e' disegnata da \CCbox con uno spostamento di 10.5 cm. Il corpo del
+% testo resta largo 17 cm, quindi l'impaginato del testo non cambia.
+\geometry{paperwidth=42cm, asymmetric, left=1.5cm, right=23.5cm, marginparwidth=10cm, marginparsep=5mm}
 
 % Required packages
 \usepackage{soul} % for multiline highlighting (\hl)
@@ -113,9 +118,16 @@
 \usepackage[colorinlistoftodos, textsize=footnotesize]{todonotes}
 
 % --- Custom Color Setup for soul Highlights ---
-% \leavevmode: senza, \hl fallisce con "Reconstruction failed" quando una nota
-% apre il capoverso subito dopo un \end{equation} (soul parte in modo verticale).
 \newcommand{\hlcolor}[2]{\leavevmode{\sethlcolor{#1}\hl{#2}}}
+
+% Limite noto e diagnosticato (CC): \hl (soul) non sopravvive dentro un
+% capoverso rimodellato da wrapfig. In quei capoversi TeX ha \parshape attivo
+% e soul si ferma con "Package soul Error: Reconstruction failed". Verificato
+% con tre prove: la stessa nota (a) non compila dov'e'; (b) compila se la
+% wrapfigure diventa una figure normale; (c) compila se la nota viene spostata
+% fuori dalla zona di wrap. Non e' quindi il contenuto della nota. Le macro CC
+% usano ulem e non soul, quindi il problema non le riguarda; se una nota MD
+% dovesse caderci dentro, spostarla di una frase basta.
 
 % --- 2-Argument Review Commands: \Command{Text to highlight}{Comment} ---
 
@@ -152,14 +164,34 @@
 % comandi fragili, e sia \hl (soul) sia \todo (che scrive nel file .tdo)
 % li rompono. Citare l'etichetta come testo, es. \texttt{eq:dipole\_force}.
 
-% 1b. Variante di \MDn senza soul. \hl fallisce con "Reconstruction failed" in
-% certe posizioni (paragrafi accorciati da wrapfig, o a cavallo di
-% un'interruzione di pagina): stessa semantica di \MDn, ma il testo viene
-% sottolineato invece che evidenziato. Usare solo dove \MDn non compila.
-\newcommand{\MDnx}[2]{%
-  \uline{#1}%
-  \todo[color=brown!20]{\textbf{MD note:} #2}%
+% ============================================================
+% NOTE DI CLAUDE CODE (CC) -- seconda colonna, a destra di quella di MD.
+%
+% Le note di MD restano esattamente come sono: stesse macro, stesso colore,
+% stessa colonna, e finiscono come prima in \listoftodos. Le note CC sono un
+% livello separato, disegnato con \marginpar a 10.5 cm di distanza, e NON
+% entrano nella lista dei todo, cosi' quella lista resta quella di MD.
+%
+% I marcatori nel testo sono deliberatamente diversi: MD evidenzia (soul) o usa
+% l'onda (ulem), CC sottolinea tratteggiato. CC usa solo ulem, mai soul, e
+% quindi non soffre del limite con wrapfig documentato sotto.
+%
+% Categorie: non un calco di quelle di MD. Quelle di MD dicono che tipo di
+% intervento serve (nota, domanda, suggerimento, refuso); queste dicono che
+% tipo di AFFERMAZIONE e', che in revisione e' l'informazione utile.
+%   \CCerr  errore verificato NEL TESTO della tesi
+%   \CCn    osservazione tecnica sul testo: cosa manca o cosa e' impreciso
+%   \CCref  rilievo meccanico: bibliografia, figure, riferimenti incrociati
+%   \CCmd   verdetto su una nota di MD (non evidenzia nulla: commenta la nota)
+% ============================================================
+\newcommand{\CCbox}[3]{%
+  \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
+    \fcolorbox{black}{#1}{\parbox{9.6cm}{\footnotesize\textbf{#2} #3}}}}%
 }
+\newcommand{\CCerr}[2]{\dashuline{#1}\CCbox{red!18}{CC errore:}{#2}}
+\newcommand{\CCn}[2]{\dashuline{#1}\CCbox{teal!15}{CC nota:}{#2}}
+\newcommand{\CCref}[2]{\dashuline{#1}\CCbox{orange!18}{CC riferimenti:}{#2}}
+\newcommand{\CCmd}[1]{\CCbox{gray!15}{CC sulla nota MD:}{#1}}
 
 % 5. Direct Deletion (strikethrough from ulem + margin note)
 \newcommand{\MDdel}[2]{%

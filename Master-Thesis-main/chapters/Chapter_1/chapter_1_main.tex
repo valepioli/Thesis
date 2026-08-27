@@ -4,18 +4,18 @@
 
 \begin{document}
 
-    % List of todos by Michelangelo 
+    % List of todos by Michelagelo 
     \ifSubfilesClassLoaded{\listoftodos}{}
 
     % Table of contents
     \ifSubfilesClassLoaded{\tableofcontents}{}
 
     \chapter{Theoretical Background}
-This chapter provides an overview of the theoretical background underlying the main topics addressed in this thesis.
+This chapter provides an overview of the theoretical background underlying the main topics addressed in this thesis.\CCn{}{\textbf{Come leggere questo PDF.} Ci sono due colonne di note. A SINISTRA quelle di MD, invariate: stessi colori (marrone nota, blu domanda, rosso suggerimento, arancio refuso) e stessa lista dei todo in testa al capitolo, che continua a elencare solo quelle. A DESTRA quelle di CC, marcate nel testo da una sottolineatura TRATTEGGIATA invece che da un'evidenziazione, e divise per tipo di affermazione: \emph{CC errore} e' un errore verificato nel testo della tesi, \emph{CC nota} un'osservazione tecnica, \emph{CC riferimenti} un rilievo su bibliografia, figure o rimandi, \emph{CC sulla nota MD} un verdetto su una nota di MD. Ogni nota di MD ne ha uno. Il conteggio, verificato sul sorgente: 32 note di MD, 32 verdetti. CONFERMO 21, CORREGGO 4, AMMORBIDIREI 3, e uno ciascuno di RISPONDO (la domanda sul limite Doppler), RIDONDANTE, ATTENZIONE (il blocco da incollare duplicherebbe una frase gia' presente) e NON CONCORDO (``Building''). Dei 4 CORREGGO, tre riguardano note che, se applicate, introdurrebbero un errore nel testo (angolo critico, ``friction force'', ``enables the control of the transport''); il quarto e' la nota sui modi trasversi, giusta nella premessa e sbagliata nella conclusione. Le note CC indipendenti sono 23: 7 errori verificati, 12 osservazioni tecniche, 4 rilievi su bibliografia e figure. Nessuna nota MD e' stata cancellata o riscritta.}
 
-The first part introduces hollow-core fibers and describes their light-guiding mechanisms. This is followed by an overview of atomic trapping techniques, starting from the magneto-optical trap (MOT) and the \MDs{optical dipole trap}{aggiungerei "(ODT)" per coerenza stilistica}, outlining the fundamental principles that enable the cooling and confinement of neutral atoms.
+The first part introduces hollow-core fibers and describes their light-guiding mechanisms. This is followed by an overview of atomic trapping techniques, starting from the magneto-optical trap (MOT) and the \MDs{optical dipole trap}{aggiungerei "(ODT)" per coerenza stilistica}\CCmd{CONFERMO: il MOT ha la sigla, l'ODT no, ed e' usata subito dopo.}, outlining the fundamental principles that enable the cooling and confinement of neutral atoms.
 
-Building on these concepts, more advanced manipulation techniques are then discussed. Specifically, the concept of the optical conveyor belt is introduced, demonstrating how moving optical lattices allow for the controlled transport of atoms. Finally, the theoretical principles of electromagnetically induced transparency (EIT) cooling are presented, highlighting its potential for achieving sub-Doppler temperatures inside the fiber core.
+\MDs{Building}{"Building" non suona molto bene. Io invertirei la frase per renderla più liscia}\CCmd{NON CONCORDO. ``Building on these concepts'' e' inglese accademico corrente e del tutto idiomatico; e' una delle aperture piu' comuni per questo tipo di frase. Non vedo cosa guadagni l'inversione.} on these concepts, more advanced manipulation techniques are then discussed. Specifically, the concept of the optical conveyor belt is introduced, demonstrating how moving optical lattices \MDs{allow for the controlled transport of atoms}{non mi sembra inglese corretto. Io direi "enables the control of the transport of atoms"}\CCmd{CORREGGO: la riformulazione introdurrebbe due errori. Il soggetto e' ``moving optical lattices'', plurale, quindi ``enables'' sbaglia l'accordo; e ``the control of the transport of atoms'' impila due complementi di specificazione dove la tesi ha un aggettivo. ``Allow for the controlled transport of atoms'' e' corretto cosi'.}. Finally, the theoretical principles of electromagnetically induced transparency (EIT) cooling are presented, highlighting its potential for achieving sub-Doppler temperatures inside the fiber core.
     \import{./}{cap1_HCPCF.tex}
     \clearpage
     \import{./}{cap1_trapping.tex}
