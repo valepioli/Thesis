@@ -111,12 +111,12 @@
 % seconda e' disegnata da \CCbox con uno spostamento di 10.5 cm. Il corpo del
 % testo resta largo 17 cm, quindi l'impaginato del testo non cambia.
 \geometry{paperwidth=42cm, asymmetric, left=1.5cm, right=23.5cm, marginparwidth=10cm, marginparsep=5mm}
-% Foglio piu' alto (35 cm invece di 29.7) a parita' di specchio di stampa:
+% Foglio piu' alto (36 cm invece di 29.7) a parita' di specchio di stampa:
 % i riquadri delle note si impilano lungo il margine e, quando su una pagina
 % ce ne sono molti, gli ultimi uscivano dal fondo e venivano tagliati.
 % Il testo resta identico (textheight invariata), lo spazio in piu' e' tutto
 % margine inferiore in cui le note possono sbordare senza perdersi.
-\geometry{paperheight=35cm, top=2.5cm, bottom=7.80cm}
+\geometry{paperheight=36cm, top=2.5cm, bottom=8.80cm}
 \setlength{\marginparpush}{0pt}
 
 % Required packages
@@ -199,12 +199,12 @@
 \newcommand{\CCtag}{\refstepcounter{ccnum}%
   \textsuperscript{\textbf{\scriptsize[CC\,\theccnum]}}}
 
-% Riquadro nella seconda colonna. Largo 12.2 cm (prima 9.6) e in \scriptsize
+% Riquadro nella seconda colonna. Largo 11.6 cm (prima 9.6) e in \scriptsize
 % (prima \footnotesize): insieme fanno circa il 40 per cento di altezza in meno,
 % che e' quello che faceva uscire i riquadri dal fondo pagina.
 \newcommand{\CCbox}[3]{%
   \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
-    \fcolorbox{black}{#1}{\parbox{12.2cm}{\scriptsize\raggedright
+    \fcolorbox{black}{#1}{\parbox{11.6cm}{\scriptsize\raggedright
       \textbf{[CC\,\theccnum] #2} #3}}}}%
 }
 
