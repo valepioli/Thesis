@@ -111,6 +111,13 @@
 % seconda e' disegnata da \CCbox con uno spostamento di 10.5 cm. Il corpo del
 % testo resta largo 17 cm, quindi l'impaginato del testo non cambia.
 \geometry{paperwidth=42cm, asymmetric, left=1.5cm, right=23.5cm, marginparwidth=10cm, marginparsep=5mm}
+% Foglio piu' alto (35 cm invece di 29.7) a parita' di specchio di stampa:
+% i riquadri delle note si impilano lungo il margine e, quando su una pagina
+% ce ne sono molti, gli ultimi uscivano dal fondo e venivano tagliati.
+% Il testo resta identico (textheight invariata), lo spazio in piu' e' tutto
+% margine inferiore in cui le note possono sbordare senza perdersi.
+\geometry{paperheight=35cm, top=2.5cm, bottom=7.80cm}
+\setlength{\marginparpush}{0pt}
 
 % Required packages
 \usepackage{soul} % for multiline highlighting (\hl)
@@ -184,18 +191,28 @@
 %   \CCref  rilievo meccanico: bibliografia, figure, riferimenti incrociati
 %   \CCmd   verdetto su una nota di MD (non evidenzia nulla: commenta la nota)
 % ============================================================
+% Ogni nota CC porta un numero, stampato sia nel testo sia nel riquadro.
+% Serve perche' le due colonne condividono un solo flusso di marginpar: quando
+% i riquadri hanno altezze diverse LaTeX li fa scivolare in basso, e senza un
+% numero non si capisce piu' a quale frase appartengono.
+\newcounter{ccnum}
+\newcommand{\CCtag}{\refstepcounter{ccnum}%
+  \textsuperscript{\textbf{\scriptsize[CC\,\theccnum]}}}
+
+% Riquadro nella seconda colonna. Largo 12.2 cm (prima 9.6) e in \scriptsize
+% (prima \footnotesize): insieme fanno circa il 40 per cento di altezza in meno,
+% che e' quello che faceva uscire i riquadri dal fondo pagina.
 \newcommand{\CCbox}[3]{%
   \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
-    \fcolorbox{black}{#1}{\parbox{9.6cm}{\footnotesize\textbf{#2} #3}}}}%
+    \fcolorbox{black}{#1}{\parbox{12.2cm}{\scriptsize\raggedright
+      \textbf{[CC\,\theccnum] #2} #3}}}}%
 }
 
-% Elenco separato delle note CC. Le note di MD continuano ad andare in
-% \listoftodos (file .tdo) e restano solo loro; le CC vanno in un file .cco
-% e si stampano con \listofccnotes. Si riusa \l@todo di todonotes per la
-% formattazione delle righe, cosi' i due elenchi hanno lo stesso aspetto.
+% Riga dell'elenco separato delle note CC (file .cco, stampato da \listofccnotes).
 \newcommand{\CCindex}[3]{%
   \addcontentsline{cco}{todo}{%
-    \protect\fcolorbox{black}{#1}{\protect\textcolor{#1}{o}}\ \protect\textbf{#2} #3}%
+    \protect\fcolorbox{black}{#1}{\protect\textcolor{#1}{o}}\ %
+    \protect\textbf{[CC\,\theccnum] #2} #3}%
 }
 \makeatletter
 \newcommand{\listofccnotes}{%
@@ -204,16 +221,17 @@
   \@starttoc{cco}%
 }
 \makeatother
-\newcommand{\CCerr}[2]{\dashuline{#1}\CCindex{red!18}{CC errore:}{#1}\CCbox{red!18}{CC errore:}{#2}}
-\newcommand{\CCn}[2]{\dashuline{#1}\CCindex{teal!15}{CC nota:}{#1}\CCbox{teal!15}{CC nota:}{#2}}
-\newcommand{\CCref}[2]{\dashuline{#1}\CCindex{orange!18}{CC riferimenti:}{#1}\CCbox{orange!18}{CC riferimenti:}{#2}}
-% #1 = testo evidenziato dalla nota MD a cui questo verdetto si riferisce.
-% Serve perche' le due colonne condividono un solo flusso di marginpar: quando
-% i riquadri hanno altezze diverse la coppia si disallinea, e l'ancora e' il
-% modo per ritrovarla senza contare le righe.
+
+% Le quattro categorie. L'ordine conta: prima \CCtag, che incrementa il
+% contatore, poi l'indice e il riquadro, che lo leggono.
+\newcommand{\CCerr}[2]{\dashuline{#1}\CCtag\CCindex{red!18}{CC errore:}{#1}\CCbox{red!18}{CC errore:}{#2}}
+\newcommand{\CCn}[2]{\dashuline{#1}\CCtag\CCindex{teal!15}{CC nota:}{#1}\CCbox{teal!15}{CC nota:}{#2}}
+\newcommand{\CCref}[2]{\dashuline{#1}\CCtag\CCindex{orange!18}{CC riferimenti:}{#1}\CCbox{orange!18}{CC riferimenti:}{#2}}
 % Nota CC non ancorata a un testo del corpo: #1 e' solo l'etichetta per l'elenco.
-\newcommand{\CCnote}[2]{\CCindex{teal!15}{CC nota:}{#1}\CCbox{teal!15}{CC nota:}{#2}}
-\newcommand{\CCmd}[2]{\CCindex{gray!15}{CC sulla nota MD:}{``#1''}\CCbox{gray!15}{CC sulla nota MD ``#1'':}{#2}}
+\newcommand{\CCnote}[2]{\CCtag\CCindex{teal!15}{CC nota:}{#1}\CCbox{teal!15}{CC nota:}{#2}}
+% Verdetto su una nota di MD: il marcatore va subito dopo la nota di MD, cosi'
+% si vede a quale delle note nel margine sinistro si riferisce.
+\newcommand{\CCmd}[2]{\CCtag\CCindex{gray!15}{CC sulla nota MD:}{``#1''}\CCbox{gray!15}{CC sulla nota MD ``#1'':}{#2}}
 
 % 5. Direct Deletion (strikethrough from ulem + margin note)
 \newcommand{\MDdel}[2]{%
