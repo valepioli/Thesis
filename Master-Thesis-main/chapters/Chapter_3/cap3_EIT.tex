@@ -10,6 +10,30 @@ The numerical model described in Section~\ref{sec:numerical_eit} was evaluated t
 \label{subsec:results_three_level}
 %*###############################################################
 
+The physical parameters used in the idealized three-level simulation, together with the assumed beam propagation geometry, are summarized in Table~\ref{tab:optimal_parameters_3level}.
+
+\begin{table}[htbp]
+\centering
+\caption{Simulation parameters for the idealized three-level $\Lambda$ system.}
+\label{tab:optimal_parameters_3level}
+\begin{tabular}{lcc}
+\hline
+\textbf{Parameter} & \textbf{Symbol} & \textbf{Value} \\
+\hline
+Trap frequency & $\nu$ & $0.5\gamma$ \\
+Coupling detuning & $\Delta_c$ & $15.0\gamma$ \\
+Probe detuning (two-photon resonance) & $\Delta_p$ & $\Delta_c$ \\
+Coupling Rabi frequency & $\Omega_c$ & $\sqrt{4\vert\Delta_c\vert\nu}$ \\
+Probe Rabi frequency & $\Omega_p$ & $0.1\gamma$ \\
+Lamb--Dicke parameter & $\eta$ & $0.35$ \\
+Coupling beam propagation & -- & orthogonal to the trap axis ($\eta_c \simeq 0$) \\
+Probe beam propagation & -- & along the trap (motional) axis \\
+\hline
+\end{tabular}
+\end{table}
+
+Since this idealized treatment collapses the atomic structure into three bare levels without an explicit magnetic sublevel structure, no specific light polarization is associated with either field: the coupling and probe transitions are simply assumed to be independently addressable, as would be guaranteed in a real implementation by an appropriate choice of orthogonal polarizations (see Section~\ref{subsec:results_multilevel} for the corresponding realistic laser scheme).
+
 The steady-state spectroscopic response of the ideal three-level system was obtained by scanning the probe-laser detuning $\Delta_p$ while keeping the coupling field fixed. The resulting total excited-state population exhibits the characteristic Fano profile associated with EIT. Figure~\ref{fig:fano_3_combined} shows both the macroscopic transparency window and a detailed view of the sideband alignment.
 
 \begin{figure}[htbp]
@@ -18,11 +42,11 @@ The steady-state spectroscopic response of the ideal three-level system was obta
 
 \vspace{0.5cm}
 \includegraphics[width=0.8\textwidth]{Cap_3_figures/fano_3.png}
-\caption{Steady-state excited population profile of the idealized three-level system. Top: Full spectrum showing the transparency window (dashed red line) at the two-photon resonance. Bottom: Detailed profile near the dark state, showing the narrow absorption maximum aligned with the red sideband (solid red line) and the carrier transition falling in the transparency minimum (dashed green line).}
+\caption{Steady-state excited population profile of the idealized three-level system. Top: Full spectrum showing the transparency window (dashed green line) at the two-photon resonance. Bottom: Detailed profile near the dark state, showing the narrow absorption maximum aligned with the red sideband (solid red line) and the carrier transition falling in the transparency minimum (dashed green line).}
 \label{fig:fano_3_combined}
 \end{figure}
 
-The coupling laser intensity was set according to the exact cooling condition (Eq.~\eqref{eq:exact_condition_numerical}), tuning the AC Stark shift so that the absorption maximum precisely overlaps with the cooling transition. The time evolution of the average phonon number $\langle n \rangle$ for this configuration is presented in Figure~\ref{fig:time_evol_3}. Starting from an initial thermal state, the system undergoes rapid ground-state cooling, decaying exponentially and approaching the theoretical minimum limit in less than 0.1 ms. This confirms the efficiency of the targeted sideband asymmetry in the absence of competing decay channels.
+The coupling laser intensity was set according to the exact cooling condition (Eq.~\eqref{eq:exact_condition_numerical}), tuning the AC Stark shift so that the absorption maximum overlaps with the cooling transition. The time evolution of the average phonon number $\langle n \rangle$ for this configuration is presented in Figure~\ref{fig:time_evol_3}. Starting from an initial thermal state, the system undergoes rapid ground-state cooling, decaying exponentially and approaching the theoretical minimum limit in less than 0.1 ms. This confirms the efficiency of the targeted sideband asymmetry in the absence of competing decay channels.
 
 \begin{figure}[htbp]
 \centering
@@ -52,16 +76,19 @@ Initial mean phonon number & $\langle n_0 \rangle$ & $2$ \\
 Magnetic field & $B$ & $4.0$ G \\
 Probe Rabi frequency & $\Omega_p$ & $0.09\gamma$ \\
 Probe polarization & $q_p$ & $\sigma^-$ \\
+Probe beam propagation & -- & along the trap (axial) direction \\
 Coupling detuning & $\Delta_c$ & $+13\gamma$ \\
 Coupling Rabi frequency & $\Omega_c$ & $\sqrt{4\nu_z(\nu_z+\vert\Delta_c\vert)}$ \\
 Coupling polarization & $q_c$ & $\sigma^-$ \\
+Coupling beam propagation & -- & orthogonal to the axial direction \\
 Repump Rabi frequency & $\Omega_r$ & $0.3\gamma$ \\
 Repump polarization & $q_r$ & $\pi$ \\
+Repump beam propagation & -- & orthogonal to the axial direction \\
 \hline
 \end{tabular}
 \end{table}
 
-To demonstrate the necessity of internal state management, the dynamics were first simulated without an active repump field, and then compared with the full optimized sequence. The impact of optical pumping is evident in the steady-state spectroscopy (Figure~\ref{fig:fano_24_comparison}). Without a repump field, the excited-state population drops to near zero across the entire frequency scan. Following a few excitation cycles, the atoms decay into uncoupled Zeeman sublevels, completely depleting the active EIT levels.
+To demonstrate the necessity of repopulating the active cooling cycle via the repump field, the dynamics were first simulated without an active repump field, and then compared with the full optimized sequence. The impact of optical pumping is evident in the steady-state spectroscopy (Figure~\ref{fig:fano_24_comparison}). Without a repump field, the excited-state population drops to near zero across the entire frequency scan. Following a few excitation cycles, the atoms decay into uncoupled Zeeman sublevels, depleting the active EIT levels.
 
 By introducing a $\pi$-polarized repump field, the atoms are recycled back into the EIT cycle. The Fano profile and the dark resonance are recovered, allowing the alignment of the red sideband with the absorption peak. However, compared to the three-level model, the resonance is broader and the transparency minimum is less deep, owing to off-resonant coupling to adjacent excited manifolds and the continuous scattering induced by the repump field.
 

@@ -214,7 +214,11 @@
 % un PDF per revisore senza toccare le note.
 % ============================================================
 
+% \leavevmode: senza, una nota messa subito dopo un titolo o una \label parte
+% in modo verticale, il \marginpar non puo' migrare e LaTeX perde i float
+% della pagina ("Float(s) lost").
 \newcommand{\revnote}[5]{% #1 sigla  #2 colore  #3 categoria  #4 ancora  #5 nota
+  \leavevmode
   \csname ifrevshow#1\endcsname
     \dashuline{#4}%
     \refstepcounter{rev#1}%
@@ -229,6 +233,7 @@
 }
 % variante senza ancoraggio nel testo: #4 e' solo l'etichetta per l'elenco
 \newcommand{\revnoteplain}[5]{%
+  \leavevmode
   \csname ifrevshow#1\endcsname
     \refstepcounter{rev#1}%
     \textsuperscript{\textbf{\scriptsize[#1\,\csname therev#1\endcsname]}}%
