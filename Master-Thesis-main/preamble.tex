@@ -280,6 +280,35 @@
 \newcommand{\CCnote}[2]{\revnoteplain{CC}{teal!15}{nota}{#1}{#2}}
 \newcommand{\CCmd}[2]{\revnoteplain{CC}{teal!15}{sulla nota MD}{``#1''}{#2}}
 
+% ============================================================
+% NOTE RISOLTE
+%
+% Regola: una nota a cui la studentessa ha dato seguito NON si cancella. Si
+% ricolora di verde, si marca [SOLVED] e si dice COME e' stata risolta, cosi'
+% resta la storia di cosa e' stato chiesto e di cosa e' stato fatto.
+%
+% Per le note di MD il testo originale resta il secondo argomento e non viene
+% toccato: cambia solo l'involucro, e il terzo argomento e' la descrizione
+% della soluzione. Il controllo di identita' byte a byte continua a passare.
+%   \MDnsolved{ancora}{testo originale della nota}{come e' stata risolta}
+% Per le note dei revisori:
+%   \CCsolved{categoria}{ancora}{testo originale}{come e' stata risolta}
+%   \CCnotesolved{etichetta}{testo originale}{come e' stata risolta}
+% ============================================================
+\newcommand{\MDsolvedmark}[3]{%
+  \hlcolor{green!20}{#2}%
+  \todo[color=green!20]{\textbf{MD #1} \textbf{[SOLVED]:} #3}%
+}
+\newcommand{\MDnsolved}[3]{\MDsolvedmark{note}{#1}{#2 ~--- \textbf{Risolta:} #3}}
+\newcommand{\MDssolved}[3]{\MDsolvedmark{suggestion}{#1}{#2 ~--- \textbf{Risolta:} #3}}
+\newcommand{\MDqsolved}[3]{\MDsolvedmark{question}{#1}{#2 ~--- \textbf{Risolta:} #3}}
+\newcommand{\MDtsolved}[3]{%
+  \uwave{#1}%
+  \todo[color=green!20]{\textbf{MD typo} \textbf{[SOLVED]:} #2 ~--- \textbf{Risolta:} #3}%
+}
+\newcommand{\CCsolved}[4]{\revnote{CC}{green!20}{#1 [SOLVED]}{#2}{#3 ~--- \textbf{Risolta:} #4}}
+\newcommand{\CCnotesolved}[3]{\revnoteplain{CC}{green!20}{nota [SOLVED]}{#1}{#2 ~--- \textbf{Risolta:} #3}}
+
 % 5. Direct Deletion (strikethrough from ulem + margin note)
 \newcommand{\MDdel}[2]{%
   \sout{#1}%

@@ -67,14 +67,22 @@ toglierlo.
 
 1. **Non si modifica il testo della tesi.** Mai. Se una frase e' sbagliata, si
    scrive una nota. L'unica eccezione sono i comandi di layout in `preamble.tex`.
-2. **Non si modificano le note di un altro revisore.** Se non sei d'accordo,
-   aggiungi la tua nota accanto. Le note di MD in particolare vengono
-   verificate byte per byte contro il commit `f2f3af8`.
-3. **Categoria e ancora corte.** Un'ancora lunga tre righe rende il riquadro
+2. **Non si commentano le note degli altri revisori.** Ne' per correggerle ne'
+   per confermarle. Se pensi che una nota altrui sia sbagliata, la tua nota si
+   aggancia al TESTO DELLA TESI e parla di quello, senza citare la nota altrui.
+   Le note di MD sono verificate byte per byte contro il commit `f2f3af8`.
+3. **Le note risolte non si cancellano.** Quando la studentessa da' seguito a
+   una nota, quella nota diventa verde, prende il tag `[SOLVED]` e guadagna una
+   riga che dice COME e' stata risolta. Cosi' resta la storia di cosa e' stato
+   chiesto e di cosa e' stato fatto. Le macro sono
+   `\MDnsolved{ancora}{testo originale}{come}`, e analoghe `\MDssolved`,
+   `\MDqsolved`, `\MDtsolved`, piu' `\CCsolved{categoria}{ancora}{testo}{come}`.
+   Il testo originale della nota non si tocca: sta nell'argomento di prima.
+4. **Categoria e ancora corte.** Un'ancora lunga tre righe rende il riquadro
    enorme e il legame con la frase piu' vago, non meno.
-4. **Nota lunga = nota che verra' saltata.** Sopra le ~900 battute conviene
+5. **Nota lunga = nota che verra' saltata.** Sopra le ~900 battute conviene
    spezzarla in due note su due frasi diverse.
-5. **Ricompilare entrambi i PDF prima di committare**, perche' sono tracciati:
+6. **Ricompilare entrambi i PDF prima di committare**, perche' sono tracciati:
    `thesis_main.pdf` e `chapters/Chapter_1/chapter_1_main.pdf`.
 
 ---
