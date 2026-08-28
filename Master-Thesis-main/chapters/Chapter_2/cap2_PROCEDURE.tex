@@ -32,7 +32,7 @@ A calibration of the imaging system is required in order to convert distances me
 \item \textbf{Direct imaging of a known microstructure}
 
 The first method uses the hollow-core photonic crystal fiber (HCPCF) as a reference object, exploiting its known physical diameter of $316\,\mu\mathrm{m}$. The fiber is imaged directly to determine its apparent diameter on the sensor, which is then compared with its actual physical diameter. To extract the apparent diameter, the image intensity is summed along the columns, and the resulting one-dimensional profile is fitted with a rectangular function.
-The fitted image corresponds to an apparent diameter of $8 \pm 2$ pixels. The resulting object-plane calibration is therefore
+\CCn{The fitted image corresponds to an apparent diameter of $8 \pm 2$ pixels.}{Vale la pena dire che questa prima calibrazione, da sola, non e' utilizzabile: un diametro di $8\pm2$ pixel porta un'incertezza del 25 per cento, che si trasferisce tale e quale su $C$ ($39.5\pm9.9~\mu$m/px) e su $M$ ($0.17\pm0.04$). E' venti volte peggio del metodo del righello, e infatti quello e' il metodo che adotti. Serve come controllo d'ordine di grandezza, non come misura, e presentarla per prima e con lo stesso peso delle altre due fa pensare il contrario. Basta una frase che dica che il metodo 1 e' un controllo grossolano, limitato dal fatto che l'oggetto di riferimento copre appena otto pixel.} The resulting object-plane calibration is therefore
 \begin{equation}
     C = \frac{316\,\mu\mathrm{m}}{(8 \pm 2)\,\mathrm{px}} = 39.5 \pm 9.9\,\mu\mathrm{m/px},
 \end{equation}
@@ -86,7 +86,7 @@ If, instead, the empirically measured values previously obtained for this setup 
     C = \frac{1.5\,\mathrm{G/A}}{5.6\,\mathrm{G/cm}\times (58.6 \pm 0.6)\,\mathrm{px/A}} = 45.7 \pm 0.5\,\mu\mathrm{m/px}.
 \end{equation}
 
-Both estimates are consistent with the result obtained from the ruler calibration. In the following analysis, the value provided by the ruler method is adopted.
+\CCerr{Both estimates are consistent with the result obtained from the ruler calibration.}{I numeri dicono il contrario per la seconda. Righello $43.4\pm0.3$; magnetica geometrica $42.7\pm0.4$, che dista $1.4\sigma$ ed e' quindi compatibile; magnetica con i valori di Marchesini $45.7\pm0.5$, che dista $\mathbf{3.9\sigma}$. E le due stime magnetiche fra loro distano $\mathbf{4.7\sigma}$. La causa e' visibile nelle formule: l'incertezza citata propaga solo $y_{\mathrm{shift}}$, mentre $b$ e $G$ entrano al numeratore e al denominatore e non hanno barra d'errore, pur essendo l'una stimata dalla geometria delle bobine e l'altra presa da una misura precedente. Sono loro a dominare. Due strade: propagare anche le incertezze di $b$ e $G$, e allora molto probabilmente tutto torna compatibile e l'affermazione diventa vera; oppure, se restano cosi', dire che la terza stima e' in disaccordo e discuterne il perche'. Cosi' com'e' il testo afferma una compatibilita' che i suoi stessi numeri smentiscono.} In the following analysis, the value provided by the ruler method is adopted.
 
 A summary of the three calibration methods is shown in Fig.~\ref{fig:calibration_summary}.
 
@@ -256,7 +256,7 @@ In order to infer the number of trapped atoms, the fluorescence contribution of 
     \frac{\Gamma}{2}
     \frac{I/I_{\mathrm{sat}}}{1 + I/I_{\mathrm{sat}} + 4(\Delta/\Gamma)^2},
 \end{equation}
-where $\Gamma$ is the natural linewidth, $I$ is the total imaging intensity, $I_{\mathrm{sat}}$ is the saturation intensity, and $\Delta$ is the laser detuning. Considering a single MOT beam with a power of $P = 14\,\mathrm{mW}$ and a waist of $W = 12.5\,\mathrm{mm}$, the peak intensity is $I_0 = 2P/(\pi W^2) \approx 5.70\,\mathrm{mW/cm^2}$. Using the ideal two-level saturation intensity for the $^{87}$Rb cooling transition ($I_{\mathrm{sat}} = 1.67\,\mathrm{mW/cm^2}$), the saturation ratio is evaluated as $s_0 = I_0/I_{\mathrm{sat}} \approx 3.4$.
+where $\Gamma$ is the natural linewidth, $I$ is the total imaging intensity, $I_{\mathrm{sat}}$ is the saturation intensity, and $\Delta$ is the laser detuning. Considering a single MOT beam with a power of $P = 14\,\mathrm{mW}$ and a waist of $W = 12.5\,\mathrm{mm}$, the peak intensity is $I_0 = 2P/(\pi W^2) \approx 5.70\,\mathrm{mW/cm^2}$. Using the ideal two-level saturation intensity for the $^{87}$Rb cooling transition ($I_{\mathrm{sat}} = 1.67\,\mathrm{mW/cm^2}$), \CCn{the saturation ratio is evaluated as $s_0 = I_0/I_{\mathrm{sat}} \approx 3.4$}{Qui c'e' un salto fra la formula e il numero. La formula di $R_{\mathrm{sc}}$ chiede l'intensita' TOTALE che vede l'atomo, come scrivi due righe sopra (``$I$ is the total imaging intensity''), ma il valore inserito e' il picco di UN SOLO fascio del MOT. Se l'immagine viene presa con i sei fasci accesi, l'intensita' e' diverse volte maggiore e $s_0$ passa da $3.4$ a un valore dell'ordine di 20. Non e' drammatico, perche' $R_{\mathrm{sc}}$ satura: a risonanza si passa da $s/(1+s)=0.77$ a $0.95$, cioe' circa il 24 per cento in piu' di fotoni per atomo e altrettanti atomi in meno. Ma va deciso e detto: o si dichiara che l'imaging usa un fascio solo, o si mette l'intensita' totale. Verificato anche il resto del conto e torna: $2\times14/(\pi\cdot1.25^2)=5.70~\mathrm{mW/cm^2}$ e $5.70/1.67=3.41$.}.
 
 For an imaging pulse of duration $t_{\mathrm{img}}$, each atom scatters on average $R_{\mathrm{sc}} t_{\mathrm{img}}$ photons. Only a fraction of this fluorescence reaches the sensor. Approximating the collection efficiency by the fractional solid angle subtended by the imaging optics,
 \begin{equation}
@@ -271,7 +271,7 @@ The number of detected photons per atom is
 \begin{equation}
     N_{\mathrm{ph,1}} = R_{\mathrm{sc}}\,t_{\mathrm{img}}\,\eta_{\mathrm{coll}}\,T_{\mathrm{tot}},
 \end{equation}
-where $T_{\mathrm{tot}}$ accounts for the transmission of the imaging system.
+\CCn{where $T_{\mathrm{tot}}$ accounts for the transmission of the imaging system.}{Lo stesso simbolo indica due cammini ottici diversi, e la differenza e' grande. Piu' sopra $T_{\mathrm{tot}}=T_1T_{\mathrm{vac}}T_2T_3\approx0.01272$ e' la trasmissione del cammino di CALIBRAZIONE, che come dici tu stessa passa ``through a series of attenuators'': gli attenuatori servono a portare un fascio del MOT a un livello che non saturi il sensore. Qui invece serve la trasmissione del cammino di IMAGING, percorso dalla fluorescenza degli atomi, che quegli attenuatori non li ha. Se nel conto e' finito lo $0.01272$, $N_{\mathrm{ph},1}$ risulta troppo piccolo di circa il fattore degli attenuatori e il numero di atomi troppo grande dello stesso fattore, che e' dell'ordine delle decine. Se invece hai usato un valore diverso, allora e' solo il simbolo a essere riusato, ma va comunque distinto: chiamali $T_{\mathrm{cal}}$ e $T_{\mathrm{img}}$ e scrivi entrambi i valori.}
 
 The absolute number of trapped atoms is finally obtained from
 \begin{equation}
