@@ -109,6 +109,16 @@ check("note generali tutte nel PDF (%d)" % src_gen, len(gloc) == src_gen,
 gsplit = [n for n, pg in gloc.items() if not any(v >= 2 for v in collections.Counter(pg).values())]
 check("note generali: marcatore e riquadro insieme", not gsplit, "separate: %s" % gsplit[:10])
 
+# Stessa cosa per le note sull'intera tesi, numerate [CC T1].
+src_tes = sum(len(re.findall(r'\\CCthesis\{', read(f))) for f in glob.glob(TEXGLOB))
+tloc = collections.defaultdict(list)
+for i, p in enumerate(pages, 1):
+    for n in re.findall(r'\[CC\s*T(\d+)\]', p): tloc[int(n)].append(i)
+check("note sulla tesi tutte nel PDF (%d)" % src_tes, len(tloc) == src_tes,
+      "nel PDF %d" % len(tloc))
+tsplit = [n for n, pg in tloc.items() if not any(v >= 2 for v in collections.Counter(pg).values())]
+check("note sulla tesi: marcatore e riquadro insieme", not tsplit, "separate: %s" % tsplit[:10])
+
 # ------------------------------------------------------------- 3. margini
 bb = subprocess.run(["pdftotext", "-bbox", PDF, "-"], capture_output=True, text=True).stdout
 ps = re.split(r'<page ', bb)[1:]

@@ -250,6 +250,7 @@
 \newcommand{\DeclareReviewer}[2]{%
   \newcounter{rev#1}%
   \newcounter{gen#1}%
+  \newcounter{tes#1}%
   \expandafter\newif\csname ifrevshow#1\endcsname
   \csname revshow#1true\endcsname
   \expandafter\newcommand\csname #1\endcsname[3]{\revnote{#1}{#2}{##1}{##2}{##3}}%
@@ -339,6 +340,43 @@
   \fi
 }
 \newcommand{\CCgen}[3]{\revgeneral{CC}{yellow!30}{#1}{#2}{#3}}
+
+% ------------------------------------------------------------------
+% NOTE SULL'INTERA TESI
+%
+% Il gradino sopra le note generali: osservazioni che non riguardano un
+% capitolo ma il documento nel suo insieme (equilibrio fra le parti, elenchi
+% mancanti, un filo narrativo che si interrompe, materiale non incluso).
+% Vanno tenute separate perche' si leggono in un altro momento: non mentre si
+% rivede un capitolo, ma quando si decide la struttura della tesi.
+%
+%   \CCthesis{titolo breve}{testo}
+%
+% Numerazione [CC T1], [CC T2], ..., colore proprio, elenco proprio. Come le
+% altre, la posizione nel file e' libera (l'ambito e' implicito): va messa
+% dentro un capoverso, mai subito dopo un titolo.
+\newcommand{\revthesis}[4]{% #1 sigla  #2 colore  #3 titolo  #4 testo
+  \leavevmode
+  \csname ifrevshow#1\endcsname
+    \refstepcounter{tes#1}%
+    \textsuperscript{\textbf{\scriptsize[#1\,T\csname thetes#1\endcsname]}}%
+    \addcontentsline{tsn}{todo}{%
+      \protect\fcolorbox{black}{#2}{\protect\textcolor{#2}{o}}\ %
+      \protect\textbf{[#1\,T\csname thetes#1\endcsname] #3:} #4}%
+    \noteopenentry{#2}{[#1\,T\csname thetes#1\endcsname] tesi nel suo insieme -- #3:}{#4}%
+    \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
+      \fcolorbox{black}{#2}{\parbox{11.6cm}{\scriptsize\raggedright
+        \textbf{[#1\,T\csname thetes#1\endcsname] tesi nel suo insieme -- #3:} #4}}}}%
+  \fi
+}
+\newcommand{\CCthesis}[2]{\revthesis{CC}{cyan!22}{#1}{#2}}
+\makeatletter
+\newcommand{\listofthesisnotes}{%
+  \section*{Note sulla tesi nel suo insieme}%
+  \@mkboth{Note sulla tesi}{Note sulla tesi}%
+  \@starttoc{tsn}%
+}
+\makeatother
 \makeatletter
 \newcommand{\listofgeneralnotes}{%
   \section*{Note generali}%

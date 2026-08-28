@@ -69,7 +69,21 @@ Non ha ancora nel testo: al suo posto compare un marcatore con numerazione
 separata, `[CC G1]`, `[CC G2]`, e il riquadro e' giallo. Finisce in un elenco
 suo, *Note generali*, oltre che negli elenchi per stato.
 
-`ambito` e' la portata: `capitolo 1`, `sezione 1.3`, `sezioni 1.2 e 1.4`.
+### Note sull'intera tesi
+
+Il gradino sopra: osservazioni che non riguardano un capitolo ma il documento
+nel suo insieme (equilibrio fra le parti, elenchi mancanti, materiale non
+incluso, un filo narrativo che si interrompe).
+
+```latex
+\CCthesis{titolo breve}{testo}
+```
+
+Numerazione `[CC T1]`, colore azzurro, elenco proprio. Si tengono separate
+dalle note generali perche' si leggono in un altro momento: non mentre si
+rivede un capitolo, ma quando si decide la struttura della tesi.
+
+`ambito` (per `\CCgen`) e' la portata: `capitolo 1`, `sezione 1.3`, `sezioni 1.2 e 1.4`.
 Siccome la portata e' scritta nella nota, la posizione nel file e' libera:
 va messa **dentro il primo capoverso** della zona a cui si riferisce (mai
 subito dopo un titolo, altrimenti il `\marginpar` parte in modo verticale e
@@ -224,7 +238,7 @@ un hook.
 ## 7. Gli elenchi delle note
 
 In testa al documento (e in testa al PDF del solo capitolo 1) ci sono un
-riepilogo e **quattro elenchi**, che sono lo stesso insieme di note guardato in
+riepilogo e **sei elenchi**, che sono lo stesso insieme di note guardato in
 due modi diversi.
 
 | elenco | cosa contiene |
@@ -232,6 +246,7 @@ due modi diversi.
 | **Todo list** | le note di MD, elenco di `todonotes`, com'e' sempre stato |
 | **Note dei revisori** | le note di CC e degli altri revisori |
 | **Note generali** | le note su un capitolo o una sezione intera |
+| **Note sulla tesi** | le note sul documento nel suo insieme |
 | **Note aperte** | tutte le note ancora da lavorare, di chiunque |
 | **Note risolte** | tutte quelle chiuse, con la descrizione di come |
 
