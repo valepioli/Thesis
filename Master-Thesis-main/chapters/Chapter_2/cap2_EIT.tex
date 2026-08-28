@@ -442,39 +442,39 @@ The configuration in which the two EIT ground states belong to different hyperfi
 
 At the MOT position, the trapping beams have a waist of $w_{\mathrm{MOT}} = 126\,\mu\mathrm{m}$, giving an initial interference potential depth of $U_{\mathrm{MOT}} \approx 25\,\mu\mathrm{K}$. From Eq.~\eqref{eq:oscillation_frequencies}, the axial frequency depends on the potential depth and the trapping wavelength $\lambda = 1064\,\mathrm{nm}$:
 \begin{equation}
-    \nu_{z,\mathrm{MOT}} = \frac{1}{\lambda}\sqrt{\frac{2U_{\mathrm{MOT}}}{m}}.
+\nu_{z,\mathrm{MOT}} = \frac{1}{\lambda}\sqrt{\frac{2U_{\mathrm{MOT}}}{m}}.
 \end{equation}
 This gives $\nu_{z,\mathrm{MOT}} \approx 65\,\mathrm{kHz}$.
 
 During transport, the atoms are guided toward the fiber tip, where the beam waist is focused down to $w_0 = 19\,\mu\mathrm{m}$. The optical potential depth scales as $U \propto 1/w^2(z)$, so the compression amplifies it by
 \begin{equation}
-    \frac{U_{\mathrm{tip}}}{U_{\mathrm{MOT}}} = \left(\frac{w_{\mathrm{MOT}}}{w_0}\right)^2 = \left(\frac{126\,\mu\mathrm{m}}{19\,\mu\mathrm{m}}\right)^2 \approx 44,
+\frac{U_{\mathrm{tip}}}{U_{\mathrm{MOT}}} = \left(\frac{w_{\mathrm{MOT}}}{w_0}\right)^2 = \left(\frac{126,\mu\mathrm{m}}{19,\mu\mathrm{m}}\right)^2 \approx 44,
 \end{equation}
 bringing the trap depth at the fiber tip to $U_{\mathrm{tip}} \approx 1.1\,\mathrm{mK}$.
 
 Since the axial frequency scales as $\nu_z \propto \sqrt{U}$, its value at the fiber tip increases by $\sqrt{44}$:
 \begin{equation}
-    \nu_{z,\mathrm{tip}} = \nu_{z,\mathrm{MOT}}\sqrt{44} \approx 430\,\mathrm{kHz}.
+\nu_{z,\mathrm{tip}} = \nu_{z,\mathrm{MOT}}\sqrt{44} \approx 430,\mathrm{kHz}.
 \end{equation}
 The radial frequency $\nu_r$ depends on both the potential depth and the local waist, scales more steeply, and reaches approximately $5\,\mathrm{kHz}$.
 
 If transport along the optical conveyor belt is adiabatic, the axial action of the trapped atoms is conserved. From an initial temperature $T_{\mathrm{MOT}} = 8.5\,\mu\mathrm{K}$ at the loading position, the initial mean axial phonon number follows Bose--Einstein statistics:
 \begin{equation}
-    \langle n_{z} \rangle = \frac{1}{\exp\left(\frac{h\nu_{z,\mathrm{MOT}}}{k_B T_{\mathrm{MOT}}}\right) - 1} \approx 2.3.
+\langle n_{z} \rangle = \frac{1}{\exp\left(\frac{h\nu_{z,\mathrm{MOT}}}{k_B T_{\mathrm{MOT}}}\right) - 1} \approx 2.3.
 \end{equation}
 During adiabatic compression, temperature scales with trapping frequency ($T \propto \nu_z$), so the axial temperature at the fiber tip increases by the same factor:
 \begin{equation}
-    T_{\mathrm{tip}} = T_{\mathrm{MOT}}\sqrt{44} \approx 56\,\mu\mathrm{K}.
+T_{\mathrm{tip}} = T_{\mathrm{MOT}}\sqrt{44} \approx 56,\mu\mathrm{K}.
 \end{equation}
-Despite this rise in temperature, adiabaticity keeps the mean phonon number fixed at $\langle n_{z} \rangle \approx 2.3$.
+Despite this rise in temperature, adiabaticity keeps the mean phonon number fixed at $\langle n_{z} \rangle \approx 2.3$. **Since this calculated value is an estimate based on the initial measured temperature, we round it to the nearest integer and set the initial mean phonon number to $\langle n_{z} \rangle = 2$ in the simulation.**
 
 The axial trap frequency $\nu_{z,\mathrm{tip}}$ is inserted directly into the motional Hamiltonian, with $\nu$ set to $430$~kHz. The Lamb--Dicke parameters of the probe and coupling beams follow from their wavevector projections, Eq.~\eqref{eq:eta_individual_beam}. For EIT cooling at the $780\,\mathrm{nm}$ absorption wavelength, the optical wavenumber is $k = 2\pi/\lambda_{\mathrm{EIT}} \approx 8.055 \times 10^6\,\mathrm{m}^{-1}$, and the spatial extent of the axial ground-state wavepacket is
 \begin{equation}
-    x_{0,ax} = \sqrt{\frac{\hbar}{2m(2\pi\nu_{z,\mathrm{tip}})}} \approx 11\,\mathrm{nm}.
+x_{0,ax} = \sqrt{\frac{\hbar}{2m(2\pi\nu_{z,\mathrm{tip}})}} \approx 11,\mathrm{nm}.
 \end{equation}
 The corresponding axial Lamb--Dicke parameter is
 \begin{equation}
-    \eta_{ax} = k x_{0,ax} \approx 0.09.
+\eta_{ax} = k x_{0,ax} \approx 0.09.
 \end{equation}
 Since $\eta_{ax} \ll 1$, the axial motion is within the Lamb--Dicke regime assumed in Section~\ref{subsec:laser_coupling}. The magnetic field, laser polarizations, hyperfine splittings, detunings, and Rabi frequencies are retained explicitly in the 24-level Hamiltonian.
 
