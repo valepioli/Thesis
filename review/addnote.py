@@ -89,14 +89,25 @@ def existing_note_containing(src, frase):
 
 def anchor_mismatch(nota, frase):
     r"""Per le macro ancorate, l'argomento-ancora deve essere ESATTAMENTE la frase."""
-    m = re.match(NOTE, nota.lstrip())
+    # La macro puo' non essere all'inizio: per una nota NON ancorata si passa
+    # la frase seguita dalla macro, perche' place() sostituisce la frase con
+    # tutto il testo che gli si da'.
+    m = re.search(NOTE, nota)
     if not m:
-        return "il testo della nota non comincia con una macro di nota"
+        return "il testo non contiene nessuna macro di nota"
     name = m.group(0)[1:-1]
     idx = ANCHOR.get(name)
     if idx is None:
-        return None                      # nota non ancorata: niente da verificare
-    t = nota.lstrip()
+        # Nota NON ancorata (CCgen, CCthesis, CCnote): non porta la frase in un
+        # argomento, ma place() sostituisce comunque la frase con il testo che
+        # gli passi, quindi il testo deve CONTENERE la frase o la si cancella.
+        # Si passa quindi frase + macro, non la sola macro.
+        if frase not in nota:
+            return ("\\%s non e' ancorata, quindi il testo che passi sostituisce "
+                    "la frase: deve contenerla. Passa la frase seguita dalla macro"
+                    % name)
+        return None
+    t = nota
     args, j = [], m.end() - 1
     try:
         for _ in range(ARGS[name]):
@@ -188,6 +199,8 @@ def _selftest():
          r"\CCn{%s}{commento}", "cancellerei il testo"),
         ("riga vuota nel corpo", "testo con la frase dentro", "la frase",
          "\\CCn{la frase}{primo capoverso\n\nsecondo}", "riga vuota"),
+        ("non ancorata senza frase", "testo con la frase dentro", "la frase",
+         r"\CCthesis{titolo}{corpo}", "deve contenerla"),
     ]
     ko = sum(_run_case(*c) for c in casi)
     # e un caso che deve invece riuscire
