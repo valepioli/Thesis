@@ -200,7 +200,30 @@ un hook.
 
 ---
 
-## 7. Stato delle note
+## 7. Gli elenchi delle note
+
+In testa al documento (e in testa al PDF del solo capitolo 1) ci sono un
+riepilogo e **quattro elenchi**, che sono lo stesso insieme di note guardato in
+due modi diversi.
+
+| elenco | cosa contiene |
+|---|---|
+| **Todo list** | le note di MD, elenco di `todonotes`, com'e' sempre stato |
+| **Note dei revisori** | le note di CC e degli altri revisori |
+| **Note aperte** | tutte le note ancora da lavorare, di chiunque |
+| **Note risolte** | tutte quelle chiuse, con la descrizione di come |
+
+I primi due dividono per LIVELLO (chi ha scritto), gli altri due per STATO.
+Ogni nota compare quindi in due elenchi: uno per livello e uno per stato.
+Il riquadro in cima riporta i totali, che vengono dall'`.aux` e sono quindi
+aggiornati dalla seconda compilazione in poi (latexmk ne fa comunque piu' di una).
+
+Per aggiungere un elenco proprio bastano due righe: una macro che scrive con
+`\notelistentry{<estensione>}{...}` e un `\@starttoc{<estensione>}`.
+
+---
+
+## 8. Stato delle note
 
 ```bash
 python3 review/status.py             # confronto con origin/main

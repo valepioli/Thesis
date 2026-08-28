@@ -217,7 +217,7 @@
 % \leavevmode: senza, una nota messa subito dopo un titolo o una \label parte
 % in modo verticale, il \marginpar non puo' migrare e LaTeX perde i float
 % della pagina ("Float(s) lost").
-\newcommand{\revnote}[5]{% #1 sigla  #2 colore  #3 categoria  #4 ancora  #5 nota
+\newcommand{\revnotegen}[6]{% #6 = nop | nsv% #1 sigla  #2 colore  #3 categoria  #4 ancora  #5 nota
   \leavevmode
   \csname ifrevshow#1\endcsname
     \dashuline{#4}%
@@ -226,13 +226,14 @@
     \addcontentsline{cco}{todo}{%
       \protect\fcolorbox{black}{#2}{\protect\textcolor{#2}{o}}\ %
       \protect\textbf{[#1\,\csname therev#1\endcsname] #3:} #4}%
+    \csname note#6entry\endcsname{#2}{[#1\,\csname therev#1\endcsname] #3:}{#5}%
     \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
       \fcolorbox{black}{#2}{\parbox{11.6cm}{\scriptsize\raggedright
         \textbf{[#1\,\csname therev#1\endcsname] #3:} #5}}}}%
   \else #4\fi
 }
 % variante senza ancoraggio nel testo: #4 e' solo l'etichetta per l'elenco
-\newcommand{\revnoteplain}[5]{%
+\newcommand{\revnoteplaingen}[6]{% #6 = nop | nsv%
   \leavevmode
   \csname ifrevshow#1\endcsname
     \refstepcounter{rev#1}%
@@ -240,6 +241,7 @@
     \addcontentsline{cco}{todo}{%
       \protect\fcolorbox{black}{#2}{\protect\textcolor{#2}{o}}\ %
       \protect\textbf{[#1\,\csname therev#1\endcsname] #3:} #4}%
+    \csname note#6entry\endcsname{#2}{[#1\,\csname therev#1\endcsname] #3:}{#5}%
     \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
       \fcolorbox{black}{#2}{\parbox{11.6cm}{\scriptsize\raggedright
         \textbf{[#1\,\csname therev#1\endcsname] #3:} #5}}}}%
@@ -253,13 +255,55 @@
 }
 \newcommand{\hidereviewer}[1]{\csname revshow#1false\endcsname}
 
+% Ogni nota, oltre a finire nell'elenco del proprio livello (.tdo per MD,
+% .cco per i revisori), finisce anche in uno dei due elenchi per STATO:
+% .nop se e' aperta, .nsv se e' risolta. Cosi' si puo' leggere il lavoro in due
+% modi: ``cosa ho scritto io'' e ``cosa resta da fare''.
+\newcounter{noteopen}
+\newcounter{notesolved}
+\newcommand{\notelistentry}[4]{% #1 estensione  #2 colore  #3 etichetta  #4 testo
+  \addcontentsline{#1}{todo}{%
+    \protect\fcolorbox{black}{#2}{\protect\textcolor{#2}{o}}\ \protect\textbf{#3} #4}%
+}
+\newcommand{\noteopenentry}[3]{\stepcounter{noteopen}\notelistentry{nop}{#1}{#2}{#3}}
+\newcommand{\notesolvedentry}[3]{\stepcounter{notesolved}\notelistentry{nsv}{#1}{#2}{#3}}
+
 \makeatletter
 \newcommand{\listofrevnotes}{%
-  \section*{Reviewer notes}%
-  \@mkboth{Reviewer notes}{Reviewer notes}%
+  \section*{Note dei revisori}%
+  \@mkboth{Note dei revisori}{Note dei revisori}%
   \@starttoc{cco}%
 }
+\newcommand{\listofopennotes}{%
+  \section*{Note aperte}%
+  \@mkboth{Note aperte}{Note aperte}%
+  \@starttoc{nop}%
+}
+\newcommand{\listofsolvednotes}{%
+  \section*{Note risolte}%
+  \@mkboth{Note risolte}{Note risolte}%
+  \@starttoc{nsv}%
+}
+% I totali sono noti solo a fine documento: si scrivono nell'.aux e si leggono
+% alla compilazione dopo (latexmk ne fa comunque piu' di una).
+\AtEndDocument{%
+  \immediate\write\@auxout{%
+    \string\gdef\string\NoteAperteTot{\thenoteopen}%
+    \string\gdef\string\NoteRisolteTot{\thenotesolved}}%
+}
 \makeatother
+\providecommand{\NoteAperteTot}{?}
+\providecommand{\NoteRisolteTot}{?}
+\newcommand{\notesummary}{%
+  \par\noindent\fcolorbox{black}{gray!10}{\parbox{0.9\textwidth}{%
+    \textbf{Stato della revisione.}\ %
+    Note aperte: \textbf{\NoteAperteTot}\quad
+    risolte: \textbf{\NoteRisolteTot}.\ %
+    Gli elenchi che seguono sono quattro: per livello (\emph{Todo list} = MD,
+    \emph{Note dei revisori}) e per stato (\emph{Note aperte},
+    \emph{Note risolte}, queste ultime con la descrizione di come sono state
+    risolte).}}\par\medskip
+}
 \newcommand{\listofccnotes}{\listofrevnotes}   % vecchio nome, ancora valido
 
 % ---- revisori registrati ----
@@ -313,4 +357,28 @@
 \newcommand{\MDdel}[2]{%
   \sout{#1}%
   \todo[color=gray!20]{\textbf{MD delete:} #2}%
+}
+% Le due forme concrete: aperta -> elenco .nop, risolta -> elenco .nsv
+\newcommand{\revnote}[5]{\revnotegen{#1}{#2}{#3}{#4}{#5}{open}}
+\newcommand{\revnotesolvedg}[5]{\revnotegen{#1}{#2}{#3}{#4}{#5}{solved}}
+\newcommand{\revnoteplain}[5]{\revnoteplaingen{#1}{#2}{#3}{#4}{#5}{open}}
+\newcommand{\revnoteplainsolvedg}[5]{\revnoteplaingen{#1}{#2}{#3}{#4}{#5}{solved}}
+\renewcommand{\CCsolved}[4]{\revnotesolvedg{CC}{green!20}{#1 [SOLVED]}{#2}{#3 ~--- \textbf{Risolta:} #4}}
+\renewcommand{\CCnotesolved}[3]{\revnoteplainsolvedg{CC}{green!20}{nota [SOLVED]}{#1}{#2 ~--- \textbf{Risolta:} #3}}
+
+% Le macro di MD: il testo della nota non viene toccato, si aggiunge solo la
+% riga nell'elenco per stato.
+\renewcommand{\MDn}[2]{\hlcolor{brown!25}{#1}\todo[color=brown!20]{\textbf{MD note:} #2}\noteopenentry{brown!25}{MD note:}{#2}}
+\renewcommand{\MDq}[2]{\hlcolor{blue!15}{#1}\todo[color=blue!15]{\textbf{MD question:} #2}\noteopenentry{blue!15}{MD question:}{#2}}
+\renewcommand{\MDs}[2]{\hlcolor{red!20}{#1}\todo[color=red!25]{\textbf{MD suggestion:} #2}\noteopenentry{red!20}{MD suggestion:}{#2}}
+\renewcommand{\MDt}[2]{\uwave{#1}\todo[color=orange!30]{\textbf{MD typo:} #2}\noteopenentry{orange!30}{MD typo:}{#2}}
+\renewcommand{\MDsolvedmark}[3]{%
+  \hlcolor{green!20}{#2}%
+  \todo[color=green!20]{\textbf{MD #1} \textbf{[SOLVED]:} #3}%
+  \notesolvedentry{green!20}{MD #1 [SOLVED]:}{#3}%
+}
+\renewcommand{\MDtsolved}[3]{%
+  \uwave{#1}%
+  \todo[color=green!20]{\textbf{MD typo} \textbf{[SOLVED]:} #2 ~--- \textbf{Risolta:} #3}%
+  \notesolvedentry{green!20}{MD typo [SOLVED]:}{#2 ~--- \textbf{Risolta:} #3}%
 }

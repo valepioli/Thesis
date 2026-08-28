@@ -12,7 +12,7 @@ giusta, ed e' esattamente li' che si erano perse delle note.
 
 Esce 0 se tutto passa, 1 altrimenti: si puo' mettere in un hook.
 """
-import io, os, re, sys, glob, subprocess, collections
+import io, os, re, sys, glob, subprocess, collections, unicodedata
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = os.path.join(ROOT, "Master-Thesis-main")
@@ -63,9 +63,31 @@ for f in glob.glob(TEXGLOB):
 
 txt = subprocess.run(["pdftotext", "-layout", PDF, "-"], capture_output=True, text=True).stdout
 pages = txt.split("\f")
-body = "".join(pages[14:])
-md_in_pdf = sum(body.count(l) for l in ("MD note", "MD suggestion", "MD typo", "MD question"))
-check("note di MD tutte nel PDF (%d)" % src_md, md_in_pdf == src_md, "nel PDF %d" % md_in_pdf)
+# Si confrontano i TESTI delle note, non le etichette: le etichette compaiono
+# anche negli elenchi, e il numero di pagine di elenco cambia a ogni giro.
+# Le lettere accentate vanno ridotte alla base PRIMA di togliere il resto:
+# pdftotext puo' renderle scomposte (e + accento), e togliendo solo i segni
+# non alfanumerici resterebbe una lettera in piu' rispetto al sorgente.
+# LaTeX compone i accentata come i SENZA PUNTO piu' accento: dopo NFKD resta
+# U+0131, che non e' in [a-z] e verrebbe buttata, sfasando il confronto di una
+# lettera. Stessa cosa per altre lettere speciali.
+SPECIALI = {'\u0131': 'i', '\u0237': 'j', '\u0142': 'l', '\u00f8': 'o',
+            '\u0111': 'd', '\u00e6': 'ae', '\u0153': 'oe', '\u00df': 'ss'}
+def norm(x):
+    d = unicodedata.normalize('NFKD', x.lower())
+    d = ''.join(c for c in d if not unicodedata.combining(c))
+    d = ''.join(SPECIALI.get(c, c) for c in d)
+    return re.sub(r'[^a-z0-9]', '', d)
+npdf = norm(txt)
+md_bodies_src = []
+for f in glob.glob(TEXGLOB):
+    t = read(f)
+    for m in re.finditer(r'\\MD[a-z]+\{', t):
+        g = groups(t, m.end() - 1, 2)
+        if len(g) == 2 and g[1].strip(): md_bodies_src.append(g[1])
+absent = [b for b in md_bodies_src if norm(b)[:40] and norm(b)[:40] not in npdf]
+check("testo di ogni nota di MD nel PDF (%d)" % len(md_bodies_src),
+      not absent, "%d assenti" % len(absent))
 
 loc = collections.defaultdict(list)
 for i, p in enumerate(pages, 1):
