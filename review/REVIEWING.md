@@ -260,7 +260,30 @@ Per aggiungere un elenco proprio bastano due righe: una macro che scrive con
 
 ---
 
-## 8. Stato delle note
+## 8. Misurare prima di scrivere un numero
+
+Una nota che cita un numero (``il capitolo 2 ha 13133 parole'', ``24 acronimi
+distinti'') va scritta su una misura fatta sul testo della **studentessa**, non
+sui file annotati.
+
+```bash
+python3 review/measure.py              # su origin/main
+python3 review/measure.py c977f7c      # a una revisione precisa
+python3 review/measure.py --acronyms   # con l'elenco delle sigle
+```
+
+Non e' pedanteria. Misurando sui file annotati si contano anche le note stesse,
+e togliere le note con una espressione regolare non funziona, perche' le note
+contengono a loro volta graffe annidate e matematica. E' successo davvero: nove
+numeri in nove note diverse erano sbagliati, i conteggi di parole gonfiati fino
+al 50 per cento nelle sezioni corte, e un conteggio di sigle falsato perche' la
+piu' frequente era finita per errore nella lista delle esclusioni. Lo strumento
+legge i file da git, alla revisione della studentessa, dove le note non
+esistono: cosi' il problema non si puo' ripresentare.
+
+---
+
+## 9. Stato delle note
 
 ```bash
 python3 review/status.py             # confronto con origin/main

@@ -160,6 +160,27 @@ lint = subprocess.run([sys.executable, os.path.join(ROOT, "review", "status.py")
 check("nessun problema strutturale nelle note", lint.returncode == 0,
       lint.stdout.strip().splitlines()[-1] if lint.stdout.strip() else "")
 
+# ------------------------------------------------- 6. variazione rispetto a HEAD
+# LIMITE NOTO: i controlli qui sopra confrontano il SORGENTE con il PDF, quindi
+# vedono una nota persa in composizione ma non una nota cancellata per sbaglio
+# dal sorgente (calerebbero entrambi i conteggi). Per le note di MD esiste il
+# confronto con f2f3af8, che e' un vincolo assoluto; per quelle dei revisori no.
+# Qui si stampa quindi la variazione rispetto al commit precedente: un calo va
+# guardato, anche se non e' di per se' un errore (togliere note e' legittimo).
+prev = {}
+for kind, pat in (("revisori", r'\\CC(?:err|n|ref|note|solved|notesolved)\{'),
+                  ("generali", r'\\CCgen\{'), ("tesi", r'\\CCthesis\{'),
+                  ("MD", r'\\MD[a-z]+\{')):
+    now = sum(len(re.findall(pat, read(f))) for f in glob.glob(TEXGLOB))
+    old_n = 0
+    for f in glob.glob(TEXGLOB):
+        rel = os.path.relpath(f, ROOT)
+        txt = subprocess.run(["git", "-C", ROOT, "show", "HEAD:" + rel],
+                             capture_output=True, text=True).stdout
+        old_n += len(re.findall(pat, txt))
+    prev[kind] = (now, now - old_n)
+print("  note: " + "   ".join("%s %d (%+d)" % (k, v[0], v[1]) for k, v in prev.items()))
+
 # ------------------------------------------------------------------ report
 quiet = "--quiet" in sys.argv
 bad = 0
