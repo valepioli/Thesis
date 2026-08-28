@@ -55,6 +55,27 @@ Il numero `[GS 1]` compare **sia nel testo sia sul riquadro**: e' quello che
 lega la nota alla frase anche quando i riquadri scivolano in basso. Non
 toglierlo.
 
+### Note generali
+
+Per le osservazioni che riguardano un capitolo o una sezione intera e non hanno
+una frase a cui agganciarsi -- notazione non uniforme, una sezione scollegata
+dal resto, squilibri di profondita' o di bibliografia:
+
+```latex
+\CCgen{ambito}{titolo breve}{testo}
+```
+
+Non ha ancora nel testo: al suo posto compare un marcatore con numerazione
+separata, `[CC G1]`, `[CC G2]`, e il riquadro e' giallo. Finisce in un elenco
+suo, *Note generali*, oltre che negli elenchi per stato.
+
+`ambito` e' la portata: `capitolo 1`, `sezione 1.3`, `sezioni 1.2 e 1.4`.
+Siccome la portata e' scritta nella nota, la posizione nel file e' libera:
+va messa **dentro il primo capoverso** della zona a cui si riferisce (mai
+subito dopo un titolo, altrimenti il `\marginpar` parte in modo verticale e
+LaTeX perde i float della pagina), e se una pagina si affolla troppo la si puo'
+spostare piu' avanti nella stessa sezione senza perdere significato.
+
 **Per un PDF con le note di un revisore solo**, in preambolo:
 
 ```latex
@@ -210,6 +231,7 @@ due modi diversi.
 |---|---|
 | **Todo list** | le note di MD, elenco di `todonotes`, com'e' sempre stato |
 | **Note dei revisori** | le note di CC e degli altri revisori |
+| **Note generali** | le note su un capitolo o una sezione intera |
 | **Note aperte** | tutte le note ancora da lavorare, di chiunque |
 | **Note risolte** | tutte quelle chiuse, con la descrizione di come |
 

@@ -249,6 +249,7 @@
 }
 \newcommand{\DeclareReviewer}[2]{%
   \newcounter{rev#1}%
+  \newcounter{gen#1}%
   \expandafter\newif\csname ifrevshow#1\endcsname
   \csname revshow#1true\endcsname
   \expandafter\newcommand\csname #1\endcsname[3]{\revnote{#1}{#2}{##1}{##2}{##3}}%
@@ -305,6 +306,46 @@
     risolte).}}\par\medskip
 }
 \newcommand{\listofccnotes}{\listofrevnotes}   % vecchio nome, ancora valido
+
+% ------------------------------------------------------------------
+% NOTE GENERALI
+%
+% Un terzo tipo di nota, accanto a quelle ancorate a una frase: riguarda un
+% CAPITOLO o una SEZIONE INTERA, non un punto preciso del testo. Serve per le
+% osservazioni che non hanno una frase a cui appendersi -- notazione non
+% uniforme, una sezione scollegata dal resto, squilibri di profondita' o di
+% bibliografia.
+%
+%   \CCgen{ambito}{titolo breve}{testo}
+%
+% Numerazione separata ([CC G1], [CC G2], ...), colore proprio, elenco proprio
+% (\listofgeneralnotes). Entra comunque anche negli elenchi per stato.
+%
+% Va messa DENTRO il primo capoverso della sezione a cui si riferisce, mai
+% subito dopo il titolo: un \marginpar aperto in modo verticale fa perdere i
+% float della pagina.
+\newcommand{\revgeneral}[5]{% #1 sigla  #2 colore  #3 ambito  #4 titolo  #5 testo
+  \leavevmode
+  \csname ifrevshow#1\endcsname
+    \refstepcounter{gen#1}%
+    \textsuperscript{\textbf{\scriptsize[#1\,G\csname thegen#1\endcsname]}}%
+    \addcontentsline{gen}{todo}{%
+      \protect\fcolorbox{black}{#2}{\protect\textcolor{#2}{o}}\ %
+      \protect\textbf{[#1\,G\csname thegen#1\endcsname] #3 -- #4:} #5}%
+    \noteopenentry{#2}{[#1\,G\csname thegen#1\endcsname] generale (#3) -- #4:}{#5}%
+    \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
+      \fcolorbox{black}{#2}{\parbox{11.6cm}{\scriptsize\raggedright
+        \textbf{[#1\,G\csname thegen#1\endcsname] nota generale, #3 -- #4:} #5}}}}%
+  \fi
+}
+\newcommand{\CCgen}[3]{\revgeneral{CC}{yellow!30}{#1}{#2}{#3}}
+\makeatletter
+\newcommand{\listofgeneralnotes}{%
+  \section*{Note generali}%
+  \@mkboth{Note generali}{Note generali}%
+  \@starttoc{gen}%
+}
+\makeatother
 
 % ---- revisori registrati ----
 \DeclareReviewer{CC}{teal!15}    % Claude Code
