@@ -155,12 +155,58 @@ capoverso**. Il modo semplice per non averne quasi mai e' dividersi i capitoli.
 
 ---
 
-## 6. Stato delle note
+## 6. Il giro di lavoro, in quattro comandi
+
+Ogni volta che la studentessa pubblica qualcosa su `main`:
+
+```bash
+git fetch origin && git merge origin/main     # 1. porta dentro il suo testo
+python3 review/reanchor.py                    #    prova a vuoto: dice cosa farebbe
+python3 review/reanchor.py --apply            # 2. riattacca le note alla sua prosa
+bash review/build.sh                          # 3. ricompila i due PDF, da pulito
+python3 review/check.py                       # 4. verifica che sia tutto a posto
+```
+
+**1. Il merge.** I due PDF vanno sempre in conflitto come binari: si prende il
+proprio e si ricompila dopo, non serve risolverli a mano.
+
+```bash
+git checkout --ours Master-Thesis-main/thesis_main.pdf \
+                    Master-Thesis-main/chapters/Chapter_1/chapter_1_main.pdf
+```
+
+**2. `reanchor.py`.** Il suo ramo non contiene le note, quindi ogni conflitto e'
+``la sua prosa nuova'' contro ``la nostra prosa vecchia con le note''. Lo script
+tiene sempre la SUA prosa e riattacca le note. Ha tre protezioni, tutte nate da
+errori veri: non inserisce mai dentro una `\caption`, mai dentro gli argomenti
+di un'altra nota, e rifiuta le ancore di meno di quattro caratteri.
+Le note la cui ancora non esiste piu' vengono elencate come **orfane**: sono i
+punti in cui lei e' intervenuta. Vanno rilette una per una e, se ha dato seguito
+alla nota, rimesse in verde con il tag `[SOLVED]` (vedi la regola 3).
+
+**3. `build.sh`.** Cancella sempre `.lof`, `.tdo`, `.cco` e `.aux` prima di
+compilare. Non e' pedanteria: latexmk rilegge quei file, e se una compilazione
+e' fallita a meta' quella dopo segnala errori che nel sorgente non ci sono.
+
+**4. `check.py`.** Quattordici controlli, e il criterio e' che **si misura il
+PDF, non il sorgente**: una compilazione pulita non dice nulla su quante note
+siano finite nella pagina giusta. Verifica che tutte le note siano nel PDF, che
+marcatore e riquadro stiano sulla stessa pagina, che niente sia tagliato ai
+bordi, che il blocco di testo della tesi sia rimasto quello originale
+(702.78 pt), che le note di MD siano tutte presenti e non alterate, che nessuno
+abbia commentato le note altrui, e che non ci siano note annidate o dentro le
+didascalie. Esce diverso da zero se qualcosa non va, quindi si puo' mettere in
+un hook.
+
+---
+
+## 7. Stato delle note
 
 ```bash
 python3 review/status.py             # confronto con origin/main
 python3 review/status.py a3a1f66     # confronto con un commit preciso
 python3 review/status.py --verbose   # elenca anche le note ancora aperte
+python3 review/status.py --lint      # solo i controlli strutturali
 ```
 
 Per ogni nota controlla se la frase a cui e' agganciata esiste ancora nel testo
@@ -168,6 +214,9 @@ della studentessa:
 
 - **aperta** — quel passaggio non e' stato toccato, la nota vale ancora;
 - **testo cambiato** — ha riscritto li', la nota va riletta e forse chiusa;
-- **non ancorata** — note che si riferiscono ad altre note, non confrontabili.
+- **non ancorata** — note che non si agganciano a una frase, non confrontabili.
 
-E' l'unico "stato" che esiste, e nessuno deve aggiornarlo a mano.
+Attenzione a un limite: se lei risolve una nota **senza toccare la frase
+ancorata** (per esempio aggiungendo altrove il rimando a una figura), lo
+strumento la vede ancora ``aperta''. Lo stato automatico e' un aiuto, non un
+sostituto della rilettura.
