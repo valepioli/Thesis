@@ -191,47 +191,89 @@
 %   \CCref  rilievo meccanico: bibliografia, figure, riferimenti incrociati
 %   \CCmd   verdetto su una nota di MD (non evidenzia nulla: commenta la nota)
 % ============================================================
-% Ogni nota CC porta un numero, stampato sia nel testo sia nel riquadro.
-% Serve perche' le due colonne condividono un solo flusso di marginpar: quando
-% i riquadri hanno altezze diverse LaTeX li fa scivolare in basso, e senza un
-% numero non si capisce piu' a quale frase appartengono.
-\newcounter{ccnum}
-\newcommand{\CCtag}{\refstepcounter{ccnum}%
-  \textsuperscript{\textbf{\scriptsize[CC\,\theccnum]}}}
+% ============================================================
+% REGISTRO DEI REVISORI (seconda colonna del margine)
+%
+% Le note di MD restano dove sono: macro \MD*, todonotes, colonna di SINISTRA,
+% ed e' l'unico contenuto di \listoftodos. Tutti gli ALTRI revisori condividono
+% la colonna di DESTRA e si distinguono per colore, sigla e numerazione propria.
+%
+% Aggiungere un revisore richiede una riga sola:
+%     \DeclareReviewer{GS}{blue!15}
+% e da quel momento esiste la macro \GS{categoria}{ancora}{nota}, per esempio
+%     \GS{errore}{the measured waist agrees}{Il confronto non regge: ...}
+% che stampa [GS 1] nel testo, mette il riquadro blu nella seconda colonna e
+% aggiunge una riga all'elenco dei revisori.
+%
+% Il colore identifica la PERSONA, non la categoria: con piu' revisori e' il
+% colore che deve dire subito di chi e' la nota. La categoria resta la parola
+% in grassetto all'inizio del riquadro.
+%
+% \hidereviewer{GS} spegne un layer: le note di quel revisore spariscono da
+% testo, margine ed elenco, e resta solo il testo della tesi. Serve per produrre
+% un PDF per revisore senza toccare le note.
+% ============================================================
 
-% Riquadro nella seconda colonna. Largo 11.6 cm (prima 9.6) e in \scriptsize
-% (prima \footnotesize): insieme fanno circa il 40 per cento di altezza in meno,
-% che e' quello che faceva uscire i riquadri dal fondo pagina.
-\newcommand{\CCbox}[3]{%
-  \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
-    \fcolorbox{black}{#1}{\parbox{11.6cm}{\scriptsize\raggedright
-      \textbf{[CC\,\theccnum] #2} #3}}}}%
+\newcommand{\revnote}[5]{% #1 sigla  #2 colore  #3 categoria  #4 ancora  #5 nota
+  \csname ifrevshow#1\endcsname
+    \dashuline{#4}%
+    \refstepcounter{rev#1}%
+    \textsuperscript{\textbf{\scriptsize[#1\,\csname therev#1\endcsname]}}%
+    \addcontentsline{cco}{todo}{%
+      \protect\fcolorbox{black}{#2}{\protect\textcolor{#2}{o}}\ %
+      \protect\textbf{[#1\,\csname therev#1\endcsname] #3:} #4}%
+    \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
+      \fcolorbox{black}{#2}{\parbox{11.6cm}{\scriptsize\raggedright
+        \textbf{[#1\,\csname therev#1\endcsname] #3:} #5}}}}%
+  \else #4\fi
 }
+% variante senza ancoraggio nel testo: #4 e' solo l'etichetta per l'elenco
+\newcommand{\revnoteplain}[5]{%
+  \csname ifrevshow#1\endcsname
+    \refstepcounter{rev#1}%
+    \textsuperscript{\textbf{\scriptsize[#1\,\csname therev#1\endcsname]}}%
+    \addcontentsline{cco}{todo}{%
+      \protect\fcolorbox{black}{#2}{\protect\textcolor{#2}{o}}\ %
+      \protect\textbf{[#1\,\csname therev#1\endcsname] #3:} #4}%
+    \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
+      \fcolorbox{black}{#2}{\parbox{11.6cm}{\scriptsize\raggedright
+        \textbf{[#1\,\csname therev#1\endcsname] #3:} #5}}}}%
+  \fi
+}
+\newcommand{\DeclareReviewer}[2]{%
+  \newcounter{rev#1}%
+  \expandafter\newif\csname ifrevshow#1\endcsname
+  \csname revshow#1true\endcsname
+  \expandafter\newcommand\csname #1\endcsname[3]{\revnote{#1}{#2}{##1}{##2}{##3}}%
+}
+\newcommand{\hidereviewer}[1]{\csname revshow#1false\endcsname}
 
-% Riga dell'elenco separato delle note CC (file .cco, stampato da \listofccnotes).
-\newcommand{\CCindex}[3]{%
-  \addcontentsline{cco}{todo}{%
-    \protect\fcolorbox{black}{#1}{\protect\textcolor{#1}{o}}\ %
-    \protect\textbf{[CC\,\theccnum] #2} #3}%
-}
 \makeatletter
-\newcommand{\listofccnotes}{%
-  \section*{CC notes}%
-  \@mkboth{CC notes}{CC notes}%
+\newcommand{\listofrevnotes}{%
+  \section*{Reviewer notes}%
+  \@mkboth{Reviewer notes}{Reviewer notes}%
   \@starttoc{cco}%
 }
 \makeatother
+\newcommand{\listofccnotes}{\listofrevnotes}   % vecchio nome, ancora valido
 
-% Le quattro categorie. L'ordine conta: prima \CCtag, che incrementa il
-% contatore, poi l'indice e il riquadro, che lo leggono.
-\newcommand{\CCerr}[2]{\dashuline{#1}\CCtag\CCindex{red!18}{CC errore:}{#1}\CCbox{red!18}{CC errore:}{#2}}
-\newcommand{\CCn}[2]{\dashuline{#1}\CCtag\CCindex{teal!15}{CC nota:}{#1}\CCbox{teal!15}{CC nota:}{#2}}
-\newcommand{\CCref}[2]{\dashuline{#1}\CCtag\CCindex{orange!18}{CC riferimenti:}{#1}\CCbox{orange!18}{CC riferimenti:}{#2}}
-% Nota CC non ancorata a un testo del corpo: #1 e' solo l'etichetta per l'elenco.
-\newcommand{\CCnote}[2]{\CCtag\CCindex{teal!15}{CC nota:}{#1}\CCbox{teal!15}{CC nota:}{#2}}
-% Verdetto su una nota di MD: il marcatore va subito dopo la nota di MD, cosi'
-% si vede a quale delle note nel margine sinistro si riferisce.
-\newcommand{\CCmd}[2]{\CCtag\CCindex{gray!15}{CC sulla nota MD:}{``#1''}\CCbox{gray!15}{CC sulla nota MD ``#1'':}{#2}}
+% ---- revisori registrati ----
+\DeclareReviewer{CC}{teal!15}    % Claude Code
+% Gli altri revisori si aggiungono togliendo il commento. Colonna di sinistra
+% (todonotes) = MD; tutti questi condividono la colonna di destra e si
+% distinguono per colore, sigla e numerazione.
+% \DeclareReviewer{MP}{blue!15}    % Marco Prevedelli
+% \DeclareReviewer{FM}{violet!15}  % Francesco Minardi
+%
+% \hidereviewer{CC}                % <- per un PDF con le note di un solo revisore
+
+% Nomi storici delle macro CC: restano validi, cosi' le note gia' scritte non
+% vanno toccate. La categoria e' passata come parola, il colore e' quello di CC.
+\newcommand{\CCerr}[2]{\revnote{CC}{teal!15}{errore}{#1}{#2}}
+\newcommand{\CCn}[2]{\revnote{CC}{teal!15}{nota}{#1}{#2}}
+\newcommand{\CCref}[2]{\revnote{CC}{teal!15}{riferimenti}{#1}{#2}}
+\newcommand{\CCnote}[2]{\revnoteplain{CC}{teal!15}{nota}{#1}{#2}}
+\newcommand{\CCmd}[2]{\revnoteplain{CC}{teal!15}{sulla nota MD}{``#1''}{#2}}
 
 % 5. Direct Deletion (strikethrough from ulem + margin note)
 \newcommand{\MDdel}[2]{%
