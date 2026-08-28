@@ -28,9 +28,53 @@ che vanno rilette e, se del caso, marcate SOLVED.
 import io, os, re, sys, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-NOTE = r'\\(?:MD[a-z]+|CC(?:err|n|ref|note|solved|notesolved|md))\{'
-UNANCHORED = ("CCmd", "CCnote", "CCnotesolved")
+# Tabella delle macro: quanti argomenti prende ciascuna e quale di essi e'
+# l'ancora nel testo della tesi (None = nota non ancorata a una frase).
+# NON dedurre questi numeri: vanno letti dal preambolo. Una versione precedente
+# di questo file assumeva due argomenti per tutte e non conosceva \CCgen ne'
+# \CCthesis; su un merge avrebbe buttato 24 note e troncato a meta' le altre.
+# Per questo c'e' check_table(), che confronta la tabella con il preambolo e si
+# ferma se qualcuno aggiunge un tipo di nota senza aggiornarla.
+ARGS = {
+    "MDn": 2, "MDq": 2, "MDs": 2, "MDt": 2, "MDdel": 2,
+    "MDnsolved": 3, "MDssolved": 3, "MDqsolved": 3, "MDtsolved": 3,
+    "CCerr": 2, "CCn": 2, "CCref": 2, "CCnote": 2, "CCmd": 2,
+    "CCsolved": 4, "CCnotesolved": 3, "CCgen": 3, "CCthesis": 2,
+}
+ANCHOR = {
+    "MDn": 0, "MDq": 0, "MDs": 0, "MDt": 0, "MDdel": 0,
+    "MDnsolved": 0, "MDssolved": 0, "MDqsolved": 0, "MDtsolved": 0,
+    "CCerr": 0, "CCn": 0, "CCref": 0,
+    "CCsolved": 1,
+    "CCnote": None, "CCmd": None, "CCnotesolved": None,
+    "CCgen": None, "CCthesis": None,
+}
+NOTE = r'\\(?:' + "|".join(sorted(ARGS, key=len, reverse=True)) + r')\{'
 MINLEN = 4
+PREAMBLE = os.path.join(ROOT, "Master-Thesis-main", "preamble.tex")
+
+
+def check_table():
+    """Si ferma se il preambolo definisce una macro di nota che la tabella non
+    conosce, o se il numero di argomenti non corrisponde."""
+    src = io.open(PREAMBLE, encoding="utf-8", errors="replace").read()
+    found = dict(re.findall(r'\\newcommand\{\\((?:MD|CC)[a-z]*)\}\[(\d)\]', src))
+    found.pop("MDsolvedmark", None)          # macro interna, non una nota
+    problemi = []
+    for name, n in found.items():
+        if name not in ARGS:
+            problemi.append("il preambolo definisce \\%s ma la tabella non lo conosce" % name)
+        elif ARGS[name] != int(n):
+            problemi.append("\\%s ha %s argomenti nel preambolo, %d in tabella" % (name, n, ARGS[name]))
+    for name in ARGS:
+        if name not in found:
+            problemi.append("la tabella conosce \\%s ma il preambolo non lo definisce" % name)
+    if problemi:
+        print("TABELLA DELLE MACRO NON ALLINEATA AL PREAMBOLO:")
+        for x in problemi: print("   -", x)
+        print("Aggiorna ARGS e ANCHOR in review/reanchor.py prima di usarlo.")
+        return False
+    return True
 
 
 def grp(t, j):
@@ -44,18 +88,18 @@ def grp(t, j):
 
 
 def parse(src):
-    """Note nell'ordine in cui compaiono: (testo completo, ancora o None)."""
+    """Note nell'ordine in cui compaiono: testo completo e ancora (o None)."""
     out = []
     for m in re.finditer(NOTE, src):
         name = m.group(0)[1:-1]
-        a1, j = grp(src, m.end() - 1)
-        n = 4 if name in ("CCsolved",) else 2
-        a = [a1]
-        for _ in range(n - 1):
+        n = ARGS[name]
+        a, j = [], m.end() - 1
+        for _ in range(n):
             g, j = grp(src, j)
             a.append(g)
+        idx = ANCHOR[name]
         out.append({"text": src[m.start():j],
-                    "anchor": None if name in UNANCHORED else a[1] if name == "CCsolved" else a[0],
+                    "anchor": None if idx is None else a[idx],
                     "name": name})
     return out
 
@@ -94,6 +138,8 @@ def conflicted():
 
 
 def run(apply_it):
+    if not check_table():
+        return 1
     files = conflicted()
     if not files:
         print("Nessun file .tex in conflitto: niente da riattaccare.")
@@ -140,4 +186,6 @@ def run(apply_it):
 
 
 if __name__ == "__main__":
+    if "--check-table" in sys.argv:
+        sys.exit(0 if check_table() else 1)
     sys.exit(run("--apply" in sys.argv))

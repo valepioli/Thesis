@@ -154,6 +154,29 @@ check("nessuna nota di MD alterata", not altered, "%d alterate" % len(altered))
 ccmd = sum(len(re.findall(r'\\CCmd\{', read(f))) for f in glob.glob(TEXGLOB))
 check("nessun commento alle note altrui", ccmd == 0, "%d trovati" % ccmd)
 
+# ------------------------------------ 4b. la tabella di reanchor.py e' allineata?
+# Se qualcuno aggiunge un tipo di nota e non aggiorna reanchor.py, al prossimo
+# merge quelle note verrebbero buttate o troncate. Si controlla qui, cosi' il
+# problema si vede subito e non fra un mese in mezzo a un merge.
+tab = subprocess.run([sys.executable, os.path.join(ROOT, "review", "reanchor.py"), "--check-table"],
+                     capture_output=True, text=True)
+check("reanchor.py conosce tutti i tipi di nota", tab.returncode == 0,
+      tab.stdout.strip().splitlines()[-1] if tab.stdout.strip() else "")
+
+# ------------------------------------------------ 4c. collisioni di colore
+# Il colore identifica la PERSONA: due revisori con lo stesso colore annullano
+# la regola. Si guardano anche le registrazioni commentate, perche' sono
+# istruzioni pronte all'uso e una collisione li' e' una trappola.
+pre = read(os.path.join(BASE, "preamble.tex"))
+palette = collections.defaultdict(set)
+for m in re.finditer(r'\\renewcommand\{\\(MD[a-z]+)\}\[2\]\{\\hlcolor\{([a-z]+![0-9]+)\}', pre):
+    palette[m.group(2)].add("MD:" + m.group(1))
+for m in re.finditer(r'^%?\s*\\DeclareReviewer\{([A-Z]{2})\}\{([a-z]+![0-9]+)\}', pre, re.M):
+    palette[m.group(2)].add("revisore:" + m.group(1))
+clash = {c: v for c, v in palette.items() if len(v) > 1}
+check("nessuna collisione di colore fra revisori", not clash,
+      "; ".join("%s -> %s" % (c, ", ".join(sorted(v))) for c, v in clash.items()))
+
 # -------------------------------------------------------- 5. lint strutturale
 lint = subprocess.run([sys.executable, os.path.join(ROOT, "review", "status.py"), "--lint"],
                       capture_output=True, text=True)

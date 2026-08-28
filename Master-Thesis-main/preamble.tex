@@ -199,7 +199,7 @@
 % la colonna di DESTRA e si distinguono per colore, sigla e numerazione propria.
 %
 % Aggiungere un revisore richiede una riga sola:
-%     \DeclareReviewer{GS}{blue!15}
+%     \DeclareReviewer{GS}{olive!25}
 % e da quel momento esiste la macro \GS{categoria}{ancora}{nota}, per esempio
 %     \GS{errore}{the measured waist agrees}{Il confronto non regge: ...}
 % che stampa [GS 1] nel testo, mette il riquadro blu nella seconda colonna e
@@ -390,7 +390,10 @@
 % Gli altri revisori si aggiungono togliendo il commento. Colonna di sinistra
 % (todonotes) = MD; tutti questi condividono la colonna di destra e si
 % distinguono per colore, sigla e numerazione.
-% \DeclareReviewer{MP}{blue!15}    % Marco Prevedelli
+% Colori gia' occupati: brown/blue/red/orange = MD, teal = CC, giallo =
+% note generali, azzurro = note sulla tesi, verde = risolte. Il blu in
+% particolare e' quello delle domande di MD, quindi non va riusato.
+% \DeclareReviewer{MP}{magenta!18} % Marco Prevedelli
 % \DeclareReviewer{FM}{violet!15}  % Francesco Minardi
 %
 % \hidereviewer{CC}                % <- per un PDF con le note di un solo revisore
