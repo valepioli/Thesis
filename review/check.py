@@ -98,6 +98,17 @@ split = [n for n, pg in loc.items() if not any(v >= 2 for v in collections.Count
 check("marcatore e riquadro sulla stessa pagina", not split,
       "separate: %s" % split[:10])
 
+# Le note generali hanno numerazione propria ([CC G1]) e vanno controllate a
+# parte, altrimenti sfuggirebbero del tutto a questo controllo.
+src_gen = sum(len(re.findall(r'\\CCgen\{', read(f))) for f in glob.glob(TEXGLOB))
+gloc = collections.defaultdict(list)
+for i, p in enumerate(pages, 1):
+    for n in re.findall(r'\[CC\s*G(\d+)\]', p): gloc[int(n)].append(i)
+check("note generali tutte nel PDF (%d)" % src_gen, len(gloc) == src_gen,
+      "nel PDF %d" % len(gloc))
+gsplit = [n for n, pg in gloc.items() if not any(v >= 2 for v in collections.Counter(pg).values())]
+check("note generali: marcatore e riquadro insieme", not gsplit, "separate: %s" % gsplit[:10])
+
 # ------------------------------------------------------------- 3. margini
 bb = subprocess.run(["pdftotext", "-bbox", PDF, "-"], capture_output=True, text=True).stdout
 ps = re.split(r'<page ', bb)[1:]
