@@ -22,42 +22,43 @@
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,22] nota:} the harmonic trap frequency}{28}{revCC.22}%
 \contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,23] nota [SOLVED]:} heating: the transverse compression required to match the fiber mode}{28}{revCC.23}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,24] nota:} }{28}{revCC.24}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,25] errore:} Subtracting the irrelevant constant energy}{29}{revCC.25}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,26] errore:} yields the effective interaction matrix}{30}{revCC.26}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,27] errore:} is excited-state-like and retains approximately the bare atomic linewidth}{31}{revCC.27}%
-\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,28] riferimenti [SOLVED]:} The experimental control of this AC Stark shift is the foundation}{32}{revCC.28}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,29] nota:} the relevant Lamb-Dicke parameter is defined by the effective wavevector}{32}{revCC.29}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,30] errore:} is shifted onto the red-sideband transition}{33}{revCC.30}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,31] riferimenti:} The master-cooler and master-repumper beat notes are isolated using RF filters}{40}{revCC.31}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,32] nota:} restricting the result to atoms moving toward the trap region}{50}{revCC.32}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,33] errore:} The measured waist agrees with the specified MFD, confirming that the transmitted light corresponds to the fundamental fiber mode.}{58}{revCC.33}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,34] nota:} is attributed to the endcap spliced onto the fiber input}{58}{revCC.34}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,35] nota:} assuming a standard photodiode responsivity of}{62}{revCC.35}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,36] nota:} The experimental work on the upper breadboard was divided into three main phases}{66}{revCC.36}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,37] riferimenti:} This diagnostic tool allows the simultaneous optimization of the top-down injection}{72}{revCC.37}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,38] errore:} but not for recoil heating during spontaneous emission}{80}{revCC.38}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,39] nota:} From an initial temperature $T_{\mathrm {MOT}} = 8.5\,\mu \mathrm {K}$ at the loading position}{84}{revCC.39}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,40] nota:} adiabaticity keeps the mean phonon number fixed at}{84}{revCC.40}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,41] nota:} The Lamb--Dicke parameters of the probe and coupling beams follow from their wavevector projections}{84}{revCC.41}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,42] riferimenti:} These values served as the initial settings for the optimization described below.}{88}{revCC.42}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,43] errore:} Their mean gives the final temperature}{88}{revCC.43}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,44] errore:} The squared Rabi frequency ratio}{90}{revCC.44}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,45] errore:} The fit yields}{90}{revCC.45}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,46] nota:} This result can be compared with existing values}{90}{revCC.46}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,47] errore:} corresponding respectively to cooling laser powers of 5.8~mW, 6.6~mW, and 6.3~mW}{91}{revCC.47}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,48] nota:} additional ramp durations were not explored}{92}{revCC.48}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,49] nota:} The three current components were optimized sequentially}{92}{revCC.49}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,50] riferimenti:} The results for the $z$-, $x$-, and $y$-axis coils are presented in Figure~\ref {fig:shim_opt}(a), (b), and (c), respectively.}{92}{revCC.50}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,51] errore:} The final AOM amplitude was set to 480~a.u.}{95}{revCC.51}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,52] nota:} Once an optimum was identified, the corresponding current was retained during the following scans.}{97}{revCC.52}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,53] nota:} which corresponds to a initial molasses population}{100}{revCC.53}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,54] nota:} Several effects may contribute to this difference.}{103}{revCC.54}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,55] nota:} This behavior indicates}{104}{revCC.55}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,56] nota:} dependence, for}{104}{revCC.56}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,57] nota:} The simulation parameters were optimized for the axial conveyor belt geometry}{111}{revCC.57}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,58] nota:} is evaluated using Monte Carlo trajectory simulations}{112}{revCC.58}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,59] nota:} ultimately bringing the atoms toward the motional ground state}{112}{revCC.59}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,60] riferimenti:} the simulated cooling timescale is compatible with state-of-the-art EIT cooling experiments}{112}{revCC.60}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,61] nota:} conservatively estimated trapped population}{117}{revCC.61}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,62] errore:} The multilevel simulations reveal that spontaneous emission into uncoupled ground states proressively interrupts the cooling cycle.}{117}{revCC.62}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,63] nota:} allowing the simulated mean phonon number to approach the motional ground state}{117}{revCC.63}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,25] errore [SOLVED]:} Subtracting the irrelevant constant energy}{29}{revCC.25}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,26] errore [SOLVED]:} yields the effective interaction matrix}{30}{revCC.26}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,27] errore [SOLVED]:} is excited-state-like and retains approximately the bare atomic linewidth}{31}{revCC.27}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,28] nota:} The state $|\psi _+\rangle $ is ground-state-like}{31}{revCC.28}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,29] riferimenti [SOLVED]:} The experimental control of this AC Stark shift is the foundation}{32}{revCC.29}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,30] nota:} the relevant Lamb-Dicke parameter is defined by the effective wavevector}{32}{revCC.30}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,31] errore [SOLVED]:} is shifted onto the red-sideband transition}{33}{revCC.31}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,32] riferimenti:} The master-cooler and master-repumper beat notes are isolated using RF filters}{40}{revCC.32}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,33] nota:} restricting the result to atoms moving toward the trap region}{50}{revCC.33}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,34] errore:} The measured waist agrees with the specified MFD, confirming that the transmitted light corresponds to the fundamental fiber mode.}{58}{revCC.34}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,35] nota:} is attributed to the endcap spliced onto the fiber input}{58}{revCC.35}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,36] nota:} assuming a standard photodiode responsivity of}{62}{revCC.36}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,37] nota:} The experimental work on the upper breadboard was divided into three main phases}{66}{revCC.37}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,38] riferimenti:} This diagnostic tool allows the simultaneous optimization of the top-down injection}{72}{revCC.38}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,39] errore:} but not for recoil heating during spontaneous emission}{80}{revCC.39}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,40] nota:} From an initial temperature $T_{\mathrm {MOT}} = 8.5\,\mu \mathrm {K}$ at the loading position}{84}{revCC.40}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,41] nota:} adiabaticity keeps the mean phonon number fixed at}{84}{revCC.41}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,42] nota:} The Lamb--Dicke parameters of the probe and coupling beams follow from their wavevector projections}{84}{revCC.42}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,43] riferimenti:} These values served as the initial settings for the optimization described below.}{88}{revCC.43}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,44] errore:} Their mean gives the final temperature}{88}{revCC.44}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,45] errore:} The squared Rabi frequency ratio}{90}{revCC.45}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,46] errore:} The fit yields}{90}{revCC.46}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,47] nota:} This result can be compared with existing values}{90}{revCC.47}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,48] errore:} corresponding respectively to cooling laser powers of 5.8~mW, 6.6~mW, and 6.3~mW}{91}{revCC.48}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,49] nota:} additional ramp durations were not explored}{92}{revCC.49}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,50] nota:} The three current components were optimized sequentially}{92}{revCC.50}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,51] riferimenti:} The results for the $z$-, $x$-, and $y$-axis coils are presented in Figure~\ref {fig:shim_opt}(a), (b), and (c), respectively.}{92}{revCC.51}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,52] errore:} The final AOM amplitude was set to 480~a.u.}{95}{revCC.52}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,53] nota:} Once an optimum was identified, the corresponding current was retained during the following scans.}{97}{revCC.53}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,54] nota:} which corresponds to a initial molasses population}{100}{revCC.54}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,55] nota:} Several effects may contribute to this difference.}{103}{revCC.55}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,56] nota:} This behavior indicates}{104}{revCC.56}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,57] nota:} dependence, for}{104}{revCC.57}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,58] nota:} The simulation parameters were optimized for the axial conveyor belt geometry}{111}{revCC.58}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,59] nota:} is evaluated using Monte Carlo trajectory simulations}{112}{revCC.59}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,60] nota:} ultimately bringing the atoms toward the motional ground state}{112}{revCC.60}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,61] riferimenti:} the simulated cooling timescale is compatible with state-of-the-art EIT cooling experiments}{112}{revCC.61}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,62] nota:} conservatively estimated trapped population}{117}{revCC.62}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,63] errore:} The multilevel simulations reveal that spontaneous emission into uncoupled ground states proressively interrupts the cooling cycle.}{117}{revCC.63}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,64] nota:} allowing the simulated mean phonon number to approach the motional ground state}{117}{revCC.64}%
