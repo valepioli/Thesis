@@ -129,5 +129,41 @@ def main():
         print("\nNessuna nota superata dalle sue modifiche.")
 
 
+def lint():
+    """Controlli strutturali sulle note. Servono perche' due errori di questo
+    tipo hanno gia' rotto la compilazione: una nota finita DENTRO il corpo di
+    un'altra nota (ancora troppo corta, una virgola) e una nota finita dentro
+    una \\caption (la didascalia conteneva le stesse parole del testo)."""
+    import glob
+    bad = 0
+    for f in sorted(glob.glob(os.path.join(TEX, "*", "*.tex"))):
+        t = io.open(f, encoding="utf-8", errors="replace").read()
+        name = os.path.basename(f)
+        # 1. note annidate
+        for m in re.finditer(r'\\(MD[a-z]+|CC[a-z]*)\{', t):
+            a = groups(t, m.end() - 1, 2)
+            if len(a) < 2: continue
+            for inner in re.finditer(r'\\(MD[a-z]+|CC[a-z]*)\{', a[0] + " " + a[1]):
+                print("  ANNIDATA   %-24s %s dentro %s" % (name, inner.group(0), m.group(0)))
+                bad += 1
+        # 2. note dentro una didascalia
+        for m in re.finditer(r'\\caption\{', t):
+            cap = groups(t, m.end() - 1, 1)
+            if not cap: continue
+            for inner in re.finditer(r'\\(MD[a-z]+|CC[a-z]*)\{', cap[0]):
+                print("  IN CAPTION %-24s %s" % (name, inner.group(0)))
+                bad += 1
+        # 3. ancore troppo corte: sono quelle che si agganciano al posto sbagliato
+        for m in re.finditer(r'\\(MD[a-z]+|CCerr|CCn|CCref)\{', t):
+            a = groups(t, m.end() - 1, 1)
+            if a and 0 < len(a[0].strip()) < 4:
+                print("  ANCORA MOLTO CORTA %-22s %s{%s}" % (name, m.group(0)[:-1], a[0]))
+                bad += 1
+    print("\nproblemi strutturali: %d" % bad)
+    return bad
+
+
 if __name__ == "__main__":
+    if "--lint" in sys.argv:
+        sys.exit(1 if lint() else 0)
     main()

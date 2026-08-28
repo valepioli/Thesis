@@ -93,6 +93,15 @@ toglierlo.
   basta spostarla di una frase.
 - **L'ancora deve comparire una volta sola** nel file, altrimenti non si capisce
   a quale occorrenza ti riferisci.
+- **Ancore lunghe almeno qualche parola.** Un'ancora di uno o due caratteri (una
+  virgola) si aggancia alla prima occorrenza che trova, che puo' benissimo
+  essere dentro il corpo di un'altra nota o dentro una didascalia. E' gia'
+  successo, e il risultato e' un documento che non compila piu'.
+- Dopo ogni riposizionamento delle note, far girare il controllo strutturale:
+
+```bash
+python3 review/status.py --lint     # note annidate, note dentro \caption, ancore troppo corte
+```
 
 ---
 
