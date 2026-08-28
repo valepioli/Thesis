@@ -37,7 +37,7 @@ All dipole-allowed couplings are constructed explicitly. For a transition betwee
     \end{pmatrix},
     \label{eq:dipole_matrix_multilevel}
 \end{equation}
-where the $3j$ symbol carries the electric-dipole selection rules, and the reduced hyperfine matrix element $\langle F_e\Vert d\Vert F_g\rangle$ sets the relative strength between transitions connecting different hyperfine manifolds, through
+where the $3j$ symbol carries the electric-dipole selection rules, \CCn{and the reduced hyperfine matrix element $\langle F_e\Vert d\Vert F_g\rangle$ sets the relative strength between transitions connecting different hyperfine manifolds, through}{L'espressione che segue e' quella di Steck, ma li' e' scritta per l'elemento ridotto con lo stato FONDAMENTALE nel bra, $\langle F_g\Vert d\Vert F_e\rangle$, mentre qui il membro sinistro ha $e$ e $g$ scambiati e il membro destro e' copiato invariato. Gli elementi ridotti non sono simmetrici: scambiando bra e ket si prende un fattore $(-1)^{F_g-F_e}$. Non cambia nessun risultato, perche' e' una fase globale per ogni coppia di multipletti e nel tuo caso si riassorbe ridefinendo la fase di $|g_2\rangle$, quindi lo stato oscuro e la trasparenza restano quelli. Ma un lettore che confronta con la referenza che citi si ferma qui. Nota che l'equazione precedente, quella di Wigner-Eckart con il $3j$, usa coerentemente $\langle F_e\Vert d\Vert F_g\rangle$: e' solo questa seconda a portare la convenzione dell'altra fonte, quindi basta girare il membro sinistro o aggiungere la fase.}
 \begin{equation}
     \langle F_e\Vert d\Vert F_g\rangle
     =
@@ -52,7 +52,7 @@ where the $3j$ symbol carries the electric-dipole selection rules, and the reduc
 \end{equation}
 with $J_g=1/2$, $J_e=3/2$, and $I=3/2$ for the $^{87}\mathrm{Rb}$ $D_2$ line. Transitions that violate the electric-dipole selection rules are assigned zero coupling.
 
-To reduce optical pumping into states outside the EIT cycle, the target $\Lambda$ system is built around states near the edge of a Zeeman manifold rather than around $m_F=0$: the condition $\Delta m_F=0,\pm1$ then limits the number of ground states reachable by spontaneous decay. In the configuration used for the multilevel and axial-parameter simulations (Fig.~\ref{fig:multilevel_EIT_scheme}), the two EIT ground states belong to different hyperfine manifolds. The $\sigma^-$-polarized probe field addresses $|g_1\rangle=|F=2,m_F=-1\rangle\rightarrow|F'=2,m_F=-2\rangle$ and is scanned across the two-photon resonance. The $\sigma^-$-polarized coupling field addresses $|g_2\rangle=|F=1,m_F=-1\rangle\rightarrow|F'=2,m_F=-2\rangle$; its Rabi frequency is set by the EIT cooling condition of Eq.~\eqref{eq:exact_condition_numerical}. A $\pi$-polarized repump field, resonant on $|F=2,m_F=-2\rangle\rightarrow|F'=2,m_F=-2\rangle$, recovers population that leaks out of the $\Lambda$ system into the adjacent Zeeman sublevel of $F=2$; its motional factor is set to the identity, Eq.~\eqref{eq:repump_no_motion}. This configuration is used for the simulation with the axial trap parameters (Sec.~\ref{subsec:axial_simulation}).
+To reduce optical pumping into states outside the EIT cycle, the target $\Lambda$ system is built around states near the edge of a Zeeman manifold rather than around $m_F=0$: the condition $\Delta m_F=0,\pm1$ then limits the number of ground states reachable by spontaneous decay. In the configuration used for the multilevel and axial-parameter simulations (Fig.~\ref{fig:multilevel_EIT_scheme}), the two EIT ground states belong to different hyperfine manifolds. The $\sigma^-$-polarized probe field addresses $|g_1\rangle=|F=2,m_F=-1\rangle\rightarrow|F'=2,m_F=-2\rangle$ and is scanned across the two-photon resonance. The $\sigma^-$-polarized coupling field addresses $|g_2\rangle=|F=1,m_F=-1\rangle\rightarrow|F'=2,m_F=-2\rangle$; its Rabi frequency is set by the EIT cooling condition of Eq.~\eqref{eq:exact_condition_numerical}. A $\pi$-polarized repump field, resonant on $|F=2,m_F=-2\rangle\rightarrow|F'=2,m_F=-2\rangle$, \CCn{recovers population that leaks out of the $\Lambda$ system into the adjacent Zeeman sublevel of $F=2$}{Controllato canale per canale, e il sistema si chiude esattamente: e' un punto forte dello schema che meriti di rivendicare invece di lasciare implicito. Da $|F'=2,m_F=-2\rangle$ il decadimento spontaneo ha $\Delta m_F=0,\pm1$, quindi $m_F\in\{-1,-2,-3\}$, e $\Delta F=0,\pm1$ lascia solo $F=1,2$. Restano tre stati: $|F=2,m_F=-1\rangle$ che e' $|g_1\rangle$, $|F=1,m_F=-1\rangle$ che e' $|g_2\rangle$, e $|F=2,m_F=-2\rangle$. Il terzo e' l'unica perdita possibile, quindi l'articolo determinativo in ``the adjacent Zeeman sublevel'' e' giustificato e un solo ripompa basta davvero. Verificato anche che il ripompa scelto funziona: $|F=2,m_F=-2\rangle\rightarrow|F'=2,m_F=-2\rangle$ ha $\Delta m_F=0$ ed e' quindi $\pi$ come scrivi, ed e' permessa perche' per $F'=F$ l'elemento di matrice $\pi$ va come $m_F$, che qui vale $-2$ e non zero. Due righe con questa enumerazione rendono evidente perche' hai scelto il bordo del multipletto invece di $m_F=0$.}; its motional factor is set to the identity, Eq.~\eqref{eq:repump_no_motion}. This configuration is used for the simulation with the axial trap parameters (Sec.~\ref{subsec:axial_simulation}).
 
 \begin{figure}[htbp]
     \centering
@@ -64,7 +64,7 @@ To reduce optical pumping into states outside the EIT cycle, the target $\Lambda
 \subsection{Motional Hilbert Space}
 \label{subsec:motional_basis}
 
-The atomic motion along the selected trap axis is approximated by a harmonic oscillator of angular frequency $\nu$. The total Hilbert space is
+\CCerr{The atomic motion along the selected trap axis is approximated by a harmonic oscillator of angular frequency $\nu$.}{Qui $\nu$ e' dichiarata pulsazione, e con quella convenzione $H_{\mathrm{mot}}=\hbar\nu(a^\dagger a+1/2)$ e $x_0=\sqrt{\hbar/2m\nu}$ sono giuste. Il problema e' che nella sezione dei parametri assiali la stessa lettera indica una frequenza ordinaria in hertz: $\nu_z=(1/\lambda)\sqrt{2U/m}$ e' per costruzione una frequenza ordinaria, e infatti da' $65.0$~kHz e poi $431$~kHz. Il risultato e' che chi prende i tuoi numeri e la tua formula sbaglia di $\sqrt{2\pi}$: con $\nu_{z,\mathrm{tip}}=431$~kHz messo dentro $x_0=\sqrt{\hbar/2m\nu}$ vengono $29.1$~nm invece degli $11.6$~nm che usi tu, e $\eta$ diventa $0.235$ invece di $0.094$. I tuoi valori sono quelli giusti, quindi non c'e' nulla da rifare: e' la lettera a fare due mestieri. La convenzione usuale risolve tutto, $\omega$ per la pulsazione e $\nu$ per la frequenza, scrivendo $x_0=\sqrt{\hbar/2m\omega}$ con $\omega=2\pi\nu$.} The total Hilbert space is
 \begin{equation}
     \mathcal H
     =
@@ -86,7 +86,7 @@ The motional Hamiltonian is
     \hbar\nu\left(a^\dagger a+\frac{1}{2}\right),
     \label{eq:motional_hamiltonian_num}
 \end{equation}
-with $a$ and $a^\dagger$ the annihilation and creation operators. The truncation $N_{\mathrm{vib}}$ is chosen by balancing numerical cost against convergence of the motional distribution.
+with $a$ and $a^\dagger$ the annihilation and creation operators. \CCerr{The truncation $N_{\mathrm{vib}}$ is chosen by balancing numerical cost against convergence of the motional distribution.}{Il criterio e' giusto ma il numero non c'e', ne' qui ne' altrove: ho cercato $N_{\mathrm{vib}}$ in tutta la tesi e compare cinque volte, sempre come simbolo. E' l'unico parametro libero del modello numerico, quello che decide se lo spazio di Hilbert e' abbastanza grande, e senza il suo valore la simulazione non e' riproducibile. Serve il valore usato e una riga sulla verifica di convergenza (per esempio: raddoppiando $N_{\mathrm{vib}}$ l'occupazione finale cambia di meno del tanto per cento). Il conto d'ordine aiuta a scegliere: con $\langle n_z\rangle\approx2.3$ all'inizio, una coda termica ben rappresentata chiede almeno cinque o sei volte quel valore. Stessa osservazione per il campo di quantizzazione $B$ dell'Hamiltoniana Zeeman: compare come simbolo e mai come numero, eppure separa i sottolivelli Zeeman e quindi decide quanto e' isolato il sistema $\Lambda$. Sono i due ingressi che un lettore deve avere per rifare il calcolo.}
 
 \subsection{Laser Coupling and Lamb--Dicke Expansion}
 \label{subsec:laser_coupling}
@@ -177,7 +177,7 @@ Here $H_{\mathrm{at}}$ contains the hyperfine energies and laser detunings in th
 \end{equation}
 describes the linear Zeeman shift produced by the quantization field $B$, assumed weak enough that $F$ and $m_F$ remain good labels.
 
-For the three-level system, the implemented Hamiltonian is
+\CCn{For the three-level system, the implemented Hamiltonian is}{Verificato che questa Hamiltoniana e' la stessa del capitolo 1, e conviene dirlo perche' a prima vista non sembra. Li' hai $H_{\mathrm{rot}}=-\hbar\delta_{2\mathrm{ph}}|g_2\rangle\langle g_2|-\hbar\Delta_p|e\rangle\langle e|$, cioe' le energie sull'eccitato; qui le metti sui due fondamentali e lasci $|e\rangle$ a zero. Sottraendo $\hbar\Delta_p$ dall'identita' la tua espressione diventa $\hbar(\Delta_c-\Delta_p)|g_2\rangle\langle g_2|-\hbar\Delta_p|e\rangle\langle e|$, che con $\delta_{2\mathrm{ph}}=\Delta_p-\Delta_c$ e' esattamente quella del capitolo 1. Sono quindi la stessa Hamiltoniana a meno di uno spostamento globale di energia, che non cambia niente. Una frase che lo dica evita al lettore di doversene accorgere da solo, ed e' anche il posto giusto per ricordare che $\eta_c=0$ vale per questo benchmark, visto che la sonda e' l'unica a portare l'accoppiamento motionale.}
 \begin{align}
     H_{\Lambda}
     ={}&
@@ -212,7 +212,7 @@ In the multilevel model, Eq.~\eqref{eq:general_laser_interaction} is constructed
     \mathbb I_{\mathrm{mot}},
     \label{eq:repump_no_motion}
 \end{equation}
-so repump-induced motional sidebands are neglected. This reduces the numerical complexity and isolates the repumper's role in recycling internal population.
+\CCn{so repump-induced motional sidebands are neglected. This reduces the numerical complexity and isolates the repumper's role in recycling internal population.}{Vale la pena dire che questa e' la seconda approssimazione che toglie riscaldamento, e che va nella stessa direzione della prima. Il ripompa scattera fotoni reali e quindi porta rinculo: mettendo il suo fattore motionale a uno gli si tolgono le bande laterali, e da uno stato termico il bilancio delle bande laterali e' netto riscaldamento. L'altra e' il rinculo dell'emissione spontanea, che dichiari poco piu' avanti. Sono entrambe di ordine $\eta^2$ e nessuna delle due e' quantificata, quindi l'effetto combinato e' che l'$\langle n\rangle$ finale del modello e' un limite inferiore, non una stima. Non serve implementarle per sistemare il punto: basta dire che le due omissioni hanno lo stesso segno e dare la stima d'ordine del loro contributo, cosi' il confronto con il limite teorico e con le temperature misurate diventa leggibile. Detto in una riga sola, e' la differenza fra un modello ottimista e un modello di cui si conosce il verso dell'errore.}
 
 \subsection{Spontaneous Emission and Master Equation}
 \label{subsec:master_equation_numerical}
@@ -442,39 +442,39 @@ The configuration in which the two EIT ground states belong to different hyperfi
 
 At the MOT position, the trapping beams have a waist of $w_{\mathrm{MOT}} = 126\,\mu\mathrm{m}$, giving an initial interference potential depth of $U_{\mathrm{MOT}} \approx 25\,\mu\mathrm{K}$. From Eq.~\eqref{eq:oscillation_frequencies}, the axial frequency depends on the potential depth and the trapping wavelength $\lambda = 1064\,\mathrm{nm}$:
 \begin{equation}
-    \nu_{z,\mathrm{MOT}} = \frac{1}{\lambda}\sqrt{\frac{2U_{\mathrm{MOT}}}{m}}.
+\nu_{z,\mathrm{MOT}} = \frac{1}{\lambda}\sqrt{\frac{2U_{\mathrm{MOT}}}{m}}.
 \end{equation}
-This gives $\nu_{z,\mathrm{MOT}} \approx 65\,\mathrm{kHz}$.
+\CCerr{This gives $\nu_{z,\mathrm{MOT}} \approx 65\,\mathrm{kHz}$.}{Da qui in avanti, in cinque punti, la spaziatura \texttt{\textbackslash,} ha perso il backslash ed e' rimasta una virgola: si legge \texttt{126,\textbackslash mu\textbackslash mathrm\{m\}} invece di \texttt{126\textbackslash,\textbackslash mu\textbackslash mathrm\{m\}}. Nel PDF esce ``$126,\mu$m'', con una virgola al posto dello spazio sottile, che in un testo pieno di numeri decimali si legge come un separatore. I cinque punti sono il rapporto $(126/19)^2$, dove capita due volte, e poi $430$~kHz, $56~\mu$K e $11$~nm. Nota che questa riga qui, appena sopra, ha ancora il \texttt{\textbackslash,} giusto, quindi il guasto e' circoscritto al blocco che hai reincollato. Stessa origine del grassetto markdown segnalato sopra: un passaggio che mangia i backslash. Cercare \texttt{[0-9],\textbackslash textbackslash} nel file li trova tutti e cinque in un colpo.}
 
 During transport, the atoms are guided toward the fiber tip, where the beam waist is focused down to $w_0 = 19\,\mu\mathrm{m}$. The optical potential depth scales as $U \propto 1/w^2(z)$, so the compression amplifies it by
 \begin{equation}
-    \frac{U_{\mathrm{tip}}}{U_{\mathrm{MOT}}} = \left(\frac{w_{\mathrm{MOT}}}{w_0}\right)^2 = \left(\frac{126\,\mu\mathrm{m}}{19\,\mu\mathrm{m}}\right)^2 \approx 44,
+\frac{U_{\mathrm{tip}}}{U_{\mathrm{MOT}}} = \left(\frac{w_{\mathrm{MOT}}}{w_0}\right)^2 = \left(\frac{126,\mu\mathrm{m}}{19,\mu\mathrm{m}}\right)^2 \approx 44,
 \end{equation}
 bringing the trap depth at the fiber tip to $U_{\mathrm{tip}} \approx 1.1\,\mathrm{mK}$.
 
 Since the axial frequency scales as $\nu_z \propto \sqrt{U}$, its value at the fiber tip increases by $\sqrt{44}$:
 \begin{equation}
-    \nu_{z,\mathrm{tip}} = \nu_{z,\mathrm{MOT}}\sqrt{44} \approx 430\,\mathrm{kHz}.
+\nu_{z,\mathrm{tip}} = \nu_{z,\mathrm{MOT}}\sqrt{44} \approx 430,\mathrm{kHz}.
 \end{equation}
 The radial frequency $\nu_r$ depends on both the potential depth and the local waist, scales more steeply, and reaches approximately $5\,\mathrm{kHz}$.
 
 If transport along the optical conveyor belt is adiabatic, the axial action of the trapped atoms is conserved. \CCn{From an initial temperature $T_{\mathrm{MOT}} = 8.5\,\mu\mathrm{K}$ at the loading position}{Due cose. La minore: il valore misurato nel capitolo 3 e' $8.4~\mu$K, non $8.5$; la differenza non cambia $\langle n_z\rangle$, ma tanto vale usare lo stesso numero, e vedi la nota sull'abstract, perche' la configurazione con cui si carica l'ODT non e' quella con cui si misurano gli $8.4~\mu$K. La maggiore: con $U_{\mathrm{MOT}}=25~\mu$K e $T=8.5~\mu$K si ha $k_BT/U\approx0.34$, cioe' una buca profonda appena tre volte la temperatura. La statistica di Bose--Einstein usata qui presuppone un oscillatore ARMONICO, mentre a un terzo della profondita' l'atomo esplora la parte anarmonica del $\cos^2$ e una frazione non trascurabile della distribuzione sta sopra la barriera. Quindi $\langle n_z\rangle\approx2.3$ va preso come stima d'ordine di grandezza, e conviene dirlo.}, the initial mean axial phonon number follows Bose--Einstein statistics:
 \begin{equation}
-    \langle n_{z} \rangle = \frac{1}{\exp\left(\frac{h\nu_{z,\mathrm{MOT}}}{k_B T_{\mathrm{MOT}}}\right) - 1} \approx 2.3.
+\langle n_{z} \rangle = \frac{1}{\exp\left(\frac{h\nu_{z,\mathrm{MOT}}}{k_B T_{\mathrm{MOT}}}\right) - 1} \approx 2.3.
 \end{equation}
 During adiabatic compression, temperature scales with trapping frequency ($T \propto \nu_z$), so the axial temperature at the fiber tip increases by the same factor:
 \begin{equation}
-    T_{\mathrm{tip}} = T_{\mathrm{MOT}}\sqrt{44} \approx 56\,\mu\mathrm{K}.
+T_{\mathrm{tip}} = T_{\mathrm{MOT}}\sqrt{44} \approx 56,\mu\mathrm{K}.
 \end{equation}
-Despite this rise in temperature, \CCn{adiabaticity keeps the mean phonon number fixed at}{Verificati uno per uno tutti i numeri di questa sezione, e tornano: $\nu_{z,\mathrm{MOT}}=(1/\lambda)\sqrt{2U/m}=65.0$~kHz con $U=25~\mu$K; $(126/19)^2=44.0$; $U_{\mathrm{tip}}=1.1$~mK; $\nu_{z,\mathrm{tip}}=65\sqrt{44}=431$~kHz; $\nu_r=5.4$~kHz; $\langle n_z\rangle=1/(e^{h\nu/k_BT}-1)=2.26$; $T_{\mathrm{tip}}=56~\mu$K; $x_0=11.6$~nm; $\eta=0.094$. Un solo disallineamento: qui $\langle n_z\rangle\approx2.3$, mentre la tabella dei parametri del capitolo 3 riporta $\langle n_0\rangle=2$. Se e' un arrotondamento adottato per la simulazione va detto, perche' il lettore che confronta le due sezioni si ferma li'.} $\langle n_{z} \rangle \approx 2.3$.
+Despite this rise in temperature, \CCn{adiabaticity keeps the mean phonon number fixed at}{Verificati uno per uno tutti i numeri di questa sezione, e tornano: $\nu_{z,\mathrm{MOT}}=(1/\lambda)\sqrt{2U/m}=65.0$~kHz con $U=25~\mu$K; $(126/19)^2=44.0$; $U_{\mathrm{tip}}=1.1$~mK; $\nu_{z,\mathrm{tip}}=65\sqrt{44}=431$~kHz; $\nu_r=5.4$~kHz; $\langle n_z\rangle=1/(e^{h\nu/k_BT}-1)=2.26$; $T_{\mathrm{tip}}=56~\mu$K; $x_0=11.6$~nm; $\eta=0.094$. Un solo disallineamento: qui $\langle n_z\rangle\approx2.3$, mentre la tabella dei parametri del capitolo 3 riporta $\langle n_0\rangle=2$. Se e' un arrotondamento adottato per la simulazione va detto, perche' il lettore che confronta le due sezioni si ferma li'.} $\langle n_{z} \rangle \approx 2.3$. \CCerr{**Since this calculated value is an estimate based on the initial measured temperature, we round it to the nearest integer and set the initial mean phonon number to $\langle n_{z} \rangle = 2$ in the simulation.**}{Il contenuto risponde bene al rilievo, ma i doppi asterischi sono grassetto \emph{markdown} e in \LaTeX{} non fanno niente: verranno stampati cosi' come sono, quattro asterischi dentro il testo. Bastano \texttt{\textbackslash textbf\{...\}} oppure niente, che qui probabilmente e' meglio, perche' la frase non ha bisogno di risalto. Il sospetto e' che il testo sia passato per un editor o un assistente che formatta in markdown, e vale la pena saperlo perche' \textbf{lo stesso passaggio ha fatto un danno peggiore poche righe piu' sotto}, dove si e' mangiato i backslash: vedi la nota sulle spaziature. Quando reincolli del testo, un colpo d'occhio agli asterischi e ai backslash lo evita.}
 
 The axial trap frequency $\nu_{z,\mathrm{tip}}$ is inserted directly into the motional Hamiltonian, with $\nu$ set to $430$~kHz. \CCn{The Lamb--Dicke parameters of the probe and coupling beams follow from their wavevector projections}{Subito dopo viene calcolato $\eta_{ax}=k\,x_{0,ax}$ con il vettore d'onda pieno, che e' corretto solo se il coupling e' ortogonale all'asse del moto, cioe' $\eta_c=0$. Quella condizione e' dichiarata piu' sopra, ma solo per il benchmark a tre livelli, e per il modello multilivello si dice che la geometria e' libera. Conviene ripeterla qui: e' l'unico punto in cui il lettore puo' verificare che l'$\eta_{\mathrm{eff}}$ definito prima coincida con $k\,x_0$. Nella tabella dei parametri del capitolo 3, $\eta=0.09$ compare senza alcuna geometria, quindi li' la cosa e' del tutto invisibile.}, Eq.~\eqref{eq:eta_individual_beam}. For EIT cooling at the $780\,\mathrm{nm}$ absorption wavelength, the optical wavenumber is $k = 2\pi/\lambda_{\mathrm{EIT}} \approx 8.055 \times 10^6\,\mathrm{m}^{-1}$, and the spatial extent of the axial ground-state wavepacket is
 \begin{equation}
-    x_{0,ax} = \sqrt{\frac{\hbar}{2m(2\pi\nu_{z,\mathrm{tip}})}} \approx 11\,\mathrm{nm}.
+x_{0,ax} = \sqrt{\frac{\hbar}{2m(2\pi\nu_{z,\mathrm{tip}})}} \approx 11,\mathrm{nm}.
 \end{equation}
 The corresponding axial Lamb--Dicke parameter is
 \begin{equation}
-    \eta_{ax} = k x_{0,ax} \approx 0.09.
+\eta_{ax} = k x_{0,ax} \approx 0.09.
 \end{equation}
 Since $\eta_{ax} \ll 1$, the axial motion is within the Lamb--Dicke regime assumed in Section~\ref{subsec:laser_coupling}. The magnetic field, laser polarizations, hyperfine splittings, detunings, and Rabi frequencies are retained explicitly in the 24-level Hamiltonian.
 

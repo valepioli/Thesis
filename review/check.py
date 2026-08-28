@@ -48,7 +48,11 @@ def groups(t, start, n):
 log = read(LOG) if os.path.exists(LOG) else ""
 check("compilazione senza errori", log.count("\n! ") == 0, "%d errori" % log.count("\n! "))
 check("nessun float perso", "Float(s) lost" not in log)
-check("nessun avviso hyperref", "Token not allowed" not in log)
+# Un controllo che fallisce senza dire perche' invita a ridiagnosticarlo ogni
+# volta. Il log sa gia' quale token e quale riga: si riportano.
+_hyp = re.findall(r"removing `([^\']+)' on input line (\d+)", log)
+check("nessun avviso hyperref", "Token not allowed" not in log,
+      "; ".join(sorted({"%s alla riga %s" % (t, l) for t, l in _hyp})) or "")
 m = re.search(r'textheight=([\d.]+)pt', log)
 th = float(m.group(1)) if m else -1
 check("blocco di testo invariato (%.2f pt)" % TEXTHEIGHT, abs(th - TEXTHEIGHT) < 0.05,
@@ -158,6 +162,14 @@ check("nessun commento alle note altrui", ccmd == 0, "%d trovati" % ccmd)
 # Se qualcuno aggiunge un tipo di nota e non aggiorna reanchor.py, al prossimo
 # merge quelle note verrebbero buttate o troncate. Si controlla qui, cosi' il
 # problema si vede subito e non fra un mese in mezzo a un merge.
+# Le protezioni di addnote.py si autoverificano: ognuna viene fatta scattare su
+# testo finto e si controlla che rifiuti E che non scriva. Sono la rete che
+# manca agli script usa-e-getta con cui le note si aggiungono a mano.
+guard = subprocess.run([sys.executable, os.path.join(ROOT, "review", "addnote.py")],
+                       capture_output=True, text=True)
+check("le protezioni di addnote.py scattano", guard.returncode == 0,
+      guard.stdout.strip().splitlines()[-1] if guard.stdout.strip() else "")
+
 tab = subprocess.run([sys.executable, os.path.join(ROOT, "review", "reanchor.py"), "--check-table"],
                      capture_output=True, text=True)
 check("reanchor.py conosce tutti i tipi di nota", tab.returncode == 0,

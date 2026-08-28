@@ -51,6 +51,7 @@ ANCHOR = {
 }
 NOTE = r'\\(?:' + "|".join(sorted(ARGS, key=len, reverse=True)) + r')\{'
 MINLEN = 4
+CONTEXT = 120        # caratteri di contesto per riancorare una nota senza ancora
 PREAMBLE = os.path.join(ROOT, "Master-Thesis-main", "preamble.tex")
 
 
@@ -100,7 +101,14 @@ def parse(src):
         idx = ANCHOR[name]
         out.append({"text": src[m.start():j],
                     "anchor": None if idx is None else a[idx],
-                    "name": name})
+                    "name": name,
+                    # Appiglio per le note senza ancora utilizzabile: il testo
+                    # che le precede. Senza, una nota non ancorata che sia la
+                    # PRIMA del file non ha dove attaccarsi e spariva in
+                    # silenzio -- ed e' il caso di tutte le note generali e di
+                    # quelle sulla tesi, che per convenzione stanno nel primo
+                    # paragrafo dell'area che commentano.
+                    "before": src[max(0, m.start() - CONTEXT):m.start()]})
     return out
 
 
@@ -131,6 +139,26 @@ def safe_find(t, anchor, start):
     return -1
 
 
+def context_place(res, before):
+    """Dove rimettere una nota priva di ancora utilizzabile.
+
+    Si cerca nel testo nuovo il pezzo che nel vecchio la precedeva,
+    accorciandolo dall'inizio finche' non lo si ritrova: se la studentessa ha
+    riscritto la frase subito prima della nota, il contesto piu' lontano
+    sopravvive quasi sempre. Un contesto vuoto significa che la nota stava
+    all'inizio del file, e li' va rimessa. -1 se non si ritrova niente.
+    """
+    if not before.strip():
+        return 0
+    ctx = before
+    while len(ctx.strip()) >= MINLEN:
+        pos = safe_find(res, ctx, 0)
+        if pos >= 0:
+            return pos + len(ctx)
+        ctx = ctx[len(ctx) // 4:]
+    return -1
+
+
 def conflicted():
     out = subprocess.run(["git", "-C", ROOT, "diff", "--name-only", "--diff-filter=U"],
                          capture_output=True, text=True).stdout.split()
@@ -157,13 +185,20 @@ def run(apply_it):
         placed, orphans = 0, []
         for n in parse(ours):
             a = n["anchor"]
-            if a is None:
-                if last_end is None:
-                    orphans.append(("(non ancorata, nessuna nota prima)", n["name"])); continue
-                res = res[:last_end] + n["text"] + res[last_end:]
-                last_end += len(n["text"]); placed += 1; continue
-            if len(a.strip()) < MINLEN:
-                orphans.append((a, n["name"] + " -- ancora troppo corta")); continue
+            if a is None or len(a.strip()) < MINLEN:
+                # Due casi che prima sparivano in silenzio, e sono lo stesso
+                # caso: la nota non ha un'ancora utilizzabile. Non ancorata
+                # (CCgen, CCthesis, CCnote) oppure ancorata a una stringa vuota
+                # o piu' corta di MINLEN, che e' come sono scritte le nostre
+                # note sui titoli. Si riaggancia al contesto che la precedeva.
+                if last_end is not None and a is None:
+                    res = res[:last_end] + n["text"] + res[last_end:]
+                    last_end += len(n["text"]); placed += 1; continue
+                pos = context_place(res, n["before"])
+                if pos < 0:
+                    orphans.append(("(contesto non ritrovato)", n["name"])); continue
+                res = res[:pos] + n["text"] + res[pos:]
+                last_end = pos + len(n["text"]); placed += 1; continue
             i = safe_find(res, a, cursor)
             if i < 0:
                 orphans.append((a[:70], n["name"])); continue
