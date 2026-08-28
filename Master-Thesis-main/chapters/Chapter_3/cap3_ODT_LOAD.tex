@@ -36,7 +36,7 @@ The background stability was found to depend on the AOM amplitude ramp applied d
 \begin{equation}
     \frac{dP}{dA}\approx0.
 \end{equation}
-Small fluctuations of the RF drive amplitude therefore produce only weak variations in the optical power delivered during the molasses phase.
+where P is the diffracted light power and A is the AOM amplitude.
 
 As shown by the comparison in Figure~\ref{fig:flir_vs_manta}, the spatial sampling was improved by replacing the FLIR camera with the Manta camera, which has a smaller pixel pitch. The Manta camera was also positioned closer to the vacuum chamber, near the minimum working distance of the MVL50M23 objective, to increase the optical magnification. From a comparison of the apparent fiber width recorded with the two imaging configurations, the number of pixels spanning the same object was estimated to increase by a factor of approximately 2.25.
 
@@ -59,8 +59,9 @@ As shown by the comparison in Figure~\ref{fig:flir_vs_manta}, the spatial sampli
 
 With the final configuration, the broad fluorescence distribution of the freely expanding molasses cloud and the narrower contribution of the ODT-trapped atoms could be distinguished in the same integrated profile, as illustrated in Figure~\ref{fig:flir_vs_manta}. This separation is essential for the subsequent analysis: the broad component provides the reference signal for the initial cloud, whereas the narrow differential component determines the ODT signal area, the loading efficiency, and the absolute number of trapped atoms according to the procedure described in Section~\ref{subsec:odt_loading_measurements} and in the corresponding atom-number calibration section.
 
-The final detection configuration, consisting of a 5~ms AOM ramp, an AOM amplitude of 480~a.u., and the Manta imaging system, was used for all subsequent ODT-loading measurements.
+The final detection configuration, consisting of a 5~ms frequency ramp to the optimal value derived in Section~\ref{sec:molasses_temperature_optimization}, and a 5~ms AOM ramp to an AOM amplitude of 480~a.u.($\approx 6.6 mW$), and the Manta imaging system, was used for all subsequent ODT-loading measurements.
 
+The illumination time was chosen as a compromise between collecting a sufficiently strong fluorescence signal and minimizing the expansion of the atomic cloud during imaging. The atoms were illuminated for $500~\mu$s, which was sufficient to produce a measurable fluorescence signal while limiting the additional expansion of the cloud during detection.
 
 %*###############################################################
 \subsection{Capture optimization}
@@ -115,7 +116,7 @@ A second series of measurements was subsequently performed to verify the reprodu
 
 A similar modulation was observed in the broad molasses contribution measured after the time of flight with the ODT switched off. Its maxima occurred near $-800~\mathrm{mA}$, $-600~\mathrm{mA}$, and $-400~\mathrm{mA}$, approximately matching those of the trapped signal. The cloud centroid projected onto the camera $x$ axis also exhibited a correlated displacement, which was not observed during the scans of the other two compensation axes.
 
-These observations indicate that changing the $z$-axis compensation current does not produce only a simple translation of the cloud toward or away from the ODT. It also modifies the position of the MOT within the three-dimensional intensity distribution of the cooling beams. Residual beam misalignments or intensity gradients may therefore cause non-monotonic changes in the MOT population, temperature, or trajectory. The present measurements do not allow the origin of this behavior to be identified conclusively, but they show that both the initial cloud population and the loading fraction must be monitored when selecting the optimal current.
+These observations indicate that changing the $z$-axis compensation current does not produce only a simple translation of the cloud toward or away from the ODT. It also modifies the position of the MOT within the three-dimensional intensity distribution of the cooling beams. Residual beam misalignments or intensity gradients may therefore cause non-monotonic changes in the MOT population, temperature, or trajectory. The present measurements do not allow a conclusive identification of the origin of this behavior, but they show that both the initial cloud population and the loading fraction must be monitored when selecting the optimal current.
 
 For this reason, the final operating point was chosen by considering the loading efficiency together with the integrated ODT signal and the corresponding calibrated atom number. The selected compensation currents were
 \begin{equation}

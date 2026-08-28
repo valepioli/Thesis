@@ -32,7 +32,7 @@ Applying Euler's relation, the spatial interference manifests as a real cosine e
 I(z,\rho) = I_{\max} \frac{w_0^2}{w^2(z)} \exp\left(-\frac{2\rho^2}{w^2(z)}\right) \cos^2(kz).
 \label{eq:stationary_intensity}
 \end{equation}
-The peak intensity $I_{\max} = 4P/(\pi w_0^2)$ follows from the total optical power $P$ distributed across the two beams. Each beam carries power $P/2$ and has a peak intensity $2(P/2)/(\pi w_0^2) = P/(\pi w_0^2)$; the additional factor of $4$ in $I_{\max}$ originates from the constructive interference at the antinodes, where the two field amplitudes add in phase.
+The peak intensity $I_{\max} = 4P/(\pi w_0^2)$ follows from the total optical power $P$ distributed across the two beams. Assuming each beam carries power $P/2$ and has a peak intensity $2(P/2)/(\pi w_0^2) = P/(\pi w_0^2)$; the additional factor of $4$ in $I_{\max}$ originates from the constructive interference at the antinodes, where the two field amplitudes add in phase.
 
 In the far-detuned regime, where the laser frequency is significantly shifted from any atomic resonance, the resulting dipole force is conservative. The optical potential energy $U(\rho,z)$ is therefore directly proportional to the local intensity distribution:
 \begin{equation}
@@ -67,7 +67,7 @@ The ratio of the two oscillation frequencies exhibits a geometric dependence, in
 \begin{equation}
 \frac{\Omega_z}{\Omega_{rad}} = \frac{k w_0}{\sqrt{2}} = \frac{\sqrt{2}\,\pi w_0}{\lambda}.
 \end{equation}
-In typical experimental configurations the beam waist exceeds the optical wavelength ($w_0 \gg \lambda$), so that the longitudinal confinement dominates over the transverse confinement ($\Omega_z \gg \Omega_{rad}$). The standing wave then imposes quasi-two-dimensional potential wells with a strongly anisotropic, disc-shaped geometry: along the $z$-axis the atomic motion is localized to a fraction of $\lambda$, while the transverse motion retains a comparatively broad spatial extent. This anisotropy suppresses tunneling between adjacent lattice sites while leaving the transverse dynamics only weakly confined.
+In typical experimental configurations the beam waist exceeds the optical wavelength ($w_0 \gg \lambda$), so that the longitudinal confinement dominates over the transverse confinement ($\Omega_z \gg \Omega_{rad}$). The standing wave then imposes quasi-two-dimensional potential wells with a strongly anisotropic, disc-shaped geometry: along the $z$-axis the atomic motion is localized to a fraction of $\lambda$, while the transverse motion retains a comparatively broad spatial extent. This anisotropy (provided that the potential is sufficiently deep) suppresses tunneling between adjacent lattice sites while leaving the transverse dynamics only weakly confined.
 A schematic representation of the resulting disc-shaped potential wells is shown in Fig.~\ref{fig:pancake}.
 
 \subsection{Kinematics of the Moving Standing Wave}
@@ -120,7 +120,7 @@ beams are doppler shifted by the same amount \cite{Kuhr:03}.}
 \label{fig:frames_conveyor_belt}
 \end{figure}
 
-The macroscopic velocity of the interference pattern can be understood by considering a moving reference frame. In a coordinate system translating along the $z$-axis with velocity $v$, the Doppler effect causes a red shift of the co-propagating beam and a blue shift of the counter-propagating beam. There exists a specific reference frame in which these Doppler shifts exactly compensate for the frequency difference $\Delta\nu$ imposed in the laboratory frame. In this system, the two beams have identical frequencies, and the standing wave appears stationary \cite{Kuhr:03}.
+The macroscopic velocity of the interference pattern can be understood by considering a moving reference frame(Figure~\ref{fig:frames_conveyor_belt}). In a coordinate system translating along the $z$-axis with velocity $v$, the Doppler effect causes a red shift of the co-propagating beam and a blue shift of the counter-propagating beam. There exists a specific reference frame in which these Doppler shifts exactly compensate for the frequency difference $\Delta\nu$ imposed in the laboratory frame. In this system, the two beams have identical frequencies, and the standing wave appears stationary \cite{Kuhr:03}.
 
 The velocity can also be derived directly in the laboratory frame by tracking a point of constant intensity, i.e.\ by setting the phase argument of the moving envelope to a constant value, $kz \pm \pi\Delta\nu t = \text{const}$. Taking the time derivative yields $k\,dz/dt \pm \pi\Delta\nu = 0$. Substituting $k = 2\pi/\lambda$ and identifying the transport velocity as $v = dz/dt$ gives
 \begin{equation}
@@ -167,7 +167,7 @@ Transporting a trapped atom between two spatial positions requires a profile of 
 \label{fig:accelerated_conveyor_belt}
 \end{figure}
 
-Transforming the Hamiltonian into the non-inertial frame of the accelerating lattice, an atom subject to an acceleration $a$ experiences a fictitious force $-ma$. The addition of this linear term along the optical axis modifies the effective potential:
+Transforming the Hamiltonian into the non-inertial frame of the accelerating lattice, an atom subject to an acceleration $a$ experiences a fictitious force $-ma$ (Figure~\ref{fig:accelerated_conveyor_belt}). The addition of this linear term along the optical axis modifies the effective potential:
 \begin{equation}
 U_{\text{eff}}(z') = U_0 \cos^2(kz') + m a z',
 \label{eq:tilted_potential}

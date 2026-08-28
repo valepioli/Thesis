@@ -310,7 +310,7 @@ Because the HWP was set to balance the two outputs, a fluctuation of the total o
 The time series of the zero-centered angular fluctuation, $\Delta\theta(t) = \theta(t) - \overline{\theta}$, is then analyzed using the overlapping Allan deviation, denoted as $\sigma_\theta(\tau)$, to quantify the long-term polarization stability.
 \subsection{Allan-deviation analysis}
 
-Standard statistical variance is often insufficient for characterizing the long-term stability of optical systems, as it diverges in the presence of non-stationary processes like $1/f$ noise and slow environmental drifts. Therefore, the time-domain stability of the fractional signals was quantified using the Allan deviation, a two-sample variance that reliably converges for all common noise types~\cite{Riley2008}.
+Standard statistical variance is often insufficient for characterizing the long-term stability of optical systems, as it diverges in the presence of low-frequency fluctuations, such as $1/f$ noise, and non-stationary environmental drifts. Therefore, the time-domain stability of the fractional signals was quantified using the Allan deviation, a two-sample variance that reliably converges for all common noise types~\cite{Riley2008}.
 
 For a discrete fractional stability array $y_k$, $k=1,\dots,N$, acquired with a sampling interval $\tau_0$, the data is grouped into sliding windows of duration $\tau = m\tau_0$. The average fractional fluctuation over the window starting at sample $k$ is given by:
 \begin{equation}

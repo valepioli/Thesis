@@ -16,12 +16,12 @@ In the experimental protocol considered in this work, atoms are first
 cooled in a magneto-optical trap, transferred to an optical dipole trap,
 and then transported into the hollow core of a photonic crystal fiber by
 means of an optical conveyor belt. The transport itself is a source of
-heating, the transverse compression required to match the fiber mode increases the trap frequencies and raises the transverse temperature.
+heating: the transverse compression required to match the fiber mode increases the trap frequencies and raises the transverse temperature.
 By the time the atoms reach the fiber core, their temperature is significantly higher, and re-cooling is required
 before any precision experiment can be performed. 
 In this section, all frequencies and detunings are expressed as angular frequencies in units of rad/s, and the corresponding linear frequencies in Hz are obtained by dividing by $2\pi$.
 
-\subsection{The Three-Level $\Lambda$ System and Coherent Population Trapping}
+\subsection{The Three-Level $\Lambda$ System and Coherent \\ Population Trapping}
 
 \begin{wrapfigure}{R}{0.45\textwidth}
     \centering
@@ -55,13 +55,14 @@ while $|g_1\rangle$ is left unchanged. With the convention $|\psi_{\mathrm{rot}}
     \label{eq:H_rot_transformation}
 \end{equation}
 
-Subtracting the irrelevant constant energy $E_e-\hbar\omega_p$ from all three levels gives
+Subtracting the irrelevant constant energy $E_{g_1}$ from all three levels gives
 \begin{equation}
-    H_{\mathrm{rot}} = -\hbar\Delta_p|e\rangle\langle e|
+    H_{\mathrm{rot}} = -\hbar\delta_{2\mathrm{ph}}|g_2\rangle\langle g_2| -\hbar\Delta_p|e\rangle\langle e|
     +\frac{\hbar}{2}\left(\Omega_p|e\rangle\langle g_1|+\Omega_c|e\rangle\langle g_2|+\mathrm{h.c.}\right).
     \label{eq:H_rot_general}
 \end{equation}
-For the derivation of the dark state and the dressed-state cooling condition, exact two-photon resonance is assumed and both lasers therefore have the same single-photon detuning, $\Delta_p=\Delta_c\equiv\Delta$. Under this assumption, Eq.~\eqref{eq:H_rot_general} is written as $H_{\mathrm{rot}}=H_0+V_0$, with~\cite{Morigi:03}
+For the derivation of the dark state and the dressed-state cooling condition, exact two-photon resonance ($\delta_{2\mathrm{ph}}=0$) is assumed and both lasers therefore have the same single-photon detuning, $\Delta_p=\Delta_c\equiv\Delta$. Under this assumption, Eq.~\eqref{eq:H_rot_general} is written as $H_{\mathrm{rot}}=H_0+V_0$, with~\cite{Morigi:03}
+
 \begin{equation}
     H_0 = -\hbar\Delta |e\rangle\langle e|
     \label{eq:H0}
@@ -92,7 +93,7 @@ The decoupling of $|\Psi_D\rangle$ from $|e\rangle$ is verified by direct evalua
 \end{equation}
 The excitation amplitude contributed by the $|g_1\rangle \to |e\rangle$ pathway, proportional to $\Omega_p$ times the $\Omega_c/\Omega$ weight of $|g_1\rangle$ in $|\Psi_D\rangle$, is cancelled by the amplitude contributed by the $|g_2\rangle \to |e\rangle$ pathway, proportional to $\Omega_c$ times the $-\Omega_p/\Omega$ weight of $|g_2\rangle$.
 
-\subsection{Dressed States and the Fano Absorption Spectrum}
+\subsection{Dressed States and the Fano Absorption  \\ Spectrum}
 
 The cooling mechanism is analyzed in the dressed-state picture~\cite{Morigi:03}. When the coupling laser interacts with the atom, the unperturbed atomic states are replaced by hybridized energy levels, the eigenstates of the coupled atom--laser Hamiltonian.
 
@@ -102,7 +103,7 @@ In the driven $\Lambda$ system, the dark state $|\Psi_D\rangle$ is an eigenstate
 \end{equation}
 The state $|\psi_C\rangle$ is termed \emph{bright} because, unlike $|\Psi_D\rangle$, it couples to $|e\rangle$ via $V_0$. Restricting $H_0 + V_0$ to this two-dimensional subspace yields the effective interaction matrix
 \begin{equation}
-    H_{\text{2-level}} = \hbar\begin{pmatrix} 0 & \Omega/2 \\ \Omega/2 & -\Delta \end{pmatrix} \quad \text{in the basis } \{|e\rangle,\, |\psi_C\rangle\}.
+    H_{\text{2-level}} = \hbar\begin{pmatrix} -\Delta & \Omega/2 \\ \Omega/2 & 0 \end{pmatrix} \quad \text{in the basis } \{|e\rangle,\, |\psi_C\rangle\}.
     \label{eq:eff2level}
 \end{equation}
 Diagonalizing Eq.~\eqref{eq:eff2level} gives the dressed energies
@@ -115,7 +116,7 @@ with the corresponding orthogonal eigenvectors
     |\psi_+\rangle = \cos\theta\, |e\rangle + \sin\theta\, |\psi_C\rangle, \qquad |\psi_-\rangle = \sin\theta\, |e\rangle - \cos\theta\, |\psi_C\rangle,
     \label{eq:dressed_states}
 \end{equation}
-where the mixing angle $\theta$ satisfies $\tan\theta = (\sqrt{\Delta^2 + \Omega^2} - \Delta)/\Omega$~\cite{Morigi:03}.
+where the mixing angle $\theta$ satisfies $\tan\theta = (\sqrt{\Delta^2 + \Omega^2} + \Delta)/\Omega$~\cite{Morigi:03}.
 
 The preceding dressed-state construction refers to exact two-photon resonance, $\Delta_p=\Delta_c=\Delta$. To calculate or measure the absorption profile, instead, the coupling-laser frequency is held fixed, so that $\Delta_c\equiv\Delta$ remains constant, while the probe frequency is scanned. Therefore
 \begin{equation}
@@ -125,9 +126,9 @@ The preceding dressed-state construction refers to exact two-photon resonance, $
 where $\delta_{2\mathrm{ph}}$ is the scan variable and $
 \delta_{2\mathrm{ph}}=0$ recovers the Hamiltonian used above. Thus, the dressed resonances are set primarily by the fixed coupling field, whereas the probe absorption is evaluated as a function of $\delta_{2\mathrm{ph}}$.
 
-The dressed-state structure is probed via a pump--probe scheme: the coupling laser dresses the atomic states, while the weak cooling laser probes the resulting spectrum. In EIT cooling, the coupling laser operates far from single-photon resonance, $|\Delta| \gg \Omega$. In this limit the mixing angle $\theta$ is small, and the dressed states separate into a predominantly excited-like state and a predominantly ground-like state. Since spontaneous emission occurs from the $|e\rangle$ component, the linewidth of each branch is determined by its excited-state admixture. The state $|\psi_+\rangle$ is excited-state-like and retains approximately the bare atomic linewidth ($\gamma_+ \approx \gamma$). The state $|\psi_-\rangle$ is ground-state-like, with a suppressed linewidth $\gamma_- \approx \gamma\, \Omega^2/(4\Delta^2) \ll \gamma$.
+The dressed-state structure is probed via a pump--probe scheme: the coupling laser dresses the atomic states, while the weak cooling laser probes the resulting spectrum. In EIT cooling, the coupling laser operates far from single-photon resonance, $|\Delta| \gg \Omega$. In this limit the mixing angle $\theta$ is small, and the dressed states separate into a predominantly excited-like state and a predominantly ground-like state. Since spontaneous emission occurs from the $|e\rangle$ component, the linewidth of each branch is determined by its excited-state admixture. The state $|\psi_-\rangle$ is excited-state-like and retains approximately the bare atomic linewidth ($\gamma_+ \approx \gamma$). The state $|\psi_+\rangle$ is ground-state-like, with a suppressed linewidth $\gamma_- \approx \gamma\, \Omega^2/(4\Delta^2) \ll \gamma$.
 
-As $\delta_{2\mathrm{ph}}$ is varied by scanning the probe laser while keeping $\Delta_c=\Delta$ fixed, the excitation amplitudes to the broad background ($|\psi_+\rangle$) and to the narrow resonance ($|\psi_-\rangle$) interfere. This interference generates an asymmetric Fano-like absorption profile. For a blue-detuned coupling laser ($\Delta > 0$), the spectrum exhibits three features: a zero-absorption point at $\delta_{2\mathrm{ph}}=0$, corresponding to the two-photon resonance and the dark state $|\Psi_D\rangle$; a broad absorption resonance centered near the bare probe transition, and a narrow absorption resonance.
+As $\delta_{2\mathrm{ph}}$ is varied by scanning the probe laser while keeping $\Delta_c=\Delta$ fixed, the excitation amplitudes to the broad background ($|\psi_+\rangle$) and to the narrow resonance ($|\psi_-\rangle$) interfere. This interference generates an asymmetric Fano-like absorption profile. For a blue-detuned coupling laser ($\Delta > 0$), the spectrum exhibits three features: a zero-absorption point at $\delta_{2\mathrm{ph}}=0$, corresponding to the two-photon resonance and the dark state $|\Psi_D\rangle$; a broad absorption resonance centered near the bare probe transition, and a narrow absorption resonance(Figure~\ref{fig:abs_EIT}).
 
 The coupling laser induces an AC Stark shift $\delta$ that displaces the narrow resonance from the dark-state zero. The exact expression is
 \begin{equation}
@@ -139,7 +140,7 @@ which in the limit $\Delta \gg \Omega_c$ reduces to $\delta \approx \Omega_c^2/(
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{Cap_1_figures/abs_EIT.png}
-    \caption{Absorption spectrum of the weak probe laser as a function of the two-photon detuning $\delta_{2\mathrm{ph}}=\Delta_p-\Delta_c$, obtained by scanning $\Delta_p$ while keeping the coupling detuning $\Delta_c=\Delta$ fixed. The spectrum exhibits the characteristic asymmetric Fano lineshape of EIT: a zero-absorption point at $\delta_{2\mathrm{ph}}=0$, a broad resonance of width $\gamma_+ \approx \gamma$ associated with $|\psi_+\rangle$, and a narrow, AC-Stark-shifted resonance of width $\gamma_- \ll \gamma$ associated with $|\psi_-\rangle$. Credits:~\cite{Morigi:00}}
+    \caption{Absorption spectrum of the weak probe laser as a function of the two-photon detuning $\delta_{2\mathrm{ph}}=\Delta_p-\Delta_c$, obtained by scanning $\Delta_p$ while keeping the coupling detuning $\Delta_c=\Delta$ fixed. The spectrum exhibits the characteristic asymmetric Fano lineshape of EIT: a zero-absorption point at $\delta_{2\mathrm{ph}}=0$, a broad resonance of width $\gamma_+ \approx \gamma$ associated with $|\psi_-\rangle$, and a narrow, AC-Stark-shifted resonance of width $\gamma_- \ll \gamma$ associated with $|\psi_+\rangle$. Credits:~\cite{Morigi:00}.}
     \label{fig:abs_EIT}
 \end{figure}
 
@@ -167,7 +168,7 @@ Substituting the approximate expression $\delta \approx \Omega_c^2/(4\Delta)$ yi
 which reduces to the approximate form in the limit $\nu \ll \Delta$ typical of EIT cooling. Satisfying this resonance condition produces two simultaneous effects (also shown in Fig.~\ref{fig:redsideband}):
 \begin{itemize}
     \item \textbf{Suppression of heating (carrier cancellation).} The zero of the Fano profile is aligned with the carrier transition ($|g_1, n\rangle \to |e, n\rangle$)~\cite{Morigi:00}. An atom in the dark state therefore cannot scatter photons unless it changes its motional state. This suppresses the dominant source of heating that affects standard cooling schemes.
-    \item \textbf{Enhancement of cooling (red-sideband excitation).} The narrow dressed-state resonance $|\psi_-\rangle$ is shifted onto the red-sideband transition ($|g_1, n\rangle \to |e, n-1\rangle$)~\cite{Morigi:00}, enhancing the absorption cross-section for the removal of a vibrational quantum. Conversely, the blue sideband ($|g_1, n\rangle \to |e, n+1\rangle$), which would add a phonon, falls in a spectral region of minimal excitation probability.
+    \item \textbf{Enhancement of cooling (red-sideband excitation).} The narrow dressed-state resonance $|\psi_+\rangle$ is shifted onto the red-sideband transition ($|g_1, n\rangle \to |e, n-1\rangle$)~\cite{Morigi:00}, enhancing the absorption cross-section for the removal of a vibrational quantum. Conversely, the blue sideband ($|g_1, n\rangle \to |e, n+1\rangle$), which would add a phonon, falls in a spectral region of minimal excitation probability.
 \end{itemize}
 
 
