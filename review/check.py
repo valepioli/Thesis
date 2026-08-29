@@ -165,6 +165,14 @@ check("nessun commento alle note altrui", ccmd == 0, "%d trovati" % ccmd)
 # Le protezioni di addnote.py si autoverificano: ognuna viene fatta scattare su
 # testo finto e si controlla che rifiuti E che non scriva. Sono la rete che
 # manca agli script usa-e-getta con cui le note si aggiungono a mano.
+# Note aperte su testo che la studentessa ha gia' cambiato. Non e' un errore,
+# e' roba da rileggere, quindi si riporta come informazione e non come fallimento:
+# dopo un merge vale sempre 0, il momento utile e' fra il fetch e il merge.
+_res = subprocess.run([sys.executable, os.path.join(ROOT, "review", "resolved.py")],
+                      capture_output=True, text=True).stdout
+_n = re.search(r"^(\d+) da rileggere", _res, re.M)
+print("  note aperte su testo che lei ha cambiato: %s" % (_n.group(1) if _n else "0"))
+
 guard = subprocess.run([sys.executable, os.path.join(ROOT, "review", "addnote.py")],
                        capture_output=True, text=True)
 check("le protezioni di addnote.py scattano", guard.returncode == 0,

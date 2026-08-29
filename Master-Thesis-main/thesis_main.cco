@@ -34,7 +34,7 @@
 \contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,34] riferimenti [SOLVED]:} The experimental control of this AC Stark shift is the foundation}{32}{revCC.34}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,35] nota:} the relevant Lamb-Dicke parameter is defined by the effective wavevector}{32}{revCC.35}%
 \contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,36] errore [SOLVED]:} is shifted onto the red-sideband transition}{33}{revCC.36}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,37] riferimenti:} The master-cooler and master-repumper beat notes are isolated using RF filters}{40}{revCC.37}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,37] riferimenti [SOLVED]:} The master-cooler and master-repumper beat notes are isolated using RF filters}{40}{revCC.37}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,38] nota:} The fitted image corresponds to an apparent diameter of $8 \pm 2$ pixels.}{42}{revCC.38}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,39] errore:} Both estimates are consistent with the result obtained from the ruler calibration.}{44}{revCC.39}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,40] errore:} Once the imaging calibration is known, the cloud size extracted from the images can be expressed in physical units and used to determine the temperature from ballistic expansion.}{45}{revCC.40}%
@@ -69,7 +69,7 @@
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,69] errore:} but not for recoil heating during spontaneous emission}{80}{revCC.69}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,70] errore:} This gives $\nu _{z,\mathrm {MOT}} \approx 65\,\mathrm {kHz}$.}{83}{revCC.70}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,71] nota:} From an initial temperature $T_{\mathrm {MOT}} = 8.5\,\mu \mathrm {K}$ at the loading position}{84}{revCC.71}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,72] nota:} adiabaticity keeps the mean phonon number fixed at}{84}{revCC.72}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,72] nota [SOLVED]:} adiabaticity keeps the mean phonon number fixed at}{84}{revCC.72}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,73] errore:} **Since this calculated value is an estimate based on the initial measured temperature, we round it to the nearest integer and set the initial mean phonon number to $\langle n_{z} \rangle = 2$ in the simulation.**}{84}{revCC.73}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,74] nota:} The Lamb--Dicke parameters of the probe and coupling beams follow from their wavevector projections}{84}{revCC.74}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,75] riferimenti:} These values served as the initial settings for the optimization described below.}{88}{revCC.75}%
@@ -90,9 +90,9 @@
 \contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,90] nota [SOLVED]:} dependence; for}{104}{revCC.90}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,91] nota:} The simulation parameters were optimized for the axial conveyor belt geometry}{111}{revCC.91}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,92] nota:} is evaluated using Monte Carlo trajectory simulations}{112}{revCC.92}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,93] nota:} ultimately bringing the atoms toward the motional ground state}{112}{revCC.93}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,93] nota [SOLVED]:} ultimately bringing the atoms toward the motional ground state}{112}{revCC.93}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,94] nota:} The system requires nearly 18 ms to approach $\langle n \rangle \approx 0$, two orders of magnitude longer than the idealized simulation.}{112}{revCC.94}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,95] riferimenti:} the simulated cooling timescale is compatible with state-of-the-art EIT cooling experiments}{116}{revCC.95}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,95] riferimenti [SOLVED]:} the simulated cooling timescale is compatible with state-of-the-art EIT cooling experiments}{116}{revCC.95}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,96] nota:} conservatively estimated trapped population}{117}{revCC.96}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,97] errore:} The multilevel simulations reveal that spontaneous emission into uncoupled ground states proressively interrupts the cooling cycle.}{117}{revCC.97}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,98] nota:} allowing the simulated mean phonon number to approach the motional ground state}{117}{revCC.98}%
