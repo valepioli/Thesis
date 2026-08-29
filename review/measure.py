@@ -6,13 +6,13 @@ Un'annotazione che riporti un dato numerico -- il numero di parole di un
 capitolo, il numero di sigle distinte -- va redatta sulla base di una
 misurazione condotta sul testo dell'autrice e non sui file annotati. La
 misurazione condotta su questi ultimi includerebbe le annotazioni stesse; la
-loro rimozione mediante espressione regolare non e' praticabile, in quanto i
+loro rimozione mediante espressione regolare non è praticabile, in quanto i
 corpi contengono parentesi graffe annidate ed espressioni matematiche.
 
-L'inconveniente si e' verificato: nove dati numerici in altrettante annotazioni
+L'inconveniente si è verificato: nove dati numerici in altrettante annotazioni
 sono risultati errati, con conteggi di parole sovrastimati fino al cinquanta
 per cento nelle sezioni brevi e un conteggio di sigle falsato dall'inclusione
-della sigla piu' frequente nell'elenco delle esclusioni.
+della sigla più frequente nell'elenco delle esclusioni.
 
 Lo strumento acquisisce i file da git alla revisione dell'autrice, ove le
 annotazioni non sono presenti.

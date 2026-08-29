@@ -5,17 +5,17 @@
 L'autrice opera su `main`, ove le annotazioni non sono presenti. Nel momento in
 cui il suo testo viene acquisito nel ramo di revisione, ciascun file in
 conflitto oppone il testo precedente, comprensivo di annotazioni, al testo
-nuovo che ne e' privo. La risoluzione corretta consiste invariabilmente nel
+nuovo che ne è privo. La risoluzione corretta consiste invariabilmente nel
 conservare il testo dell'autrice e riancorare le annotazioni.
 
 Il modulo adotta tre protezioni, ciascuna derivante da un difetto riscontrato:
 
-  * nessun inserimento in una `\\caption`, in quanto una didascalia puo'
+  * nessun inserimento in una `\\caption`, in quanto una didascalia può
     riprodurre le medesime parole del corpo del testo, con conseguente
     compromissione dell'elenco delle figure;
   * nessun inserimento negli argomenti di un'altra annotazione, in quanto le
     ancore estese possono comprendere le parole cui una seconda annotazione si
-    aggancia, con conseguente annidamento e impossibilita' di compilazione;
+    aggancia, con conseguente annidamento e impossibilità di compilazione;
   * ancore di estensione inferiore a quattro caratteri respinte, in quanto si
     agganciano alla prima occorrenza disponibile.
 
@@ -25,8 +25,8 @@ precedeva. In assenza di tale accorgimento esse venivano scartate senza
 segnalazione: in una singola occasione undici annotazioni su ottantanove, fra
 cui una di MD.
 
-Le annotazioni la cui ancora non risulti piu' reperibile non vengono eliminate,
-bensi' elencate come orfane, in quanto corrispondono ai passaggi effettivamente
+Le annotazioni la cui ancora non risulti più reperibile non vengono eliminate,
+bensì elencate come orfane, in quanto corrispondono ai passaggi effettivamente
 riscritti dall'autrice e vanno pertanto rilette ed eventualmente contrassegnate
 come recepite.
 
@@ -36,12 +36,12 @@ come recepite.
 import io, os, re, sys, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Tabella delle macro: quanti argomenti prende ciascuna e quale di essi e'
+# Tabella delle macro: quanti argomenti prende ciascuna e quale di essi è
 # l'ancora nel testo della tesi (None = nota non ancorata a una frase).
 # NON dedurre questi numeri: vanno letti dal preambolo. Una versione precedente
-# di questo file assumeva due argomenti per tutte e non conosceva \CCgen ne'
-# \CCthesis; su un merge avrebbe buttato 24 note e troncato a meta' le altre.
-# Per questo c'e' check_table(), che confronta la tabella con il preambolo e si
+# di questo file assumeva due argomenti per tutte e non conosceva \CCgen né
+# \CCthesis; su un merge avrebbe buttato 24 note e troncato a metà le altre.
+# Per questo c'è check_table(), che confronta la tabella con il preambolo e si
 # ferma se qualcuno aggiunge un tipo di nota senza aggiornarla.
 ARGS = {
     "MDn": 2, "MDq": 2, "MDs": 2, "MDt": 2, "MDdel": 2,
@@ -113,7 +113,7 @@ def parse(src):
                     # Appiglio per le note senza ancora utilizzabile: il testo
                     # che le precede. Senza, una nota non ancorata che sia la
                     # PRIMA del file non ha dove attaccarsi e spariva in
-                    # silenzio -- ed e' il caso di tutte le note generali e di
+                    # silenzio -- ed è il caso di tutte le note generali e di
                     # quelle sulla tesi, che per convenzione stanno nel primo
                     # paragrafo dell'area che commentano.
                     "before": src[max(0, m.start() - CONTEXT):m.start()]})
@@ -121,7 +121,7 @@ def parse(src):
 
 
 def forbidden_spans(t):
-    """Intervalli in cui NON si puo' inserire: didascalie e argomenti di note."""
+    """Intervalli in cui NON si può inserire: didascalie e argomenti di note."""
     bad = []
     for m in re.finditer(r'\\caption\{', t):
         try: _, end = grp(t, m.end() - 1)
@@ -151,10 +151,10 @@ def context_place(res, before):
     """Dove rimettere una nota priva di ancora utilizzabile.
 
     Si cerca nel testo nuovo il pezzo che nel vecchio la precedeva,
-    accorciandolo dall'inizio finche' non lo si ritrova: se la studentessa ha
-    riscritto la frase subito prima della nota, il contesto piu' lontano
+    accorciandolo dall'inizio finché non lo si ritrova: se la studentessa ha
+    riscritto la frase subito prima della nota, il contesto più lontano
     sopravvive quasi sempre. Un contesto vuoto significa che la nota stava
-    all'inizio del file, e li' va rimessa. -1 se non si ritrova niente.
+    all'inizio del file, e lì va rimessa. -1 se non si ritrova niente.
     """
     if not before.strip():
         return 0
@@ -197,7 +197,7 @@ def run(apply_it):
                 # Due casi che prima sparivano in silenzio, e sono lo stesso
                 # caso: la nota non ha un'ancora utilizzabile. Non ancorata
                 # (CCgen, CCthesis, CCnote) oppure ancorata a una stringa vuota
-                # o piu' corta di MINLEN, che e' come sono scritte le nostre
+                # o più corta di MINLEN, che è come sono scritte le nostre
                 # note sui titoli. Si riaggancia al contesto che la precedeva.
                 if last_end is not None and a is None:
                     res = res[:last_end] + n["text"] + res[last_end:]

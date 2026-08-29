@@ -3,17 +3,17 @@
 r"""Inserimento assistito di un'annotazione nel testo annotato.
 
 L'inserimento manuale, effettuato mediante script estemporanei, ha dato luogo
-in piu' occasioni a documenti non compilabili e, in un caso, alla cancellazione
+in più occasioni a documenti non compilabili e, in un caso, alla cancellazione
 di sei frasi dell'autrice. In ciascun caso il difetto non risiedeva nel
-contenuto dell'annotazione bensi' nel punto di inserimento, e in ciascun caso
-l'informazione necessaria a rilevarlo era gia' disponibile.
+contenuto dell'annotazione bensì nel punto di inserimento, e in ciascun caso
+l'informazione necessaria a rilevarlo era già disponibile.
 
 La circostanza che accomuna tali episodi merita di essere esplicitata. I dati
 numerici di un'annotazione vanno misurati sul testo dell'autrice, privo di
 annotazioni (si veda `measure.py`). L'inserimento avviene invece sul file
-annotato, ove la frase cui ci si intende ancorare puo' gia' costituire l'ancora
-di un'annotazione precedente. La verifica `s.count(frase) == 1` non e'
-sufficiente a rilevarlo: la frase e' effettivamente presente una sola volta,
+annotato, ove la frase cui ci si intende ancorare può già costituire l'ancora
+di un'annotazione precedente. La verifica `s.count(frase) == 1` non è
+sufficiente a rilevarlo: la frase è effettivamente presente una sola volta,
 ma all'interno di `\CCerr{...}`.
 
 Le prime tre protezioni sono importate da `reanchor.py`, al fine di evitare la
@@ -26,21 +26,21 @@ duplicazione della medesima logica:
 Le rimanenti sono proprie del modulo, ciascuna derivante da un difetto
 riscontrato:
 
-  * ancora ambigua: qualora ricorra piu' di una volta l'inserimento e'
-    respinto, anziche' selezionare la prima occorrenza;
-  * annotazione gia' presente sulla medesima frase: si raccomanda in tal caso
-    di integrare quella esistente anziche' affiancarne una seconda;
+  * ancora ambigua: qualora ricorra più di una volta l'inserimento è
+    respinto, anziché selezionare la prima occorrenza;
+  * annotazione già presente sulla medesima frase: si raccomanda in tal caso
+    di integrare quella esistente anziché affiancarne una seconda;
   * ancora in modo matematico: all'interno di `equation` o `$...$` le macro di
     annotazione non operano e LaTeX perde l'oggetto flottante;
-  * argomento-ancora difforme dalla frase: e' la protezione di maggiore
+  * argomento-ancora difforme dalla frase: è la protezione di maggiore
     rilievo, in quanto il suo mancato intervento comporta la cancellazione del
-    testo dell'autrice anziche' la sola impossibilita' di compilazione, dato
+    testo dell'autrice anziché la sola impossibilità di compilazione, dato
     che `place()` sostituisce la frase con il testo ricevuto;
   * riga vuota nel corpo: un `\par` nell'argomento compromette la scrittura
     degli elenchi (`\notelistentry`).
 
 Nessuna scrittura viene effettuata se anche un solo inserimento non risulta
-ammissibile, cosi' da non lasciare il file in stato intermedio.
+ammissibile, così da non lasciare il file in stato intermedio.
 
     import sys; sys.path.insert(0, "review")
     from addnote import place
@@ -61,7 +61,7 @@ MATH_ENVS = ("equation", "align", "gather", "multline", "eqnarray")
 
 
 def math_spans(t):
-    r"""Intervalli in modo matematico, dove una nota non puo' stare."""
+    r"""Intervalli in modo matematico, dove una nota non può stare."""
     bad = []
     for env in MATH_ENVS:
         for star in ("", r"\*"):
@@ -77,7 +77,7 @@ def math_spans(t):
 
 
 def existing_note_containing(src, frase):
-    """Se `frase` e' gia' dentro l'ancora o il corpo di una nota, dice quale."""
+    """Se `frase` è già dentro l'ancora o il corpo di una nota, dice quale."""
     for m in re.finditer(NOTE, src):
         try:
             a, j = grp(src, m.end() - 1)
@@ -93,9 +93,9 @@ def existing_note_containing(src, frase):
 
 def anchor_mismatch(nota, frase):
     r"""Per le macro ancorate, l'argomento-ancora deve essere ESATTAMENTE la frase."""
-    # La macro puo' non essere all'inizio: per una nota NON ancorata si passa
-    # la frase seguita dalla macro, perche' place() sostituisce la frase con
-    # tutto il testo che gli si da'.
+    # La macro può non essere all'inizio: per una nota NON ancorata si passa
+    # la frase seguita dalla macro, perché place() sostituisce la frase con
+    # tutto il testo che gli si dà.
     m = re.search(NOTE, nota)
     if not m:
         return "il testo non contiene nessuna macro di nota"
@@ -148,7 +148,7 @@ def place(path, jobs, verbose=True):
             errori.append("%s: %s" % (tag, bad)); continue
         gia = existing_note_containing(src, frase)
         if gia:
-            errori.append("%s: la frase e' gia' %s di \\%s -- arricchisci quella nota "
+            errori.append("%s: la frase è già %s di \\%s -- arricchisci quella nota "
                           "invece di aggiungerne una seconda" % (tag, gia[1], gia[0]))
             continue
         i = src.find(frase)
@@ -191,7 +191,7 @@ def _run_case(nome, testo, frase, nota, atteso):
 def _selftest():
     N = lambda f: r"\CCn{" + f + "}{commento}"
     casi = [
-        ("nota gia' esistente", r"\CCn{la frase}{commento}", "la frase", N("la frase"), "gia' nell'ancora"),
+        ("nota già esistente", r"\CCn{la frase}{commento}", "la frase", N("la frase"), "già nell'ancora"),
         ("dentro una didascalia", r"\caption{la frase}", "la frase", N("la frase"), "caption"),
         ("ancora ambigua", "la frase e poi la frase", "la frase", N("la frase"), "ambigua"),
         ("ancora assente", "tutt'altro testo", "la frase", N("la frase"), "non trovata"),

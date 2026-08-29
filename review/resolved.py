@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-r"""Annotazioni aperte il cui contesto e' stato modificato dall'autrice.
+r"""Annotazioni aperte il cui contesto è stato modificato dall'autrice.
 
 Lo strumento supplisce a una limitazione della verifica per ancora. A seguito
 di un merge si accertava la persistenza dell'ancora di ciascuna annotazione, e
-`reanchor.py` elenca come orfane quelle la cui frase non risulti piu'
-reperibile. L'autrice, tuttavia, recepisce le osservazioni per lo piu' senza
+`reanchor.py` elenca come orfane quelle la cui frase non risulti più
+reperibile. L'autrice, tuttavia, recepisce le osservazioni per lo più senza
 modificare la frase ancorata: integra la sigla immediatamente dopo l'ancora,
 inserisce la virgola al suo interno, aggiunge la citazione in coda. L'ancora
 sopravvive, l'annotazione viene riancorata, la verifica ha esito positivo e
@@ -20,7 +20,7 @@ raffronta il seguito immediato. Le annotazioni per le quali il seguito risulti
 modificato vanno rilette ed eventualmente contrassegnate come recepite.
 
 Va eseguito dopo il fetch e prima del merge, quando il confronto fra la
-versione precedentemente revisionata e quella nuova e' ancora significativo.
+versione precedentemente revisionata e quella nuova è ancora significativo.
 
     python3 review/resolved.py                 # base: merge-base con origin/main
     python3 review/resolved.py f2f3af8         # base determinata

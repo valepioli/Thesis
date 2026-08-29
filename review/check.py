@@ -3,16 +3,16 @@
 """Verifica dello stato del ramo di revisione.
 
 Raccoglie i controlli che nel corso di questa revisione hanno individuato
-difetti effettivi. Il criterio adottato e' che la verifica vada condotta sul
+difetti effettivi. Il criterio adottato è che la verifica vada condotta sul
 PDF e non sul sorgente: una compilazione priva di errori non fornisce alcuna
-informazione sulla effettiva collocazione delle annotazioni nella pagina, ed e'
+informazione sulla effettiva collocazione delle annotazioni nella pagina, ed è
 proprio in tale fase che si sono verificate perdite di annotazioni.
 
     python3 review/check.py            # verifica completa
     python3 review/check.py --quiet    # sole verifiche con esito negativo
 
 Restituisce codice di uscita 0 in caso di esito positivo e 1 in caso contrario,
-ed e' pertanto impiegabile in un hook.
+ed è pertanto impiegabile in un hook.
 """
 import io, os, re, sys, glob, subprocess, collections, unicodedata
 
@@ -50,8 +50,8 @@ def groups(t, start, n):
 log = read(LOG) if os.path.exists(LOG) else ""
 check("compilazione senza errori", log.count("\n! ") == 0, "%d errori" % log.count("\n! "))
 check("nessun float perso", "Float(s) lost" not in log)
-# Un controllo che fallisce senza dire perche' invita a ridiagnosticarlo ogni
-# volta. Il log sa gia' quale token e quale riga: si riportano.
+# Un controllo che fallisce senza dire perché invita a ridiagnosticarlo ogni
+# volta. Il log sa già quale token e quale riga: si riportano.
 _hyp = re.findall(r"removing `([^\']+)' on input line (\d+)", log)
 check("nessun avviso hyperref", "Token not allowed" not in log,
       "; ".join(sorted({"%s alla riga %s" % (t, l) for t, l in _hyp})) or "")
@@ -72,10 +72,10 @@ pages = txt.split("\f")
 # Si confrontano i TESTI delle note, non le etichette: le etichette compaiono
 # anche negli elenchi, e il numero di pagine di elenco cambia a ogni giro.
 # Le lettere accentate vanno ridotte alla base PRIMA di togliere il resto:
-# pdftotext puo' renderle scomposte (e + accento), e togliendo solo i segni
-# non alfanumerici resterebbe una lettera in piu' rispetto al sorgente.
-# LaTeX compone i accentata come i SENZA PUNTO piu' accento: dopo NFKD resta
-# U+0131, che non e' in [a-z] e verrebbe buttata, sfasando il confronto di una
+# pdftotext può renderle scomposte (e + accento), e togliendo solo i segni
+# non alfanumerici resterebbe una lettera in più rispetto al sorgente.
+# LaTeX compone i accentata come i SENZA PUNTO più accento: dopo NFKD resta
+# U+0131, che non è in [a-z] e verrebbe buttata, sfasando il confronto di una
 # lettera. Stessa cosa per altre lettere speciali.
 SPECIALI = {'\u0131': 'i', '\u0237': 'j', '\u0142': 'l', '\u00f8': 'o',
             '\u0111': 'd', '\u00e6': 'ae', '\u0153': 'oe', '\u00df': 'ss'}
@@ -158,19 +158,19 @@ check("le %d note di MD ci sono tutte" % len(orig), not missing, "%d mancanti" %
 check("nessuna nota di MD alterata", not altered, "%d alterate" % len(altered))
 
 ccmd = sum(len(re.findall(r'\\CCmd\{', read(f))) for f in glob.glob(TEXGLOB))
-check("nessun commento alle note altrui", ccmd == 0, "%d trovati" % ccmd)
+check("macro \\CCmd ritirata non utilizzata", ccmd == 0, "%d trovati" % ccmd)
 
-# ------------------------------------ 4b. la tabella di reanchor.py e' allineata?
+# ------------------------------------ 4b. la tabella di reanchor.py è allineata?
 # Se qualcuno aggiunge un tipo di nota e non aggiorna reanchor.py, al prossimo
-# merge quelle note verrebbero buttate o troncate. Si controlla qui, cosi' il
+# merge quelle note verrebbero buttate o troncate. Si controlla qui, così il
 # problema si vede subito e non fra un mese in mezzo a un merge.
 # Le protezioni di addnote.py si autoverificano: ognuna viene fatta scattare su
 # testo finto e si controlla che rifiuti E che non scriva. Sono la rete che
 # manca agli script usa-e-getta con cui le note si aggiungono a mano.
-# Annotazioni aperte il cui contesto e' stato modificato dall'autrice. Non
-# costituiscono un errore bensi' materiale da rileggere, e sono pertanto
+# Annotazioni aperte il cui contesto è stato modificato dall'autrice. Non
+# costituiscono un errore bensì materiale da rileggere, e sono pertanto
 # riportate come informazione e non come esito negativo. A merge avvenuto il
-# valore e' sempre nullo: la verifica e' significativa fra il fetch e il merge.
+# valore è sempre nullo: la verifica è significativa fra il fetch e il merge.
 _res = subprocess.run([sys.executable, os.path.join(ROOT, "review", "resolved.py")],
                       capture_output=True, text=True).stdout
 _n = re.search(r"^(\d+) da rileggere", _res, re.M)
@@ -188,8 +188,8 @@ check("reanchor.py conosce tutti i tipi di nota", tab.returncode == 0,
 
 # ------------------------------------------------ 4c. collisioni di colore
 # Il colore identifica la PERSONA: due revisori con lo stesso colore annullano
-# la regola. Si guardano anche le registrazioni commentate, perche' sono
-# istruzioni pronte all'uso e una collisione li' e' una trappola.
+# la regola. Si guardano anche le registrazioni commentate, perché sono
+# istruzioni pronte all'uso e una collisione lì è una trappola.
 pre = read(os.path.join(BASE, "preamble.tex"))
 palette = collections.defaultdict(set)
 for m in re.finditer(r'\\renewcommand\{\\(MD[a-z]+)\}\[2\]\{\\hlcolor\{([a-z]+![0-9]+)\}', pre):
@@ -208,11 +208,12 @@ check("nessun problema strutturale nelle note", lint.returncode == 0,
 
 # ------------------------------------------------- 6. variazione rispetto a HEAD
 # LIMITE NOTO: i controlli qui sopra confrontano il SORGENTE con il PDF, quindi
-# vedono una nota persa in composizione ma non una nota cancellata per sbaglio
-# dal sorgente (calerebbero entrambi i conteggi). Per le note di MD esiste il
-# confronto con f2f3af8, che e' un vincolo assoluto; per quelle dei revisori no.
+# vedono un'annotazione persa in composizione ma non una cancellata per errore
+# dal sorgente, poiché calerebbero entrambi i conteggi. Per le annotazioni del
+# primo revisore il confronto con la revisione di riferimento copre il caso; per
+# quelle degli altri revisori non esiste un vincolo analogo.
 # Qui si stampa quindi la variazione rispetto al commit precedente: un calo va
-# guardato, anche se non e' di per se' un errore (togliere note e' legittimo).
+# guardato, anche se non è di per sé un errore (togliere note è legittimo).
 prev = {}
 for kind, pat in (("revisori", r'\\CC(?:err|n|ref|note|solved|notesolved)\{'),
                   ("generali", r'\\CCgen\{'), ("tesi", r'\\CCthesis\{'),

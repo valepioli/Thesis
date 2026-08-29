@@ -5,10 +5,10 @@
 L'autrice non opera sul ramo di revisione: consulta il PDF annotato e prosegue
 la stesura su `main`. Lo stato di un'annotazione non viene pertanto dichiarato
 manualmente ma determinato per confronto, verificando per ciascuna annotazione
-la persistenza nel ramo di riferimento della frase cui essa e' ancorata.
+la persistenza nel ramo di riferimento della frase cui essa è ancorata.
 
-    ancora presente  -> il passaggio non e' stato modificato: annotazione aperta
-    ancora assente   -> il passaggio e' stato riscritto: annotazione da rileggere
+    ancora presente  -> il passaggio non è stato modificato: annotazione aperta
+    ancora assente   -> il passaggio è stato riscritto: annotazione da rileggere
 
 La verifica presenta una limitazione nota, alla quale supplisce `resolved.py`:
 qualora l'autrice recepisca un'osservazione senza modificare la frase ancorata,
@@ -51,8 +51,8 @@ def groups(text, start, n):
     return out
 
 
-# Macro il cui primo argomento NON e' testo della tesi ma un'etichetta per
-# l'elenco (\CCmd rimanda a una nota di MD, \CCnote non e' ancorata a nulla).
+# Macro il cui primo argomento NON è testo della tesi ma un'etichetta per
+# l'elenco (\CCmd rimanda a una nota di MD, \CCnote non è ancorata a nulla).
 # Confrontarle col testo della studentessa darebbe solo falsi positivi.
 UNANCHORED = {"CCmd", "CCnote"}
 
@@ -135,8 +135,8 @@ def main():
 
 
 def lint():
-    """Controlli strutturali sulle note. Servono perche' due errori di questo
-    tipo hanno gia' rotto la compilazione: una nota finita DENTRO il corpo di
+    """Controlli strutturali sulle note. Servono perché due errori di questo
+    tipo hanno già rotto la compilazione: una nota finita DENTRO il corpo di
     un'altra nota (ancora troppo corta, una virgola) e una nota finita dentro
     una \\caption (la didascalia conteneva le stesse parole del testo)."""
     import glob
