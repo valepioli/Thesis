@@ -22,6 +22,7 @@ with $w_0$ the waist at the focal plane and $z_R = \pi w_0^2/\lambda$ the Raylei
 E_2(z, \rho, t) = E_0 \frac{w_0}{w(z)} \exp\left(-\frac{\rho^2}{w^2(z)}\right) \exp\left(i(-k z - \omega_2 t - \phi(z))\right).
 \label{eq:beam2}
 \end{equation}
+If the two beams do not have the same power, the resulting intensity becomes proportional to $I_1 + I_2 + 2\sqrt{I_1 I_2} \cos(2kz)$. Consequently, the lattice contrast drops to $2\sqrt{I_1 I_2}/(I_1 + I_2) < 1$, meaning the intensity minima do not reach zero and the useful trap depth decreases.
 
 To determine the local intensity profile for degenerate frequencies ($\omega_1 = \omega_2 = \omega$), the coherent superposition $E_{tot} = E_1 + E_2$ is evaluated. Restricting the analysis to the spatial region localized around the focal point ($z \ll z_R$), the variation of the beam waist and the Gouy phase shift become negligible. The superimposed electric field simplifies to:
 \begin{equation}
@@ -110,7 +111,8 @@ Upon time-averaging the fast optical component $\cos^2(\omega t + \pi\Delta\nu t
 U(z,\rho,t) = U_0 \frac{w_0^2}{w^2(z)} \exp\left(-\frac{2\rho^2}{w^2(z)}\right) \cos^2(kz + \pi\Delta\nu t).
 \label{eq:moving_potential_single}
 \end{equation}
-This expression coincides, up to an overall sign in the time argument of the envelope, with Eq.~\eqref{eq:moving_potential_sym}, confirming that an asymmetric detuning imposed on a single beam produces the same effect as a symmetrically distributed detuning.
+
+This expression coincides with Eq.~\eqref{eq:moving_potential_sym} up to a sign that determines the transport direction. In both cases, the lattice always moves along the propagation direction of the higher-frequency beam with speed $\vert{}v\vert{} = \lambda\Delta\nu/2$. Thus, an asymmetric detuning on a single beam produces the exact same physical effect as a symmetrically distributed one.
 
 \begin{figure}[h!]
 \centering
