@@ -3,7 +3,7 @@
 \label{sec:power_polarization_results}
 %*###############################################################
 
-The black-fiber injection system described in Chapter~2 provides the
+The black-fiber injection system described in Chapter~2 provides the\CCgen{capitolo 3}{meta' dei risultati non ha incertezza affatto}{Contato per sezione: la sezione sulla melassa ha 14 valori con il $\pm$, quella sul caricamento dell'ODT 9, questa sulla stabilita' \textbf{zero}, quella sulle simulazioni EIT \textbf{zero}. I minimi della deviazione di Allan, $8\times10^{-4}$ e $7\times10^{-5}$~rad, sono dati nudi, e cosi' il $\langle n\rangle$ simulato, che per giunta viene da una media su 150 traiettorie Monte Carlo e ha quindi un errore standard calcolabile in una riga. Non e' una questione formale: senza incertezza non si puo' dire se due valori differiscano, ed e' esattamente cio' che il capitolo fa quando confronta il caso con e senza repump. Metterei almeno un'indicazione di dispersione ovunque compaia un numero presentato come risultato.}\CCthesis{55 figure e 2 tabelle}{Contato: \textbf{55 figure} nel documento compilato, che adesso sono anche 55 nel sorgente da quando l'appendice e' stata svuotata e \textbf{2 tabelle}, ed entrambe le tabelle sono i parametri di ingresso delle simulazioni EIT. Non esiste una sola tabella di risultati, ne' di parametri sperimentali, ne' di componenti. Tutto quello che sarebbe naturale tabulare (le configurazioni operative, i risultati con le loro incertezze, l'elenco delle ottiche) sta nella prosa o negli elenchi puntati. E' la causa comune di tre cose che ho gia' segnalato altrove: l'ambiguita' 475/480 sull'ampiezza AOM, il fatto che i numeri dell'abstract vadano rincorsi in quattro sezioni, e la difficolta' di vedere quali risultati abbiano un'incertezza. Tre tabelle, una per capitolo, risolverebbero tutte e tre. Le due note di capitolo sulle tabelle, nel 2 e nel 3, dicono quale tabella serve dove.}
 counterpropagating optical field required to generate the conveyor-belt
 potential. For this application, stable optical power and polarization are
 essential. Power fluctuations directly affect the lattice depth and may lead to parametric heating, whereas
@@ -44,7 +44,7 @@ reaches a minimum fractional Allan deviation of approximately
 $8\times10^{-4}$ at an averaging time of $\tau \approx 0.1~\mathrm{s}$.
 For shorter averaging times, $\sigma_y(\tau)$ follows the characteristic $1/\sqrt{\tau}$ dependence associated with white noise. For
 $\tau > 0.1~\mathrm{s}$, the Allan deviation increases progressively,
-exceeding $10^{-2}$ at $\tau = 200~\mathrm{s}$. This behavior indicates
+exceeding $10^{-2}$ at $\tau = 200~\mathrm{s}$. \CCn{This behavior indicates}{Vale la pena dire quale banda serve davvero all'esperimento. La deviazione di Allan qui copre da frazioni di secondo a 200~s, mentre il riscaldamento parametrico di un atomo nel reticolo e' guidato dal rumore a $\nu_z$ e $2\nu_z$, cioe' centinaia di kHz secondo la tabella della simulazione EIT. La misura e' corretta e utile per le derive lente, ma non dice nulla sulla banda che conta per il trasporto: le conclusioni lo riconoscono, e lo direi anche qui, dove il lettore incontra il dato per la prima volta.}
 that the long-term power stability is limited by low-frequency processes,
 most likely associated with thermal drifts and slow mechanical relaxation
 of the optical components.
@@ -53,7 +53,7 @@ The bottom panel of Figure~\ref{fig:allan_deviation_results} shows the
 angular Allan deviation $\sigma_\theta(\tau)$ of the polarization angle.
 The minimum value, approximately $7\times10^{-5}~\mathrm{rad}$, is obtained
 at an averaging time of $\tau \approx 3~\mathrm{s}$. At shorter averaging
-times, the Allan deviation follows the $1/\sqrt{\tau}$ dependence; for
+times, the Allan deviation follows the $1/\sqrt{\tau}$ \CCsolved{nota}{dependence; for}{Punteggiatura: qui due proposizioni indipendenti sono unite da virgole. Metterei un punto e virgola o spezzerei in due frasi: ``...follows the $1/\sqrt{\tau}$ dependence. For $\tau>3$~s, slow environmental drifts become dominant and...''.}{Risolto con il punto e virgola, che era una delle due opzioni proposte: ora si legge ``follows the $1/\sqrt{\tau}$ dependence; for $\tau>3$~s...''.}
 $\tau > 3~\mathrm{s}$, slow environmental drifts become dominant and
 $\sigma_\theta(\tau)$ increases, reaching approximately
 $8\times10^{-4}~\mathrm{rad}$ at $\tau = 200~\mathrm{s}$.

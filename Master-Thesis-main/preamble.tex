@@ -6,9 +6,15 @@
 
 % For Title styling
 \usepackage{titlesec}
-\titleformat*{\section}{\LARGE\bfseries}
-\titleformat*{\subsection}{\Large\bfseries}
-\titleformat*{\subsubsection}{\large\bfseries}
+% MD: \raggedright sui titoli. Senza, titlesec li giustifica e quelli lunghi
+% sforano il margine destro nel layout finale A4: "Electromagnetic Trapping of
+% Neutral Atoms" di 39 pt, "From Conventional to Hollow-Core Optical Fibers"
+% di 20 pt, "Coupling to the Motional ..." di 14 pt. Cosi' vanno tutti a zero.
+% NB: l'opzione di pacchetto \usepackage[raggedright]{titlesec} NON basta,
+% perche' \titleformat* la sovrascrive: deve stare dentro l'argomento.
+\titleformat*{\section}{\LARGE\bfseries\raggedright}
+\titleformat*{\subsection}{\Large\bfseries\raggedright}
+\titleformat*{\subsubsection}{\large\bfseries\raggedright}
 
 % Margins and layout
 \usepackage[margin=2.5cm]{geometry}
@@ -55,6 +61,10 @@
 
 % No indentation on new paragraphs
 \setlength{\parindent}{0pt}
+% MD: con \parindent a zero e nessun \parskip i capoversi erano
+% tipograficamente indistinguibili, si leggevano come un blocco unico.
+% Servendo l'uno o l'altro, qui si aggiunge lo spazio verticale.
+\setlength{\parskip}{0.5\baselineskip plus 2pt minus 1pt}
 
 % For numbering also subsubsections
 \setcounter{secnumdepth}{3}
@@ -74,3 +84,383 @@
 % Better Tabels
 \usepackage{booktabs, multirow, array, makecell}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% review by MICHELANGELO
+%\geometry{paperwidth=27cm, asymmetric, left=2.5cm, right=8.5cm, marginparwidth=7cm, marginparsep=5mm}
+%\usepackage[colorinlistoftodos, textsize=footnotesize]{todonotes}
+
+% scientific notes
+%\providecommand{\MDn}[1]{\todo[color=brown!20]{\textbf{MD notes:} #1}}
+
+% questions
+%\providecommand{\MDq}[1]{\todo[inline, color=blue!15]{\textbf{MD question:} #1}}
+
+% suggestions
+%\providecommand{\MDs}[1]{\todo[noline, color=red!25]{\textbf{MD suggestion:} #1}}
+
+% typographical issue
+%\providecommand{\MDt}[1]{\todo[color=orange!30]{\textbf{MD typography:} #1}}
+
+% Underlining text
+%\usepackage{ulem}
+
+% Geometry setup for wide margins.
+% MD: la pagina era 30 cm, con una sola colonna di note larga 10 cm.
+% CC: portata a 42 cm per ospitare DUE colonne di note affiancate, da 10 cm
+% ciascuna: la prima (il marginpar vero e proprio) tiene le note di MD, la
+% seconda e' disegnata da \CCbox con uno spostamento di 10.5 cm. Il corpo del
+% testo resta largo 17 cm, quindi l'impaginato del testo non cambia.
+\geometry{paperwidth=42cm, asymmetric, left=1.5cm, right=23.5cm, marginparwidth=10cm, marginparsep=5mm}
+% Foglio piu' alto (36 cm invece di 29.7) a parita' di specchio di stampa:
+% i riquadri delle note si impilano lungo il margine e, quando su una pagina
+% ce ne sono molti, gli ultimi uscivano dal fondo e venivano tagliati.
+% Il testo resta identico (textheight invariata), lo spazio in piu' e' tutto
+% margine inferiore in cui le note possono sbordare senza perdersi.
+\geometry{paperheight=41cm, top=2.5cm, bottom=13.80cm}
+\setlength{\marginparpush}{0pt}
+
+% Required packages
+\usepackage{soul} % for multiline highlighting (\hl)
+\usepackage[normalem]{ulem} % [normalem] prevents ulem from changing \emph to underline
+\usepackage[colorinlistoftodos, textsize=footnotesize]{todonotes}
+
+% --- Custom Color Setup for soul Highlights ---
+\newcommand{\hlcolor}[2]{\leavevmode{\sethlcolor{#1}\hl{#2}}}
+
+% Limite noto e diagnosticato (CC): \hl (soul) non sopravvive dentro un
+% capoverso rimodellato da wrapfig. In quei capoversi TeX ha \parshape attivo
+% e soul si ferma con "Package soul Error: Reconstruction failed". Verificato
+% con tre prove: la stessa nota (a) non compila dov'e'; (b) compila se la
+% wrapfigure diventa una figure normale; (c) compila se la nota viene spostata
+% fuori dalla zona di wrap. Non e' quindi il contenuto della nota. Le macro CC
+% usano ulem e non soul, quindi il problema non le riguarda; se una nota MD
+% dovesse caderci dentro, spostarla di una frase basta.
+
+% --- 2-Argument Review Commands: \Command{Text to highlight}{Comment} ---
+
+% 1. Scientific notes (brown highlight + margin note with connecting line)
+\newcommand{\MDn}[2]{%
+  \hlcolor{brown!25}{#1}%
+  \todo[color=brown!20]{\textbf{MD note:} #2}%
+}
+
+% 2. Questions (blue highlight + margin note)
+\newcommand{\MDq}[2]{%
+  \hlcolor{blue!15}{#1}%
+  \todo[color=blue!15]{\textbf{MD question:} #2}%
+}
+
+% 3. Phrasing / Suggestions (red/pink highlight + margin note)
+\newcommand{\MDs}[2]{%
+  \hlcolor{red!20}{#1}%
+  \todo[color=red!25]{\textbf{MD suggestion:} #2}%
+}
+
+% 4. Typographical / Grammar (wavy underline from ulem + margin note)
+\newcommand{\MDt}[2]{%
+  \uwave{#1}%
+  \todo[color=orange!30]{\textbf{MD typo:} #2}%
+}
+
+% ATTENZIONE: non usare \MDn / \MDq / \MDs / \MDt / \MDdel dentro l'argomento di
+% \chapter, \section, \subsection ... . Sono argomenti mobili: la nota finisce
+% verbatim nell'indice, hyperref segnala "Token not allowed in a PDF string" e
+% il \todo viene eseguito due volte (una dall'indice, una dal titolo).
+% Mettere la nota subito DOPO il titolo, nella forma \MDt{}{...}.
+% Per lo stesso motivo, non usare \ref / \cite dentro \MDn ... \MDdel: sono
+% comandi fragili, e sia \hl (soul) sia \todo (che scrive nel file .tdo)
+% li rompono. Citare l'etichetta come testo, es. \texttt{eq:dipole\_force}.
+
+% ============================================================
+% NOTE DI CLAUDE CODE (CC) -- seconda colonna, a destra di quella di MD.
+%
+% Le note di MD restano esattamente come sono: stesse macro, stesso colore,
+% stessa colonna, e finiscono come prima in \listoftodos. Le note CC sono un
+% livello separato, disegnato con \marginpar a 10.5 cm di distanza, e NON
+% entrano nella lista dei todo, cosi' quella lista resta quella di MD.
+%
+% I marcatori nel testo sono deliberatamente diversi: MD evidenzia (soul) o usa
+% l'onda (ulem), CC sottolinea tratteggiato. CC usa solo ulem, mai soul, e
+% quindi non soffre del limite con wrapfig documentato sotto.
+%
+% Categorie: non un calco di quelle di MD. Quelle di MD dicono che tipo di
+% intervento serve (nota, domanda, suggerimento, refuso); queste dicono che
+% tipo di AFFERMAZIONE e', che in revisione e' l'informazione utile.
+%   \CCerr  errore verificato NEL TESTO della tesi
+%   \CCn    osservazione tecnica sul testo: cosa manca o cosa e' impreciso
+%   \CCref  rilievo meccanico: bibliografia, figure, riferimenti incrociati
+%   \CCmd   verdetto su una nota di MD (non evidenzia nulla: commenta la nota)
+% ============================================================
+% ============================================================
+% REGISTRO DEI REVISORI (seconda colonna del margine)
+%
+% Le note di MD restano dove sono: macro \MD*, todonotes, colonna di SINISTRA,
+% ed e' l'unico contenuto di \listoftodos. Tutti gli ALTRI revisori condividono
+% la colonna di DESTRA e si distinguono per colore, sigla e numerazione propria.
+%
+% Aggiungere un revisore richiede una riga sola:
+%     \DeclareReviewer{GS}{olive!25}
+% e da quel momento esiste la macro \GS{categoria}{ancora}{nota}, per esempio
+%     \GS{errore}{the measured waist agrees}{Il confronto non regge: ...}
+% che stampa [GS 1] nel testo, mette il riquadro blu nella seconda colonna e
+% aggiunge una riga all'elenco dei revisori.
+%
+% Il colore identifica la PERSONA, non la categoria: con piu' revisori e' il
+% colore che deve dire subito di chi e' la nota. La categoria resta la parola
+% in grassetto all'inizio del riquadro.
+%
+% \hidereviewer{GS} spegne un layer: le note di quel revisore spariscono da
+% testo, margine ed elenco, e resta solo il testo della tesi. Serve per produrre
+% un PDF per revisore senza toccare le note.
+% ============================================================
+
+% \leavevmode: senza, una nota messa subito dopo un titolo o una \label parte
+% in modo verticale, il \marginpar non puo' migrare e LaTeX perde i float
+% della pagina ("Float(s) lost").
+\newcommand{\revnotegen}[6]{% #6 = nop | nsv% #1 sigla  #2 colore  #3 categoria  #4 ancora  #5 nota
+  \leavevmode
+  \csname ifrevshow#1\endcsname
+    \dashuline{#4}%
+    \refstepcounter{rev#1}%
+    \textsuperscript{\textbf{\scriptsize[#1\,\csname therev#1\endcsname]}}%
+    \addcontentsline{cco}{todo}{%
+      \protect\fcolorbox{black}{#2}{\protect\textcolor{#2}{o}}\ %
+      \protect\textbf{[#1\,\csname therev#1\endcsname] #3:} #4}%
+    \csname note#6entry\endcsname{#2}{[#1\,\csname therev#1\endcsname] #3:}{#5}%
+    \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
+      \fcolorbox{black}{#2}{\parbox{11.6cm}{\scriptsize\raggedright
+        \textbf{[#1\,\csname therev#1\endcsname] #3:} #5}}}}%
+  \else #4\fi
+}
+% variante senza ancoraggio nel testo: #4 e' solo l'etichetta per l'elenco
+\newcommand{\revnoteplaingen}[6]{% #6 = nop | nsv%
+  \leavevmode
+  \csname ifrevshow#1\endcsname
+    \refstepcounter{rev#1}%
+    \textsuperscript{\textbf{\scriptsize[#1\,\csname therev#1\endcsname]}}%
+    \addcontentsline{cco}{todo}{%
+      \protect\fcolorbox{black}{#2}{\protect\textcolor{#2}{o}}\ %
+      \protect\textbf{[#1\,\csname therev#1\endcsname] #3:} #4}%
+    \csname note#6entry\endcsname{#2}{[#1\,\csname therev#1\endcsname] #3:}{#5}%
+    \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
+      \fcolorbox{black}{#2}{\parbox{11.6cm}{\scriptsize\raggedright
+        \textbf{[#1\,\csname therev#1\endcsname] #3:} #5}}}}%
+  \fi
+}
+\newcommand{\DeclareReviewer}[2]{%
+  \newcounter{rev#1}%
+  \newcounter{gen#1}%
+  \newcounter{tes#1}%
+  \expandafter\newif\csname ifrevshow#1\endcsname
+  \csname revshow#1true\endcsname
+  \expandafter\newcommand\csname #1\endcsname[3]{\revnote{#1}{#2}{##1}{##2}{##3}}%
+}
+\newcommand{\hidereviewer}[1]{\csname revshow#1false\endcsname}
+
+% Ogni nota, oltre a finire nell'elenco del proprio livello (.tdo per MD,
+% .cco per i revisori), finisce anche in uno dei due elenchi per STATO:
+% .nop se e' aperta, .nsv se e' risolta. Cosi' si puo' leggere il lavoro in due
+% modi: ``cosa ho scritto io'' e ``cosa resta da fare''.
+\newcounter{noteopen}
+\newcounter{notesolved}
+\newcommand{\notelistentry}[4]{% #1 estensione  #2 colore  #3 etichetta  #4 testo
+  \addcontentsline{#1}{todo}{%
+    \protect\fcolorbox{black}{#2}{\protect\textcolor{#2}{o}}\ \protect\textbf{#3} #4}%
+}
+\newcommand{\noteopenentry}[3]{\stepcounter{noteopen}\notelistentry{nop}{#1}{#2}{#3}}
+\newcommand{\notesolvedentry}[3]{\stepcounter{notesolved}\notelistentry{nsv}{#1}{#2}{#3}}
+
+\makeatletter
+\newcommand{\listofrevnotes}{%
+  \section*{Note dei revisori}%
+  \@mkboth{Note dei revisori}{Note dei revisori}%
+  \@starttoc{cco}%
+}
+\newcommand{\listofopennotes}{%
+  \section*{Note aperte}%
+  \@mkboth{Note aperte}{Note aperte}%
+  \@starttoc{nop}%
+}
+\newcommand{\listofsolvednotes}{%
+  \section*{Note risolte}%
+  \@mkboth{Note risolte}{Note risolte}%
+  \@starttoc{nsv}%
+}
+% I totali sono noti solo a fine documento: si scrivono nell'.aux e si leggono
+% alla compilazione dopo (latexmk ne fa comunque piu' di una).
+\AtEndDocument{%
+  \immediate\write\@auxout{%
+    \string\gdef\string\NoteAperteTot{\thenoteopen}%
+    \string\gdef\string\NoteRisolteTot{\thenotesolved}}%
+}
+\makeatother
+\providecommand{\NoteAperteTot}{?}
+\providecommand{\NoteRisolteTot}{?}
+\newcommand{\notesummary}{%
+  \par\noindent\fcolorbox{black}{gray!10}{\parbox{0.9\textwidth}{%
+    \textbf{Stato della revisione.}\ %
+    Note aperte: \textbf{\NoteAperteTot}\quad
+    risolte: \textbf{\NoteRisolteTot}.\ %
+    Gli elenchi che seguono sono quattro: per livello (\emph{Todo list} = MD,
+    \emph{Note dei revisori}) e per stato (\emph{Note aperte},
+    \emph{Note risolte}, queste ultime con la descrizione di come sono state
+    risolte).}}\par\medskip
+}
+\newcommand{\listofccnotes}{\listofrevnotes}   % vecchio nome, ancora valido
+
+% ------------------------------------------------------------------
+% NOTE GENERALI
+%
+% Un terzo tipo di nota, accanto a quelle ancorate a una frase: riguarda un
+% CAPITOLO o una SEZIONE INTERA, non un punto preciso del testo. Serve per le
+% osservazioni che non hanno una frase a cui appendersi -- notazione non
+% uniforme, una sezione scollegata dal resto, squilibri di profondita' o di
+% bibliografia.
+%
+%   \CCgen{ambito}{titolo breve}{testo}
+%
+% Numerazione separata ([CC G1], [CC G2], ...), colore proprio, elenco proprio
+% (\listofgeneralnotes). Entra comunque anche negli elenchi per stato.
+%
+% Va messa DENTRO il primo capoverso della sezione a cui si riferisce, mai
+% subito dopo il titolo: un \marginpar aperto in modo verticale fa perdere i
+% float della pagina.
+\newcommand{\revgeneral}[5]{% #1 sigla  #2 colore  #3 ambito  #4 titolo  #5 testo
+  \leavevmode
+  \csname ifrevshow#1\endcsname
+    \refstepcounter{gen#1}%
+    \textsuperscript{\textbf{\scriptsize[#1\,G\csname thegen#1\endcsname]}}%
+    \addcontentsline{gen}{todo}{%
+      \protect\fcolorbox{black}{#2}{\protect\textcolor{#2}{o}}\ %
+      \protect\textbf{[#1\,G\csname thegen#1\endcsname] #3 -- #4:} #5}%
+    \noteopenentry{#2}{[#1\,G\csname thegen#1\endcsname] generale (#3) -- #4:}{#5}%
+    \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
+      \fcolorbox{black}{#2}{\parbox{11.6cm}{\scriptsize\raggedright
+        \textbf{[#1\,G\csname thegen#1\endcsname] nota generale, #3 -- #4:} #5}}}}%
+  \fi
+}
+\newcommand{\CCgen}[3]{\revgeneral{CC}{yellow!30}{#1}{#2}{#3}}
+
+% ------------------------------------------------------------------
+% NOTE SULL'INTERA TESI
+%
+% Il gradino sopra le note generali: osservazioni che non riguardano un
+% capitolo ma il documento nel suo insieme (equilibrio fra le parti, elenchi
+% mancanti, un filo narrativo che si interrompe, materiale non incluso).
+% Vanno tenute separate perche' si leggono in un altro momento: non mentre si
+% rivede un capitolo, ma quando si decide la struttura della tesi.
+%
+%   \CCthesis{titolo breve}{testo}
+%
+% Numerazione [CC T1], [CC T2], ..., colore proprio, elenco proprio. Come le
+% altre, la posizione nel file e' libera (l'ambito e' implicito): va messa
+% dentro un capoverso, mai subito dopo un titolo.
+\newcommand{\revthesis}[4]{% #1 sigla  #2 colore  #3 titolo  #4 testo
+  \leavevmode
+  \csname ifrevshow#1\endcsname
+    \refstepcounter{tes#1}%
+    \textsuperscript{\textbf{\scriptsize[#1\,T\csname thetes#1\endcsname]}}%
+    \addcontentsline{tsn}{todo}{%
+      \protect\fcolorbox{black}{#2}{\protect\textcolor{#2}{o}}\ %
+      \protect\textbf{[#1\,T\csname thetes#1\endcsname] #3:} #4}%
+    \noteopenentry{#2}{[#1\,T\csname thetes#1\endcsname] tesi nel suo insieme -- #3:}{#4}%
+    \marginpar{\makebox[0pt][l]{\hspace*{10.5cm}%
+      \fcolorbox{black}{#2}{\parbox{11.6cm}{\scriptsize\raggedright
+        \textbf{[#1\,T\csname thetes#1\endcsname] tesi nel suo insieme -- #3:} #4}}}}%
+  \fi
+}
+\newcommand{\CCthesis}[2]{\revthesis{CC}{cyan!22}{#1}{#2}}
+\makeatletter
+\newcommand{\listofthesisnotes}{%
+  \section*{Note sulla tesi nel suo insieme}%
+  \@mkboth{Note sulla tesi}{Note sulla tesi}%
+  \@starttoc{tsn}%
+}
+\makeatother
+\makeatletter
+\newcommand{\listofgeneralnotes}{%
+  \section*{Note generali}%
+  \@mkboth{Note generali}{Note generali}%
+  \@starttoc{gen}%
+}
+\makeatother
+
+% ---- revisori registrati ----
+\DeclareReviewer{CC}{teal!15}    % Claude Code
+% Gli altri revisori si aggiungono togliendo il commento. Colonna di sinistra
+% (todonotes) = MD; tutti questi condividono la colonna di destra e si
+% distinguono per colore, sigla e numerazione.
+% Colori gia' occupati: brown/blue/red/orange = MD, teal = CC, giallo =
+% note generali, azzurro = note sulla tesi, verde = risolte. Il blu in
+% particolare e' quello delle domande di MD, quindi non va riusato.
+% \DeclareReviewer{MP}{magenta!18} % Marco Prevedelli
+% \DeclareReviewer{FM}{violet!15}  % Francesco Minardi
+%
+% \hidereviewer{CC}                % <- per un PDF con le note di un solo revisore
+
+% Nomi storici delle macro CC: restano validi, cosi' le note gia' scritte non
+% vanno toccate. La categoria e' passata come parola, il colore e' quello di CC.
+\newcommand{\CCerr}[2]{\revnote{CC}{teal!15}{errore}{#1}{#2}}
+\newcommand{\CCn}[2]{\revnote{CC}{teal!15}{nota}{#1}{#2}}
+\newcommand{\CCref}[2]{\revnote{CC}{teal!15}{riferimenti}{#1}{#2}}
+\newcommand{\CCnote}[2]{\revnoteplain{CC}{teal!15}{nota}{#1}{#2}}
+\newcommand{\CCmd}[2]{\revnoteplain{CC}{teal!15}{sulla nota MD}{``#1''}{#2}}
+
+% ============================================================
+% NOTE RISOLTE
+%
+% Regola: una nota a cui la studentessa ha dato seguito NON si cancella. Si
+% ricolora di verde, si marca [SOLVED] e si dice COME e' stata risolta, cosi'
+% resta la storia di cosa e' stato chiesto e di cosa e' stato fatto.
+%
+% Per le note di MD il testo originale resta il secondo argomento e non viene
+% toccato: cambia solo l'involucro, e il terzo argomento e' la descrizione
+% della soluzione. Il controllo di identita' byte a byte continua a passare.
+%   \MDnsolved{ancora}{testo originale della nota}{come e' stata risolta}
+% Per le note dei revisori:
+%   \CCsolved{categoria}{ancora}{testo originale}{come e' stata risolta}
+%   \CCnotesolved{etichetta}{testo originale}{come e' stata risolta}
+% ============================================================
+\newcommand{\MDsolvedmark}[3]{%
+  \hlcolor{green!20}{#2}%
+  \todo[color=green!20]{\textbf{MD #1} \textbf{[SOLVED]:} #3}%
+}
+\newcommand{\MDnsolved}[3]{\MDsolvedmark{note}{#1}{#2 ~--- \textbf{Risolta:} #3}}
+\newcommand{\MDssolved}[3]{\MDsolvedmark{suggestion}{#1}{#2 ~--- \textbf{Risolta:} #3}}
+\newcommand{\MDqsolved}[3]{\MDsolvedmark{question}{#1}{#2 ~--- \textbf{Risolta:} #3}}
+\newcommand{\MDtsolved}[3]{%
+  \uwave{#1}%
+  \todo[color=green!20]{\textbf{MD typo} \textbf{[SOLVED]:} #2 ~--- \textbf{Risolta:} #3}%
+}
+\newcommand{\CCsolved}[4]{\revnote{CC}{green!20}{#1 [SOLVED]}{#2}{#3 ~--- \textbf{Risolta:} #4}}
+\newcommand{\CCnotesolved}[3]{\revnoteplain{CC}{green!20}{nota [SOLVED]}{#1}{#2 ~--- \textbf{Risolta:} #3}}
+
+% 5. Direct Deletion (strikethrough from ulem + margin note)
+\newcommand{\MDdel}[2]{%
+  \sout{#1}%
+  \todo[color=gray!20]{\textbf{MD delete:} #2}%
+}
+% Le due forme concrete: aperta -> elenco .nop, risolta -> elenco .nsv
+\newcommand{\revnote}[5]{\revnotegen{#1}{#2}{#3}{#4}{#5}{open}}
+\newcommand{\revnotesolvedg}[5]{\revnotegen{#1}{#2}{#3}{#4}{#5}{solved}}
+\newcommand{\revnoteplain}[5]{\revnoteplaingen{#1}{#2}{#3}{#4}{#5}{open}}
+\newcommand{\revnoteplainsolvedg}[5]{\revnoteplaingen{#1}{#2}{#3}{#4}{#5}{solved}}
+\renewcommand{\CCsolved}[4]{\revnotesolvedg{CC}{green!20}{#1 [SOLVED]}{#2}{#3 ~--- \textbf{Risolta:} #4}}
+\renewcommand{\CCnotesolved}[3]{\revnoteplainsolvedg{CC}{green!20}{nota [SOLVED]}{#1}{#2 ~--- \textbf{Risolta:} #3}}
+
+% Le macro di MD: il testo della nota non viene toccato, si aggiunge solo la
+% riga nell'elenco per stato.
+\renewcommand{\MDn}[2]{\hlcolor{brown!25}{#1}\todo[color=brown!20]{\textbf{MD note:} #2}\noteopenentry{brown!25}{MD note:}{#2}}
+\renewcommand{\MDq}[2]{\hlcolor{blue!15}{#1}\todo[color=blue!15]{\textbf{MD question:} #2}\noteopenentry{blue!15}{MD question:}{#2}}
+\renewcommand{\MDs}[2]{\hlcolor{red!20}{#1}\todo[color=red!25]{\textbf{MD suggestion:} #2}\noteopenentry{red!20}{MD suggestion:}{#2}}
+\renewcommand{\MDt}[2]{\uwave{#1}\todo[color=orange!30]{\textbf{MD typo:} #2}\noteopenentry{orange!30}{MD typo:}{#2}}
+\renewcommand{\MDsolvedmark}[3]{%
+  \hlcolor{green!20}{#2}%
+  \todo[color=green!20]{\textbf{MD #1} \textbf{[SOLVED]:} #3}%
+  \notesolvedentry{green!20}{MD #1 [SOLVED]:}{#3}%
+}
+\renewcommand{\MDtsolved}[3]{%
+  \uwave{#1}%
+  \todo[color=green!20]{\textbf{MD typo} \textbf{[SOLVED]:} #2 ~--- \textbf{Risolta:} #3}%
+  \notesolvedentry{green!20}{MD typo [SOLVED]:}{#2 ~--- \textbf{Risolta:} #3}%
+}
