@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Stato delle note di revisione rispetto al ramo su cui lavora la studentessa.
+"""Determinazione dello stato delle annotazioni rispetto al ramo dell'autrice.
 
-La studentessa non tocca il ramo di revisione: guarda il PDF con le note e
-continua a scrivere su `main`. Quindi lo stato di una nota non lo dichiara
-nessuno a mano, si DEDUCE: per ogni nota si controlla se la frase a cui e'
-ancorata esiste ancora nel ramo di riferimento.
+L'autrice non opera sul ramo di revisione: consulta il PDF annotato e prosegue
+la stesura su `main`. Lo stato di un'annotazione non viene pertanto dichiarato
+manualmente ma determinato per confronto, verificando per ciascuna annotazione
+la persistenza nel ramo di riferimento della frase cui essa e' ancorata.
 
-    ancora presente  -> quel passaggio non e' stato toccato: nota ancora aperta
-    ancora sparita   -> ha riscritto li': la nota va riletta, forse e' risolta
+    ancora presente  -> il passaggio non e' stato modificato: annotazione aperta
+    ancora assente   -> il passaggio e' stato riscritto: annotazione da rileggere
 
-Uso:
-    python3 review/status.py                # confronta con origin/main
-    python3 review/status.py a3a1f66        # confronta con un commit preciso
-    python3 review/status.py --verbose      # elenca anche le note ancora aperte
+La verifica presenta una limitazione nota, alla quale supplisce `resolved.py`:
+qualora l'autrice recepisca un'osservazione senza modificare la frase ancorata,
+l'ancora sopravvive e l'annotazione risulta ancora aperta pur essendo stata
+recepita.
+
+    python3 review/status.py                # confronto con origin/main
+    python3 review/status.py a3a1f66        # confronto con una revisione data
+    python3 review/status.py --verbose      # comprensivo delle annotazioni aperte
+    python3 review/status.py --lint         # soli controlli strutturali
 """
 import io, os, re, subprocess, sys, collections
 

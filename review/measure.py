@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Numeri sulla tesi, misurati sul ramo della studentessa.
+"""Misurazione dei dati numerici della tesi sul ramo dell'autrice.
 
-Perche' esiste: le note di revisione che citano un numero (``il capitolo 2 ha
-13133 parole'', ``24 acronimi distinti'') vanno scritte su misure fatte sul SUO
-testo, non sui file annotati. Misurando sui file annotati si contano anche le
-note stesse: e' successo, e i conteggi di parole erano gonfiati fino al 50 per
-cento nelle sezioni corte e dense di note. Togliere le note con una espressione
-regolare non basta, perche' le note contengono a loro volta parentesi graffe
-annidate e matematica.
+Un'annotazione che riporti un dato numerico -- il numero di parole di un
+capitolo, il numero di sigle distinte -- va redatta sulla base di una
+misurazione condotta sul testo dell'autrice e non sui file annotati. La
+misurazione condotta su questi ultimi includerebbe le annotazioni stesse; la
+loro rimozione mediante espressione regolare non e' praticabile, in quanto i
+corpi contengono parentesi graffe annidate ed espressioni matematiche.
 
-La soluzione e' non provarci nemmeno: si legge il file da git, alla revisione
-della studentessa, dove le note non esistono.
+L'inconveniente si e' verificato: nove dati numerici in altrettante annotazioni
+sono risultati errati, con conteggi di parole sovrastimati fino al cinquanta
+per cento nelle sezioni brevi e un conteggio di sigle falsato dall'inclusione
+della sigla piu' frequente nell'elenco delle esclusioni.
 
-    python3 review/measure.py                 # confronta con origin/main
-    python3 review/measure.py c977f7c         # a una revisione precisa
-    python3 review/measure.py --acronyms      # elenco degli acronimi
+Lo strumento acquisisce i file da git alla revisione dell'autrice, ove le
+annotazioni non sono presenti.
+
+    python3 review/measure.py                 # confronto con origin/main
+    python3 review/measure.py c977f7c         # a una revisione determinata
+    python3 review/measure.py --acronyms      # con l'elenco delle sigle
 """
 import re, sys, subprocess, collections, os
 

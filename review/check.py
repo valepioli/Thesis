@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Controllo di salute del ramo di revisione, in un comando solo.
+"""Verifica dello stato del ramo di revisione.
 
-Raccoglie i controlli che in questa revisione hanno trovato difetti veri. Il
-punto fondamentale: **si misura il PDF, non il sorgente**. Una compilazione
-senza errori non dice nulla su quante note siano finite davvero nella pagina
-giusta, ed e' esattamente li' che si erano perse delle note.
+Raccoglie i controlli che nel corso di questa revisione hanno individuato
+difetti effettivi. Il criterio adottato e' che la verifica vada condotta sul
+PDF e non sul sorgente: una compilazione priva di errori non fornisce alcuna
+informazione sulla effettiva collocazione delle annotazioni nella pagina, ed e'
+proprio in tale fase che si sono verificate perdite di annotazioni.
 
-    python3 review/check.py            # tutto
-    python3 review/check.py --quiet    # solo le righe che falliscono
+    python3 review/check.py            # verifica completa
+    python3 review/check.py --quiet    # sole verifiche con esito negativo
 
-Esce 0 se tutto passa, 1 altrimenti: si puo' mettere in un hook.
+Restituisce codice di uscita 0 in caso di esito positivo e 1 in caso contrario,
+ed e' pertanto impiegabile in un hook.
 """
 import io, os, re, sys, glob, subprocess, collections, unicodedata
 
@@ -165,9 +167,10 @@ check("nessun commento alle note altrui", ccmd == 0, "%d trovati" % ccmd)
 # Le protezioni di addnote.py si autoverificano: ognuna viene fatta scattare su
 # testo finto e si controlla che rifiuti E che non scriva. Sono la rete che
 # manca agli script usa-e-getta con cui le note si aggiungono a mano.
-# Note aperte su testo che la studentessa ha gia' cambiato. Non e' un errore,
-# e' roba da rileggere, quindi si riporta come informazione e non come fallimento:
-# dopo un merge vale sempre 0, il momento utile e' fra il fetch e il merge.
+# Annotazioni aperte il cui contesto e' stato modificato dall'autrice. Non
+# costituiscono un errore bensi' materiale da rileggere, e sono pertanto
+# riportate come informazione e non come esito negativo. A merge avvenuto il
+# valore e' sempre nullo: la verifica e' significativa fra il fetch e il merge.
 _res = subprocess.run([sys.executable, os.path.join(ROOT, "review", "resolved.py")],
                       capture_output=True, text=True).stdout
 _n = re.search(r"^(\d+) da rileggere", _res, re.M)

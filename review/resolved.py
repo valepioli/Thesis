@@ -1,27 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-r"""Note APERTE su testo che la studentessa ha cambiato: da rileggere.
+r"""Annotazioni aperte il cui contesto e' stato modificato dall'autrice.
 
-Perche' esiste, ed e' un errore vero del 2026-08-29. Dopo un merge si
-controllava se l'ANCORA di ogni nota esisteva ancora: `reanchor.py` elenca come
-orfane quelle la cui frase e' sparita, e si rileggevano solo quelle. Ma la
-studentessa risponde quasi sempre **senza toccare la frase agganciata**: alla
-nota "aggiungerei (ODT)" ha risposto scrivendo `optical dipole trap(ODT)`,
-lasciando intatta l'ancora `optical dipole trap`. La nota si e' riagganciata,
-il controllo sulle orfane e' passato, e la nota e' rimasta aperta su un testo
-che ormai la soddisfaceva. Erano otto note, quattro di MD e quattro mie, e le
-ha notate lui leggendo il PDF.
+Lo strumento supplisce a una limitazione della verifica per ancora. A seguito
+di un merge si accertava la persistenza dell'ancora di ciascuna annotazione, e
+`reanchor.py` elenca come orfane quelle la cui frase non risulti piu'
+reperibile. L'autrice, tuttavia, recepisce le osservazioni per lo piu' senza
+modificare la frase ancorata: integra la sigla immediatamente dopo l'ancora,
+inserisce la virgola al suo interno, aggiunge la citazione in coda. L'ancora
+sopravvive, l'annotazione viene riancorata, la verifica ha esito positivo e
+l'annotazione permane aperta su un testo che ormai la soddisfa. In una singola
+occasione otto annotazioni si sono trovate in tale condizione, quattro di MD e
+quattro di CC.
 
-**La sopravvivenza dell'ancora non e' la sopravvivenza del rilievo.** Questo
-script guarda invece il CONTESTO: per ogni nota ancora aperta cerca l'ancora
-nel testo di riferimento e in quello nuovo e confronta cio' che viene subito
-dopo. Se e' cambiato, la nota va riletta e forse marcata SOLVED.
+La persistenza dell'ancora non equivale pertanto alla persistenza
+dell'osservazione. Lo strumento confronta il contesto: per ciascuna annotazione
+aperta individua l'ancora nel testo di riferimento e in quello nuovo e ne
+raffronta il seguito immediato. Le annotazioni per le quali il seguito risulti
+modificato vanno rilette ed eventualmente contrassegnate come recepite.
 
-Si usa DOPO `git fetch` e PRIMA del merge, quando il confronto e' fra l'ultima
-versione che abbiamo revisionato e quella nuova:
+Va eseguito dopo il fetch e prima del merge, quando il confronto fra la
+versione precedentemente revisionata e quella nuova e' ancora significativo.
 
-    python3 review/resolved.py                 # base = merge-base con origin/main
-    python3 review/resolved.py f2f3af8          # base esplicita
+    python3 review/resolved.py                 # base: merge-base con origin/main
+    python3 review/resolved.py f2f3af8         # base determinata
 """
 import io, os, re, subprocess, sys
 

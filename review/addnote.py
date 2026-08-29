@@ -1,52 +1,56 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-r"""Inserimento sicuro di una nota nel testo annotato.
+r"""Inserimento assistito di un'annotazione nel testo annotato.
 
-Perche' esiste: le note si aggiungono con piccoli script usa-e-getta, e questi
-script hanno rotto la compilazione tre volte in due giorni. Ogni volta il
-difetto non era nel CONTENUTO della nota ma nel PUNTO in cui la si attaccava, e
-ogni volta l'informazione per accorgersene c'era gia'. Da qui questo modulo:
-una funzione sola, che rifiuta prima di scrivere.
+L'inserimento manuale, effettuato mediante script estemporanei, ha dato luogo
+in piu' occasioni a documenti non compilabili e, in un caso, alla cancellazione
+di sei frasi dell'autrice. In ciascun caso il difetto non risiedeva nel
+contenuto dell'annotazione bensi' nel punto di inserimento, e in ciascun caso
+l'informazione necessaria a rilevarlo era gia' disponibile.
 
-Lo schema che le accomuna vale la pena ricordarlo, perche' e' subdolo. I NUMERI
-di una nota vanno misurati sul file pulito preso da git (vedi measure.py): sul
-file annotato si conterebbero anche le note. Ma l'INSERIMENTO avviene sul file
-annotato, dove la frase da agganciare puo' gia' essere l'ancora di una nota
-scritta prima. Un banale `s.count(frase) == 1` non se ne accorge: la frase c'e'
-davvero una volta sola, solo che sta dentro `\CCerr{...}`.
+La circostanza che accomuna tali episodi merita di essere esplicitata. I dati
+numerici di un'annotazione vanno misurati sul testo dell'autrice, privo di
+annotazioni (si veda `measure.py`). L'inserimento avviene invece sul file
+annotato, ove la frase cui ci si intende ancorare puo' gia' costituire l'ancora
+di un'annotazione precedente. La verifica `s.count(frase) == 1` non e'
+sufficiente a rilevarlo: la frase e' effettivamente presente una sola volta,
+ma all'interno di `\CCerr{...}`.
 
-Le protezioni. Le prime tre sono quelle di reanchor.py, importate da li' per
-non avere due copie della stessa logica che divergono:
+Le prime tre protezioni sono importate da `reanchor.py`, al fine di evitare la
+duplicazione della medesima logica:
 
-  * mai dentro una \caption;
-  * mai dentro gli argomenti di un'altra nota;
-  * ancore piu' corte di MINLEN caratteri rifiutate.
+  * inserimento in una `\caption`;
+  * inserimento negli argomenti di un'altra annotazione;
+  * ancore di estensione inferiore a MINLEN caratteri.
 
-Le altre sono nate qui, ognuna da un guasto vero:
+Le rimanenti sono proprie del modulo, ciascuna derivante da un difetto
+riscontrato:
 
-  * ancora ambigua: se compare piu' di una volta si rifiuta invece di prendere
-    la prima, perche' la prima e' quella sbagliata abbastanza spesso;
-  * nota gia' esistente su quella frase: quasi sempre la cosa giusta e'
-    arricchire quella nota, non affiancarne una seconda che ripete il rilievo;
-  * ancora in modo matematico: dentro equation o $...$ le macro di nota non
-    funzionano (\marginpar e ulem), e LaTeX perde il float;
-  * argomento-ancora diverso dalla frase: e' LA PIU' IMPORTANTE, perche' e'
-    l'unica il cui fallimento CANCELLA il testo della studentessa invece di
-    limitarsi a rompere la compilazione (place sostituisce la frase con la
-    nota, quindi se la nota non se la porta dentro la frase sparisce);
-  * riga vuota nel corpo: un \par dentro l'argomento rompe la scrittura delle
-    liste (\notelistentry).
+  * ancora ambigua: qualora ricorra piu' di una volta l'inserimento e'
+    respinto, anziche' selezionare la prima occorrenza;
+  * annotazione gia' presente sulla medesima frase: si raccomanda in tal caso
+    di integrare quella esistente anziche' affiancarne una seconda;
+  * ancora in modo matematico: all'interno di `equation` o `$...$` le macro di
+    annotazione non operano e LaTeX perde l'oggetto flottante;
+  * argomento-ancora difforme dalla frase: e' la protezione di maggiore
+    rilievo, in quanto il suo mancato intervento comporta la cancellazione del
+    testo dell'autrice anziche' la sola impossibilita' di compilazione, dato
+    che `place()` sostituisce la frase con il testo ricevuto;
+  * riga vuota nel corpo: un `\par` nell'argomento compromette la scrittura
+    degli elenchi (`\notelistentry`).
 
-Non scrive niente se anche un solo inserimento fallisce, cosi' il file non
-resta a meta'. Uso come modulo, che e' il modo previsto:
+Nessuna scrittura viene effettuata se anche un solo inserimento non risulta
+ammissibile, cosi' da non lasciare il file in stato intermedio.
 
     import sys; sys.path.insert(0, "review")
     from addnote import place
-    place(percorso, [(frase, nota, "etichetta")])
+    place(percorso, [(frase, annotazione, "etichetta")])
 
-Le note si costruiscono per CONCATENAZIONE, mai con un format: i corpi sono
-pieni di \% e di $30\%$, e il % di Python ci si incastra. Eseguito senza
-argomenti, questo file autoverifica ogni protezione su testo finto.
+Le annotazioni vanno composte per concatenazione e non mediante interpolazione
+di stringhe: i corpi contengono frequentemente il carattere di percentuale in
+forma protetta, che interferisce con la formattazione. Eseguito senza
+argomenti, il modulo verifica automaticamente ciascuna protezione su testo di
+prova.
 """
 import io, os, re, sys
 

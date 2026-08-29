@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
-# Ricompila i due PDF tracciati partendo pulito.
+# Ricompilazione dei due PDF tracciati a partire da uno stato pulito.
 #
-# Perche' esiste: latexmk rilegge .lof, .tdo e .cco del giro precedente. Se una
-# compilazione e' fallita a meta', quei file restano corrotti e la compilazione
-# successiva segnala errori che NON sono nel sorgente. E' successo due volte, e
-# la seconda ha portato a inseguire un baco inesistente per parecchio tempo.
-# Qui si cancellano sempre prima di ricompilare.
+# La rimozione preliminare dei file ausiliari e' necessaria: latexmk rilegge
+# .lof, .tdo e .cco della compilazione precedente e, qualora questa si sia
+# interrotta, tali file permangono in stato incoerente e la compilazione
+# successiva segnala errori non presenti nel sorgente. La circostanza si e'
+# verificata in due occasioni, la seconda delle quali ha comportato la ricerca
+# prolungata di un difetto inesistente.
 #
 #   bash review/build.sh            # entrambi i PDF
-#   bash review/build.sh thesis     # solo la tesi completa
-#   bash review/build.sh chapter    # solo il capitolo 1
+#   bash review/build.sh thesis     # sola tesi completa
+#   bash review/build.sh chapter    # solo Capitolo 1
 set -uo pipefail
 cd "$(dirname "$0")/.." || exit 1
 ROOT="Master-Thesis-main"

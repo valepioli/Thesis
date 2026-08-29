@@ -1,29 +1,37 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Rimette le note sul testo aggiornato della studentessa, dopo un merge.
+"""Riancoraggio delle annotazioni al testo aggiornato dell'autrice.
 
-Serve perche' lei lavora su `main`, dove le note non esistono: quando si porta
-il suo testo dentro il ramo di revisione, ogni file in conflitto ha da una parte
-il nostro (prosa vecchia + note) e dall'altra il suo (prosa nuova, niente note).
-La risoluzione giusta e' sempre: **si tiene la sua prosa e si riattaccano le
-note**, mai il contrario.
+L'autrice opera su `main`, ove le annotazioni non sono presenti. Nel momento in
+cui il suo testo viene acquisito nel ramo di revisione, ciascun file in
+conflitto oppone il testo precedente, comprensivo di annotazioni, al testo
+nuovo che ne e' privo. La risoluzione corretta consiste invariabilmente nel
+conservare il testo dell'autrice e riancorare le annotazioni.
 
-Tre protezioni, tutte nate da errori veri fatti a mano:
+Il modulo adotta tre protezioni, ciascuna derivante da un difetto riscontrato:
 
-  * mai dentro una \\caption -- una didascalia puo' ripetere le stesse parole del
-    corpo, e la nota era finita li' rompendo la lista delle figure;
-  * mai dentro gli argomenti di un'altra nota -- le ancore di MD coprono frasi
-    intere, e una nota agganciata a parole contenute in quella frase finiva
-    annidata, con il documento che non compilava piu';
-  * ancore di meno di 4 caratteri rifiutate -- un'ancora ``,'' si attacca alla
-    prima virgola che trova, che puo' essere ovunque.
+  * nessun inserimento in una `\\caption`, in quanto una didascalia puo'
+    riprodurre le medesime parole del corpo del testo, con conseguente
+    compromissione dell'elenco delle figure;
+  * nessun inserimento negli argomenti di un'altra annotazione, in quanto le
+    ancore estese possono comprendere le parole cui una seconda annotazione si
+    aggancia, con conseguente annidamento e impossibilita' di compilazione;
+  * ancore di estensione inferiore a quattro caratteri respinte, in quanto si
+    agganciano alla prima occorrenza disponibile.
 
-Le note la cui ancora non esiste piu' NON vengono buttate: sono elencate come
-orfane, perche' sono esattamente quelle su cui la studentessa e' intervenuta e
-che vanno rilette e, se del caso, marcate SOLVED.
+Le annotazioni prive di ancora utilizzabile -- non ancorate, oppure ancorate a
+una stringa vuota o troppo breve -- vengono riancorate al contesto che le
+precedeva. In assenza di tale accorgimento esse venivano scartate senza
+segnalazione: in una singola occasione undici annotazioni su ottantanove, fra
+cui una di MD.
 
-    python3 review/reanchor.py           # prova, non scrive nulla
-    python3 review/reanchor.py --apply   # scrive
+Le annotazioni la cui ancora non risulti piu' reperibile non vengono eliminate,
+bensi' elencate come orfane, in quanto corrispondono ai passaggi effettivamente
+riscritti dall'autrice e vanno pertanto rilette ed eventualmente contrassegnate
+come recepite.
+
+    python3 review/reanchor.py           # esecuzione in sola lettura
+    python3 review/reanchor.py --apply   # esecuzione con scrittura
 """
 import io, os, re, sys, subprocess
 
