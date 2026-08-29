@@ -15,18 +15,19 @@
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,15] nota:} absorbing this factor into an effective linewidth}{45}{revCC.15}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,16] nota:} two counter-propagating, phase-coherent beams}{46}{revCC.16}%
 \contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,17] nota:} $\phi (z)$ the Gouy phase shift}{46}{revCC.17}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,18] nota:} Assuming each beam carries power}{47}{revCC.18}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,18] nota [SOLVED]:} Assuming each beam carries power}{47}{revCC.18}%
 \contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,19] errore [SOLVED]:} This anisotropy (provided that the potential is sufficiently deep) suppresses tunneling between adjacent lattice sites}{48}{revCC.19}%
 \contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,20] errore [SOLVED]:} This expression coincides with Eq.~\eqref {eq:moving_potential_sym} up to a sign that determines the transport direction.}{49}{revCC.20}%
-\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,21] riferimenti [SOLVED]:} The macroscopic velocity of the interference pattern}{50}{revCC.21}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,22] nota:} The threshold acceleration for a particle with zero kinetic energy}{52}{revCC.22}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,23] nota:} the harmonic trap frequency}{53}{revCC.23}%
-\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,24] nota [SOLVED]:} heating: the transverse compression required to match the fiber mode}{53}{revCC.24}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,25] nota:} }{53}{revCC.25}%
-\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,26] errore [SOLVED]:} Subtracting the irrelevant constant energy}{54}{revCC.26}%
-\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,27] errore [SOLVED]:} yields the effective interaction matrix}{55}{revCC.27}%
-\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,28] errore [SOLVED]:} is excited-state-like and retains approximately the bare atomic linewidth}{56}{revCC.28}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,29] nota:} The state $|\psi _+\rangle $ is ground-state-like}{56}{revCC.29}%
-\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,30] riferimenti [SOLVED]:} The experimental control of this AC Stark shift is the foundation}{57}{revCC.30}%
-\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,31] nota:} the relevant Lamb-Dicke parameter is defined by the effective wavevector}{57}{revCC.31}%
-\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,32] errore [SOLVED]:} is shifted onto the red-sideband transition}{58}{revCC.32}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,21] nota:} the lattice always moves along the propagation direction of the higher-frequency beam}{50}{revCC.21}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,22] riferimenti [SOLVED]:} The macroscopic velocity of the interference pattern}{50}{revCC.22}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,23] nota:} The threshold acceleration for a particle with zero kinetic energy}{52}{revCC.23}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,24] nota:} the harmonic trap frequency}{53}{revCC.24}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,25] nota [SOLVED]:} heating: the transverse compression required to match the fiber mode}{53}{revCC.25}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,26] nota:} }{53}{revCC.26}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,27] errore [SOLVED]:} Subtracting the irrelevant constant energy}{54}{revCC.27}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,28] errore [SOLVED]:} yields the effective interaction matrix}{55}{revCC.28}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,29] errore [SOLVED]:} is excited-state-like and retains approximately the bare atomic linewidth}{56}{revCC.29}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,30] nota [SOLVED]:} The state $|\psi _+\rangle $ is ground-state-like}{56}{revCC.30}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,31] riferimenti [SOLVED]:} The experimental control of this AC Stark shift is the foundation}{57}{revCC.31}%
+\contentsline {todo}{\fcolorbox {black}{teal!15}{\textcolor {teal!15}{o}}\ \textbf {[CC\,32] nota:} the relevant Lamb-Dicke parameter is defined by the effective wavevector}{57}{revCC.32}%
+\contentsline {todo}{\fcolorbox {black}{green!20}{\textcolor {green!20}{o}}\ \textbf {[CC\,33] errore [SOLVED]:} is shifted onto the red-sideband transition}{58}{revCC.33}%
