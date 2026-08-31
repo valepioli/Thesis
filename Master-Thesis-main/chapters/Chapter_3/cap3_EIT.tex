@@ -32,7 +32,7 @@ Probe beam propagation & -- & along the trap (motional) axis \\
 \end{tabular}
 \end{table}
 
-Since this idealized treatment collapses the atomic structure into three bare levels without an explicit magnetic sublevel structure, no specific light polarization is associated with either field: the coupling and probe transitions are simply assumed to be independently addressable, as would be guaranteed in a real implementation by an appropriate choice of orthogonal polarizations (see Section~\ref{subsec:results_multilevel} for the corresponding realistic laser scheme).
+Since this idealized treatment collapses the atomic structure into three bare levels without an explicit magnetic sublevel structure, no specific light polarization is associated with either field: the coupling and probe transitions are simply assumed to be independently addressable.
 
 The steady-state spectroscopic response of the ideal three-level system was obtained by scanning the probe-laser detuning $\Delta_p$ while keeping the coupling field fixed. The resulting total excited-state population exhibits the characteristic Fano profile associated with EIT. Figure~\ref{fig:fano_3_combined} shows both the macroscopic transparency window and a detailed view of the sideband alignment.
 
@@ -46,7 +46,7 @@ The steady-state spectroscopic response of the ideal three-level system was obta
 \label{fig:fano_3_combined}
 \end{figure}
 
-The coupling laser intensity was set according to the exact cooling condition (Eq.~\eqref{eq:exact_condition_numerical}), tuning the AC Stark shift so that the absorption maximum overlaps with the cooling transition. The time evolution of the average phonon number $\langle n \rangle$ for this configuration is presented in Figure~\ref{fig:time_evol_3}. Starting from an initial thermal state, the system undergoes rapid ground-state cooling, decaying exponentially and approaching the theoretical minimum limit in less than 0.1 ms. This confirms the efficiency of the targeted sideband asymmetry in the absence of competing decay channels.
+The coupling laser intensity was set according to the exact cooling condition (Eq.~\eqref{eq:exact_condition_numerical}), tuning the AC Stark shift so that the absorption maximum overlaps with the cooling transition. The time evolution of the average phonon number $\langle n \rangle$ for this configuration is presented in Figure~\ref{fig:time_evol_3}. Starting from a Fock state with $n=15$, the system undergoes rapid ground-state cooling, decaying exponentially and approaching the theoretical minimum limit in less than 0.1 ms. This confirms the efficiency of the targeted sideband asymmetry in the absence of competing decay channels.
 
 \begin{figure}[htbp]
 \centering
@@ -60,7 +60,7 @@ The coupling laser intensity was set according to the exact cooling condition (E
 \label{subsec:results_multilevel}
 %*###############################################################
 
-Extending the simulation to the full 24-level structure of the $^{87}\mathrm{Rb}$ $D_2$ line introduces significant complexity due to spontaneous emission into ground states outside the designed $\Lambda$ subsystem. The simulation parameters were optimized for the axial conveyor belt geometry and are summarized in Table~\ref{tab:optimal_parameters}.
+Extending the simulation to the full 24-level structure of the $^{87}\mathrm{Rb}$ $D_2$ line introduces significant complexity due to spontaneous emission into ground states outside the designed $\Lambda$ subsystem. The simulation parameters were optimized for the axial conveyor belt geometry and are summarized in Table~\ref{tab:optimal_parameters}, and $N_vib$ is set to $10$.
 
 \begin{table}[htbp]
 \centering
@@ -90,7 +90,7 @@ Repump beam propagation & -- & orthogonal to the axial direction \\
 
 To demonstrate the necessity of repopulating the active cooling cycle via the repump field, the dynamics were first simulated without an active repump field, and then compared with the full optimized sequence. The impact of optical pumping is evident in the steady-state spectroscopy (Figure~\ref{fig:fano_24_comparison}). Without a repump field, the excited-state population drops to near zero across the entire frequency scan. Following a few excitation cycles, the atoms decay into uncoupled Zeeman sublevels, depleting the active EIT levels.
 
-By introducing a $\pi$-polarized repump field, the atoms are recycled back into the EIT cycle. The Fano profile and the dark resonance are recovered, allowing the alignment of the red sideband with the absorption peak. However, compared to the three-level model, the resonance is broader and the transparency minimum is less deep, owing to off-resonant coupling to adjacent excited manifolds and the continuous scattering induced by the repump field.
+By introducing a $\pi$-polarized repump field, the atoms are recycled back into the EIT cycle. The Fano profile and the dark resonance are recovered, allowing the alignment of the red sideband with the absorption peak. However, compared to the three-level model, the resonance is broader and the transparency minimum is less deep, owing to off-resonant coupling to adjacent excited manifolds.
 
 \begin{figure}[htbp]
 \centering
@@ -126,6 +126,6 @@ The consequence of this complex internal structure on the final motional state i
 \label{fig:time_evol_24_comparison}
 \end{figure}
 
-However, the effective cooling rate is drastically reduced compared to the ideal three-level case. The system requires nearly 18 ms to approach $\langle n \rangle \approx 0$, two orders of magnitude longer than the idealized simulation. First, atoms spend a significant fraction of their time outside the optimal $\Lambda$ system waiting to be recycled; second, the excess scattering from the repumper and the imperfect carrier suppression introduce heating events that must be continuously compensated. Despite this reduction in cooling speed, the simulated cooling timescale is compatible with state-of-the-art EIT cooling experiments implemented in free-space setups, where similar multilevel effects occur and a 20 ms cooling time is achieved~\cite{Chow2024}.
+However, the effective cooling rate is drastically reduced compared to the ideal three-level case. The system requires nearly 18 ms to approach $\langle n \rangle \approx 0$, two orders of magnitude longer than the idealized simulation. First, atoms spend a significant fraction of their time outside the optimal $\Lambda$ system waiting to be recycled; second, the imperfect carrier suppression introduce heating events that must be continuously compensated. Despite this reduction in cooling speed, the simulated cooling timescale is compatible with state-of-the-art EIT cooling experiments implemented in free-space setups, where similar multilevel effects occur and a 20 ms cooling time is achieved~\cite{Chow2024}.
 
 While these results validate the EIT cooling scheme within the complete atomic level structure, the simulation must eventually be adapted to reflect the exact conditions of the fiber implementation. Atoms confined near the core surface of the hollow-core fiber will experience spatially varying tensor light shifts, local magnetic field gradients, and specific polarization constraints due to the fiber's geometry. Future modeling efforts will need to incorporate these physical perturbations into the Hamiltonian to fully optimize the laser parameters and ensure robust cooling in the final experimental environment.

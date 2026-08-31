@@ -74,3 +74,18 @@
 % Better Tabels
 \usepackage{booktabs, multirow, array, makecell}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+    language=Python,
+    basicstyle=\scriptsize\ttfamily,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{teal},
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    columns=fullflexible
+}

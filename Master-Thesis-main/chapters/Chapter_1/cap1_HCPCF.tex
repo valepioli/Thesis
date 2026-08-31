@@ -49,15 +49,29 @@ In this expression, the term $\Delta n^2$ restricts the interaction to the physi
 
 This behavior is closely related to a Bound State in the Continuum (BIC), a concept introduced by von Neumann and Wigner in 1929~\cite{vonNeumann1929} to describe a localized state that remains confined due to symmetry or destructive interference despite its energy lying within a continuous spectrum of radiative states.
 
-Two mechanisms can drive the integral in Eq.~\ref{eq:inhibited_coupling} toward zero. The first is a \emph{reduced spatial overlap}: if the core and cladding fields occupy largely disjoint regions of the transverse plane, the integrand is small everywhere and so is the integral. 
-The second is a \emph{transverse phase mismatch}, which is best seen by decomposing each mode into azimuthal harmonics, $\varphi(r,\theta) = \sum_m A_m R_m(r) e^{im\theta}$. Substituting into Eq.~\ref{eq:inhibited_coupling} separates the integral into a radial part and an azimuthal part,
+Two mechanisms can drive the integral in Eq.~\ref{eq:inhibited_coupling} toward zero. The first is a \emph{reduced spatial overlap}: if the core and cladding fields occupy largely disjoint regions of the transverse plane, the integrand is small everywhere and so is the integral.
+
+The second is a \emph{transverse phase mismatch}, which is best seen by decomposing each mode into its azimuthal harmonics. In an idealized axisymmetric model, in which the dielectric perturbation depends only on the radius, $\Delta n^2 = \Delta n^2(r)$, the cladding and core fields can be written as
+\begin{equation}
+\varphi_{\text{clad}}(r,\theta) = \sum_m A_m^{\text{clad}} R_m^{\text{clad}}(r) e^{im\theta}, \qquad
+\varphi_{\text{core}}(r,\theta) = \sum_{m'} A_{m'}^{\text{core}} R_{m'}^{\text{core}}(r) e^{im'\theta},
+\label{eq:azimuthal_expansions}
+\end{equation}
+where $m$ is the azimuthal index. Substituting these expansions into Eq.~\ref{eq:inhibited_coupling} separates the integral into a double sum over the radial and azimuthal components:
 \begin{equation}
 \langle \varphi_{\text{clad}} | \Delta n^2 | \varphi_{\text{core}} \rangle
-\propto \int_{r_1}^{r_2} R_{\text{clad}}(r)\, R_{\text{core}}^*(r)\, r\, dr \;\times\; \int_0^{2\pi} e^{i(m_{\text{clad}} - m_{\text{core}})\theta}\, d\theta,
-\label{eq:overlap_azimuthal}
+= \sum_m \sum_{m'} (A_m^{\text{clad}})^* A_{m'}^{\text{core}}
+\left( \int_{r_1}^{r_2} (R_m^{\text{clad}}(r))^* \Delta n^2(r) R_{m'}^{\text{core}}(r)\, r\, dr \right)
+\left( \int_0^{2\pi} e^{i(m' - m)\theta}\, d\theta \right),
+\label{eq:overlap_double_sum}
 \end{equation}
-where $m_{\text{clad}}$ and $m_{\text{core}}$ are the azimuthal indices of the two modes. The azimuthal integral vanishes whenever $m_{\text{clad}} \neq m_{\text{core}}$: modes with different azimuthal order are orthogonal, and their coupling is suppressed by symmetry regardless of their spatial overlap\footnote{In an idealized axisymmetric model, the azimuthal integral vanishes for modes with different azimuthal indices. In a real Kagome fiber, the discrete cladding geometry breaks perfect cylindrical symmetry, so the suppression of coupling is approximate and depends on the detailed modal overlap and phase matching.}~\cite{Debord2019}. 
-By engineering the cladding geometry so that the cladding modes carry a high azimuthal index $m$ while the fundamental core mode has $m \approx 0$, the phase-mismatch term in Eq.~\ref{eq:overlap_azimuthal} strongly suppresses the coupling over a broad spectral range.
+where $r_1$ and $r_2$ delimit the radial extent of the silica microstructure. The azimuthal integral equals $2\pi\delta_{m,m'}$, vanishing unless $m = m'$ owing to the orthogonality of the azimuthal harmonics. This Kronecker delta reduces the double sum to a single summation over $m$:
+\begin{equation}
+\langle \varphi_{\text{clad}} | \Delta n^2 | \varphi_{\text{core}} \rangle
+= 2\pi \sum_m (A_m^{\text{clad}})^* A_m^{\text{core}} \int_{r_1}^{r_2} (R_m^{\text{clad}}(r))^* \Delta n^2(r) R_m^{\text{core}}(r)\, r\, dr.
+\label{eq:overlap_collapsed}
+\end{equation}
+The fundamental core mode is dominated by the lowest azimuthal component ($m \approx 0$), whereas the cladding modes supported by the thin struts carry a rapidly oscillating transverse phase, i.e. high azimuthal index $m$. The product $(A_m^{\text{clad}})^* A_m^{\text{core}}$ is therefore small for every $m$, and the mismatch between the transverse spatial structures of the two mode families suppresses the coupling over a broad spectral range~\cite{Debord2019}. In a real Kagome fiber, the discrete cladding geometry breaks perfect cylindrical symmetry, so the azimuthal harmonics are not exact eigenmodes and the suppression is only approximate, depending on the detailed modal overlap and phase matching.
 
 Because IC guidance is based on local mode interactions rather than on a global photonic bandgap, IC fibers can provide broadband transmission compared with PBG fibers, whose bandwidth is limited by the spectral range of the bandgap~\cite{Debord2019}.
 

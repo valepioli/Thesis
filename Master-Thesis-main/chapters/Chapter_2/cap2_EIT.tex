@@ -3,7 +3,7 @@
 
 Once the atoms enter the fiber, they must be efficiently cooled to control their motion (Sec.~\ref{sec:EIT_cooling}). Simulating this process is a necessary step before modeling the atoms' behavior in the full experimental system. The EIT cooling dynamics are simulated using QuTiP~\cite{Johansson2012}, solving the open-system evolution of an atom coupled to a quantized motional mode. Two models of increasing complexity are implemented. The first is an ideal three-level $\Lambda$ system, used to validate the EIT cooling mechanism and the numerical implementation against the analytical predictions of Sec.~\ref{sec:EIT_cooling}. The second includes the complete hyperfine and Zeeman structure of the $^{87}\mathrm{Rb}$ $D_2$ line, and is used to assess off-resonant excitation, spontaneous emission, optical pumping, and repumping.
 
-Both descriptions are formulated within the same Lindblad master-equation framework and differ only in the dimension and structure of the internal atomic Hilbert space. The motion is treated in one spatial dimension throughout; the simulated direction is set by projecting each laser's wavevector onto the corresponding trap axis.
+Both descriptions are formulated within the same Lindblad master-equation framework and differ only in the dimension and structure of the internal atomic Hilbert space. The motion is treated in one spatial dimension throughout; the simulated direction is set by projecting each laser's wavevector onto the corresponding trap axis. The main code excerpts summarizing the implementation of these models are provided in Appendix~\ref{app:eit_code}.
 
 \subsection{Internal Atomic Basis}
 \label{subsec:atomic_basis}
@@ -340,7 +340,7 @@ Cooling is quantified by propagating an initial atom--motion state and evaluatin
     \mathrm{Tr}\left[\rho(t) a^\dagger a\right].
     \label{eq:n_expectation_numerical}
 \end{equation}
-The initial internal state is chosen within the active ground-state manifold. The motional state is specified either as a Fock state or as a thermal mixture,
+The initial internal state is chosen within the active ground-state manifold. The motional state is specified either as a Fock state, adopted as a computationally convenient approximation to the thermal population, or as a thermal mixture,
 \begin{equation}
     \rho_{\mathrm{th}}
     =

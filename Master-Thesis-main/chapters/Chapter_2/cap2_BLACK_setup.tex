@@ -9,7 +9,7 @@
  
 The second optical field required for the conveyor-belt configuration is delivered by a conventional polarization-maintaining single-mode fiber, referred to throughout this work as the "black fiber". It is generated from the same $1064\,\mathrm{nm}$ laser but counterpropagates with respect to the field guided through the Hollow-Core Photonic Crystal Fiber (HCPCF). Their interference generates the moving optical lattice described in Sec.~\ref{sec:conveyor_belt}. Efficient coupling, a well-defined spatial mode, and stable polarization are therefore required to obtain a deep and reproducible conveyor-belt potential.
 
-The black-fiber branch was constructed as an extension of the Optical Dipole Trap (ODT) system described already existing. The injection strategy was first validated on a dedicated test bench and subsequently transferred to the definitive optical branch. 
+The black-fiber branch was constructed as an extension of the already existing Optical Dipole Trap (ODT) system. The injection strategy was first validated on a dedicated test bench and subsequently transferred to the definitive optical branch. 
 
 The black fiber is operated at $1064\,\mathrm{nm}$ and has a nominal mode-field radius of approximately $5.2\,\mu\mathrm{m}$. Its input tip includes a glass endcap approximately $300\,\mu\mathrm{m}$ long, which improves power handling. Specifically, the fiber is a polarization-maintaining, single-mode $3\,\mathrm{m}$ cable manufactured by Sch\"{a}fter+Kirchhoff (model PMC-780-1-18-xxx / PMC-780-5.3-NA012-1-APC-xxx-P, housed in a $900\,\mu\mathrm{m}$ buffer). It features low-stress FC/APC ($8^\circ$) connectors on both ends with the polarization slow axis aligned to the connector index key, and a specified operating wavelength range from the $770\,\mathrm{nm}$ cut-off up to a maximum of $1100\,\mathrm{nm}$.
 
@@ -33,8 +33,7 @@ with a two-dimensional Gaussian function, from which the beam radii along the
 two transverse axes are extracted. Repeating this analysis at several
 positions provides the beam radius as a function of the longitudinal
 coordinate $z$.
-For each transverse direction, the measured beam radius is fitted to the
-standard Gaussian-beam propagation law
+For each transverse direction, the measured beam radius is fitted to the standard propagation law
 \begin{equation}
     \label{eq:gaussian_beam}
     w(z) =
@@ -46,16 +45,11 @@ standard Gaussian-beam propagation law
         \right)^2
     },
 \end{equation}
-where $w_0$ is the waist radius, $z_0$ is the waist position, and $z_R$ is
-the associated Rayleigh range, defined as
+where $w_0$ is the waist radius, $z_0$ is the waist position, and $z_R$ is the associated Rayleigh range. To account for deviations from an ideal Gaussian mode, the Rayleigh range is defined as
 \begin{equation}
-    z_R = \frac{\pi w_0^2}{\lambda},
+    z_R = \frac{\pi w_0^2}{M^2 \lambda},
 \end{equation}
-with $\lambda$ being the wavelength of the beam. This fit provides the size and position of the
-beam waist and properties at any relevant plane to be
-determined. The reconstructed beam parameters could then be compared with
-the target fiber-mode parameters or used to select and position the
-injection optics.
+with $\lambda$ being the wavelength of the beam and $M^2$ the beam quality factor. For nearly ideal Gaussian beams, $M^2$ is typically close to 1 and is often kept fixed at this value during the fitting procedure. This fit provides the size and position of the beam waist, allowing the beam properties at any relevant plane to be determined. The reconstructed beam parameters could then be compared with the target fiber-mode parameters or used to select and position the injection optics.
 
 \subsection{Injection setup}
 \label{subsec:black_fiber_setup}
@@ -121,11 +115,11 @@ For each transverse direction, the measured radius was fitted to Eq.~\ref{eq:gau
 Coupling a Gaussian beam into a single-mode fiber requires matching the focused field to the fundamental fiber mode in waist size, waist position and transverse alignment. The standard approach uses a collimated input beam and a fixed collimating lens that focuses it directly onto the fiber facet, and this was the strategy first used for the black fiber. The mode-matching parameters used in the definitive branch (Section~\ref{subsec:black_fiber_setup}) were derived and validated on a dedicated test bench (Fig. \ref{fig:test_black}, only the input section upstream of the fiber in the picture is relevant for the mode-matching and injection procedure. The optical layout at the fiber output is dedicated exclusively to the characterization of the polarization stability, which is discussed in detail in Sec.~\ref{sec:black_fiber_polarization}). The test bench consisted of:
 \begin{itemize}
     \item HWP 1 and the optical isolator, as in Section~\ref{subsec:black_fiber_setup};
-    \item HWP 2 and PBS 1 (with a beam dump on the rejected port), regulating the optical power delivered to the rest of the setup;
+    \item HWP 2 and PBS 1 (with a beam dump on the transmitted port), regulating the optical power delivered to the rest of the setup;
     \item HWP 3 and PBS 2, splitting the beam between the HCPCF and black-fiber branches;
     \item Mirror 1, directing the beam reflected by PBS2 towards the beam expander (Beam expander);
     \item an adjustable beam expander (ZBE3C2X-8X Achromatic Zoom Beam Expander, AR Coated: 1050 nm-1650 nm), setting the diameter and residual divergence of the beam sent to the black fiber;
-    \item HWP 4 and PBS 3 (with a beam dump on the rejected port), for additional power control and polarization cleaning;
+    \item HWP 4 and PBS 3 (with a beam dump on the transmitted port), for additional power control and polarization cleaning;
     \item Mirror 2 and Mirror 3, routing the beam towards the fiber injection stage;
     \item HWP 5, adjusting the polarization axis before injection into the polarization-maintaining fiber;
     \item a focusing element coupling the beam into the black fiber: initially a fixed $f=18\,\mathrm{mm}$ fiber collimator (Collimator f18) (Sch\"{a}fter+Kirchhoff, 60FC-4-A18-03), later replaced by the $f=25\,\mathrm{mm}$ achromatic doublet (Lens f25) (Thorlabs AC127-025-C) on a micrometric translation stage (z-stage) also used in the definitive branch;
@@ -163,12 +157,8 @@ The beam profile after the fiber was measured (Figure~\ref{fig:black_fiber_chara
     \label{fig:black_fiber_characterization}
 \end{figure}
 
-The beam profile analysis shown in Fig.\ref{fig:black_fiber_characterization}a uses the standard Gaussian beam propagation model. The beam radius evolution $w_i(z)$ along the propagation axis $z$ for both transverse directions ($i \in \{x, y\}$) is described by:
+The beam profile analysis shown in Fig.\ref{fig:black_fiber_characterization}a uses the standard Gaussian beam propagation model of Eq.~\ref{eq:gaussian_beam} along the propagation axis $z$ for both transverse directions $x$ and $y$.
 
-\begin{equation}
-    w_i(z) = w_{0i}\sqrt{1 + \left(\frac{z - z_{0i}}{z_{Ri}}\right)^2} \, , \quad \text{with} \quad z_{Ri} = \frac{\pi w_{0i}^2}{M_i^2 \lambda} \, .
-    \label{eq:fit_w}
-\end{equation}
 
 Based on the fit of the experimental data, and keeping the beam quality factors fixed to $M_x^2 = M_y^2 = 1.02$, the extracted parameters and the respective coefficients of determination ($R^2$) are:
 

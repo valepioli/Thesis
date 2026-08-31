@@ -7,12 +7,13 @@ Prior to the optimization procedure, the six cooling beams were realigned in ord
 Before realignment, preliminary values of the compensation coil currents had been determined:
 \begin{equation}
     \begin{cases}
-        I_{\mathrm{x}} &= 80~\mathrm{mA}, \\
-        I_{\mathrm{y}} &= -200~\mathrm{mA}, \\
-        I_{\mathrm{z}} &= -400~\mathrm{mA}.
+        I_{\mathrm{x}} &= 80~\mathrm{mA} \quad (B_x \approx 11.2~\mu\mathrm{T}), \\
+        I_{\mathrm{y}} &= -200~\mathrm{mA} \quad (B_y \approx -26.1~\mu\mathrm{T}), \\
+        I_{\mathrm{z}} &= -400~\mathrm{mA} \quad (B_z \approx -60.0~\mu\mathrm{T}).
     \end{cases}
     \label{eq:shim_preliminary_values}
 \end{equation}
+
 These values served as the initial settings for the optimization described below.
 %! Ricorda di aggiungere alla sezione dei metodi la considerazione sul t_flash
 Starting from an initial value of approximately $20~\mu\mathrm{K}$, the optimization procedure minimized the optical molasses temperature. Under the final conditions, a minimum average temperature of $T=(8.42\pm0.17)~\mu\mathrm{K}$ was achieved.
@@ -41,7 +42,7 @@ As shown in Figure~\ref{fig:temp_fit}, the measurements at long TOF deviate from
 \subsection{Detuning frequency optimization}
 %*###############################################################
 
-Starting from an initial molasses temperature of approximately $20~\mu\mathrm{K}$, the cooling laser detuning was optimized in order to reach the final temperature reported above. The detuning was scanned from $-24.4$~MHz ($4.0~\Gamma/2\pi$) to $-184$~MHz ($30.4~\Gamma/2\pi$) in steps of $-11.4$~MHz.
+Starting from an initial molasses temperature of approximately $20~\mu\mathrm{K}$, the cooling laser detuning was optimized in order to reach the final temperature reported above. The detuning was scanned from $-24.4$~MHz ($4.0~\Gamma/2\pi$) to $-184$~MHz ($30.4~\Gamma/2\pi$) in steps of $-12.1$~MHz ($2.0~\Gamma/2\pi$).
 
 Figure~\ref{fig:detuning_molasses_temperature} shows the measured average temperature as a function of the absolute detuning, expressed in units of $\Gamma/2\pi$. For relatively small detunings, the measurements exhibit the $1/\vert{}\delta\vert{}$ scaling expected in the sub-Doppler cooling regime. At larger detunings, two additional effects become important: the optical scattering rate decreases rapidly as $\Gamma_p \propto 1/\delta^2$, while the cooling frequency approaches the $F=2 \rightarrow F'=2$ transition, which lies $267$~MHz below the $F=2 \rightarrow F'=3$ cooling transition (see Figure~\ref{fig:lines}). The combined effect causes the temperature curve to level off around $\vert{}\delta\vert{}\approx15-20$ and to increase again at still larger detunings.
 
@@ -52,21 +53,31 @@ Figure~\ref{fig:detuning_molasses_temperature} shows the measured average temper
 \label{fig:detuning_molasses_temperature}
 \end{figure}
 
-The minimum average temperature was measured at a normalized detuning of $\vert{}\delta\vert{}=17.2$, corresponding to an absolute frequency detuning of $\vert{}\delta\vert{}=104.2$~MHz. The detuning optimization therefore reduced the molasses temperature from its initial value of approximately $20~\mu\mathrm{K}$ to the final value of $T=(14.9\pm0.4)~\mu\mathrm{K}$.
+The minimum average temperature was measured at a normalized detuning of $\vert{}\delta\vert{}=17.2$, corresponding to an absolute frequency detuning of $104.2$~MHz. The detuning optimization therefore reduced the molasses temperature from its initial value of approximately $20~\mu\mathrm{K}$ to the final value of $T=(14.9\pm0.4)~\mu\mathrm{K}$.
 
-To quantitatively compare the sub-Doppler cooling performance with existing literature, a fit was performed up to $\vert{}\delta\vert{} = 18$. The model fitted to the data is $T = a \frac{\Gamma}{\vert{}\delta\vert{}} + T_0$.
+To quantitatively compare the sub-Doppler cooling performance with existing literature, a fit was performed up to $\vert\delta\vert = 18$. The model fitted to the data is
+\begin{equation}
+    T = a \frac{\Gamma}{\vert\delta\vert} + T_0.
+\end{equation}
 
-Following the framework by Gerz et al.~\cite{Gerz:93}, the temperature of a 3D optical molasses scales linearly with the AC Stark shift as $\frac{k_B T}{\hbar \Gamma} = c_{\perp} \frac{\Omega^2}{\vert{}\delta\vert{} \Gamma} + \text{const}$. The fit parameter $a$ is thus related to the dimensionless constant $c_{\perp}$ by $c_{\perp} = \frac{a \cdot k_B}{\hbar \Gamma} (\frac{\Gamma^2}{\Omega^2})$.
+Following the framework by Gerz \textit{et al.}~\cite{Gerz:93}, the temperature of a 3D optical molasses scales linearly with the AC Stark shift as
+\begin{equation}
+    \frac{k_B T}{\hbar \Gamma} = c_{\perp} \frac{\Omega^2}{\vert\delta\vert \Gamma} + \text{const.}
+\end{equation}
+The fit parameter $a$ is thus related to the dimensionless constant $c_{\perp}$. By introducing the Doppler temperature $T_D = \hbar \Gamma / (2 k_B)$ and the saturation parameter $s_0 = I_0/I_{\mathrm{sat}}$, where the squared Rabi frequency relates to intensity as $\Omega^2/\Gamma^2 = s_0/2$, we obtain the explicit relation:
+\begin{equation}
+    c_{\perp} = \frac{a}{s_0 T_D}.
+\end{equation}
 
-The squared Rabi frequency ratio $\Omega^2/\Gamma^2$ is obtained by dividing the single-beam peak intensity by $3.2~\mathrm{mW/cm}^2$. Given a cooling beam power of $P = 6.6~\mathrm{mW}$ and a waist of $W = 12.5~\mathrm{mm}$, the peak intensity is evaluated as $I_0 \approx 2.69~\mathrm{mW/cm}^2$.
+For the transition used, the saturation intensity is $I_{\mathrm{sat}} = 1.6~\mathrm{mW/cm}^2$. Given a single cooling beam power of $P = 6.6~\mathrm{mW}$ and a waist radius of $w = 12.5~\mathrm{mm}$, the single-beam peak intensity is evaluated as $I_0 = 2P/(\pi w^2) \approx 2.69~\mathrm{mW/cm}^2$. This yields a saturation parameter $s_0 \approx 1.68$.
 
-The fit yields $a = 153.7 \pm 24.4~\mu\mathrm{K}$ and a temperature offset $T_0 = 5.3 \pm 0.5~\mu\mathrm{K}$ (Figure~\ref{fig:detuning_molasses_temperature}), corresponding to a dimensionless ratio $a/T_0 = 29.0 \pm 3.7$. Converting the $a$ parameter results in $c_{\perp} = 0.63 \pm 0.02$.
+The fit yields $a = 153.7 \pm 24.4~\mu\mathrm{K}$ and a temperature offset $T_0 = 5.3 \pm 0.5~\mu\mathrm{K}$ (Figure~\ref{fig:detuning_molasses_temperature}). Using $T_D \approx 146~\mu\mathrm{K}$ and the calculated value of $s_0$, the $a$ parameter converts to $c_{\perp} = 0.63 \pm 0.10$. The relative error of $\approx 16\%$ on $c_{\perp}$ properly reflects the experimental uncertainty propagated from the fit parameter $a$.
 
-This result can be compared with existing values for $^{87}$Rb in a 3D $\text{lin} \perp \text{lin}$ optical molasses. Literature reports experimental $c_{\perp}$ values ranging from $0.37$ to $0.41$~\cite{Gerz:93}, and a theoretical value of $c_{\perp} = 0.31$ when accounting for atomic localization effects. The measured value of $c_{\perp} = 0.63 \pm 0.02$ is higher than previously reported experimental ranges, but remains on the same order of magnitude, confirming the expected Sisyphus cooling dynamics.
+This result can be compared with existing values for $^{87}$Rb in a 3D $\text{lin} \perp \text{lin}$ optical molasses. Literature reports experimental $c_{\perp}$ values ranging from $0.37$ to $0.41$~\cite{Gerz:93}, and a theoretical value of $c_{\perp} = 0.31$ when accounting for atomic localization effects. The measured value of $c_{\perp} = 0.63 \pm 0.10$ is higher than previously reported experimental ranges, but remains on the same order of magnitude, confirming the expected Sisyphus cooling dynamics.
 
 \subsection{AOM amplitude optimization}
 %*###############################################################
-The second stage of the optimization focused on the effect of the cooling beam power. This was investigated by varying both the AOM drive amplitude and the duration of the amplitude ramp applied at the beginning of the molasses phase. The AOM amplitude, given in arbitrary units (a.u.), determines the RF amplitude used to drive the modulator. Three settings were examined: 385, 475, and 550~a.u., corresponding respectively to cooling laser powers of 5.8~mW, 6.6~mW, and 6.3~mW measured after the collimator of the MOT $z$-beam. The MOT itself is operated at an AOM amplitude of 550~a.u.
+The second stage of the optimization focused on the effect of the cooling beam intensity. This was investigated by varying both the AOM drive amplitude and the duration of the amplitude ramp applied at the beginning of the molasses phase. The AOM amplitude, given in arbitrary units (a.u.), determines the RF amplitude used to drive the modulator. Three settings were examined: 385, 475, and 550~a.u., corresponding respectively to cooling laser powers of 5.8~mW, 6.6~mW, and 6.3~mW measured after the collimator of the MOT $z$-beam. These yield single-beam peak intensities of $2.36~\mathrm{mW/cm}^2$, $2.69~\mathrm{mW/cm}^2$, and $2.57~\mathrm{mW/cm}^2$ (saturation parameters $s_0 \approx 1.48$, $1.68$, and $1.60$). The MOT itself is operated at an AOM amplitude of 550~a.u.
 
 Ramp durations of 5~ms and 20~ms were also compared for the transition between the MOT and molasses amplitude settings. The measurements were repeated at several values of the cooling laser detuning.
 
