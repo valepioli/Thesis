@@ -280,10 +280,9 @@ so that, in general,
     =
     \gamma_e|e\rangle\langle e|.
 \end{equation}
-With the full hyperfine-weighted dipole matrix elements of Eq.~\eqref{eq:dipole_matrix_multilevel}, $b_{eg}$ is normalized per excited sublevel by construction, Eq.~\eqref{eq:branching_fraction}, so the identity above holds exactly, with $\gamma_e=\gamma$ for every excited hyperfine sublevel. The total decay rate is therefore independent of $F'$, consistent with the physical picture of a single natural linewidth for the $D_2$ line.
+With the full hyperfine-weighted dipole matrix elements of Eq.~\eqref{eq:dipole_matrix_multilevel}, $b_{eg}$ is normalized per excited sublevel,  by construction, with $\gamma_e=\gamma$ for every excited hyperfine sublevel. The total decay rate is therefore independent of $F'$, consistent with the physical picture of a single natural linewidth for the $D_2$ line.
 
 The model accounts for motional changes driven by laser absorption and stimulated coupling, but not for recoil heating during spontaneous emission. Within the Lamb--Dicke regime this correction enters at order $\eta^2$; it can still affect the final occupation and should be included for a quantitative comparison with the theoretical limit of Eq.~\eqref{eq:n_min} or with experimental temperatures.
-
 \subsection{Steady-State Spectroscopy}
 \label{subsec:steady_state_spectroscopy}
 
@@ -340,7 +339,7 @@ Cooling is quantified by propagating an initial atom--motion state and evaluatin
     \mathrm{Tr}\left[\rho(t) a^\dagger a\right].
     \label{eq:n_expectation_numerical}
 \end{equation}
-The initial internal state is chosen within the active ground-state manifold. The motional state is specified either as a Fock state, adopted as a computationally convenient approximation to the thermal population, or as a thermal mixture,
+The initial internal state is chosen within the active ground-state manifold. The motional state is specified either as a Fock state, adopted as a computationally convenient approximation for the 3-level system, or as a thermal mixture,
 \begin{equation}
     \rho_{\mathrm{th}}
     =
@@ -448,7 +447,7 @@ This gives $\nu_{z,\mathrm{MOT}} \approx 65\,\mathrm{kHz}$.
 
 During transport, the atoms are guided toward the fiber tip, where the beam waist is focused down to $w_0 = 19\,\mu\mathrm{m}$. The optical potential depth scales as $U \propto 1/w^2(z)$, so the compression amplifies it by
 \begin{equation}
-\frac{U_{\mathrm{tip}}}{U_{\mathrm{MOT}}} = \left(\frac{w_{\mathrm{MOT}}}{w_0}\right)^2 = \left(\frac{126,\mu\mathrm{m}}{19,\mu\mathrm{m}}\right)^2 \approx 44,
+\frac{U_{\mathrm{tip}}}{U_{\mathrm{MOT}}} = \left(\frac{w_{\mathrm{MOT}}}{w_0}\right)^2 = \left(\frac{126\,\mu\mathrm{m}}{19\,\mu\mathrm{m}}\right)^2 \approx 44,
 \end{equation}
 bringing the trap depth at the fiber tip to $U_{\mathrm{tip}} \approx 1.1\,\mathrm{mK}$.
 
@@ -464,13 +463,13 @@ If transport along the optical conveyor belt is adiabatic, the axial action of t
 \end{equation}
 During adiabatic compression, temperature scales with trapping frequency ($T \propto \nu_z$), so the axial temperature at the fiber tip increases by the same factor:
 \begin{equation}
-T_{\mathrm{tip}} = T_{\mathrm{MOT}}\sqrt{44} \approx 56,\mu\mathrm{K}.
+T_{\mathrm{tip}} = T_{\mathrm{MOT}}\sqrt{44} \approx 56\,\mu\mathrm{K}.
 \end{equation}
-Despite this rise in temperature, adiabaticity keeps the mean phonon number fixed at $\langle n_{z} \rangle \approx 2.3$. Since this calculated value is an estimate based on the initial measured temperature, it is rounded to the nearest integer and set the initial mean phonon number to $\langle n_{z} \rangle = 2$ in the simulation.
+Despite this rise in temperature, adiabaticity keeps the mean phonon number fixed at $\langle n_{z} \rangle \approx 2.3$. Since this calculated value is an estimat, it is rounded to the nearest integer and set the initial mean phonon number to $\langle n_{z} \rangle = 2$ in the simulation.
 
 The axial trap frequency $\nu_{z,\mathrm{tip}}$ is inserted directly into the motional Hamiltonian, with $\nu$ set to $430$~kHz. The Lamb--Dicke parameters of the probe and coupling beams follow from their wavevector projections, Eq.~\eqref{eq:eta_individual_beam}. For EIT cooling at the $780\,\mathrm{nm}$ absorption wavelength, the optical wavenumber is $k = 2\pi/\lambda_{\mathrm{EIT}} \approx 8.055 \times 10^6\,\mathrm{m}^{-1}$, and the spatial extent of the axial ground-state wavepacket is
 \begin{equation}
-x_{0,ax} = \sqrt{\frac{\hbar}{2m(2\pi\nu_{z,\mathrm{tip}})}} \approx 11 \mathrm{nm}.
+x_{0,ax} = \sqrt{\frac{\hbar}{2m(2\pi\nu_{z,\mathrm{tip}})}} \approx 11\,\mathrm{nm}.
 \end{equation}
 The corresponding axial Lamb--Dicke parameter is
 \begin{equation}
@@ -478,6 +477,4 @@ The corresponding axial Lamb--Dicke parameter is
 \end{equation}
 Since $\eta_{ax} \ll 1$, the axial motion is within the Lamb--Dicke regime assumed in Section~\ref{subsec:laser_coupling}. The magnetic field, laser polarizations, hyperfine splittings, detunings, and Rabi frequencies are retained explicitly in the 24-level Hamiltonian.
 
-The steady-state probe scan is carried out for the axial parameters, using the probe/coupling/repump assignment of Fig.~\ref{fig:multilevel_EIT_scheme}. The probe, coupling, and repump parameters are adjusted until the absorption maximum aligns with the axial red sideband while the carrier stays close to the transparency minimum. The resulting parameter set is used in the Monte Carlo time evolution.
-
-Atoms near the fiber surface experience spatially varying tensor light shifts, local magnetic field gradients, and polarization constraints that alter the internal energy structure. Future simulations must account for a modified level scheme and for the realistic trapping potentials and polarization geometries of the physical setup.
+The steady-state probe scan is carried out for the axial parameters, using the probe, coupling and repump assignment of Fig.~\ref{fig:multilevel_EIT_scheme}. The parameters are adjusted until the absorption maximum aligns with the axial red sideband while the carrier stays close to the transparency minimum. The resulting parameter set is used in the Monte Carlo time evolution. Atoms inside the fiber experience spatially varying tensor light shifts, local magnetic field gradients, and polarization constraint. Future simulations must account for a modified level scheme and for the realistic trapping potentials and geometry of the setup.

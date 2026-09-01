@@ -83,7 +83,7 @@ Downstream of PBS2, the branch built for the black fiber, shown in Figure~\ref{f
     \item a  mirror (Mirror 2), directing the beam into the telescope;
     \item a telescope formed by an $f=-30\,\mathrm{mm}$ lens (Lens f-30) and an $f=150\,\mathrm{mm}$ lens (Lens f150), re-collimating the beam to a radius of approximately $1.6\,\mathrm{mm}$, the target value derived in Section~\ref{subsec:mode_matching_endcap};
     \item two  mirrors (Mirror 3 and Mirror 4), directing the beam toward the fiber-injection assembly;
-    \item a half-wave plate (HWP 4), setting the incident linear polarization along the slow axis of the fiber, as described in Section~\ref{sec:black_fiber_polarization});
+    \item a half-wave plate (HWP 4), setting the incident linear polarization along the slow axis of the fiber, as described in Section~\ref{sec:black_fiber_polarization};
     \item an $f=25\,\mathrm{mm}$ achromatic doublet (Lens f25) (Thorlabs AC127-025-C), mounted on a micrometric translation stage (z-stage) along the propagation axis, focusing the beam into the fiber. The axial position of the lens is used to compensate for the displacement of the fiber-mode plane caused by the fiber endcap, discussed in Section~\ref{subsec:mode_matching_endcap};
     \item the black fiber mounted on the branch through its output connector.
 \end{itemize}
@@ -168,9 +168,9 @@ Based on the fit of the experimental data, and keeping the beam quality factors 
     R_x^2 &= 0.9993, & R_y^2 &= 0.9991.
 \end{align*}
 
-The measured waist agrees with the specified MFD, confirming that the transmitted light corresponds to the fundamental fiber mode.
+The measured waist agrees with the specified mode field diameter, confirming that the transmitted light corresponds to the fundamental fiber mode.
 
-\begin{wrapfigure}{R}{0.45\textwidth}
+\begin{wrapfigure}{R}{0.4\textwidth}
     \centering
     \vspace{-10pt} % Opzionale: riduce un po' lo spazio vuoto sopra l'immagine
     \includegraphics[width=0.4\textwidth]{Cap_2_figures/fiber_endcap.png}
@@ -187,7 +187,7 @@ For a collimated beam of radius $w_{\mathrm{in}}$ focused by a lens of focal len
     w_{\mathrm{in}} = \frac{\lambda f}{\pi w_{\mathrm{f}}}.
     \label{eq:required_input_radius}
 \end{equation}
-Using $\lambda=1.064\,\mu\mathrm{m}$, $f=25\,\mathrm{mm}$, and $w_{\mathrm{f}}=5.2\,\mu\mathrm{m}$, taken as half of the manufacturer-specified MFD (Figure~\ref{fig:manufacturer_MFD}), gives
+Using $\lambda=1.064\,\mu\mathrm{m}$, $f=25\,\mathrm{mm}$, and $w_{\mathrm{f}}=5.2\,\mu\mathrm{m}$, taken as half of the manufacturer-specified mode field diameter (Figure~\ref{fig:manufacturer_MFD}), gives
 \begin{equation}
     w_{\mathrm{in}}
     =
@@ -237,7 +237,7 @@ The HWP was adjusted to obtain approximately equal power at the two PBS outputs,
 
 To ensure a stable measurement, the polarization analyzer was referenced to the principal axes of the polarization-maintaining (PM) fiber (Fig.~\ref{fig:polarization_maintaining}). This required an input HWP before the fiber injection. On the output side, the beam passed through the collimator, a steering mirror, the second HWP, the characterized PBS, and a power meter.
 
-The two HWPs were iteratively adjusted to maximize the power transmitted through the PBS while minimizing the reflected power and its temporal fluctuations. This condition ensures that only one principal axis of the PM fiber is excited and that the emerging linear polarization is perfectly aligned with one PBS axis. The optimal input-HWP angle was found to be $131^\circ$.
+The two HWPs were iteratively adjusted to maximize the power transmitted through the PBS while minimizing the reflected power and its temporal fluctuations. This condition ensures that only one principal axis of the PM fiber is excited and that the emerging linear polarization is aligned with one PBS axis. The optimal input-HWP angle was found to be $131^\circ$.
 
 \begin{figure}[h!]
     \centering
