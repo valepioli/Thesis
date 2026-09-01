@@ -339,19 +339,14 @@ Cooling is quantified by propagating an initial atom--motion state and evaluatin
     \mathrm{Tr}\left[\rho(t) a^\dagger a\right].
     \label{eq:n_expectation_numerical}
 \end{equation}
-The initial internal state is chosen within the active ground-state manifold. The motional state is specified either as a Fock state, adopted as a computationally convenient approximation for the 3-level system, or as a thermal mixture,
+The initial internal state is chosen within the active ground-state manifold. The motional state is specified as a Fock state:
 \begin{equation}
     \rho_{\mathrm{th}}
     =
     \sum_{n=0}^{N_{\mathrm{vib}}-1}
-    p_n|n\rangle\langle n|,
-    \qquad
-    p_n
-    =
-    \frac{\bar n_0^n}{(1+\bar n_0)^{n+1}},
-    \label{eq:thermal_initial_state}
+    p_n|n\rangle\langle n|
 \end{equation}
-with the probabilities renormalized after truncation when necessary.
+with the probability renormalized after truncation when necessary.
 
 The three-level model is propagated with QuTiP's deterministic master-equation solver \texttt{mesolve}, which evolves the density operator directly and gives noise-free ensemble expectation values. For the full multilevel model, the Monte Carlo wavefunction solver \texttt{mcsolve} is used instead~\cite{Johansson2012}: it propagates stochastic pure-state trajectories interrupted by quantum jumps, estimating an observable as
 \begin{equation}
